@@ -496,8 +496,16 @@ body {
   border: none;
   padding: 0;
   font-size: 0.84rem;
-  color: var(--co-text-secondary);
   line-height: 1.75;
+}
+
+/* Let Shiki syntax highlighting colors show through */
+.cobalt-article pre code span {
+  color: var(--shiki-dark) !important;
+}
+
+[data-theme='light'] .cobalt-article pre code span {
+  color: var(--shiki-light) !important;
 }
 
 /* Table styles */
@@ -616,7 +624,15 @@ body {
 }
 
 .vp-doc div[class*='language-'] code {
-  color: var(--co-text-secondary) !important;
+  color: inherit !important;
+}
+
+.vp-doc div[class*='language-'] code span {
+  color: var(--shiki-dark) !important;
+}
+
+[data-theme='light'] .vp-doc div[class*='language-'] code span {
+  color: var(--shiki-light) !important;
 }
 
 .vp-doc div[class*='language-'] span.lang {
@@ -624,6 +640,20 @@ body {
   font-size: 0.7rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
+}
+
+.vp-doc div[class*='language-'] button.copy {
+  background: var(--co-surface) !important;
+  border: 1px solid var(--co-border) !important;
+  border-radius: 6px !important;
+  color: var(--co-text-muted) !important;
+  transition: all 0.2s ease !important;
+}
+
+.vp-doc div[class*='language-'] button.copy:hover {
+  background: var(--co-shimmer) !important;
+  color: var(--co-text-primary) !important;
+  border-color: var(--co-border-strong) !important;
 }
 
 /* Scrollbar */

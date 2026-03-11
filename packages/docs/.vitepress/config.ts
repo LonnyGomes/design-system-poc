@@ -3,6 +3,12 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'Cobalt Design System',
   description: 'A design system built with Lit + Shoelace',
+  markdown: {
+    theme: {
+      dark: 'tokyo-night',
+      light: 'github-light',
+    },
+  },
   head: [
     [
       'script',
