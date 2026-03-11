@@ -251,6 +251,7 @@ function toggleTheme() {
     rgba(37, 99, 235, 0.02) 40%,
     transparent 70%
   );
+  --co-blockquote-text: #1e3a5f;
   --co-scrollbar-thumb: var(--co-slate);
   --co-scrollbar-hover: var(--co-blue-500);
 }
@@ -561,7 +562,7 @@ body {
 }
 
 .cobalt-article blockquote p {
-  color: var(--co-blue-200);
+  color: var(--co-blockquote-text, var(--co-blue-200));
   margin: 0;
 }
 

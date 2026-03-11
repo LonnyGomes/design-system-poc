@@ -22,19 +22,85 @@ const navigation: NavGroup[] = [
     label: 'Overview',
     icon: 'home',
     defaultOpen: true,
-    items: [{ text: 'Introduction', link: '/', icon: 'spark' }],
+    items: [{ text: 'Introduction', link: '/' }],
   },
   {
-    label: 'Design Tokens',
+    label: 'Get Started',
+    icon: 'rocket',
+    defaultOpen: false,
+    items: [
+      { text: 'Overview', link: '/getting-started/' },
+      { text: 'For Designers', link: '/getting-started/designers' },
+      { text: 'For Developers', link: '/getting-started/developers' },
+      { text: 'For Product Managers', link: '/getting-started/product-managers' },
+    ],
+  },
+  {
+    label: 'Design Foundations',
     icon: 'palette',
-    defaultOpen: true,
-    items: [{ text: 'Token Reference', link: '/tokens/', icon: 'tokens' }],
+    defaultOpen: false,
+    items: [
+      { text: 'Overview', link: '/foundations/' },
+      { text: 'Colors', link: '/foundations/colors' },
+      { text: 'Typography', link: '/foundations/typography' },
+      { text: 'Spacing', link: '/foundations/spacing' },
+      { text: 'Elevation', link: '/foundations/elevation' },
+      { text: 'Motion', link: '/foundations/motion' },
+      { text: 'Breakpoints', link: '/foundations/breakpoints' },
+      { text: 'Iconography', link: '/foundations/iconography' },
+      { text: 'Accessibility', link: '/foundations/accessibility' },
+    ],
   },
   {
     label: 'Components',
     icon: 'components',
     defaultOpen: true,
-    items: [{ text: 'Button', link: '/components/button', icon: 'button' }],
+    items: [{ text: 'Button', link: '/components/button' }],
+  },
+  {
+    label: 'Patterns',
+    icon: 'patterns',
+    defaultOpen: false,
+    items: [
+      { text: 'Overview', link: '/patterns/' },
+      { text: 'Forms & Validation', link: '/patterns/forms' },
+      { text: 'Navigation', link: '/patterns/navigation' },
+      { text: 'Data Display', link: '/patterns/data-display' },
+      { text: 'Feedback & Status', link: '/patterns/feedback' },
+      { text: 'Layout', link: '/patterns/layout' },
+    ],
+  },
+  {
+    label: 'Guidance',
+    icon: 'guidance',
+    defaultOpen: false,
+    items: [
+      { text: 'Overview', link: '/guidance/' },
+      { text: 'Design Principles', link: '/guidance/principles' },
+      { text: 'Content & Writing', link: '/guidance/content' },
+      { text: 'Developer Onboarding', link: '/guidance/developer-onboarding' },
+      { text: 'Migration Guides', link: '/guidance/migration' },
+    ],
+  },
+  {
+    label: 'Contributing',
+    icon: 'contributing',
+    defaultOpen: false,
+    items: [
+      { text: 'Overview', link: '/contributing/' },
+      { text: 'How to Contribute', link: '/contributing/how-to-contribute' },
+      { text: 'Component Proposals', link: '/contributing/component-proposal' },
+      { text: 'Development Setup', link: '/contributing/development-setup' },
+      { text: 'Coding Standards', link: '/contributing/coding-standards' },
+      { text: 'Design Contributions', link: '/contributing/design-contribution' },
+      { text: 'Versioning & Releases', link: '/contributing/versioning' },
+    ],
+  },
+  {
+    label: 'Changelog',
+    icon: 'changelog',
+    defaultOpen: false,
+    items: [{ text: 'Release Notes', link: '/changelog' }],
   },
 ];
 
@@ -80,9 +146,7 @@ function isGroupActive(group: NavGroup): boolean {
           :aria-expanded="openGroups.has(group.label)"
         >
           <div class="group-icon">
-            <!-- Home icon -->
             <svg
-              v-if="group.icon === 'home'"
               width="18"
               height="18"
               viewBox="0 0 24 24"
@@ -92,45 +156,71 @@ function isGroupActive(group: NavGroup): boolean {
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-            <!-- Palette icon -->
-            <svg
-              v-else-if="group.icon === 'palette'"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="13.5" cy="6.5" r="0.5" fill="currentColor" />
-              <circle cx="17.5" cy="10.5" r="0.5" fill="currentColor" />
-              <circle cx="8.5" cy="7.5" r="0.5" fill="currentColor" />
-              <circle cx="6.5" cy="12.5" r="0.5" fill="currentColor" />
-              <path
-                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
-              />
-            </svg>
-            <!-- Components icon -->
-            <svg
-              v-else
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="3" y="3" width="7" height="7" rx="1" />
-              <rect x="14" y="3" width="7" height="7" rx="1" />
-              <rect x="3" y="14" width="7" height="7" rx="1" />
-              <rect x="14" y="14" width="7" height="7" rx="1" />
+              <!-- Home -->
+              <template v-if="group.icon === 'home'">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </template>
+              <!-- Rocket (Get Started) -->
+              <template v-else-if="group.icon === 'rocket'">
+                <path
+                  d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"
+                />
+                <path
+                  d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"
+                />
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+              </template>
+              <!-- Palette (Design Foundations) -->
+              <template v-else-if="group.icon === 'palette'">
+                <circle cx="13.5" cy="6.5" r="0.5" fill="currentColor" />
+                <circle cx="17.5" cy="10.5" r="0.5" fill="currentColor" />
+                <circle cx="8.5" cy="7.5" r="0.5" fill="currentColor" />
+                <circle cx="6.5" cy="12.5" r="0.5" fill="currentColor" />
+                <path
+                  d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
+                />
+              </template>
+              <!-- Components -->
+              <template v-else-if="group.icon === 'components'">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+              </template>
+              <!-- Patterns -->
+              <template v-else-if="group.icon === 'patterns'">
+                <path d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
+                <path d="M14 5a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z" />
+                <path d="M4 15a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1v-2z" />
+                <path d="M14 13a1 1 0 011-1h4a1 1 0 011 1v6a1 1 0 01-1 1h-4a1 1 0 01-1-1v-6z" />
+              </template>
+              <!-- Guidance -->
+              <template v-else-if="group.icon === 'guidance'">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
+              </template>
+              <!-- Contributing -->
+              <template v-else-if="group.icon === 'contributing'">
+                <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <line x1="19" y1="8" x2="19" y2="14" />
+                <line x1="22" y1="11" x2="16" y2="11" />
+              </template>
+              <!-- Changelog -->
+              <template v-else-if="group.icon === 'changelog'">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </template>
+              <!-- Fallback -->
+              <template v-else>
+                <circle cx="12" cy="12" r="10" />
+              </template>
             </svg>
           </div>
           <span class="group-label">{{ group.label }}</span>
