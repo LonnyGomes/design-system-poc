@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
+  base: '/design-system-poc/',
   title: 'Cobalt Design System',
   description: 'A design system built with Lit + Shoelace',
   markdown: {

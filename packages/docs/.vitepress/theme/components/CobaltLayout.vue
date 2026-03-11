@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useData, useRoute } from 'vitepress';
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, onUnmounted } from 'vue';
 import CobaltSidebar from './CobaltSidebar.vue';
 import CobaltHome from './CobaltHome.vue';
 
@@ -8,6 +8,7 @@ const { frontmatter } = useData();
 const route = useRoute();
 
 const isDark = ref(true);
+const sidebarOpen = ref(false);
 
 onMounted(() => {
   const saved = localStorage.getItem('cobalt-theme');
@@ -17,11 +18,23 @@ onMounted(() => {
   }
 });
 
+// Close sidebar on route change (mobile)
+watch(
+  () => route.path,
+  () => {
+    sidebarOpen.value = false;
+  },
+);
+
 function toggleTheme() {
   isDark.value = !isDark.value;
   const theme = isDark.value ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('cobalt-theme', theme);
+}
+
+function toggleSidebar() {
+  sidebarOpen.value = !sidebarOpen.value;
 }
 </script>
 
@@ -32,6 +45,32 @@ function toggleTheme() {
 
     <!-- Top bar -->
     <header class="cobalt-topbar">
+      <button
+        class="topbar-hamburger"
+        @click="toggleSidebar"
+        :aria-label="sidebarOpen ? 'Close menu' : 'Open menu'"
+        :aria-expanded="sidebarOpen"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <template v-if="!sidebarOpen">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </template>
+          <template v-else>
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="6" y1="18" x2="18" y2="6" />
+          </template>
+        </svg>
+      </button>
       <div class="topbar-brand">
         <div class="brand-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -113,8 +152,16 @@ function toggleTheme() {
     </header>
 
     <div class="cobalt-body">
+      <!-- Mobile overlay backdrop -->
+      <div
+        v-if="sidebarOpen"
+        class="sidebar-backdrop"
+        @click="sidebarOpen = false"
+        aria-hidden="true"
+      ></div>
+
       <!-- M3-style sidebar -->
-      <CobaltSidebar />
+      <CobaltSidebar :class="{ 'is-open': sidebarOpen }" />
 
       <!-- Main content -->
       <main class="cobalt-main">
@@ -151,13 +198,13 @@ function toggleTheme() {
   --co-electric: #4f8fff;
   --co-glow: #6ba1ff;
   --co-shimmer: rgba(99, 155, 255, 0.06);
-  --co-text-primary: #dce4f0;
-  --co-text-secondary: #7a8da8;
-  --co-text-muted: #4e6382;
-  --co-border: rgba(99, 155, 255, 0.08);
-  --co-border-strong: rgba(99, 155, 255, 0.14);
-  --co-surface: rgba(15, 29, 50, 0.4);
-  --co-surface-raised: rgba(21, 34, 56, 0.6);
+  --co-text-primary: #e8eef6;
+  --co-text-secondary: #9badc6;
+  --co-text-muted: #6d84a3;
+  --co-border: rgba(99, 155, 255, 0.12);
+  --co-border-strong: rgba(99, 155, 255, 0.2);
+  --co-surface: rgba(15, 29, 50, 0.5);
+  --co-surface-raised: rgba(21, 34, 56, 0.7);
 
   /* Semantic colors for themed alpha values */
   --co-topbar-bg: linear-gradient(180deg, rgba(10, 22, 40, 0.95) 0%, rgba(10, 22, 40, 0.85) 100%);
@@ -523,7 +570,7 @@ body {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--co-text-muted);
+  color: var(--co-text-secondary);
   padding: 10px 16px;
   border-bottom: 1px solid var(--co-border-strong);
   background: var(--co-surface);
@@ -674,5 +721,98 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--co-scrollbar-hover);
+}
+
+/* ── Hamburger Button ────────────────────────────────────────── */
+.topbar-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  color: var(--co-text-secondary);
+  cursor: pointer;
+  transition: all var(--co-duration) var(--co-ease);
+  flex-shrink: 0;
+}
+
+.topbar-hamburger:hover {
+  color: var(--co-text-primary);
+  background: var(--co-shimmer);
+}
+
+/* ── Mobile Overlay Backdrop ─────────────────────────────────── */
+.sidebar-backdrop {
+  display: none;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+/* Tablet: narrower content padding */
+@media (max-width: 1024px) {
+  .cobalt-content {
+    padding: 36px 32px 64px;
+  }
+}
+
+/* Mobile: sidebar becomes overlay, content goes full-width */
+@media (max-width: 768px) {
+  .topbar-hamburger {
+    display: flex;
+  }
+
+  .cobalt-topbar {
+    padding: 0 16px;
+  }
+
+  .brand-tag {
+    display: none;
+  }
+
+  .cobalt-main {
+    margin-left: 0;
+  }
+
+  .cobalt-content {
+    padding: 24px 16px 64px;
+    max-width: 100%;
+  }
+
+  .cobalt-article h1 {
+    font-size: 1.6rem;
+  }
+
+  .cobalt-article h2 {
+    font-size: 1.2rem;
+  }
+
+  .cobalt-article h3 {
+    font-size: 1rem;
+  }
+
+  .cobalt-article table {
+    font-size: 0.82rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cobalt-article pre {
+    margin: 12px -16px 20px;
+    border-radius: 0;
+  }
+
+  /* Sidebar as overlay */
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
 }
 </style>

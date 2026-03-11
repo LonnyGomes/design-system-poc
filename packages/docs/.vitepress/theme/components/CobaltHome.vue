@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { withBase } from 'vitepress';
+
 const features = [
   {
     icon: 'tokens',
@@ -48,7 +50,7 @@ const features = [
         </p>
 
         <div class="hero-actions">
-          <a href="/components/button" class="action-primary">
+          <a :href="withBase('/components/button')" class="action-primary">
             <span>Explore Components</span>
             <svg
               width="16"
@@ -64,7 +66,7 @@ const features = [
               <polyline points="9 4 13 8 9 12" />
             </svg>
           </a>
-          <a href="/tokens/" class="action-secondary">View Tokens</a>
+          <a :href="withBase('/tokens/')" class="action-secondary">View Tokens</a>
         </div>
       </div>
 
@@ -148,7 +150,7 @@ const features = [
       <a
         v-for="(feature, i) in features"
         :key="feature.title"
-        :href="feature.link"
+        :href="withBase(feature.link)"
         class="feature-card"
         :style="{ animationDelay: `${200 + i * 100}ms` }"
       >
@@ -606,5 +608,39 @@ const features = [
 
 .arch-arrow {
   flex-shrink: 0;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .title-line {
+    font-size: 1.1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .arch-flow {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .arch-arrow {
+    transform: rotate(90deg);
+  }
 }
 </style>
