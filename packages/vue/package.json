@@ -1,0 +1,22 @@
+{
+  "name": "@cobalt/vue",
+  "version": "0.0.1",
+  "description": "Vue wrappers for Cobalt Design System",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "echo 'placeholder'",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@cobalt/components": "workspace:*"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "license": "MIT"
+}

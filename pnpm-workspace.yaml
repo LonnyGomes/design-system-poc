@@ -1,0 +1,7 @@
+packages:
+  - packages/*
+onlyBuiltDependencies:
+  - '@bundled-es-modules/glob'
+  - esbuild
+  - rs-module-lexer
+  - style-dictionary

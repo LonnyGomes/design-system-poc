@@ -1,0 +1,30 @@
+{
+  "name": "@cobalt/tokens",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Design tokens for the Cobalt Design System",
+  "main": "dist/js/tokens.js",
+  "types": "dist/js/tokens.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/js/tokens.js",
+      "types": "./dist/js/tokens.d.ts"
+    },
+    "./css": "./dist/css/tokens.css",
+    "./css/dark": "./dist/css/tokens-dark.css",
+    "./css/shoelace": "./dist/css/shoelace-mapping.css",
+    "./scss": "./dist/scss/_tokens.scss",
+    "./json": "./dist/tokens.json"
+  },
+  "scripts": {
+    "build": "node config.js",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.0.0"
+  },
+  "license": "MIT"
+}
