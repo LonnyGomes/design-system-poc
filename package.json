@@ -1,0 +1,36 @@
+{
+  "name": "cobalt-design-system",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Cobalt Design System — Lit + Shoelace composition",
+  "scripts": {
+    "build": "pnpm -r --stream build",
+    "dev": "pnpm --filter @cobalt/docs dev",
+    "test": "pnpm --filter @cobalt/components test",
+    "test:watch": "pnpm --filter @cobalt/components test:watch",
+    "lint": "eslint 'packages/*/src/**/*.ts'",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,css,md,vue,html}": "prettier --write"
+  },
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.30.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^10.0.3",
+    "eslint-plugin-lit": "^2.2.1",
+    "eslint-plugin-wc": "^3.1.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.3",
+    "prettier": "^3.8.1"
+  }
+}

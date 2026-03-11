@@ -1,0 +1,19 @@
+{
+  "name": "@cobalt/docs",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "description": "Cobalt Design System documentation",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "@cobalt/components": "workspace:*",
+    "@cobalt/tokens": "workspace:*",
+    "vitepress": "^1.5.0",
+    "vue": "^3.5.0"
+  },
+  "license": "MIT"
+}

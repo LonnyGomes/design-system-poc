@@ -1,0 +1,45 @@
+{
+  "name": "@cobalt/components",
+  "version": "0.0.1",
+  "description": "Cobalt Design System Web Components",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "custom-elements.json"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./button": {
+      "import": "./dist/components/button/cb-button.js",
+      "types": "./dist/components/button/cb-button.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.test.json && npm run analyze",
+    "analyze": "cem analyze --litelement",
+    "test": "wtr",
+    "test:watch": "wtr --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@cobalt/tokens": "workspace:*",
+    "@shoelace-style/shoelace": "^2.19.0",
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.10.0",
+    "@open-wc/testing": "^4.0.0",
+    "@types/mocha": "^10.0.10",
+    "@web/test-runner": "^0.19.0",
+    "@web/test-runner-playwright": "^0.11.0",
+    "axe-core": "^4.10.0",
+    "typescript": "~5.6.0"
+  },
+  "customElements": "custom-elements.json",
+  "license": "MIT"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@cobalt/icons",
+  "version": "0.0.1",
+  "description": "Icons for the Cobalt Design System",
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "echo 'placeholder'",
+    "clean": "rm -rf dist"
+  },
+  "license": "MIT"
+}
