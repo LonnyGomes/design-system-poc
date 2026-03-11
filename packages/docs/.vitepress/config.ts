@@ -45,7 +45,7 @@ export default defineConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['lit', '@shoelace-style/shoelace'],
+      include: ['lit', '@shoelace-style/shoelace', '@cobalt/components'],
     },
   },
 });
