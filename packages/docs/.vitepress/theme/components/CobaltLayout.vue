@@ -179,7 +179,7 @@ function toggleSidebar() {
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* ── Reset & Globals ──────────────────────────────────────────── */
 :root {
@@ -239,7 +239,7 @@ function toggleSidebar() {
   --co-scrollbar-hover: var(--co-blue-600);
 
   /* Typography */
-  --co-font-body: 'DM Sans', system-ui, sans-serif;
+  --co-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --co-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* Layout */
