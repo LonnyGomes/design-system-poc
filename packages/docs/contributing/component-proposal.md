@@ -33,7 +33,7 @@ implementations, leading to inconsistent behavior and duplicated effort.
 Define the component's public interface: tag name, properties, events, slots, and CSS custom properties.
 
 ```html
-<cb-date-range-picker
+<co-date-range-picker
   start-date="2025-01-01"
   end-date="2025-12-31"
   min-date="2020-01-01"
@@ -42,7 +42,7 @@ Define the component's public interface: tag name, properties, events, slots, an
   disabled
 >
   <span slot="label">Select a date range</span>
-</cb-date-range-picker>
+</co-date-range-picker>
 ```
 
 | Property     | Type      | Default   | Description                          |
@@ -56,9 +56,9 @@ Define the component's public interface: tag name, properties, events, slots, an
 
 | Event       | Detail                                   | Description                            |
 | ----------- | ---------------------------------------- | -------------------------------------- |
-| `cb-change` | `{ startDate: string, endDate: string }` | Fires when the range selection changes |
-| `cb-open`   | —                                        | Fires when the picker dropdown opens   |
-| `cb-close`  | —                                        | Fires when the picker dropdown closes  |
+| `co-change` | `{ startDate: string, endDate: string }` | Fires when the range selection changes |
+| `co-open`   | —                                        | Fires when the picker dropdown opens   |
+| `co-close`  | —                                        | Fires when the picker dropdown closes  |
 
 ### 3. Alternatives Considered
 

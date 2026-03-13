@@ -94,7 +94,7 @@ Once a design is approved, the handoff process ensures a smooth transition to im
 
 1. **Publish the Figma branch** — Merge the approved design into the main library file
 2. **Create a development issue** — Use the Component Implementation template, linking to the Figma spec
-3. **Token mapping** — Provide a table mapping design values to CSS custom properties (`--cb-` tokens)
+3. **Token mapping** — Provide a table mapping design values to CSS custom properties (`--co-` tokens)
 4. **Pair with a developer** — Schedule a 30-minute walkthrough of the spec with the assigned developer
 5. **Review implementation** — Compare the built component against the Figma spec at each milestone
 
@@ -102,10 +102,10 @@ Once a design is approved, the handoff process ensures a smooth transition to im
 
 | Design Property      | Figma Token     | CSS Custom Property                    |
 | -------------------- | --------------- | -------------------------------------- |
-| Background (primary) | `brand/500`     | `--cb-button-background-primary`       |
-| Background (hover)   | `brand/600`     | `--cb-button-background-primary-hover` |
-| Text color           | `neutral/white` | `--cb-button-color-primary`            |
-| Border radius        | `radius/md`     | `--cb-button-border-radius`            |
-| Padding horizontal   | `spacing/4`     | `--cb-button-padding-inline`           |
+| Background (primary) | `brand/500`     | `--co-button-background-primary`       |
+| Background (hover)   | `brand/600`     | `--co-button-background-primary-hover` |
+| Text color           | `neutral/white` | `--co-button-color-primary`            |
+| Border radius        | `radius/md`     | `--co-button-border-radius`            |
+| Padding horizontal   | `spacing/4`     | `--co-button-padding-inline`           |
 
 > **Note:** Developers should never need to inspect pixel values from Figma. Every value should map to a named token. If a design requires a value that doesn't exist as a token, that's a signal to propose a new token first.

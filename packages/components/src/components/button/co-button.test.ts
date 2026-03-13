@@ -1,11 +1,11 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import { runA11yAudit } from '../../test-utils/a11y.js';
-import './cb-button.js';
-import type { CbButton } from './cb-button.js';
+import './co-button.js';
+import type { CoButton } from './co-button.js';
 
-describe('cb-button', () => {
+describe('co-button', () => {
   it('renders with default props', async () => {
-    const el = await fixture<CbButton>(html`<cb-button>Click me</cb-button>`);
+    const el = await fixture<CoButton>(html`<co-button>Click me</co-button>`);
     expect(el).to.exist;
     expect(el.variant).to.equal('primary');
     expect(el.size).to.equal('md');
@@ -14,53 +14,53 @@ describe('cb-button', () => {
   });
 
   it('reflects variant attribute', async () => {
-    const el = await fixture<CbButton>(html`<cb-button variant="danger">Delete</cb-button>`);
+    const el = await fixture<CoButton>(html`<co-button variant="danger">Delete</co-button>`);
     expect(el.variant).to.equal('danger');
     expect(el.getAttribute('variant')).to.equal('danger');
   });
 
   it('reflects size attribute', async () => {
-    const el = await fixture<CbButton>(html`<cb-button size="lg">Large</cb-button>`);
+    const el = await fixture<CoButton>(html`<co-button size="lg">Large</co-button>`);
     expect(el.size).to.equal('lg');
     expect(el.getAttribute('size')).to.equal('lg');
   });
 
   it('maps variant to Shoelace variant', async () => {
-    const el = await fixture<CbButton>(html`<cb-button variant="secondary">Sec</cb-button>`);
+    const el = await fixture<CoButton>(html`<co-button variant="secondary">Sec</co-button>`);
     const slButton = el.shadowRoot!.querySelector('sl-button');
     expect(slButton).to.exist;
     expect(slButton!.getAttribute('variant')).to.equal('default');
   });
 
   it('maps size to Shoelace size', async () => {
-    const el = await fixture<CbButton>(html`<cb-button size="sm">Small</cb-button>`);
+    const el = await fixture<CoButton>(html`<co-button size="sm">Small</co-button>`);
     const slButton = el.shadowRoot!.querySelector('sl-button');
     expect(slButton!.getAttribute('size')).to.equal('small');
   });
 
   it('passes disabled to Shoelace', async () => {
-    const el = await fixture<CbButton>(html`<cb-button disabled>Disabled</cb-button>`);
+    const el = await fixture<CoButton>(html`<co-button disabled>Disabled</co-button>`);
     const slButton = el.shadowRoot!.querySelector('sl-button');
     expect(slButton!.hasAttribute('disabled')).to.be.true;
   });
 
   it('passes loading to Shoelace', async () => {
-    const el = await fixture<CbButton>(html`<cb-button loading>Loading</cb-button>`);
+    const el = await fixture<CoButton>(html`<co-button loading>Loading</co-button>`);
     const slButton = el.shadowRoot!.querySelector('sl-button');
     expect(slButton!.hasAttribute('loading')).to.be.true;
   });
 
   it('projects default slot content', async () => {
-    const el = await fixture<CbButton>(html`<cb-button>Hello</cb-button>`);
+    const el = await fixture<CoButton>(html`<co-button>Hello</co-button>`);
     expect(el.textContent?.trim()).to.equal('Hello');
   });
 
   it('projects prefix slot', async () => {
-    const el = await fixture<CbButton>(html`
-      <cb-button>
+    const el = await fixture<CoButton>(html`
+      <co-button>
         <span slot="prefix">★</span>
         Star
-      </cb-button>
+      </co-button>
     `);
     const prefixSlot = el.querySelector('[slot="prefix"]');
     expect(prefixSlot).to.exist;
@@ -68,21 +68,21 @@ describe('cb-button', () => {
   });
 
   it('projects suffix slot', async () => {
-    const el = await fixture<CbButton>(html`
-      <cb-button>
+    const el = await fixture<CoButton>(html`
+      <co-button>
         Go
         <span slot="suffix">→</span>
-      </cb-button>
+      </co-button>
     `);
     const suffixSlot = el.querySelector('[slot="suffix"]');
     expect(suffixSlot).to.exist;
     expect(suffixSlot!.textContent).to.equal('→');
   });
 
-  it('dispatches cb-focus event', async () => {
-    const el = await fixture<CbButton>(html`<cb-button>Focus me</cb-button>`);
+  it('dispatches co-focus event', async () => {
+    const el = await fixture<CoButton>(html`<co-button>Focus me</co-button>`);
     let focusFired = false;
-    el.addEventListener('cb-focus', () => {
+    el.addEventListener('co-focus', () => {
       focusFired = true;
     });
     const slButton = el.shadowRoot!.querySelector('sl-button')!;
@@ -90,10 +90,10 @@ describe('cb-button', () => {
     expect(focusFired).to.be.true;
   });
 
-  it('dispatches cb-blur event', async () => {
-    const el = await fixture<CbButton>(html`<cb-button>Blur me</cb-button>`);
+  it('dispatches co-blur event', async () => {
+    const el = await fixture<CoButton>(html`<co-button>Blur me</co-button>`);
     let blurFired = false;
-    el.addEventListener('cb-blur', () => {
+    el.addEventListener('co-blur', () => {
       blurFired = true;
     });
     const slButton = el.shadowRoot!.querySelector('sl-button')!;
@@ -103,17 +103,17 @@ describe('cb-button', () => {
 
   describe('accessibility', () => {
     it('is accessible in default state', async () => {
-      const el = await fixture(html`<cb-button>Click me</cb-button>`);
+      const el = await fixture(html`<co-button>Click me</co-button>`);
       await runA11yAudit(el);
     });
 
     it('is accessible when disabled', async () => {
-      const el = await fixture(html`<cb-button disabled>Disabled</cb-button>`);
+      const el = await fixture(html`<co-button disabled>Disabled</co-button>`);
       await runA11yAudit(el);
     });
 
     it('is accessible with loading state', async () => {
-      const el = await fixture(html`<cb-button loading>Loading</cb-button>`);
+      const el = await fixture(html`<co-button loading>Loading</co-button>`);
       await runA11yAudit(el);
     });
   });

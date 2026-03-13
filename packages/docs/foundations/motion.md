@@ -6,10 +6,10 @@ Motion makes interfaces feel responsive and alive. The Cobalt motion system defi
 
 | Token                  | Value  | Use case                                        |
 | ---------------------- | ------ | ----------------------------------------------- |
-| `--cb-duration-fast`   | 100 ms | Micro-interactions — checkbox toggle, icon swap |
-| `--cb-duration-normal` | 200 ms | Default — button hover, input focus ring        |
-| `--cb-duration-slow`   | 300 ms | Expanding panels, dropdown open                 |
-| `--cb-duration-slower` | 500 ms | Full-page transitions, skeleton fade-in         |
+| `--co-duration-fast`   | 100 ms | Micro-interactions — checkbox toggle, icon swap |
+| `--co-duration-normal` | 200 ms | Default — button hover, input focus ring        |
+| `--co-duration-slow`   | 300 ms | Expanding panels, dropdown open                 |
+| `--co-duration-slower` | 500 ms | Full-page transitions, skeleton fade-in         |
 
 > **Tip:** Shorter durations feel snappier but can go unnoticed. Longer durations draw attention — reserve them for layout-level changes where the user needs to track what moved.
 
@@ -17,33 +17,33 @@ Motion makes interfaces feel responsive and alive. The Cobalt motion system defi
 
 | Token              | CSS value                           | Character                              |
 | ------------------ | ----------------------------------- | -------------------------------------- |
-| `--cb-ease`        | `cubic-bezier(0.25, 0.1, 0.25, 1)`  | General purpose — smooth and natural   |
-| `--cb-ease-in`     | `cubic-bezier(0.42, 0, 1, 1)`       | Elements leaving the screen            |
-| `--cb-ease-out`    | `cubic-bezier(0, 0, 0.58, 1)`       | Elements entering the screen           |
-| `--cb-ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Playful overshoot — tooltips, popovers |
+| `--co-ease`        | `cubic-bezier(0.25, 0.1, 0.25, 1)`  | General purpose — smooth and natural   |
+| `--co-ease-in`     | `cubic-bezier(0.42, 0, 1, 1)`       | Elements leaving the screen            |
+| `--co-ease-out`    | `cubic-bezier(0, 0, 0.58, 1)`       | Elements entering the screen           |
+| `--co-ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Playful overshoot — tooltips, popovers |
 
 ## Usage in CSS
 
 ### Transition shorthand
 
 ```css
-.cb-button {
-  background: var(--cb-color-primary-600);
+.co-button {
+  background: var(--co-color-primary-600);
   transition:
-    background-color var(--cb-duration-normal) var(--cb-ease),
-    box-shadow var(--cb-duration-normal) var(--cb-ease);
+    background-color var(--co-duration-normal) var(--co-ease),
+    box-shadow var(--co-duration-normal) var(--co-ease);
 }
 
-.cb-button:hover {
-  background: var(--cb-color-primary-700);
-  box-shadow: var(--cb-shadow-md);
+.co-button:hover {
+  background: var(--co-color-primary-700);
+  box-shadow: var(--co-shadow-md);
 }
 ```
 
 ### Keyframe animation
 
 ```css
-@keyframes cb-fade-in {
+@keyframes co-fade-in {
   from {
     opacity: 0;
     transform: translateY(4px);
@@ -54,21 +54,21 @@ Motion makes interfaces feel responsive and alive. The Cobalt motion system defi
   }
 }
 
-.cb-dropdown-menu {
-  animation: cb-fade-in var(--cb-duration-slow) var(--cb-ease-out);
+.co-dropdown-menu {
+  animation: co-fade-in var(--co-duration-slow) var(--co-ease-out);
 }
 ```
 
 ### Expanding and collapsing
 
 ```css
-.cb-accordion-body {
+.co-accordion-body {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--cb-duration-slow) var(--cb-ease);
+  transition: grid-template-rows var(--co-duration-slow) var(--co-ease);
 }
 
-.cb-accordion[open] .cb-accordion-body {
+.co-accordion[open] .co-accordion-body {
   grid-template-rows: 1fr;
 }
 ```

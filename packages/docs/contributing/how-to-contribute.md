@@ -8,7 +8,7 @@ If you've found a bug in a Cobalt component, please file an issue using the **Bu
 
 A good bug report includes:
 
-- **Component name and version** (e.g., `@cobalt/cb-button@2.3.1`)
+- **Component name and version** (e.g., `@cobalt/co-button@2.3.1`)
 - **Steps to reproduce** the issue
 - **Expected behavior** versus **actual behavior**
 - **Browser and OS** information
@@ -39,7 +39,7 @@ For new component proposals, follow the [Component Proposal Process](./component
 ### Pull Request Workflow
 
 1. **Fork the repository** and create a branch from `main`
-2. **Name your branch** using the convention: `feat/cb-component-description`, `fix/cb-component-description`, or `docs/description`
+2. **Name your branch** using the convention: `feat/co-component-description`, `fix/co-component-description`, or `docs/description`
 3. **Make your changes** following the coding standards
 4. **Add or update tests** to cover your changes
 5. **Add a changeset** by running `pnpm changeset` and describing the change

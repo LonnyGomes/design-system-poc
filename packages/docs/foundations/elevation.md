@@ -6,15 +6,15 @@ Elevation tokens provide consistent shadow values that communicate depth and hie
 
 | Token            | CSS value                                                             | Typical use                                  |
 | ---------------- | --------------------------------------------------------------------- | -------------------------------------------- |
-| `--cb-shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.05)`                                       | Subtle lift — buttons at rest, input borders |
-| `--cb-shadow-md` | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)`    | Cards, dropdowns                             |
-| `--cb-shadow-lg` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)`  | Popovers, floating toolbars                  |
-| `--cb-shadow-xl` | `0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)` | Modals, dialogs                              |
+| `--co-shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.05)`                                       | Subtle lift — buttons at rest, input borders |
+| `--co-shadow-md` | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)`    | Cards, dropdowns                             |
+| `--co-shadow-lg` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)`  | Popovers, floating toolbars                  |
+| `--co-shadow-xl` | `0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)` | Modals, dialogs                              |
 
 A special **none** token is also available for explicitly removing shadows:
 
 ```css
---cb-shadow-none: 0 0 #0000;
+--co-shadow-none: 0 0 #0000;
 ```
 
 ## When to use each level
@@ -26,31 +26,31 @@ A special **none** token is also available for explicitly removing shadows:
 | **lg** | Floating elements that overlay page content temporarily — popovers, tooltips, date pickers.             |
 | **xl** | Full-screen or near-full-screen overlays — modals, dialogs, command palettes.                           |
 
-> **Tip:** Avoid stacking multiple elevated elements on top of each other. If a popover appears inside a modal, both should use `--cb-shadow-xl` to sit at the same perceived layer.
+> **Tip:** Avoid stacking multiple elevated elements on top of each other. If a popover appears inside a modal, both should use `--co-shadow-xl` to sit at the same perceived layer.
 
 ## Usage in CSS
 
 ```css
-.cb-card {
-  box-shadow: var(--cb-shadow-md);
-  border-radius: var(--cb-radius-lg);
-  background: var(--cb-color-neutral-0);
+.co-card {
+  box-shadow: var(--co-shadow-md);
+  border-radius: var(--co-radius-lg);
+  background: var(--co-color-neutral-0);
 }
 
-.cb-card:hover {
-  box-shadow: var(--cb-shadow-lg);
+.co-card:hover {
+  box-shadow: var(--co-shadow-lg);
 }
 
-.cb-dialog-overlay {
+.co-dialog-overlay {
   position: fixed;
   inset: 0;
   background: rgb(0 0 0 / 0.4);
 }
 
-.cb-dialog {
-  box-shadow: var(--cb-shadow-xl);
-  border-radius: var(--cb-radius-xl);
-  background: var(--cb-color-neutral-0);
+.co-dialog {
+  box-shadow: var(--co-shadow-xl);
+  border-radius: var(--co-radius-xl);
+  background: var(--co-color-neutral-0);
 }
 ```
 
@@ -60,8 +60,8 @@ In dark mode, shadows alone are not enough to communicate depth because the base
 
 ```css
 [data-theme='dark'] {
-  --cb-surface-raised: var(--cb-color-neutral-800);
-  --cb-surface-overlay: var(--cb-color-neutral-700);
+  --co-surface-raised: var(--co-color-neutral-800);
+  --co-surface-overlay: var(--co-color-neutral-700);
 }
 ```
 
@@ -72,8 +72,8 @@ Components automatically apply these surface tokens, so shadows remain visible w
 Pair elevation changes with the motion system so shadows animate smoothly:
 
 ```css
-.cb-card {
-  transition: box-shadow var(--cb-duration-normal) var(--cb-ease);
+.co-card {
+  transition: box-shadow var(--co-duration-normal) var(--co-ease);
 }
 ```
 

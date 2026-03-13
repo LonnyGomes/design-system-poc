@@ -1,5 +1,5 @@
 {
-  "cb": {
+  "co": {
     "transition": {
       "duration": {
         "fast": { "$value": "100ms", "$type": "duration" },

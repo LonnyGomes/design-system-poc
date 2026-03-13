@@ -16,15 +16,15 @@ Cobalt's semantic color tokens are pre-validated to meet these ratios in both li
 
 ```css
 /* Safe pairing — contrast ratio 7.1:1 */
-.cb-text {
-  color: var(--cb-color-neutral-900);
-  background: var(--cb-color-neutral-0);
+.co-text {
+  color: var(--co-color-neutral-900);
+  background: var(--co-color-neutral-0);
 }
 
 /* Danger — verify custom combinations */
-.cb-alert--danger {
-  color: var(--cb-color-danger-900); /* dark red text */
-  background: var(--cb-color-danger-50); /* light red bg — ratio 8.2:1 */
+.co-alert--danger {
+  color: var(--co-color-danger-900); /* dark red text */
+  background: var(--co-color-danger-50); /* light red bg — ratio 8.2:1 */
 }
 ```
 
@@ -52,14 +52,14 @@ Visible focus indicators are critical for keyboard users. Cobalt provides a stan
 
 ```css
 :focus-visible {
-  outline: 2px solid var(--cb-color-primary-600);
+  outline: 2px solid var(--co-color-primary-600);
   outline-offset: 2px;
 }
 ```
 
 ### Focus trapping
 
-Modal dialogs and similar overlays must trap focus so the user cannot tab to obscured content behind the overlay. The `cb-Dialog` component handles this automatically. If building custom overlays, use the `@cobalt/focus-trap` utility:
+Modal dialogs and similar overlays must trap focus so the user cannot tab to obscured content behind the overlay. The `co-Dialog` component handles this automatically. If building custom overlays, use the `@cobalt/focus-trap` utility:
 
 ```tsx
 import { useFocusTrap } from '@cobalt/focus-trap';

@@ -15,8 +15,8 @@
       "types": "./dist/index.d.ts"
     },
     "./button": {
-      "import": "./dist/components/button/cb-button.js",
-      "types": "./dist/components/button/cb-button.d.ts"
+      "import": "./dist/components/button/co-button.js",
+      "types": "./dist/components/button/co-button.d.ts"
     }
   },
   "scripts": {

@@ -1,5 +1,5 @@
 {
-  "cb": {
+  "co": {
     "breakpoint": {
       "sm": { "$value": "640px", "$type": "dimension" },
       "md": { "$value": "768px", "$type": "dimension" },

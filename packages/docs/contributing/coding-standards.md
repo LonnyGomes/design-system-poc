@@ -16,20 +16,20 @@ All components extend a shared `CobaltElement` base class from `@cobalt/core`. K
 
 - Always set `reflect: true` for properties that affect styling or accessibility
 - Use semantic HTML inside shadow DOM wherever possible
-- Dispatch custom events with the `cb-` prefix (e.g., `cb-change`, `cb-open`)
+- Dispatch custom events with the `co-` prefix (e.g., `co-change`, `co-open`)
 - Never manipulate light DOM from within the component
 
 ## CSS Custom Property Naming
 
-All CSS custom properties must follow the `--cb-` prefix convention:
+All CSS custom properties must follow the `--co-` prefix convention:
 
 ```
---cb-{component}-{property}-{variant}-{state}
+--co-{component}-{property}-{variant}-{state}
 ```
 
 | Segment   | Example                                | Required      |
 | --------- | -------------------------------------- | ------------- |
-| Prefix    | `--cb-`                                | Yes           |
+| Prefix    | `--co-`                                | Yes           |
 | Component | `button`                               | Yes           |
 | Property  | `background`, `color`, `border-radius` | Yes           |
 | Variant   | `primary`, `secondary`                 | If applicable |
@@ -39,15 +39,15 @@ Examples:
 
 ```css
 :host {
-  --cb-button-background-primary: var(--cb-color-brand-500);
-  --cb-button-background-primary-hover: var(--cb-color-brand-600);
-  --cb-button-color-primary: var(--cb-color-white);
-  --cb-button-border-radius: var(--cb-radius-md);
-  --cb-button-padding-inline: var(--cb-spacing-4);
+  --co-button-background-primary: var(--co-color-brand-500);
+  --co-button-background-primary-hover: var(--co-color-brand-600);
+  --co-button-color-primary: var(--co-color-white);
+  --co-button-border-radius: var(--co-radius-md);
+  --co-button-padding-inline: var(--co-spacing-4);
 }
 ```
 
-> **Tip:** Reference design tokens (e.g., `--cb-color-brand-500`) rather than hard-coded values. This ensures your component adapts to theming automatically.
+> **Tip:** Reference design tokens (e.g., `--co-color-brand-500`) rather than hard-coded values. This ensures your component adapts to theming automatically.
 
 ## Testing Requirements
 
@@ -69,11 +69,11 @@ Every component must include both **unit tests** and **accessibility tests**.
 
 | Type                | Convention               | Example                  |
 | ------------------- | ------------------------ | ------------------------ |
-| Component source    | `cb-{name}.ts`           | `cb-button.ts`           |
-| Component styles    | `cb-{name}.styles.ts`    | `cb-button.styles.ts`    |
-| Unit tests          | `cb-{name}.test.ts`      | `cb-button.test.ts`      |
-| Accessibility tests | `cb-{name}.a11y.test.ts` | `cb-button.a11y.test.ts` |
-| Stories             | `cb-{name}.stories.ts`   | `cb-button.stories.ts`   |
+| Component source    | `co-{name}.ts`           | `co-button.ts`           |
+| Component styles    | `co-{name}.styles.ts`    | `co-button.styles.ts`    |
+| Unit tests          | `co-{name}.test.ts`      | `co-button.test.ts`      |
+| Accessibility tests | `co-{name}.a11y.test.ts` | `co-button.a11y.test.ts` |
+| Stories             | `co-{name}.stories.ts`   | `co-button.stories.ts`   |
 
 All files use **kebab-case**. Do not use `PascalCase` or `camelCase` for file names.
 
@@ -102,9 +102,9 @@ type(scope): description
 Examples:
 
 ```bash
-feat(cb-button): add ghost variant
-fix(cb-input): resolve focus ring not visible in high contrast mode
-docs(cb-modal): add usage examples for nested modals
+feat(co-button): add ghost variant
+fix(co-input): resolve focus ring not visible in high contrast mode
+docs(co-modal): add usage examples for nested modals
 chore(deps): update lit to 3.2.0
 ```
 

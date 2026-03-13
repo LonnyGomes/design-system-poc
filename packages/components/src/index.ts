@@ -1,1 +1,1 @@
-export { CbButton } from './components/button/cb-button.js';
+export { CoButton } from './components/button/co-button.js';

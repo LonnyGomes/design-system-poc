@@ -91,7 +91,7 @@ Use the following defaults across all Cobalt applications. Allow locale override
 | Relative time  | `3 minutes ago`         | Activity feeds, notifications |
 | Date + time    | `Mar 11, 2026, 2:30 PM` | Logs, audit trails            |
 
-Use `cb-date` and `cb-time` components for automatic locale-aware formatting. Avoid hardcoding date strings.
+Use `co-date` and `co-time` components for automatic locale-aware formatting. Avoid hardcoding date strings.
 
 ---
 
@@ -105,7 +105,7 @@ Use `cb-date` and `cb-time` components for automatic locale-aware formatting. Av
 | File sizes    | `2.4 MB`        | Use binary units (KB, MB, GB).                  |
 | Abbreviations | `12.5K`, `3.2M` | Use for large numbers in dashboards and charts. |
 
-> **Tip:** Use the `cb-number` component with `format="currency"` or `format="compact"` to handle these rules automatically.
+> **Tip:** Use the `co-number` component with `format="currency"` or `format="compact"` to handle these rules automatically.
 
 ---
 

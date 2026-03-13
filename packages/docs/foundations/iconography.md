@@ -16,10 +16,10 @@ All icons are designed on a 24 px grid but scale cleanly to the four supported s
 
 | Token          | Size  | Usage                                 |
 | -------------- | ----- | ------------------------------------- |
-| `--cb-icon-xs` | 16 px | Inline indicators inside badges, tags |
-| `--cb-icon-sm` | 20 px | Inside buttons, form controls         |
-| `--cb-icon-md` | 24 px | Standalone icons, navigation items    |
-| `--cb-icon-lg` | 32 px | Empty states, feature highlights      |
+| `--co-icon-xs` | 16 px | Inline indicators inside badges, tags |
+| `--co-icon-sm` | 20 px | Inside buttons, form controls         |
+| `--co-icon-md` | 24 px | Standalone icons, navigation items    |
+| `--co-icon-lg` | 32 px | Empty states, feature highlights      |
 
 ## Usage with Vue
 
@@ -54,9 +54,9 @@ function Example() {
 When not using a framework package, embed SVGs directly:
 
 ```html
-<button class="cb-button cb-button--primary">
+<button class="co-button co-button--primary">
   <svg
-    class="cb-icon"
+    class="co-icon"
     width="20"
     height="20"
     viewBox="0 0 256 256"
@@ -76,24 +76,24 @@ When not using a framework package, embed SVGs directly:
 Icons inherit `currentColor` by default, so they match the surrounding text color automatically:
 
 ```css
-.cb-icon {
-  width: var(--cb-icon-md);
-  height: var(--cb-icon-md);
+.co-icon {
+  width: var(--co-icon-md);
+  height: var(--co-icon-md);
   flex-shrink: 0;
   fill: currentColor;
 }
 
-.cb-button .cb-icon {
-  width: var(--cb-icon-sm);
-  height: var(--cb-icon-sm);
+.co-button .co-icon {
+  width: var(--co-icon-sm);
+  height: var(--co-icon-sm);
 }
 ```
 
 To override color independently of text:
 
 ```css
-.cb-status-icon--success {
-  color: var(--cb-color-success-600);
+.co-status-icon--success {
+  color: var(--co-color-success-600);
 }
 ```
 

@@ -37,9 +37,9 @@ cobalt-design-system/
 │   ├── core/                  # @cobalt/core — shared utilities and base classes
 │   ├── tokens/                # @cobalt/tokens — design tokens (colors, spacing, etc.)
 │   ├── components/
-│   │   ├── cb-button/         # @cobalt/cb-button
-│   │   ├── cb-input/          # @cobalt/cb-input
-│   │   ├── cb-modal/          # @cobalt/cb-modal
+│   │   ├── co-button/         # @cobalt/co-button
+│   │   ├── co-input/          # @cobalt/co-input
+│   │   ├── co-modal/          # @cobalt/co-modal
 │   │   └── ...                # Additional components
 │   ├── icons/                 # @cobalt/icons — icon library
 │   ├── themes/                # @cobalt/themes — theme definitions
@@ -59,7 +59,7 @@ All commands should be run from the **repository root**.
 | Command                                 | Description                                   |
 | --------------------------------------- | --------------------------------------------- |
 | `pnpm build`                            | Build all packages                            |
-| `pnpm build --filter=@cobalt/cb-button` | Build a single package                        |
+| `pnpm build --filter=@cobalt/co-button` | Build a single package                        |
 | `pnpm dev`                              | Start development mode with file watching     |
 | `pnpm lint`                             | Run ESLint across all packages                |
 | `pnpm lint --fix`                       | Auto-fix linting issues                       |
@@ -90,7 +90,7 @@ The dev server runs at `http://localhost:5173` by default and supports hot modul
 pnpm test
 
 # Run tests for a specific package
-pnpm test --filter=@cobalt/cb-button
+pnpm test --filter=@cobalt/co-button
 
 # Run tests in watch mode
 pnpm test:watch

@@ -1,1 +1,1 @@
-export { CbButton, type CbButtonProps } from './components/button.js';
+export { CoButton, type CoButtonProps } from './components/button.js';

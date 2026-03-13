@@ -39,7 +39,7 @@ cobalt-design-system/
 ├── packages/
 │   ├── tokens/       # Design tokens (JSON → CSS custom properties)
 │   ├── core/         # Shared utilities, mixins, base styles
-│   ├── components/   # Web components (cb-button, cb-input, etc.)
+│   ├── components/   # Web components (co-button, co-input, etc.)
 │   └── docs/         # Documentation site (you are here)
 ├── tools/            # CLI and testing utilities
 ├── package.json      # Root workspace configuration
@@ -53,19 +53,19 @@ cobalt-design-system/
 ### Installation
 
 ```bash
-npm install @cobalt/cb-button @cobalt/cb-input @cobalt/tokens
+npm install @cobalt/co-button @cobalt/co-input @cobalt/tokens
 ```
 
 ### Usage in HTML
 
 ```html
 <script type="module">
-  import '@cobalt/cb-button';
-  import '@cobalt/cb-input';
+  import '@cobalt/co-button';
+  import '@cobalt/co-input';
 </script>
 
-<cb-input label="Email address" type="email"></cb-input>
-<cb-button variant="primary">Sign in</cb-button>
+<co-input label="Email address" type="email"></co-input>
+<co-button variant="primary">Sign in</co-button>
 ```
 
 ### Usage with a framework
@@ -86,14 +86,14 @@ Cobalt ships with a default theme expressed as CSS custom properties. Override a
 ```css
 /* Global override */
 :root {
-  --cb-color-primary-500: #1a6dff;
-  --cb-space-300: 1rem;
+  --co-color-primary-500: #1a6dff;
+  --co-space-300: 1rem;
 }
 
 /* Scoped override for a dark section */
 .dark-panel {
-  --cb-color-surface: #1e1e2e;
-  --cb-color-on-surface: #e0e0e0;
+  --co-color-surface: #1e1e2e;
+  --co-color-on-surface: #e0e0e0;
 }
 ```
 
@@ -111,11 +111,11 @@ npm install -D @open-wc/testing @web/test-runner
 
 ```js
 import { html, fixture, expect } from '@open-wc/testing';
-import '@cobalt/cb-button';
+import '@cobalt/co-button';
 
-describe('cb-button', () => {
+describe('co-button', () => {
   it('renders with the correct label', async () => {
-    const el = await fixture(html`<cb-button>Click me</cb-button>`);
+    const el = await fixture(html`<co-button>Click me</co-button>`);
     expect(el.shadowRoot.querySelector('button').textContent).to.equal('Click me');
   });
 });
@@ -132,6 +132,6 @@ Run tests with: `npx web-test-runner --node-resolve`.
 | Components render as empty boxes                 | Ensure you imported the component module before using the tag.                    |
 | Styles leak into or out of components            | Cobalt uses Shadow DOM. Use CSS custom properties (tokens) to style from outside. |
 | SSR hydration mismatch                           | Use `@cobalt/ssr` for server-side declarative shadow DOM support.                 |
-| Flash of unstyled content (FOUC)                 | Add `cb-cloak` attribute to the body and import `@cobalt/tokens/cloak.css`.       |
+| Flash of unstyled content (FOUC)                 | Add `co-cloak` attribute to the body and import `@cobalt/tokens/cloak.css`.       |
 | Tests fail with "custom element already defined" | Run each test file in its own browser context or use `--isolation` flag.          |
 | Bundle size unexpectedly large                   | Check that tree-shaking is enabled and you are not importing barrel files.        |

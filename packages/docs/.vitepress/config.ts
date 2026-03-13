@@ -96,7 +96,7 @@ export default defineConfig({
   vue: {
     template: {
       compilerOptions: {
-        isCustomElement: (tag: string) => tag.startsWith('cb-') || tag.startsWith('sl-'),
+        isCustomElement: (tag: string) => tag.startsWith('co-') || tag.startsWith('sl-'),
       },
     },
   },

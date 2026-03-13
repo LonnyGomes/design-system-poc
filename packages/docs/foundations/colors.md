@@ -26,27 +26,27 @@ Semantic tokens abstract primitives so your UI adapts to theme changes without t
 
 | Token                    | Light mode value | Dark mode value | Usage                       |
 | ------------------------ | ---------------- | --------------- | --------------------------- |
-| `--cb-color-primary-600` | Blue 600         | Blue 400        | Primary actions, links      |
-| `--cb-color-neutral-100` | Gray 100         | Gray 800        | Subtle backgrounds          |
-| `--cb-color-neutral-900` | Gray 900         | Gray 50         | Body text                   |
-| `--cb-color-danger-600`  | Red 600          | Red 400         | Destructive actions, errors |
-| `--cb-color-success-600` | Green 600        | Green 400       | Success states              |
-| `--cb-color-warning-500` | Amber 500        | Amber 300       | Warning indicators          |
+| `--co-color-primary-600` | Blue 600         | Blue 400        | Primary actions, links      |
+| `--co-color-neutral-100` | Gray 100         | Gray 800        | Subtle backgrounds          |
+| `--co-color-neutral-900` | Gray 900         | Gray 50         | Body text                   |
+| `--co-color-danger-600`  | Red 600          | Red 400         | Destructive actions, errors |
+| `--co-color-success-600` | Green 600        | Green 400       | Success states              |
+| `--co-color-warning-500` | Amber 500        | Amber 300       | Warning indicators          |
 
 ## Usage in CSS
 
 Reference tokens with `var()`:
 
 ```css
-.cb-button--primary {
-  background-color: var(--cb-color-primary-600);
-  color: var(--cb-color-neutral-0);
+.co-button--primary {
+  background-color: var(--co-color-primary-600);
+  color: var(--co-color-neutral-0);
 }
 
-.cb-alert--danger {
-  background-color: var(--cb-color-danger-50);
-  border-left: 4px solid var(--cb-color-danger-600);
-  color: var(--cb-color-danger-900);
+.co-alert--danger {
+  background-color: var(--co-color-danger-50);
+  border-left: 4px solid var(--co-color-danger-600);
+  color: var(--co-color-danger-900);
 }
 ```
 
@@ -57,17 +57,17 @@ Cobalt ships two token layers. The default layer uses light-mode values. When th
 ```css
 /* Automatically provided by @cobalt/tokens */
 :root {
-  --cb-color-primary-600: #2563eb;
-  --cb-color-neutral-0: #ffffff;
+  --co-color-primary-600: #2563eb;
+  --co-color-neutral-0: #ffffff;
 }
 
 [data-theme='dark'] {
-  --cb-color-primary-600: #60a5fa;
-  --cb-color-neutral-0: #0a0a0a;
+  --co-color-primary-600: #60a5fa;
+  --co-color-neutral-0: #0a0a0a;
 }
 ```
 
-No component CSS needs to change — the same `var(--cb-color-primary-600)` resolves to the correct value in either mode.
+No component CSS needs to change — the same `var(--co-color-primary-600)` resolves to the correct value in either mode.
 
 > **Tip:** Always verify that foreground/background pairings meet a minimum contrast ratio of **4.5:1** for normal text and **3:1** for large text, as required by WCAG 2.1 AA.
 
@@ -75,7 +75,7 @@ No component CSS needs to change — the same `var(--cb-color-primary-600)` reso
 
 - All default semantic pairings satisfy WCAG 2.1 AA contrast requirements.
 - Never rely on color alone to communicate meaning — always pair color with text, icons, or patterns.
-- Use the `--cb-color-focus-ring` token (`Blue 500` at 50 % opacity) for keyboard-focus outlines.
+- Use the `--co-color-focus-ring` token (`Blue 500` at 50 % opacity) for keyboard-focus outlines.
 
 ## Related
 

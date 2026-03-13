@@ -14,9 +14,9 @@ _Initial alpha release of the Cobalt Design System._
 
 ### Added
 
-- **`cb-button` component** — first production-ready web component with full variant support (`primary`, `secondary`, `ghost`, `danger`), three sizes (`sm`, `md`, `lg`), and disabled/loading states.
+- **`co-button` component** — first production-ready web component with full variant support (`primary`, `secondary`, `ghost`, `danger`), three sizes (`sm`, `md`, `lg`), and disabled/loading states.
 - **Design tokens** — complete token sets covering color, typography, spacing, elevation, motion, and breakpoints, authored in Style Dictionary format.
-- **React wrapper** (`@cobalt/react`) — auto-generated React bindings for all `cb-*` web components with full TypeScript definitions and prop forwarding.
+- **React wrapper** (`@cobalt/react`) — auto-generated React bindings for all `co-*` web components with full TypeScript definitions and prop forwarding.
 - **VitePress documentation site** (`@cobalt/docs`) — searchable docs with live component previews, token reference tables, and contribution guidelines.
 - **Token build pipeline** — generates CSS custom properties, SCSS variables, and ES module exports from a single token source.
 
@@ -27,8 +27,8 @@ _Initial alpha release of the Cobalt Design System._
 
 ### Fixed
 
-- Resolved an issue where `cb-button` focus ring was not visible in Windows High Contrast Mode.
-- Corrected token naming convention to follow the `cb-{category}-{concept}-{variant}-{state}` pattern consistently.
+- Resolved an issue where `co-button` focus ring was not visible in Windows High Contrast Mode.
+- Corrected token naming convention to follow the `co-{category}-{concept}-{variant}-{state}` pattern consistently.
 
 ---
 
@@ -40,7 +40,7 @@ _Dark mode support, theming infrastructure, and interactive demos._
 
 - **Dark mode token set** — semantic color tokens now resolve to light or dark palettes based on a `data-theme` attribute on the document root.
 - **Shoelace theme mapping** — bridge layer that maps Cobalt design tokens to Shoelace CSS custom properties, enabling incremental adoption alongside existing Shoelace components.
-- **Interactive component demos** — embedded playgrounds in the docs site powered by `<cb-demo>`, supporting live prop editing and source code display.
+- **Interactive component demos** — embedded playgrounds in the docs site powered by `<co-demo>`, supporting live prop editing and source code display.
 - **Color contrast checker** — docs utility that validates WCAG 2.1 AA/AAA compliance for any foreground/background token pair.
 
 ### Changed

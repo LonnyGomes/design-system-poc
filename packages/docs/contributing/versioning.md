@@ -19,10 +19,10 @@ A change is considered **breaking** if it requires consumers to modify their cod
 ### Breaking (Major Version Bump)
 
 - Removing a public property, method, event, slot, or CSS custom property
-- Renaming a component tag (e.g., `cb-dialog` to `cb-modal`)
+- Renaming a component tag (e.g., `co-dialog` to `co-modal`)
 - Changing the type or default value of a public property
 - Changing event detail shape or event names
-- Removing or renaming a CSS custom property (`--cb-*`)
+- Removing or renaming a CSS custom property (`--co-*`)
 - Changing the DOM structure in a way that breaks CSS selectors or slot behavior
 - Dropping support for a browser or Node.js version
 - Changing the module export structure of a package
@@ -64,7 +64,7 @@ Write summaries from the consumer's perspective:
 
 ```markdown
 ---
-'@cobalt/cb-button': minor
+'@cobalt/co-button': minor
 ---
 
 Added `loading` property to display a spinner and disable interactions while an async action is in progress.
@@ -98,10 +98,10 @@ For testing unstable features, we maintain pre-release channels:
 
 ```bash
 # Install a beta version
-pnpm add @cobalt/cb-button@beta
+pnpm add @cobalt/co-button@beta
 
 # Install a specific pre-release
-pnpm add @cobalt/cb-button@3.0.0-beta.1
+pnpm add @cobalt/co-button@3.0.0-beta.1
 ```
 
 Pre-release versions follow the pattern `{version}-{channel}.{number}` (e.g., `3.0.0-beta.1`).

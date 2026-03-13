@@ -59,7 +59,7 @@ Then import the global stylesheet and any components you need:
 
 ```js
 import '@cobalt/tokens/css/global.css';
-import '@cobalt/components/cb-button';
+import '@cobalt/components/co-button';
 ```
 
 > **Tip:** You do not need to install `@cobalt/tokens` separately if you are already using `@cobalt/components` — tokens are included as a dependency. The explicit install is only needed if you want tokens without the component library.

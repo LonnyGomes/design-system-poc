@@ -14,20 +14,20 @@ import type { ButtonVariant, ButtonSize } from '@cobalt/components/button';
 import '@cobalt/components/button';
 
 /**
- * Angular directive wrapping the `<cb-button>` web component.
+ * Angular directive wrapping the `<co-button>` web component.
  *
  * @example
  * ```html
- * <cb-button variant="primary" size="md" (cbFocus)="onFocus()">
+ * <co-button variant="primary" size="md" (coFocus)="onFocus()">
  *   Save changes
- * </cb-button>
+ * </co-button>
  * ```
  */
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: 'cb-button',
+  selector: 'co-button',
 })
-export class CbButtonDirective implements OnInit, OnChanges {
+export class CoButtonDirective implements OnInit, OnChanges {
   @Input() variant: ButtonVariant = 'primary';
   @Input() size: ButtonSize = 'md';
   @Input() disabled: boolean = false;
@@ -36,8 +36,8 @@ export class CbButtonDirective implements OnInit, OnChanges {
   @Input() href?: string;
   @Input() target?: '_blank' | '_self' | '_parent' | '_top';
 
-  @Output() cbFocus = new EventEmitter<CustomEvent>();
-  @Output() cbBlur = new EventEmitter<CustomEvent>();
+  @Output() coFocus = new EventEmitter<CustomEvent>();
+  @Output() coBlur = new EventEmitter<CustomEvent>();
 
   private el: HTMLElement;
 
@@ -46,11 +46,11 @@ export class CbButtonDirective implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.el.addEventListener('cb-focus', (e: Event) => {
-      this.cbFocus.emit(e as CustomEvent);
+    this.el.addEventListener('co-focus', (e: Event) => {
+      this.coFocus.emit(e as CustomEvent);
     });
-    this.el.addEventListener('cb-blur', (e: Event) => {
-      this.cbBlur.emit(e as CustomEvent);
+    this.el.addEventListener('co-blur', (e: Event) => {
+      this.coBlur.emit(e as CustomEvent);
     });
     this.syncProperties();
   }
@@ -72,8 +72,8 @@ export class CbButtonDirective implements OnInit, OnChanges {
 }
 
 @NgModule({
-  declarations: [CbButtonDirective],
-  exports: [CbButtonDirective],
+  declarations: [CoButtonDirective],
+  exports: [CoButtonDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CobaltButtonModule {}
