@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useData, useRoute } from 'vitepress';
+import { useData, useRoute, withBase } from 'vitepress';
 import { ref, onMounted, watch, onUnmounted } from 'vue';
 import CobaltSidebar from './CobaltSidebar.vue';
 import CobaltHome from './CobaltHome.vue';
@@ -72,7 +72,7 @@ function toggleSidebar() {
           </template>
         </svg>
       </button>
-      <div class="topbar-brand">
+      <a :href="withBase('/')" class="topbar-brand">
         <div class="brand-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
             <rect x="2" y="2" width="24" height="24" rx="6" fill="url(#cobalt-gem)" />
@@ -98,7 +98,7 @@ function toggleSidebar() {
         </div>
         <span class="brand-name">Cobalt</span>
         <span class="brand-tag">Design System</span>
-      </div>
+      </a>
       <nav class="topbar-nav">
         <VPNavBarSearch />
         <button
@@ -361,6 +361,8 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .brand-icon {
