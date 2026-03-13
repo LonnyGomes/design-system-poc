@@ -1,11 +1,11 @@
 # Button
 
-The `cb-button` component provides a themed, accessible button built on top of Shoelace. It supports multiple variants, sizes, loading states, and slot-based content composition.
+The `co-button` component provides a themed, accessible button built on top of Shoelace. It supports multiple variants, sizes, loading states, and slot-based content composition.
 
 ## Interactive Demo
 
 <ComponentDemo
-  tag="cb-button"
+  tag="co-button"
   label="Click me"
   :defaults="{ variant: 'primary', size: 'md' }"
   :options="{ variant: ['primary', 'secondary', 'danger', 'ghost'], size: ['sm', 'md', 'lg'] }"
@@ -16,10 +16,10 @@ The `cb-button` component provides a themed, accessible button built on top of S
 
 <ClientOnly>
 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px;">
-  <cb-button variant="primary">Primary</cb-button>
-  <cb-button variant="secondary">Secondary</cb-button>
-  <cb-button variant="danger">Danger</cb-button>
-  <cb-button variant="ghost">Ghost</cb-button>
+  <co-button variant="primary">Primary</co-button>
+  <co-button variant="secondary">Secondary</co-button>
+  <co-button variant="danger">Danger</co-button>
+  <co-button variant="ghost">Ghost</co-button>
 </div>
 </ClientOnly>
 
@@ -34,9 +34,9 @@ The `cb-button` component provides a themed, accessible button built on top of S
 
 <ClientOnly>
 <div style="display: flex; gap: 12px; align-items: center; margin: 16px 0 24px;">
-  <cb-button size="sm">Small</cb-button>
-  <cb-button size="md">Medium</cb-button>
-  <cb-button size="lg">Large</cb-button>
+  <co-button size="sm">Small</co-button>
+  <co-button size="md">Medium</co-button>
+  <co-button size="lg">Large</co-button>
 </div>
 </ClientOnly>
 
@@ -44,8 +44,8 @@ The `cb-button` component provides a themed, accessible button built on top of S
 
 <ClientOnly>
 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px;">
-  <cb-button disabled>Disabled</cb-button>
-  <cb-button loading>Loading</cb-button>
+  <co-button disabled>Disabled</co-button>
+  <co-button loading>Loading</co-button>
 </div>
 </ClientOnly>
 
@@ -55,8 +55,8 @@ Use named slots to add icons or other content before or after the button label.
 
 <ClientOnly>
 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px;">
-  <cb-button><span slot="prefix">★</span> With Prefix</cb-button>
-  <cb-button>With Suffix <span slot="suffix">→</span></cb-button>
+  <co-button><span slot="prefix">★</span> With Prefix</co-button>
+  <co-button>With Suffix <span slot="suffix">→</span></co-button>
 </div>
 </ClientOnly>
 
@@ -73,25 +73,25 @@ Use named slots to add icons or other content before or after the button label.
 </script>
 
 <!-- Basic usage -->
-<cb-button variant="primary">Save changes</cb-button>
+<co-button variant="primary">Save changes</co-button>
 
 <!-- With slots -->
-<cb-button variant="secondary" size="lg">
+<co-button variant="secondary" size="lg">
   <span slot="prefix">📎</span>
   Attach file
-</cb-button>
+</co-button>
 
 <!-- Disabled + loading states -->
-<cb-button disabled>Can't touch this</cb-button>
-<cb-button loading>Submitting…</cb-button>
+<co-button disabled>Can't touch this</co-button>
+<co-button loading>Submitting…</co-button>
 
 <!-- As a link -->
-<cb-button href="https://example.com" target="_blank"> Visit site </cb-button>
+<co-button href="https://example.com" target="_blank"> Visit site </co-button>
 
 <!-- Listen to events -->
-<cb-button id="my-btn">Click me</cb-button>
+<co-button id="my-btn">Click me</co-button>
 <script>
-  document.getElementById('my-btn').addEventListener('cb-focus', () => console.log('focused'));
+  document.getElementById('my-btn').addEventListener('co-focus', () => console.log('focused'));
 </script>
 ```
 
@@ -122,7 +122,7 @@ function App() {
       <Button loading={loading}>Submitting…</Button>
 
       {/* Danger variant */}
-      <Button variant="danger" onCbFocus={() => console.log('focused')}>
+      <Button variant="danger" onCoFocus={() => console.log('focused')}>
         Delete account
       </Button>
 
@@ -141,7 +141,7 @@ function App() {
 ```vue
 <script setup>
 import { ref } from 'vue';
-import { CbButton } from '@cobalt/vue';
+import { CoButton } from '@cobalt/vue';
 
 const loading = ref(false);
 
@@ -154,17 +154,17 @@ async function handleClick() {
 
 <template>
   <!-- Basic -->
-  <CbButton variant="primary" @click="handleClick"> Save changes </CbButton>
+  <CoButton variant="primary" @click="handleClick"> Save changes </CoButton>
 
   <!-- With loading state -->
-  <CbButton :loading="loading">Submitting…</CbButton>
+  <CoButton :loading="loading">Submitting…</CoButton>
 
   <!-- Danger variant -->
-  <CbButton variant="danger" @cb-focus="onFocus"> Delete account </CbButton>
+  <CoButton variant="danger" @co-focus="onFocus"> Delete account </CoButton>
 
   <!-- Sizes -->
-  <CbButton size="sm">Small</CbButton>
-  <CbButton size="lg">Large</CbButton>
+  <CoButton size="sm">Small</CoButton>
+  <CoButton size="lg">Large</CoButton>
 </template>
 ```
 
@@ -188,17 +188,17 @@ export class AppModule {}
 <!-- app.component.html -->
 
 <!-- Basic -->
-<cb-button variant="primary" (click)="handleClick()"> Save changes </cb-button>
+<co-button variant="primary" (click)="handleClick()"> Save changes </co-button>
 
 <!-- Bound properties -->
-<cb-button [variant]="variant" [loading]="isLoading"> Submitting… </cb-button>
+<co-button [variant]="variant" [loading]="isLoading"> Submitting… </co-button>
 
 <!-- Danger variant with events -->
-<cb-button variant="danger" (cbFocus)="onFocus($event)"> Delete account </cb-button>
+<co-button variant="danger" (coFocus)="onFocus($event)"> Delete account </co-button>
 
 <!-- Sizes -->
-<cb-button size="sm">Small</cb-button>
-<cb-button size="lg">Large</cb-button>
+<co-button size="sm">Small</co-button>
+<co-button size="lg">Large</co-button>
 ```
 
 </template>
@@ -255,8 +255,8 @@ export class AppModule {}
 
 | Event      | Detail | Description                          |
 | ---------- | ------ | ------------------------------------ |
-| `cb-focus` | —      | Fired when the button receives focus |
-| `cb-blur`  | —      | Fired when the button loses focus    |
+| `co-focus` | —      | Fired when the button receives focus |
+| `co-blur`  | —      | Fired when the button loses focus    |
 
 ### Slots
 

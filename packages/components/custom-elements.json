@@ -1,0 +1,367 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "dist/index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CoButton",
+          "declaration": {
+            "name": "CoButton",
+            "module": "./components/button/co-button.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CoButton",
+          "declaration": {
+            "name": "CoButton",
+            "module": "./components/button/co-button.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/test-utils/a11y.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "runA11yAudit",
+          "parameters": [
+            {
+              "name": "el"
+            }
+          ],
+          "description": "Runs axe-core accessibility audit on the given element.\nThrows an error if any violations are found."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "runA11yAudit",
+          "declaration": {
+            "name": "runA11yAudit",
+            "module": "dist/test-utils/a11y.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/test-utils/a11y.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "runA11yAudit",
+          "return": {
+            "type": {
+              "text": "Promise<void>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "el",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ],
+          "description": "Runs axe-core accessibility audit on the given element.\nThrows an error if any violations are found."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "runA11yAudit",
+          "declaration": {
+            "name": "runA11yAudit",
+            "module": "src/test-utils/a11y.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/components/button/co-button.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "CoButton",
+          "default": "class CoButton extends LitElement { constructor() { super(...arguments); /** The button variant. */ this.variant = 'primary'; /** The button size. */ this.size = 'md'; /** Disables the button. */ this.disabled = false; /** Shows a loading spinner. */ this.loading = false; /** The button type (submit, reset, button). */ this.type = 'button'; } get _slVariant() { return variantMap[this.variant] ?? 'primary'; } get _slSize() { return sizeMap[this.size] ?? 'medium'; } _handleFocus() { this.dispatchEvent(new CustomEvent('co-focus', { bubbles: true, composed: true })); } _handleBlur() { this.dispatchEvent(new CustomEvent('co-blur', { bubbles: true, composed: true })); } render() { return html ` <sl-button variant=${this._slVariant} size=${this._slSize} ?disabled=${this.disabled} ?loading=${this.loading} type=${this.type} href=${ifDefined(this.href)} target=${ifDefined(this.target)} exportparts=\"base, label, prefix, suffix\" @sl-focus=${this._handleFocus} @sl-blur=${this._handleBlur} > <slot name=\"prefix\" slot=\"prefix\"></slot> <slot></slot> <slot name=\"suffix\" slot=\"suffix\"></slot> </sl-button> `; } }",
+          "summary": "A button component wrapping Shoelace's sl-button with Cobalt theming."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CoButton",
+          "declaration": {
+            "name": "CoButton",
+            "module": "dist/components/button/co-button.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/co-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CoButton",
+          "cssParts": [
+            {
+              "description": "The underlying sl-button's base part",
+              "name": "base"
+            },
+            {
+              "description": "The button label",
+              "name": "label"
+            },
+            {
+              "description": "The prefix container",
+              "name": "prefix"
+            },
+            {
+              "description": "The suffix container",
+              "name": "suffix"
+            }
+          ],
+          "slots": [
+            {
+              "description": "Default slot for button content",
+              "name": ""
+            },
+            {
+              "description": "Content before the label",
+              "name": "prefix"
+            },
+            {
+              "description": "Content after the label",
+              "name": "suffix"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "ButtonVariant"
+              },
+              "default": "'primary'",
+              "description": "The button variant.",
+              "attribute": "variant",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "ButtonSize"
+              },
+              "default": "'md'",
+              "description": "The button size.",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the button.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a loading spinner.",
+              "attribute": "loading",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'submit' | 'reset' | 'button'"
+              },
+              "default": "'button'",
+              "description": "The button type (submit, reset, button).",
+              "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "href",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional href to render the button as a link.",
+              "attribute": "href"
+            },
+            {
+              "kind": "field",
+              "name": "target",
+              "type": {
+                "text": "'_blank' | '_self' | '_parent' | '_top' | undefined"
+              },
+              "description": "Where to open the link (when href is set).",
+              "attribute": "target"
+            },
+            {
+              "kind": "field",
+              "name": "_slVariant",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_slSize",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_handleFocus",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_handleBlur",
+              "privacy": "private"
+            }
+          ],
+          "events": [
+            {
+              "name": "co-focus",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Emitted when the button gains focus"
+            },
+            {
+              "name": "co-blur",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Emitted when the button loses focus"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "ButtonVariant"
+              },
+              "default": "'primary'",
+              "description": "The button variant.",
+              "fieldName": "variant"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "ButtonSize"
+              },
+              "default": "'md'",
+              "description": "The button size.",
+              "fieldName": "size"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the button.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "loading",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a loading spinner.",
+              "fieldName": "loading"
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "'submit' | 'reset' | 'button'"
+              },
+              "default": "'button'",
+              "description": "The button type (submit, reset, button).",
+              "fieldName": "type"
+            },
+            {
+              "name": "href",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An optional href to render the button as a link.",
+              "fieldName": "href"
+            },
+            {
+              "name": "target",
+              "type": {
+                "text": "'_blank' | '_self' | '_parent' | '_top' | undefined"
+              },
+              "description": "Where to open the link (when href is set).",
+              "fieldName": "target"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "co-button",
+          "customElement": true,
+          "summary": "A button component wrapping Shoelace's sl-button with Cobalt theming."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CoButton",
+          "declaration": {
+            "name": "CoButton",
+            "module": "src/components/button/co-button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "co-button",
+          "declaration": {
+            "name": "CoButton",
+            "module": "src/components/button/co-button.ts"
+          }
+        }
+      ]
+    }
+  ]
+}

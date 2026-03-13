@@ -18,11 +18,11 @@ When scoping a feature, check the Cobalt component library first. Many common pa
 
 | Pattern      | Cobalt Component                         | Notes                                              |
 | ------------ | ---------------------------------------- | -------------------------------------------------- |
-| Form inputs  | `cb-input`, `cb-select`, `cb-checkbox`   | Includes built-in validation and error states      |
-| Actions      | `cb-button`, `cb-icon-button`            | Primary, secondary, ghost, and danger variants     |
-| Feedback     | `cb-toast`, `cb-alert`, `cb-dialog`      | Covers success, warning, error, and info scenarios |
-| Navigation   | `cb-tabs`, `cb-breadcrumb`, `cb-sidebar` | Responsive by default                              |
-| Data display | `cb-table`, `cb-card`, `cb-badge`        | Sortable tables, status badges                     |
+| Form inputs  | `co-input`, `co-select`, `co-checkbox`   | Includes built-in validation and error states      |
+| Actions      | `co-button`, `co-icon-button`            | Primary, secondary, ghost, and danger variants     |
+| Feedback     | `co-toast`, `co-alert`, `co-dialog`      | Covers success, warning, error, and info scenarios |
+| Navigation   | `co-tabs`, `co-breadcrumb`, `co-sidebar` | Responsive by default                              |
+| Data display | `co-table`, `co-card`, `co-badge`        | Sortable tables, status badges                     |
 
 Using existing components means less design and engineering effort, which translates to smaller estimates and faster time-to-market.
 

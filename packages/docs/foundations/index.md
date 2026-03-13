@@ -19,7 +19,7 @@ Each foundation category provides a set of **design tokens** — named values th
 
 ## Using tokens
 
-All foundation tokens are distributed via the `@cobalt/tokens` package and are available as CSS custom properties prefixed with `--cb-`.
+All foundation tokens are distributed via the `@cobalt/tokens` package and are available as CSS custom properties prefixed with `--co-`.
 
 ```bash
 npm install @cobalt/tokens
@@ -35,14 +35,14 @@ Then reference any token in your styles:
 
 ```css
 .card {
-  background: var(--cb-color-neutral-0);
-  padding: var(--cb-spacing-16);
-  border-radius: var(--cb-radius-md);
-  box-shadow: var(--cb-shadow-md);
+  background: var(--co-color-neutral-0);
+  padding: var(--co-spacing-16);
+  border-radius: var(--co-radius-md);
+  box-shadow: var(--co-shadow-md);
 }
 ```
 
-> **Tip:** Prefer semantic tokens (e.g. `--cb-color-primary-600`) over raw hex values. This ensures your UI adapts correctly to theme changes and dark mode.
+> **Tip:** Prefer semantic tokens (e.g. `--co-color-primary-600`) over raw hex values. This ensures your UI adapts correctly to theme changes and dark mode.
 
 ## Guiding principles
 

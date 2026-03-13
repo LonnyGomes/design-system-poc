@@ -9,7 +9,7 @@ Patterns are reusable solutions to common design problems. Unlike individual com
 | Scope     | Single UI element       | Composition of multiple elements   |
 | Reuse     | Imported as a package   | Copied and adapted per context     |
 | Ownership | Design system team      | Product teams                      |
-| Examples  | `cb-button`, `cb-input` | Form validation, navigation layout |
+| Examples  | `co-button`, `co-input` | Form validation, navigation layout |
 
 > **Tip:** Think of components as the vocabulary and patterns as the grammar. Components give you the building blocks; patterns show you how to assemble them into meaningful interfaces.
 
@@ -59,16 +59,16 @@ Patterns are not shipped as installable packages. Instead, use them as reference
 
 ```html
 <!-- Example: composing a feedback pattern with Cobalt components -->
-<cb-alert type="success" dismissible>
-  <cb-icon name="check-circle" slot="icon"></cb-icon>
+<co-alert type="success" dismissible>
+  <co-icon name="check-circle" slot="icon"></co-icon>
   Your changes have been saved successfully.
-</cb-alert>
+</co-alert>
 ```
 
 Adapt the documented markup to fit your product's specific requirements while preserving the interaction and accessibility conventions described in each pattern.
 
 ## Resources
 
-- [Component Library](/components/button) -- Full reference for all `cb-` components
+- [Component Library](/components/button) -- Full reference for all `co-` components
 - [Design Tokens](/tokens/) -- Spacing, color, and typography tokens used in patterns
 - [Foundations](/foundations/) -- Core principles behind Cobalt's design decisions

@@ -31,23 +31,23 @@ This is the most straightforward path. Replace hand-written HTML elements with C
 ### After
 
 ```html
-<cb-button variant="primary">Save</cb-button>
+<co-button variant="primary">Save</co-button>
 ```
 
 ### Step-by-step
 
-1. Install the required packages: `npm install @cobalt/cb-button @cobalt/tokens`.
+1. Install the required packages: `npm install @cobalt/co-button @cobalt/tokens`.
 2. Import `@cobalt/tokens/base.css` in your global stylesheet to apply token resets.
 3. Replace each hand-written element with its Cobalt counterpart.
 4. Replace hardcoded values in remaining custom CSS with token references.
 
 | Raw CSS value               | Cobalt token                  |
 | --------------------------- | ----------------------------- |
-| `#0066cc`                   | `var(--cb-color-primary-500)` |
-| `14px` font size            | `var(--cb-font-size-200)`     |
-| `8px` padding               | `var(--cb-space-200)`         |
-| `4px` border radius         | `var(--cb-radius-sm)`         |
-| `0 2px 4px rgba(0,0,0,0.1)` | `var(--cb-shadow-sm)`         |
+| `#0066cc`                   | `var(--co-color-primary-500)` |
+| `14px` font size            | `var(--co-font-size-200)`     |
+| `8px` padding               | `var(--co-space-200)`         |
+| `4px` border radius         | `var(--co-radius-sm)`         |
+| `0 2px 4px rgba(0,0,0,0.1)` | `var(--co-shadow-sm)`         |
 
 ---
 
@@ -59,14 +59,14 @@ Bootstrap and Cobalt can coexist because Cobalt components live inside Shadow DO
 
 | Bootstrap           | Cobalt                          | Notes                                            |
 | ------------------- | ------------------------------- | ------------------------------------------------ |
-| `.btn .btn-primary` | `<cb-button variant="primary">` | Drop-in replacement.                             |
-| `.form-control`     | `<cb-input>`                    | Includes built-in label and validation.          |
-| `.modal`            | `<cb-dialog>`                   | Manages focus trap and backdrop automatically.   |
-| `.alert`            | `<cb-alert>`                    | Supports `variant` and `dismissible` attributes. |
-| `.nav .nav-tabs`    | `<cb-tabs>`                     | Keyboard navigation included.                    |
-| `.card`             | `<cb-card>`                     | Uses slots for header, body, and footer.         |
-| `.dropdown`         | `<cb-menu>`                     | Accessible menu with keyboard support.           |
-| `.tooltip`          | `<cb-tooltip>`                  | Positioned via `@floating-ui`.                   |
+| `.btn .btn-primary` | `<co-button variant="primary">` | Drop-in replacement.                             |
+| `.form-control`     | `<co-input>`                    | Includes built-in label and validation.          |
+| `.modal`            | `<co-dialog>`                   | Manages focus trap and backdrop automatically.   |
+| `.alert`            | `<co-alert>`                    | Supports `variant` and `dismissible` attributes. |
+| `.nav .nav-tabs`    | `<co-tabs>`                     | Keyboard navigation included.                    |
+| `.card`             | `<co-card>`                     | Uses slots for header, body, and footer.         |
+| `.dropdown`         | `<co-menu>`                     | Accessible menu with keyboard support.           |
+| `.tooltip`          | `<co-tooltip>`                  | Positioned via `@floating-ui`.                   |
 
 ### Step-by-step
 
@@ -83,7 +83,7 @@ Bootstrap and Cobalt can coexist because Cobalt components live inside Shadow DO
 
 /* After: Cobalt token */
 .my-section {
-  margin-top: var(--cb-space-300);
+  margin-top: var(--co-space-300);
 }
 ```
 
@@ -97,12 +97,12 @@ Material UI (MUI) is a React component library, so migration involves replacing 
 
 | MUI component | Cobalt component                   | Notes                                                |
 | ------------- | ---------------------------------- | ---------------------------------------------------- |
-| `<Button>`    | `<CbButton>` (via `@cobalt/react`) | Use `variant` prop for visual style.                 |
-| `<TextField>` | `<CbInput>`                        | Cobalt handles label and helper text via attributes. |
-| `<Dialog>`    | `<CbDialog>`                       | Replace `open` state with the `open` attribute.      |
-| `<Snackbar>`  | `<CbToast>`                        | Use `cb-toast-service` for imperative API.           |
-| `<Select>`    | `<CbSelect>`                       | Options passed via `<cb-option>` children.           |
-| `<DataGrid>`  | `<CbTable>`                        | Supports sorting, pagination, and virtual scroll.    |
+| `<Button>`    | `<CoButton>` (via `@cobalt/react`) | Use `variant` prop for visual style.                 |
+| `<TextField>` | `<CoInput>`                        | Cobalt handles label and helper text via attributes. |
+| `<Dialog>`    | `<CoDialog>`                       | Replace `open` state with the `open` attribute.      |
+| `<Snackbar>`  | `<CoToast>`                        | Use `co-toast-service` for imperative API.           |
+| `<Select>`    | `<CoSelect>`                       | Options passed via `<co-option>` children.           |
+| `<DataGrid>`  | `<CoTable>`                        | Supports sorting, pagination, and virtual scroll.    |
 
 ### Step-by-step
 
@@ -119,8 +119,8 @@ import Button from '@mui/material/Button';
 </Button>;
 
 // After: Cobalt
-import { CbButton } from '@cobalt/react';
-<CbButton variant="primary">Save</CbButton>;
+import { CoButton } from '@cobalt/react';
+<CoButton variant="primary">Save</CoButton>;
 ```
 
 ---
@@ -131,13 +131,13 @@ Use this table when replacing hardcoded values or framework-specific variables w
 
 | Concept         | Bootstrap variable  | MUI theme key               | Cobalt token             |
 | --------------- | ------------------- | --------------------------- | ------------------------ |
-| Primary color   | `$primary`          | `palette.primary.main`      | `--cb-color-primary-500` |
-| Error color     | `$danger`           | `palette.error.main`        | `--cb-color-danger-500`  |
-| Body font size  | `$font-size-base`   | `typography.body1.fontSize` | `--cb-font-size-300`     |
-| Small radius    | `$border-radius-sm` | `shape.borderRadius`        | `--cb-radius-sm`         |
-| Base spacing    | `$spacer`           | `spacing(1)`                | `--cb-space-200`         |
-| Shadow (small)  | `$box-shadow-sm`    | `shadows[2]`                | `--cb-shadow-sm`         |
-| Shadow (medium) | `$box-shadow`       | `shadows[4]`                | `--cb-shadow-md`         |
+| Primary color   | `$primary`          | `palette.primary.main`      | `--co-color-primary-500` |
+| Error color     | `$danger`           | `palette.error.main`        | `--co-color-danger-500`  |
+| Body font size  | `$font-size-base`   | `typography.body1.fontSize` | `--co-font-size-300`     |
+| Small radius    | `$border-radius-sm` | `shape.borderRadius`        | `--co-radius-sm`         |
+| Base spacing    | `$spacer`           | `spacing(1)`                | `--co-space-200`         |
+| Shadow (small)  | `$box-shadow-sm`    | `shadows[2]`                | `--co-shadow-sm`         |
+| Shadow (medium) | `$box-shadow`       | `shadows[4]`                | `--co-shadow-md`         |
 
 ---
 

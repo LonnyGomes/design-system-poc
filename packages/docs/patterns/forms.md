@@ -7,23 +7,23 @@ Forms are the primary way users provide input in an application. Consistent form
 Use a single-column layout for most forms. Multi-column layouts are acceptable only for closely related short fields such as city, state, and zip code.
 
 ```html
-<cb-form>
-  <cb-form-field>
-    <cb-label for="name">Full name</cb-label>
-    <cb-input id="name" required></cb-input>
-  </cb-form-field>
+<co-form>
+  <co-form-field>
+    <co-label for="name">Full name</co-label>
+    <co-input id="name" required></co-input>
+  </co-form-field>
 
-  <cb-form-field>
-    <cb-label for="email">Email address</cb-label>
-    <cb-input id="email" type="email" required></cb-input>
-    <cb-helper-text>We will never share your email.</cb-helper-text>
-  </cb-form-field>
+  <co-form-field>
+    <co-label for="email">Email address</co-label>
+    <co-input id="email" type="email" required></co-input>
+    <co-helper-text>We will never share your email.</co-helper-text>
+  </co-form-field>
 
-  <cb-form-actions>
-    <cb-button type="submit" variant="primary">Submit</cb-button>
-    <cb-button type="reset" variant="ghost">Cancel</cb-button>
-  </cb-form-actions>
-</cb-form>
+  <co-form-actions>
+    <co-button type="submit" variant="primary">Submit</co-button>
+    <co-button type="reset" variant="ghost">Cancel</co-button>
+  </co-form-actions>
+</co-form>
 ```
 
 ## Required Field Indicators
@@ -31,19 +31,19 @@ Use a single-column layout for most forms. Multi-column layouts are acceptable o
 Mark required fields with an asterisk and provide a legend at the top of the form. Optional fields should be labeled with "(optional)" when most fields are required.
 
 ```html
-<cb-form>
-  <p class="cb-form-legend">Fields marked with <span aria-hidden="true">*</span> are required.</p>
+<co-form>
+  <p class="co-form-legend">Fields marked with <span aria-hidden="true">*</span> are required.</p>
 
-  <cb-form-field required>
-    <cb-label for="company">Company name</cb-label>
-    <cb-input id="company"></cb-input>
-  </cb-form-field>
+  <co-form-field required>
+    <co-label for="company">Company name</co-label>
+    <co-input id="company"></co-input>
+  </co-form-field>
 
-  <cb-form-field>
-    <cb-label for="website">Website (optional)</cb-label>
-    <cb-input id="website" type="url"></cb-input>
-  </cb-form-field>
-</cb-form>
+  <co-form-field>
+    <co-label for="website">Website (optional)</co-label>
+    <co-input id="website" type="url"></co-input>
+  </co-form-field>
+</co-form>
 ```
 
 ## Validation States
@@ -53,11 +53,11 @@ Mark required fields with an asterisk and provide a legend at the top of the for
 Validate fields on blur, not on every keystroke. Display error messages directly below the invalid field.
 
 ```html
-<cb-form-field invalid>
-  <cb-label for="password">Password</cb-label>
-  <cb-input id="password" type="password" aria-describedby="pw-error"></cb-input>
-  <cb-error-text id="pw-error">Password must be at least 8 characters.</cb-error-text>
-</cb-form-field>
+<co-form-field invalid>
+  <co-label for="password">Password</co-label>
+  <co-input id="password" type="password" aria-describedby="pw-error"></co-input>
+  <co-error-text id="pw-error">Password must be at least 8 characters.</co-error-text>
+</co-form-field>
 ```
 
 > **Warning:** Never rely solely on color to indicate errors. Always pair the red border with an icon and descriptive text.
@@ -67,13 +67,13 @@ Validate fields on blur, not on every keystroke. Display error messages directly
 For complex forms, display a summary of all errors at the top of the form after a failed submission. Each error should link to the corresponding field.
 
 ```html
-<cb-alert type="error" role="alert">
+<co-alert type="error" role="alert">
   <strong>Please fix the following errors:</strong>
   <ul>
     <li><a href="#name">Full name is required</a></li>
     <li><a href="#email">Enter a valid email address</a></li>
   </ul>
-</cb-alert>
+</co-alert>
 ```
 
 ## Error Message Guidelines
@@ -90,18 +90,18 @@ For complex forms, display a summary of all errors at the top of the form after 
 Disable the submit button and show a loading indicator during submission. Restore the button state on success or failure.
 
 ```html
-<cb-button type="submit" variant="primary" loading disabled>
-  <cb-spinner size="sm" slot="prefix"></cb-spinner>
+<co-button type="submit" variant="primary" loading disabled>
+  <co-spinner size="sm" slot="prefix"></co-spinner>
   Submitting...
-</cb-button>
+</co-button>
 ```
 
 After successful submission, either redirect the user or display an inline success message. Do not use a toast for critical confirmations like payment processing.
 
 ## Accessibility Checklist
 
-- All inputs have associated `<cb-label>` elements.
+- All inputs have associated `<co-label>` elements.
 - Error messages are linked to inputs via `aria-describedby`.
 - The validation summary uses `role="alert"` so screen readers announce it.
 - Focus is moved to the first invalid field or the error summary after a failed submission.
-- Form groups use `<cb-fieldset>` and `<cb-legend>` for related controls.
+- Form groups use `<co-fieldset>` and `<co-legend>` for related controls.

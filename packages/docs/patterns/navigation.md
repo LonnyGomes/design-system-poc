@@ -14,80 +14,80 @@ Effective navigation helps users understand where they are, where they can go, a
 
 ## Top Navigation
 
-Use `cb-top-nav` for primary application navigation. It supports a logo slot, navigation items, and a utility area for user actions.
+Use `co-top-nav` for primary application navigation. It supports a logo slot, navigation items, and a utility area for user actions.
 
 ```html
-<cb-top-nav>
-  <cb-logo slot="logo" href="/">Cobalt</cb-logo>
+<co-top-nav>
+  <co-logo slot="logo" href="/">Cobalt</co-logo>
 
-  <cb-nav-item href="/dashboard" active>Dashboard</cb-nav-item>
-  <cb-nav-item href="/projects">Projects</cb-nav-item>
-  <cb-nav-item href="/reports">Reports</cb-nav-item>
-  <cb-nav-item href="/settings">Settings</cb-nav-item>
+  <co-nav-item href="/dashboard" active>Dashboard</co-nav-item>
+  <co-nav-item href="/projects">Projects</co-nav-item>
+  <co-nav-item href="/reports">Reports</co-nav-item>
+  <co-nav-item href="/settings">Settings</co-nav-item>
 
-  <cb-nav-actions slot="actions">
-    <cb-icon-button icon="bell" label="Notifications"></cb-icon-button>
-    <cb-avatar name="Jane Doe" size="sm"></cb-avatar>
-  </cb-nav-actions>
-</cb-top-nav>
+  <co-nav-actions slot="actions">
+    <co-icon-button icon="bell" label="Notifications"></co-icon-button>
+    <co-avatar name="Jane Doe" size="sm"></co-avatar>
+  </co-nav-actions>
+</co-top-nav>
 ```
 
 ## Sidebar Navigation
 
-Use `cb-side-nav` for applications with deep information architecture. It supports collapsible sections and nested items.
+Use `co-side-nav` for applications with deep information architecture. It supports collapsible sections and nested items.
 
 ```html
-<cb-side-nav collapsible>
-  <cb-nav-section label="Workspace">
-    <cb-nav-item href="/inbox" icon="inbox">Inbox</cb-nav-item>
-    <cb-nav-item href="/tasks" icon="check-square">Tasks</cb-nav-item>
-  </cb-nav-section>
+<co-side-nav collapsible>
+  <co-nav-section label="Workspace">
+    <co-nav-item href="/inbox" icon="inbox">Inbox</co-nav-item>
+    <co-nav-item href="/tasks" icon="check-square">Tasks</co-nav-item>
+  </co-nav-section>
 
-  <cb-nav-section label="Settings" expanded>
-    <cb-nav-item href="/settings/profile" icon="user">Profile</cb-nav-item>
-    <cb-nav-item href="/settings/team" icon="users">Team</cb-nav-item>
-    <cb-nav-item href="/settings/billing" icon="credit-card">Billing</cb-nav-item>
-  </cb-nav-section>
-</cb-side-nav>
+  <co-nav-section label="Settings" expanded>
+    <co-nav-item href="/settings/profile" icon="user">Profile</co-nav-item>
+    <co-nav-item href="/settings/team" icon="users">Team</co-nav-item>
+    <co-nav-item href="/settings/billing" icon="credit-card">Billing</co-nav-item>
+  </co-nav-section>
+</co-side-nav>
 ```
 
 > **Tip:** Keep sidebar navigation to two levels of nesting at most. Deeper hierarchies should be handled with breadcrumbs or in-page navigation.
 
 ## Breadcrumbs
 
-Use `cb-breadcrumbs` to show the user's location within a hierarchy. Always include the current page as the last non-linked item.
+Use `co-breadcrumbs` to show the user's location within a hierarchy. Always include the current page as the last non-linked item.
 
 ```html
-<cb-breadcrumbs>
-  <cb-breadcrumb href="/">Home</cb-breadcrumb>
-  <cb-breadcrumb href="/projects">Projects</cb-breadcrumb>
-  <cb-breadcrumb href="/projects/cobalt">Cobalt</cb-breadcrumb>
-  <cb-breadcrumb current>Settings</cb-breadcrumb>
-</cb-breadcrumbs>
+<co-breadcrumbs>
+  <co-breadcrumb href="/">Home</co-breadcrumb>
+  <co-breadcrumb href="/projects">Projects</co-breadcrumb>
+  <co-breadcrumb href="/projects/cobalt">Cobalt</co-breadcrumb>
+  <co-breadcrumb current>Settings</co-breadcrumb>
+</co-breadcrumbs>
 ```
 
 ## Tabs
 
-Use `cb-tabs` to organize related content within the same page context. Tabs should not be used for sequential steps -- use a stepper instead.
+Use `co-tabs` to organize related content within the same page context. Tabs should not be used for sequential steps -- use a stepper instead.
 
 ```html
-<cb-tabs>
-  <cb-tab id="tab-overview" selected>Overview</cb-tab>
-  <cb-tab id="tab-activity">Activity</cb-tab>
-  <cb-tab id="tab-members">Members</cb-tab>
-</cb-tabs>
+<co-tabs>
+  <co-tab id="tab-overview" selected>Overview</co-tab>
+  <co-tab id="tab-activity">Activity</co-tab>
+  <co-tab id="tab-members">Members</co-tab>
+</co-tabs>
 
-<cb-tab-panel tab="tab-overview">
+<co-tab-panel tab="tab-overview">
   <!-- Overview content -->
-</cb-tab-panel>
+</co-tab-panel>
 ```
 
 ## Pagination
 
-Use `cb-pagination` for navigating through paged data. Always display the current page, total pages, and provide first/last page shortcuts for large sets.
+Use `co-pagination` for navigating through paged data. Always display the current page, total pages, and provide first/last page shortcuts for large sets.
 
 ```html
-<cb-pagination current-page="3" total-pages="12" page-size="25" total-items="290"> </cb-pagination>
+<co-pagination current-page="3" total-pages="12" page-size="25" total-items="290"> </co-pagination>
 ```
 
 ## Mobile Navigation
@@ -95,18 +95,18 @@ Use `cb-pagination` for navigating through paged data. Always display the curren
 On viewports narrower than `768px`, the top navigation collapses into a hamburger menu. The sidebar converts to an overlay drawer.
 
 ```html
-<cb-top-nav>
+<co-top-nav>
   <!-- Navigation items are automatically placed in a drawer on mobile -->
-  <cb-nav-item href="/dashboard">Dashboard</cb-nav-item>
-  <cb-nav-item href="/projects">Projects</cb-nav-item>
-</cb-top-nav>
+  <co-nav-item href="/dashboard">Dashboard</co-nav-item>
+  <co-nav-item href="/projects">Projects</co-nav-item>
+</co-top-nav>
 ```
 
-No additional markup is needed. Responsive behavior is built into `cb-top-nav` and `cb-side-nav`. Override the breakpoint with the `collapse-at` attribute if the default does not suit your layout.
+No additional markup is needed. Responsive behavior is built into `co-top-nav` and `co-side-nav`. Override the breakpoint with the `collapse-at` attribute if the default does not suit your layout.
 
 ## Accessibility
 
-- Use `<nav>` landmark roles (built into `cb-top-nav` and `cb-side-nav`).
+- Use `<nav>` landmark roles (built into `co-top-nav` and `co-side-nav`).
 - Label each navigation region with `aria-label` when multiple `<nav>` elements exist on a page.
 - The active page item should use `aria-current="page"` (applied automatically via the `active` attribute).
 - Keyboard navigation follows the roving tabindex pattern within tab groups and navigation bars.

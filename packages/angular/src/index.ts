@@ -1,1 +1,1 @@
-export { CobaltButtonModule, CbButtonDirective } from './components/button.js';
+export { CobaltButtonModule, CoButtonDirective } from './components/button.js';

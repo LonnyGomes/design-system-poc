@@ -16,10 +16,10 @@ Feedback patterns communicate the outcome of user actions and the current state 
 Toasts appear at the top-right of the viewport and dismiss automatically. Use them for lightweight confirmations that do not require user action.
 
 ```html
-<cb-toast type="success">
-  <cb-icon name="check-circle" slot="icon"></cb-icon>
+<co-toast type="success">
+  <co-icon name="check-circle" slot="icon"></co-icon>
   Project saved successfully.
-</cb-toast>
+</co-toast>
 ```
 
 > **Tip:** Never use toasts for error messages. Errors require persistent visibility so the user can read and act on them.
@@ -28,27 +28,27 @@ Toasts appear at the top-right of the viewport and dismiss automatically. Use th
 
 | Variant   | Token                | Purpose                                |
 | --------- | -------------------- | -------------------------------------- |
-| `success` | `--cb-color-success` | Action completed                       |
-| `info`    | `--cb-color-info`    | Non-critical information               |
-| `warning` | `--cb-color-warning` | Potential issue, action may be needed  |
-| `error`   | `--cb-color-error`   | Reserved for inline alerts, not toasts |
+| `success` | `--co-color-success` | Action completed                       |
+| `info`    | `--co-color-info`    | Non-critical information               |
+| `warning` | `--co-color-warning` | Potential issue, action may be needed  |
+| `error`   | `--co-color-error`   | Reserved for inline alerts, not toasts |
 
 ## Inline Alerts
 
 Inline alerts are placed within the page content, near the element they relate to. They persist until dismissed or resolved.
 
 ```html
-<cb-alert type="warning" dismissible>
-  <cb-icon name="alert-triangle" slot="icon"></cb-icon>
+<co-alert type="warning" dismissible>
+  <co-icon name="alert-triangle" slot="icon"></co-icon>
   <strong>Storage almost full.</strong> You are using 92% of your allocated storage.
-  <cb-link href="/settings/billing">Upgrade plan</cb-link>
-</cb-alert>
+  <co-link href="/settings/billing">Upgrade plan</co-link>
+</co-alert>
 
-<cb-alert type="error">
-  <cb-icon name="x-circle" slot="icon"></cb-icon>
+<co-alert type="error">
+  <co-icon name="x-circle" slot="icon"></co-icon>
   <strong>Payment failed.</strong> Your card ending in 4242 was declined. Please update your payment
   method.
-</cb-alert>
+</co-alert>
 ```
 
 ## Progress Indicators
@@ -58,7 +58,7 @@ Inline alerts are placed within the page content, near the element they relate t
 Use a progress bar when the completion percentage is known.
 
 ```html
-<cb-progress value="65" max="100" label="Uploading files"> 65% complete </cb-progress>
+<co-progress value="65" max="100" label="Uploading files"> 65% complete </co-progress>
 ```
 
 ### Indeterminate Progress
@@ -66,8 +66,8 @@ Use a progress bar when the completion percentage is known.
 Use a spinner when the duration is unknown. Pair it with descriptive text.
 
 ```html
-<cb-spinner size="md"></cb-spinner>
-<p class="cb-text-secondary">Loading your dashboard...</p>
+<co-spinner size="md"></co-spinner>
+<p class="co-text-secondary">Loading your dashboard...</p>
 ```
 
 > **Warning:** Always provide a text label alongside spinners. A spinner alone gives no context about what is happening.
@@ -78,18 +78,18 @@ Apply loading states at the appropriate scope. Do not block the entire page when
 
 | Scope         | Pattern                       | Component            |
 | ------------- | ----------------------------- | -------------------- |
-| Full page     | Centered spinner with message | `cb-page-loader`     |
-| Section       | Skeleton placeholders         | `cb-skeleton`        |
-| Button action | Inline spinner in button      | `cb-button[loading]` |
-| Data fetch    | Skeleton rows in table        | `cb-table-skeleton`  |
+| Full page     | Centered spinner with message | `co-page-loader`     |
+| Section       | Skeleton placeholders         | `co-skeleton`        |
+| Button action | Inline spinner in button      | `co-button[loading]` |
+| Data fetch    | Skeleton rows in table        | `co-table-skeleton`  |
 
 ```html
-<cb-card>
-  <cb-card-header>Recent Activity</cb-card-header>
-  <cb-card-body>
-    <cb-skeleton variant="text" count="4"></cb-skeleton>
-  </cb-card-body>
-</cb-card>
+<co-card>
+  <co-card-header>Recent Activity</co-card-header>
+  <co-card-body>
+    <co-skeleton variant="text" count="4"></co-skeleton>
+  </co-card-body>
+</co-card>
 ```
 
 ## Success & Error Messaging
@@ -97,34 +97,34 @@ Apply loading states at the appropriate scope. Do not block the entire page when
 After a form submission or critical action, display persistent feedback within the page context.
 
 ```html
-<cb-alert type="success" role="status">
-  <cb-icon name="check-circle" slot="icon"></cb-icon>
+<co-alert type="success" role="status">
+  <co-icon name="check-circle" slot="icon"></co-icon>
   Your profile has been updated.
-</cb-alert>
+</co-alert>
 
-<cb-alert type="error" role="alert">
-  <cb-icon name="x-circle" slot="icon"></cb-icon>
+<co-alert type="error" role="alert">
+  <co-icon name="x-circle" slot="icon"></co-icon>
   <strong>Unable to save changes.</strong> Check your network connection and try again.
-</cb-alert>
+</co-alert>
 ```
 
 ## Confirmation Dialogs
 
-Use `cb-dialog` for destructive or irreversible actions. State the consequence clearly and label buttons with specific verbs instead of "OK."
+Use `co-dialog` for destructive or irreversible actions. State the consequence clearly and label buttons with specific verbs instead of "OK."
 
 ```html
-<cb-dialog open heading="Delete project?">
+<co-dialog open heading="Delete project?">
   <p>
     This will permanently delete <strong>Project Alpha</strong> and all associated data. This action
     cannot be undone.
   </p>
-  <cb-button slot="secondary" variant="ghost">Cancel</cb-button>
-  <cb-button slot="primary" variant="danger">Delete project</cb-button>
-</cb-dialog>
+  <co-button slot="secondary" variant="ghost">Cancel</co-button>
+  <co-button slot="primary" variant="danger">Delete project</co-button>
+</co-dialog>
 ```
 
 ## Accessibility
 
 - Toasts and alerts use `role="status"` or `role="alert"` to announce changes to assistive technology.
 - Confirmation dialogs trap focus and return focus to the triggering element when closed.
-- Progress bars include `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` (handled by `cb-progress`).
+- Progress bars include `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` (handled by `co-progress`).

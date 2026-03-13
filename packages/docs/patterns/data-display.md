@@ -4,67 +4,67 @@ Data display patterns define how information is presented and formatted across C
 
 ## Tables
 
-Use `cb-table` for structured, comparable data where users need to scan across rows and columns.
+Use `co-table` for structured, comparable data where users need to scan across rows and columns.
 
 ```html
-<cb-table>
-  <cb-table-head>
-    <cb-table-row>
-      <cb-table-header sortable sorted="asc">Name</cb-table-header>
-      <cb-table-header sortable>Role</cb-table-header>
-      <cb-table-header sortable>Last active</cb-table-header>
-      <cb-table-header align="end">Actions</cb-table-header>
-    </cb-table-row>
-  </cb-table-head>
-  <cb-table-body>
-    <cb-table-row>
-      <cb-table-cell>Ava Martinez</cb-table-cell>
-      <cb-table-cell>Admin</cb-table-cell>
-      <cb-table-cell>Mar 10, 2026</cb-table-cell>
-      <cb-table-cell align="end">
-        <cb-icon-button icon="edit" label="Edit user"></cb-icon-button>
-      </cb-table-cell>
-    </cb-table-row>
-  </cb-table-body>
-</cb-table>
+<co-table>
+  <co-table-head>
+    <co-table-row>
+      <co-table-header sortable sorted="asc">Name</co-table-header>
+      <co-table-header sortable>Role</co-table-header>
+      <co-table-header sortable>Last active</co-table-header>
+      <co-table-header align="end">Actions</co-table-header>
+    </co-table-row>
+  </co-table-head>
+  <co-table-body>
+    <co-table-row>
+      <co-table-cell>Ava Martinez</co-table-cell>
+      <co-table-cell>Admin</co-table-cell>
+      <co-table-cell>Mar 10, 2026</co-table-cell>
+      <co-table-cell align="end">
+        <co-icon-button icon="edit" label="Edit user"></co-icon-button>
+      </co-table-cell>
+    </co-table-row>
+  </co-table-body>
+</co-table>
 ```
 
-> **Tip:** For tables with more than six columns, enable horizontal scrolling with `cb-table-container` rather than hiding columns on smaller screens.
+> **Tip:** For tables with more than six columns, enable horizontal scrolling with `co-table-container` rather than hiding columns on smaller screens.
 
 ## Lists
 
-Use `cb-list` for sequential or grouped items where column-based comparison is not needed.
+Use `co-list` for sequential or grouped items where column-based comparison is not needed.
 
 ```html
-<cb-list>
-  <cb-list-item>
-    <cb-avatar name="Project Alpha" slot="prefix"></cb-avatar>
-    <cb-list-item-text primary="Project Alpha" secondary="Updated 2 hours ago"></cb-list-item-text>
-    <cb-badge slot="suffix" variant="success">Active</cb-badge>
-  </cb-list-item>
-  <cb-list-item>
-    <cb-avatar name="Project Beta" slot="prefix"></cb-avatar>
-    <cb-list-item-text primary="Project Beta" secondary="Updated yesterday"></cb-list-item-text>
-    <cb-badge slot="suffix" variant="neutral">Archived</cb-badge>
-  </cb-list-item>
-</cb-list>
+<co-list>
+  <co-list-item>
+    <co-avatar name="Project Alpha" slot="prefix"></co-avatar>
+    <co-list-item-text primary="Project Alpha" secondary="Updated 2 hours ago"></co-list-item-text>
+    <co-badge slot="suffix" variant="success">Active</co-badge>
+  </co-list-item>
+  <co-list-item>
+    <co-avatar name="Project Beta" slot="prefix"></co-avatar>
+    <co-list-item-text primary="Project Beta" secondary="Updated yesterday"></co-list-item-text>
+    <co-badge slot="suffix" variant="neutral">Archived</co-badge>
+  </co-list-item>
+</co-list>
 ```
 
 ## Cards
 
-Use `cb-card` for browsable collections where each item is a distinct entity. Cards work well for dashboards, catalogs, and resource galleries.
+Use `co-card` for browsable collections where each item is a distinct entity. Cards work well for dashboards, catalogs, and resource galleries.
 
 ```html
-<cb-card-grid columns="3">
-  <cb-card>
+<co-card-grid columns="3">
+  <co-card>
     <img slot="media" src="/img/report-thumb.png" alt="Q4 Report" />
-    <cb-card-header>Q4 Revenue Report</cb-card-header>
-    <cb-card-body>Summary of Q4 performance across all regions.</cb-card-body>
-    <cb-card-footer>
-      <cb-button variant="ghost" size="sm">View report</cb-button>
-    </cb-card-footer>
-  </cb-card>
-</cb-card-grid>
+    <co-card-header>Q4 Revenue Report</co-card-header>
+    <co-card-body>Summary of Q4 performance across all regions.</co-card-body>
+    <co-card-footer>
+      <co-button variant="ghost" size="sm">View report</co-button>
+    </co-card-footer>
+  </co-card>
+</co-card-grid>
 ```
 
 ## Empty States
@@ -72,27 +72,27 @@ Use `cb-card` for browsable collections where each item is a distinct entity. Ca
 Always provide an empty state when a view has no data. Include a clear description and a primary action to help the user move forward.
 
 ```html
-<cb-empty-state>
-  <cb-icon name="folder-open" size="xl" slot="icon"></cb-icon>
-  <cb-empty-state-title>No projects yet</cb-empty-state-title>
-  <cb-empty-state-description>
+<co-empty-state>
+  <co-icon name="folder-open" size="xl" slot="icon"></co-icon>
+  <co-empty-state-title>No projects yet</co-empty-state-title>
+  <co-empty-state-description>
     Create your first project to start collaborating with your team.
-  </cb-empty-state-description>
-  <cb-button variant="primary" slot="action">Create project</cb-button>
-</cb-empty-state>
+  </co-empty-state-description>
+  <co-button variant="primary" slot="action">Create project</co-button>
+</co-empty-state>
 ```
 
 ## Loading Skeletons
 
-Use `cb-skeleton` placeholders to indicate content is loading. Match the skeleton shape to the expected content layout.
+Use `co-skeleton` placeholders to indicate content is loading. Match the skeleton shape to the expected content layout.
 
 ```html
-<cb-list>
-  <cb-list-item>
-    <cb-skeleton variant="circle" width="40px" height="40px" slot="prefix"></cb-skeleton>
-    <cb-skeleton variant="text" width="160px"></cb-skeleton>
-  </cb-list-item>
-</cb-list>
+<co-list>
+  <co-list-item>
+    <co-skeleton variant="circle" width="40px" height="40px" slot="prefix"></co-skeleton>
+    <co-skeleton variant="text" width="160px"></co-skeleton>
+  </co-list-item>
+</co-list>
 ```
 
 > **Warning:** Avoid using spinners for content that loads in under 300ms. Skeleton screens are preferred for layout-stable loading.

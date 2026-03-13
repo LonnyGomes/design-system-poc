@@ -20,7 +20,7 @@ const sizeMap: Record<ButtonSize, string> = {
 };
 
 /**
- * @tag cb-button
+ * @tag co-button
  * @summary A button component wrapping Shoelace's sl-button with Cobalt theming.
  *
  * @slot - Default slot for button content
@@ -32,11 +32,11 @@ const sizeMap: Record<ButtonSize, string> = {
  * @csspart prefix - The prefix container
  * @csspart suffix - The suffix container
  *
- * @fires cb-focus - Emitted when the button gains focus
- * @fires cb-blur - Emitted when the button loses focus
+ * @fires co-focus - Emitted when the button gains focus
+ * @fires co-blur - Emitted when the button loses focus
  */
-@customElement('cb-button')
-export class CbButton extends LitElement {
+@customElement('co-button')
+export class CoButton extends LitElement {
   static styles = css`
     :host {
       display: inline-block;
@@ -84,11 +84,11 @@ export class CbButton extends LitElement {
   }
 
   private _handleFocus() {
-    this.dispatchEvent(new CustomEvent('cb-focus', { bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('co-focus', { bubbles: true, composed: true }));
   }
 
   private _handleBlur() {
-    this.dispatchEvent(new CustomEvent('cb-blur', { bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('co-blur', { bubbles: true, composed: true }));
   }
 
   render() {
@@ -115,6 +115,6 @@ export class CbButton extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'cb-button': CbButton;
+    'co-button': CoButton;
   }
 }

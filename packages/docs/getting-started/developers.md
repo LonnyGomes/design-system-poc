@@ -19,10 +19,10 @@ pnpm add @cobalt/components @cobalt/tokens
 ```html
 <link rel="stylesheet" href="node_modules/@cobalt/tokens/css/global.css" />
 <script type="module">
-  import '@cobalt/components/cb-button';
+  import '@cobalt/components/co-button';
 </script>
 
-<cb-button variant="primary">Save Changes</cb-button>
+<co-button variant="primary">Save Changes</co-button>
 ```
 
 ### React
@@ -39,7 +39,7 @@ import { Button } from '@cobalt/react';
 function LoginForm() {
   return (
     <form>
-      <Button variant="primary" onCbFocus={() => console.log('focused')}>
+      <Button variant="primary" onCoFocus={() => console.log('focused')}>
         Sign In
       </Button>
     </form>
@@ -57,15 +57,15 @@ pnpm add @cobalt/vue
 
 ```vue
 <script setup>
-import { CbButton } from '@cobalt/vue';
+import { CoButton } from '@cobalt/vue';
 </script>
 
 <template>
-  <CbButton variant="primary" @cb-focus="onFocus"> Sign In </CbButton>
+  <CoButton variant="primary" @co-focus="onFocus"> Sign In </CoButton>
 </template>
 ```
 
-> **Tip:** You can also use `cb-button` directly as a custom element in Vue — just configure `isCustomElement` in your Vite config to recognize `cb-*` tags.
+> **Tip:** You can also use `co-button` directly as a custom element in Vue — just configure `isCustomElement` in your Vite config to recognize `co-*` tags.
 
 ### Angular
 
@@ -87,7 +87,7 @@ export class AppModule {}
 
 ```html
 <!-- app.component.html -->
-<cb-button variant="primary" (cbFocus)="onFocus($event)"> Sign In </cb-button>
+<co-button variant="primary" (coFocus)="onFocus($event)"> Sign In </co-button>
 ```
 
 ## Importing Components
@@ -95,9 +95,9 @@ export class AppModule {}
 Cobalt uses per-component entry points for tree-shaking:
 
 ```js
-import '@cobalt/components/cb-button';
-import '@cobalt/components/cb-dialog';
-import '@cobalt/components/cb-tooltip';
+import '@cobalt/components/co-button';
+import '@cobalt/components/co-dialog';
+import '@cobalt/components/co-tooltip';
 ```
 
 > **Warning:** Avoid importing the barrel export (`@cobalt/components`) in production. It registers every component and increases bundle size significantly.
@@ -108,19 +108,19 @@ After importing `global.css`, all tokens are available as CSS custom properties 
 
 ```css
 .card {
-  background: var(--cb-color-surface-default);
-  padding: var(--cb-spacing-lg);
-  border-radius: var(--cb-radius-md);
+  background: var(--co-color-surface-default);
+  padding: var(--co-spacing-lg);
+  border-radius: var(--co-radius-md);
 }
 ```
 
 | Category   | Example Token             | Default Value                |
 | ---------- | ------------------------- | ---------------------------- |
-| Color      | `--cb-color-primary-base` | `#0057FF`                    |
-| Spacing    | `--cb-spacing-md`         | `16px`                       |
-| Typography | `--cb-font-size-body`     | `14px`                       |
-| Radius     | `--cb-radius-md`          | `8px`                        |
-| Shadow     | `--cb-shadow-md`          | `0 4px 12px rgba(0,0,0,0.1)` |
+| Color      | `--co-color-primary-base` | `#0057FF`                    |
+| Spacing    | `--co-spacing-md`         | `16px`                       |
+| Typography | `--co-font-size-body`     | `14px`                       |
+| Radius     | `--co-radius-md`          | `8px`                        |
+| Shadow     | `--co-shadow-md`          | `0 4px 12px rgba(0,0,0,0.1)` |
 
 Tokens are also available as JavaScript exports via `import { colorPrimaryBase } from '@cobalt/tokens'`.
 
