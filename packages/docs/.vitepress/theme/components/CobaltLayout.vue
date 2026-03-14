@@ -171,7 +171,7 @@ function toggleSidebar() {
         <div class="cobalt-content" v-if="frontmatter.layout === 'home'">
           <CobaltHome />
         </div>
-        <article class="cobalt-content cobalt-article" v-else>
+        <article class="cobalt-content cobalt-article vp-doc" v-else>
           <Content />
           <CobaltPrevNext />
         </article>
@@ -727,24 +727,58 @@ body {
 }
 
 .vp-doc div[class*='language-'] span.lang {
+  position: absolute !important;
+  top: 8px !important;
+  right: 52px !important;
   color: var(--co-text-muted) !important;
   font-size: 0.7rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
 }
 
-.vp-doc div[class*='language-'] button.copy {
-  background: var(--co-surface) !important;
-  border: 1px solid var(--co-border) !important;
-  border-radius: 6px !important;
-  color: var(--co-text-muted) !important;
-  transition: all 0.2s ease !important;
+div[class*='language-'] {
+  position: relative !important;
 }
 
-.vp-doc div[class*='language-'] button.copy:hover {
-  background: var(--co-shimmer) !important;
-  color: var(--co-text-primary) !important;
-  border-color: var(--co-border-strong) !important;
+div[class*='language-'] > button.copy {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  z-index: 3 !important;
+  border: 1px solid var(--co-border) !important;
+  border-radius: 6px !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  background-color: transparent !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 256 256' fill='none'%3E%3Crect x='40' y='72' width='132' height='144' rx='8' stroke='%236d84a3' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M84,72V56a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8V184a8,8,0,0,1-8,8H172' stroke='%236d84a3' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") !important;
+  background-size: 16px !important;
+  background-position: 50% !important;
+  background-repeat: no-repeat !important;
+  opacity: 1 !important;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease !important;
+}
+
+div[class*='language-'] > button.copy:hover {
+  background-color: var(--co-blue-alpha-8) !important;
+  border-color: var(--co-blue-400) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 256 256' fill='none'%3E%3Crect x='40' y='72' width='132' height='144' rx='8' stroke='%2360a5fa' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M84,72V56a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8V184a8,8,0,0,1-8,8H172' stroke='%2360a5fa' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") !important;
+}
+
+div[class*='language-'] > button.copy.copied,
+div[class*='language-'] > button.copy:hover.copied {
+  border-radius: 6px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 256 256' fill='none'%3E%3Cpolyline points='88 136 112 160 168 104' stroke='%2360a5fa' stroke-width='16' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") !important;
+  background-color: transparent !important;
+  border-color: var(--co-blue-400) !important;
+  opacity: 1 !important;
+}
+
+div[class*='language-'] > button.copy.copied::before {
+  display: none !important;
 }
 
 /* Scrollbar */
