@@ -4,7 +4,9 @@
   "private": true,
   "description": "Cobalt Design System — Lit + Shoelace composition",
   "scripts": {
+    "clean": "pnpm -r --stream clean && rm -rf packages/docs/.vitepress/cache",
     "build": "pnpm -r --stream build",
+    "rebuild": "pnpm clean && pnpm build",
     "dev": "pnpm --filter @cobalt/docs dev",
     "test": "pnpm --filter @cobalt/components test",
     "test:watch": "pnpm --filter @cobalt/components test:watch",
