@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   base: '/design-system-poc/',
   title: 'Cobalt Design System',
-  description: 'A design system built with Lit + Shoelace',
+  description: 'A design system built with Lit + Lion',
   markdown: {
     theme: {
       dark: 'tokyo-night',
@@ -96,7 +96,7 @@ export default defineConfig({
   vue: {
     template: {
       compilerOptions: {
-        isCustomElement: (tag: string) => tag.startsWith('co-') || tag.startsWith('sl-'),
+        isCustomElement: (tag: string) => tag.startsWith('co-') || tag.startsWith('lion-'),
       },
     },
   },
@@ -104,7 +104,7 @@ export default defineConfig({
     optimizeDeps: {
       include: [
         'lit',
-        '@shoelace-style/shoelace',
+        '@lion/ui/button.js',
         '@cobalt/components',
         '@phosphor-icons/vue',
         '@phosphor-icons/core',

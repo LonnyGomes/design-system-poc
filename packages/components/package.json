@@ -20,7 +20,10 @@
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.test.json && npm run analyze",
+    "generate-styles": "node scripts/generate-styles.js",
+    "generate-styles:watch": "node scripts/generate-styles.js --watch",
+    "generate-styles:check": "node scripts/generate-styles.js --check",
+    "build": "npm run generate-styles && tsc -p tsconfig.test.json && npm run analyze",
     "analyze": "cem analyze --litelement",
     "test": "wtr",
     "test:watch": "wtr --watch",
@@ -28,7 +31,7 @@
   },
   "dependencies": {
     "@cobalt/tokens": "workspace:*",
-    "@shoelace-style/shoelace": "^2.19.0",
+    "@lion/ui": "^0.15.0",
     "lit": "^3.2.0"
   },
   "devDependencies": {

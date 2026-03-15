@@ -4,21 +4,19 @@ Cobalt uses [Style Dictionary](https://amzn.github.io/style-dictionary/) to gene
 
 ## Available Formats
 
-| Format                | Import                        |
-| --------------------- | ----------------------------- |
-| CSS Custom Properties | `@cobalt/tokens/css`          |
-| Dark Theme            | `@cobalt/tokens/css/dark`     |
-| Shoelace Mapping      | `@cobalt/tokens/css/shoelace` |
-| SCSS Variables        | `@cobalt/tokens/scss`         |
-| JS Constants          | `@cobalt/tokens`              |
-| JSON (flat)           | `@cobalt/tokens/json`         |
+| Format                | Import                    |
+| --------------------- | ------------------------- |
+| CSS Custom Properties | `@cobalt/tokens/css`      |
+| Dark Theme            | `@cobalt/tokens/css/dark` |
+| SCSS Variables        | `@cobalt/tokens/scss`     |
+| JS Constants          | `@cobalt/tokens`          |
+| JSON (flat)           | `@cobalt/tokens/json`     |
 
 ## Usage
 
 ```css
 @import '@cobalt/tokens/css';
 @import '@cobalt/tokens/css/dark';
-@import '@cobalt/tokens/css/shoelace';
 ```
 
 ```js

@@ -2,7 +2,7 @@
   "name": "cobalt-design-system",
   "version": "0.0.0",
   "private": true,
-  "description": "Cobalt Design System — Lit + Shoelace composition",
+  "description": "Cobalt Design System — Lit + Lion extension",
   "scripts": {
     "clean": "pnpm -r --stream clean && rm -rf packages/docs/.vitepress/cache",
     "build": "pnpm -r --stream build",
@@ -16,6 +16,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
+    "*.styles.css": "node packages/components/scripts/generate-styles.js && git add '*.styles.ts'",
     "*.{ts,js,json,css,md,vue,html}": "prettier --write"
   },
   "author": "",
