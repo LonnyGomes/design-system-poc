@@ -25,29 +25,28 @@ describe('co-button', () => {
     expect(el.getAttribute('size')).to.equal('lg');
   });
 
-  it('maps variant to Shoelace variant', async () => {
-    const el = await fixture<CoButton>(html`<co-button variant="secondary">Sec</co-button>`);
-    const slButton = el.shadowRoot!.querySelector('sl-button');
-    expect(slButton).to.exist;
-    expect(slButton!.getAttribute('variant')).to.equal('default');
+  it('renders button structure in shadow DOM', async () => {
+    const el = await fixture<CoButton>(html`<co-button>Click</co-button>`);
+    const base = el.shadowRoot!.querySelector('[part="base"]');
+    expect(base).to.exist;
   });
 
-  it('maps size to Shoelace size', async () => {
-    const el = await fixture<CoButton>(html`<co-button size="sm">Small</co-button>`);
-    const slButton = el.shadowRoot!.querySelector('sl-button');
-    expect(slButton!.getAttribute('size')).to.equal('small');
-  });
-
-  it('passes disabled to Shoelace', async () => {
+  it('applies disabled attribute to host', async () => {
     const el = await fixture<CoButton>(html`<co-button disabled>Disabled</co-button>`);
-    const slButton = el.shadowRoot!.querySelector('sl-button');
-    expect(slButton!.hasAttribute('disabled')).to.be.true;
+    expect(el.hasAttribute('disabled')).to.be.true;
+    expect(el.disabled).to.be.true;
   });
 
-  it('passes loading to Shoelace', async () => {
+  it('shows spinner when loading', async () => {
     const el = await fixture<CoButton>(html`<co-button loading>Loading</co-button>`);
-    const slButton = el.shadowRoot!.querySelector('sl-button');
-    expect(slButton!.hasAttribute('loading')).to.be.true;
+    const spinner = el.shadowRoot!.querySelector('.spinner');
+    expect(spinner).to.exist;
+  });
+
+  it('does not show spinner when not loading', async () => {
+    const el = await fixture<CoButton>(html`<co-button>Click</co-button>`);
+    const spinner = el.shadowRoot!.querySelector('.spinner');
+    expect(spinner).to.not.exist;
   });
 
   it('projects default slot content', async () => {
@@ -85,8 +84,7 @@ describe('co-button', () => {
     el.addEventListener('co-focus', () => {
       focusFired = true;
     });
-    const slButton = el.shadowRoot!.querySelector('sl-button')!;
-    slButton.dispatchEvent(new CustomEvent('sl-focus', { bubbles: true }));
+    el.dispatchEvent(new Event('focus'));
     expect(focusFired).to.be.true;
   });
 
@@ -96,9 +94,17 @@ describe('co-button', () => {
     el.addEventListener('co-blur', () => {
       blurFired = true;
     });
-    const slButton = el.shadowRoot!.querySelector('sl-button')!;
-    slButton.dispatchEvent(new CustomEvent('sl-blur', { bubbles: true }));
+    el.dispatchEvent(new Event('blur'));
     expect(blurFired).to.be.true;
+  });
+
+  it('renders as a link when href is set', async () => {
+    const el = await fixture<CoButton>(
+      html`<co-button href="https://example.com">Link</co-button>`,
+    );
+    const anchor = el.shadowRoot!.querySelector('a');
+    expect(anchor).to.exist;
+    expect(anchor!.getAttribute('href')).to.equal('https://example.com');
   });
 
   describe('accessibility', () => {

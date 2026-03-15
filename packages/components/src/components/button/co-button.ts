@@ -1,51 +1,33 @@
-import { LitElement, html, css } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import '@shoelace-style/shoelace/dist/components/button/button.js';
+import { LionButton } from '@lion/ui/button.js';
+import { cobaltButtonStyles } from './co-button.styles.js';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
-const variantMap: Record<ButtonVariant, string> = {
-  primary: 'primary',
-  secondary: 'default',
-  danger: 'danger',
-  ghost: 'text',
-};
-
-const sizeMap: Record<ButtonSize, string> = {
-  sm: 'small',
-  md: 'medium',
-  lg: 'large',
-};
-
 /**
  * @tag co-button
- * @summary A button component wrapping Shoelace's sl-button with Cobalt theming.
+ * @summary A button component extending Lion's LionButton with Cobalt theming.
  *
  * @slot - Default slot for button content
  * @slot prefix - Content before the label
  * @slot suffix - Content after the label
  *
- * @csspart base - The underlying sl-button's base part
- * @csspart label - The button label
- * @csspart prefix - The prefix container
- * @csspart suffix - The suffix container
+ * @csspart base - The button wrapper
+ * @csspart label - The label slot
+ * @csspart prefix - The prefix slot container
+ * @csspart suffix - The suffix slot container
+ * @csspart spinner - The loading spinner
  *
  * @fires co-focus - Emitted when the button gains focus
  * @fires co-blur - Emitted when the button loses focus
  */
 @customElement('co-button')
-export class CoButton extends LitElement {
-  static styles = css`
-    :host {
-      display: inline-block;
-    }
-
-    :host([disabled]) {
-      pointer-events: none;
-    }
-  `;
+export class CoButton extends LionButton {
+  static get styles() {
+    return [...super.styles, cobaltButtonStyles];
+  }
 
   /** The button variant. */
   @property({ reflect: true })
@@ -55,17 +37,9 @@ export class CoButton extends LitElement {
   @property({ reflect: true })
   size: ButtonSize = 'md';
 
-  /** Disables the button. */
-  @property({ type: Boolean, reflect: true })
-  disabled = false;
-
   /** Shows a loading spinner. */
   @property({ type: Boolean, reflect: true })
   loading = false;
-
-  /** The button type (submit, reset, button). */
-  @property()
-  type: 'submit' | 'reset' | 'button' = 'button';
 
   /** An optional href to render the button as a link. */
   @property()
@@ -75,40 +49,52 @@ export class CoButton extends LitElement {
   @property()
   target?: '_blank' | '_self' | '_parent' | '_top';
 
-  private get _slVariant(): string {
-    return variantMap[this.variant] ?? 'primary';
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.addEventListener('focus', this._handleFocus);
+    this.addEventListener('blur', this._handleBlur);
   }
 
-  private get _slSize(): string {
-    return sizeMap[this.size] ?? 'medium';
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.removeEventListener('focus', this._handleFocus);
+    this.removeEventListener('blur', this._handleBlur);
   }
 
-  private _handleFocus() {
+  private _handleFocus = () => {
     this.dispatchEvent(new CustomEvent('co-focus', { bubbles: true, composed: true }));
-  }
+  };
 
-  private _handleBlur() {
+  private _handleBlur = () => {
     this.dispatchEvent(new CustomEvent('co-blur', { bubbles: true, composed: true }));
-  }
+  };
 
   render() {
+    if (this.href) {
+      return html`
+        <a
+          part="base"
+          class="button"
+          href=${this.href}
+          target=${this.target ?? '_self'}
+          rel=${this.target === '_blank' ? 'noopener noreferrer' : ''}
+          tabindex=${this.disabled ? -1 : 0}
+          aria-disabled=${this.disabled}
+        >
+          <slot name="prefix" part="prefix"></slot>
+          <slot part="label"></slot>
+          <slot name="suffix" part="suffix"></slot>
+        </a>
+      `;
+    }
+
     return html`
-      <sl-button
-        variant=${this._slVariant}
-        size=${this._slSize}
-        ?disabled=${this.disabled}
-        ?loading=${this.loading}
-        type=${this.type}
-        href=${ifDefined(this.href)}
-        target=${ifDefined(this.target)}
-        exportparts="base, label, prefix, suffix"
-        @sl-focus=${this._handleFocus}
-        @sl-blur=${this._handleBlur}
-      >
-        <slot name="prefix" slot="prefix"></slot>
-        <slot></slot>
-        <slot name="suffix" slot="suffix"></slot>
-      </sl-button>
+      <div part="base" class="button">
+        <slot name="prefix" part="prefix"></slot>
+        <slot part="label"></slot>
+        <slot name="suffix" part="suffix"></slot>
+        ${this.loading ? html`<span part="spinner" class="spinner"></span>` : ''}
+      </div>
     `;
   }
 }

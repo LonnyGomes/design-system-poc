@@ -1,0 +1,131 @@
+// Auto-generated from .styles.css — do not edit directly
+import { css } from 'lit';
+
+export const cobaltButtonStyles = css`
+  /* ── Base ── */
+  :host {
+    display: inline-block;
+    font-family: var(--co-font-family-sans);
+    font-weight: var(--co-font-weight-medium);
+    line-height: var(--co-font-line-height-tight);
+    border-radius: var(--co-radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      background var(--co-transition-duration-fast) var(--co-transition-easing-default),
+      color var(--co-transition-duration-fast) var(--co-transition-easing-default),
+      border-color var(--co-transition-duration-fast) var(--co-transition-easing-default),
+      box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--co-spacing-2);
+  }
+
+  /* ── Sizes ── */
+  :host([size='sm']) {
+    font-size: var(--co-font-size-sm);
+    padding: var(--co-spacing-1) var(--co-spacing-3);
+  }
+
+  :host,
+  :host([size='md']) {
+    font-size: var(--co-font-size-md);
+    padding: var(--co-spacing-2) var(--co-spacing-4);
+  }
+
+  :host([size='lg']) {
+    font-size: var(--co-font-size-lg);
+    padding: var(--co-spacing-3) var(--co-spacing-6);
+  }
+
+  /* ── Primary variant (default) ── */
+  :host,
+  :host([variant='primary']) {
+    background: var(--co-color-primary-600);
+    color: var(--co-color-foreground-on-primary);
+  }
+  :host([variant='primary']:hover),
+  :host(:not([variant]):hover) {
+    background: var(--co-color-primary-700);
+  }
+  :host([variant='primary']:active),
+  :host(:not([variant]):active) {
+    background: var(--co-color-primary-800);
+  }
+
+  /* ── Secondary variant ── */
+  :host([variant='secondary']) {
+    background: var(--co-color-background-default);
+    color: var(--co-color-foreground-default);
+    border-color: var(--co-color-border-default);
+  }
+  :host([variant='secondary']:hover) {
+    background: var(--co-color-background-subtle);
+    border-color: var(--co-color-border-strong);
+  }
+  :host([variant='secondary']:active) {
+    background: var(--co-color-neutral-100);
+  }
+
+  /* ── Danger variant ── */
+  :host([variant='danger']) {
+    background: var(--co-color-danger-600);
+    color: var(--co-color-foreground-on-primary);
+  }
+  :host([variant='danger']:hover) {
+    background: var(--co-color-danger-700);
+  }
+  :host([variant='danger']:active) {
+    background: var(--co-color-danger-800);
+  }
+
+  /* ── Ghost variant ── */
+  :host([variant='ghost']) {
+    background: transparent;
+    color: var(--co-color-primary-600);
+  }
+  :host([variant='ghost']:hover) {
+    background: var(--co-color-primary-50);
+  }
+  :host([variant='ghost']:active) {
+    background: var(--co-color-primary-100);
+  }
+
+  /* ── Focus ── */
+  :host(:focus-visible) {
+    outline: 2px solid var(--co-color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* ── Disabled ── */
+  :host([disabled]) {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* ── Loading ── */
+  :host([loading]) {
+    cursor: wait;
+    pointer-events: none;
+  }
+
+  .spinner {
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: var(--co-radius-full);
+    animation: co-spin 600ms linear infinite;
+  }
+
+  @keyframes co-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;

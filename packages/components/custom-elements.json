@@ -19,6 +19,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "scripts/generate-styles.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/index.ts",
       "declarations": [],
       "exports": [
@@ -99,8 +105,8 @@
         {
           "kind": "variable",
           "name": "CoButton",
-          "default": "class CoButton extends LitElement { constructor() { super(...arguments); /** The button variant. */ this.variant = 'primary'; /** The button size. */ this.size = 'md'; /** Disables the button. */ this.disabled = false; /** Shows a loading spinner. */ this.loading = false; /** The button type (submit, reset, button). */ this.type = 'button'; } get _slVariant() { return variantMap[this.variant] ?? 'primary'; } get _slSize() { return sizeMap[this.size] ?? 'medium'; } _handleFocus() { this.dispatchEvent(new CustomEvent('co-focus', { bubbles: true, composed: true })); } _handleBlur() { this.dispatchEvent(new CustomEvent('co-blur', { bubbles: true, composed: true })); } render() { return html ` <sl-button variant=${this._slVariant} size=${this._slSize} ?disabled=${this.disabled} ?loading=${this.loading} type=${this.type} href=${ifDefined(this.href)} target=${ifDefined(this.target)} exportparts=\"base, label, prefix, suffix\" @sl-focus=${this._handleFocus} @sl-blur=${this._handleBlur} > <slot name=\"prefix\" slot=\"prefix\"></slot> <slot></slot> <slot name=\"suffix\" slot=\"suffix\"></slot> </sl-button> `; } }",
-          "summary": "A button component wrapping Shoelace's sl-button with Cobalt theming."
+          "default": "class CoButton extends LionButton { constructor() { super(...arguments); /** The button variant. */ this.variant = 'primary'; /** The button size. */ this.size = 'md'; /** Shows a loading spinner. */ this.loading = false; this._handleFocus = () => { this.dispatchEvent(new CustomEvent('co-focus', { bubbles: true, composed: true })); }; this._handleBlur = () => { this.dispatchEvent(new CustomEvent('co-blur', { bubbles: true, composed: true })); }; } static get styles() { return [...super.styles, cobaltButtonStyles]; } connectedCallback() { super.connectedCallback(); this.addEventListener('focus', this._handleFocus); this.addEventListener('blur', this._handleBlur); } disconnectedCallback() { super.disconnectedCallback(); this.removeEventListener('focus', this._handleFocus); this.removeEventListener('blur', this._handleBlur); } render() { if (this.href) { return html ` <a part=\"base\" class=\"button\" href=${this.href} target=${this.target ?? '_self'} rel=${this.target === '_blank' ? 'noopener noreferrer' : ''} tabindex=${this.disabled ? -1 : 0} aria-disabled=${this.disabled} > <slot name=\"prefix\" part=\"prefix\"></slot> <slot part=\"label\"></slot> <slot name=\"suffix\" part=\"suffix\"></slot> </a> `; } return html ` <div part=\"base\" class=\"button\"> <slot name=\"prefix\" part=\"prefix\"></slot> <slot part=\"label\"></slot> <slot name=\"suffix\" part=\"suffix\"></slot> ${this.loading ? html `<span part=\"spinner\" class=\"spinner\"></span>` : ''} </div> `; } }",
+          "summary": "A button component extending Lion's LionButton with Cobalt theming."
         }
       ],
       "exports": [
@@ -116,6 +122,48 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/components/button/co-button.styles.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "cobaltButtonStyles",
+          "default": "css ` /* ── Base ── */ :host { display: inline-block; font-family: var(--co-font-family-sans); font-weight: var(--co-font-weight-medium); line-height: var(--co-font-line-height-tight); border-radius: var(--co-radius-md); border: 1px solid transparent; cursor: pointer; transition: background var(--co-transition-duration-fast) var(--co-transition-easing-default), color var(--co-transition-duration-fast) var(--co-transition-easing-default), border-color var(--co-transition-duration-fast) var(--co-transition-easing-default), box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default); } .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--co-spacing-2); } /* ── Sizes ── */ :host([size=\"sm\"]) { font-size: var(--co-font-size-sm); padding: var(--co-spacing-1) var(--co-spacing-3); } :host, :host([size=\"md\"]) { font-size: var(--co-font-size-md); padding: var(--co-spacing-2) var(--co-spacing-4); } :host([size=\"lg\"]) { font-size: var(--co-font-size-lg); padding: var(--co-spacing-3) var(--co-spacing-6); } /* ── Primary variant (default) ── */ :host, :host([variant=\"primary\"]) { background: var(--co-color-primary-600); color: var(--co-color-foreground-on-primary); } :host([variant=\"primary\"]:hover), :host(:not([variant]):hover) { background: var(--co-color-primary-700); } :host([variant=\"primary\"]:active), :host(:not([variant]):active) { background: var(--co-color-primary-800); } /* ── Secondary variant ── */ :host([variant=\"secondary\"]) { background: var(--co-color-background-default); color: var(--co-color-foreground-default); border-color: var(--co-color-border-default); } :host([variant=\"secondary\"]:hover) { background: var(--co-color-background-subtle); border-color: var(--co-color-border-strong); } :host([variant=\"secondary\"]:active) { background: var(--co-color-neutral-100); } /* ── Danger variant ── */ :host([variant=\"danger\"]) { background: var(--co-color-danger-600); color: var(--co-color-foreground-on-primary); } :host([variant=\"danger\"]:hover) { background: var(--co-color-danger-700); } :host([variant=\"danger\"]:active) { background: var(--co-color-danger-800); } /* ── Ghost variant ── */ :host([variant=\"ghost\"]) { background: transparent; color: var(--co-color-primary-600); } :host([variant=\"ghost\"]:hover) { background: var(--co-color-primary-50); } :host([variant=\"ghost\"]:active) { background: var(--co-color-primary-100); } /* ── Focus ── */ :host(:focus-visible) { outline: 2px solid var(--co-color-primary-500); outline-offset: 2px; } /* ── Disabled ── */ :host([disabled]) { opacity: 0.5; cursor: not-allowed; pointer-events: none; } /* ── Loading ── */ :host([loading]) { cursor: wait; pointer-events: none; } .spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: var(--co-radius-full); animation: co-spin 600ms linear infinite; } @keyframes co-spin { to { transform: rotate(360deg); } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "cobaltButtonStyles",
+          "declaration": {
+            "name": "cobaltButtonStyles",
+            "module": "dist/components/button/co-button.styles.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/co-button.styles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "cobaltButtonStyles",
+          "default": "css` /* ── Base ── */ :host { display: inline-block; font-family: var(--co-font-family-sans); font-weight: var(--co-font-weight-medium); line-height: var(--co-font-line-height-tight); border-radius: var(--co-radius-md); border: 1px solid transparent; cursor: pointer; transition: background var(--co-transition-duration-fast) var(--co-transition-easing-default), color var(--co-transition-duration-fast) var(--co-transition-easing-default), border-color var(--co-transition-duration-fast) var(--co-transition-easing-default), box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default); } .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--co-spacing-2); } /* ── Sizes ── */ :host([size=\"sm\"]) { font-size: var(--co-font-size-sm); padding: var(--co-spacing-1) var(--co-spacing-3); } :host, :host([size=\"md\"]) { font-size: var(--co-font-size-md); padding: var(--co-spacing-2) var(--co-spacing-4); } :host([size=\"lg\"]) { font-size: var(--co-font-size-lg); padding: var(--co-spacing-3) var(--co-spacing-6); } /* ── Primary variant (default) ── */ :host, :host([variant=\"primary\"]) { background: var(--co-color-primary-600); color: var(--co-color-foreground-on-primary); } :host([variant=\"primary\"]:hover), :host(:not([variant]):hover) { background: var(--co-color-primary-700); } :host([variant=\"primary\"]:active), :host(:not([variant]):active) { background: var(--co-color-primary-800); } /* ── Secondary variant ── */ :host([variant=\"secondary\"]) { background: var(--co-color-background-default); color: var(--co-color-foreground-default); border-color: var(--co-color-border-default); } :host([variant=\"secondary\"]:hover) { background: var(--co-color-background-subtle); border-color: var(--co-color-border-strong); } :host([variant=\"secondary\"]:active) { background: var(--co-color-neutral-100); } /* ── Danger variant ── */ :host([variant=\"danger\"]) { background: var(--co-color-danger-600); color: var(--co-color-foreground-on-primary); } :host([variant=\"danger\"]:hover) { background: var(--co-color-danger-700); } :host([variant=\"danger\"]:active) { background: var(--co-color-danger-800); } /* ── Ghost variant ── */ :host([variant=\"ghost\"]) { background: transparent; color: var(--co-color-primary-600); } :host([variant=\"ghost\"]:hover) { background: var(--co-color-primary-50); } :host([variant=\"ghost\"]:active) { background: var(--co-color-primary-100); } /* ── Focus ── */ :host(:focus-visible) { outline: 2px solid var(--co-color-primary-500); outline-offset: 2px; } /* ── Disabled ── */ :host([disabled]) { opacity: 0.5; cursor: not-allowed; pointer-events: none; } /* ── Loading ── */ :host([loading]) { cursor: wait; pointer-events: none; } .spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: var(--co-radius-full); animation: co-spin 600ms linear infinite; } @keyframes co-spin { to { transform: rotate(360deg); } } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "cobaltButtonStyles",
+          "declaration": {
+            "name": "cobaltButtonStyles",
+            "module": "src/components/button/co-button.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/button/co-button.ts",
       "declarations": [
         {
@@ -124,20 +172,24 @@
           "name": "CoButton",
           "cssParts": [
             {
-              "description": "The underlying sl-button's base part",
+              "description": "The button wrapper",
               "name": "base"
             },
             {
-              "description": "The button label",
+              "description": "The label slot",
               "name": "label"
             },
             {
-              "description": "The prefix container",
+              "description": "The prefix slot container",
               "name": "prefix"
             },
             {
-              "description": "The suffix container",
+              "description": "The suffix slot container",
               "name": "suffix"
+            },
+            {
+              "description": "The loading spinner",
+              "name": "spinner"
             }
           ],
           "slots": [
@@ -179,17 +231,6 @@
             },
             {
               "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the button.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
               "name": "loading",
               "type": {
                 "text": "boolean"
@@ -198,16 +239,6 @@
               "description": "Shows a loading spinner.",
               "attribute": "loading",
               "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "'submit' | 'reset' | 'button'"
-              },
-              "default": "'button'",
-              "description": "The button type (submit, reset, button).",
-              "attribute": "type"
             },
             {
               "kind": "field",
@@ -229,47 +260,23 @@
             },
             {
               "kind": "field",
-              "name": "_slVariant",
-              "type": {
-                "text": "string"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_slSize",
-              "type": {
-                "text": "string"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
               "name": "_handleFocus",
               "privacy": "private"
             },
             {
-              "kind": "method",
+              "kind": "field",
               "name": "_handleBlur",
               "privacy": "private"
             }
           ],
           "events": [
             {
-              "name": "co-focus",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Emitted when the button gains focus"
+              "description": "Emitted when the button gains focus",
+              "name": "co-focus"
             },
             {
-              "name": "co-blur",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Emitted when the button loses focus"
+              "description": "Emitted when the button loses focus",
+              "name": "co-blur"
             }
           ],
           "attributes": [
@@ -292,15 +299,6 @@
               "fieldName": "size"
             },
             {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the button.",
-              "fieldName": "disabled"
-            },
-            {
               "name": "loading",
               "type": {
                 "text": "boolean"
@@ -308,15 +306,6 @@
               "default": "false",
               "description": "Shows a loading spinner.",
               "fieldName": "loading"
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "'submit' | 'reset' | 'button'"
-              },
-              "default": "'button'",
-              "description": "The button type (submit, reset, button).",
-              "fieldName": "type"
             },
             {
               "name": "href",
@@ -336,12 +325,12 @@
             }
           ],
           "superclass": {
-            "name": "LitElement",
-            "package": "lit"
+            "name": "LionButton",
+            "package": "@lion/ui/button.js"
           },
           "tagName": "co-button",
           "customElement": true,
-          "summary": "A button component wrapping Shoelace's sl-button with Cobalt theming."
+          "summary": "A button component extending Lion's LionButton with Cobalt theming."
         }
       ],
       "exports": [

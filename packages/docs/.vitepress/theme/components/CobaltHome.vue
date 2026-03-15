@@ -6,14 +6,14 @@ const features = [
     icon: 'tokens',
     title: 'Design Tokens',
     description:
-      'Style Dictionary powers a multi-format token pipeline — CSS, SCSS, JS, and a Shoelace mapping layer that themes components automatically.',
+      'Style Dictionary powers a multi-format token pipeline — CSS, SCSS, and JS. Tokens apply directly to components with no mapping layer.',
     link: '/tokens/',
   },
   {
     icon: 'components',
     title: 'Web Components',
     description:
-      'Thin Lit wrappers compose Shoelace components with a curated API. Slots, parts, and events forwarded cleanly across shadow boundaries.',
+      'Components extend Lion Web Components with Cobalt theming. White-label foundations with full styling control.',
     link: '/components/button',
   },
   {
@@ -45,7 +45,7 @@ const features = [
         </h1>
 
         <p class="hero-subtitle">
-          A composable design system architecture. Lit web components wrap Shoelace, themed by Style
+          A composable design system architecture. Lit web components extend Lion, themed by Style
           Dictionary tokens, with wrappers for every framework.
         </p>
 
@@ -257,7 +257,7 @@ const features = [
           </svg>
         </div>
         <div class="arch-node">
-          <span class="arch-node-label">Lit + Shoelace</span>
+          <span class="arch-node-label">Lit + Lion</span>
           <span class="arch-node-sub">components</span>
         </div>
         <div class="arch-arrow" aria-hidden="true">
