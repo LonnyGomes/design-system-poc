@@ -20,6 +20,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "test": "vitest run",
     "clean": "rm -rf dist"
   },
   "dependencies": {
@@ -29,7 +30,10 @@
     "vue": "^3.4.0"
   },
   "devDependencies": {
+    "@vue/test-utils": "^2.4.0",
+    "jsdom": "^25.0.0",
     "typescript": "~5.6.0",
+    "vitest": "^3.0.0",
     "vue": "^3.5.0"
   },
   "license": "MIT"

@@ -1,4 +1,5 @@
 import { playwrightLauncher } from '@web/test-runner-playwright';
+import { a11yReporterPlugin } from './wtr-a11y-reporter.mjs';
 
 export default {
   files: 'dist/**/*.test.js',
@@ -9,6 +10,7 @@ export default {
       timeout: 10000,
     },
   },
+  plugins: [a11yReporterPlugin()],
   coverageConfig: {
     include: ['dist/components/**/*.js'],
     exclude: ['dist/**/*.test.js', 'dist/test-utils/**'],

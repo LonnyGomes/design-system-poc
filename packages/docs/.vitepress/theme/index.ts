@@ -4,6 +4,7 @@ import ComponentDemo from '../../components/ComponentDemo.vue';
 import CodeTabs from '../../components/CodeTabs.vue';
 import ColorSwatch from '../../components/ColorSwatch.vue';
 import IconGallery from '../../components/IconGallery.vue';
+import A11yReport from '../../components/A11yReport.vue';
 
 // Cobalt design tokens
 import '@cobalt/tokens/css';
@@ -21,6 +22,7 @@ export default {
     app.component('CodeTabs', CodeTabs);
     app.component('ColorSwatch', ColorSwatch);
     app.component('IconGallery', IconGallery);
+    app.component('A11yReport', A11yReport);
 
     // Register Cobalt web components (client-side only)
     if (typeof window !== 'undefined') {
