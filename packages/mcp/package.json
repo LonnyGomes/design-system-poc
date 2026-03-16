@@ -1,0 +1,28 @@
+{
+  "name": "@cobalt/mcp",
+  "version": "0.0.1",
+  "description": "MCP server for Cobalt Design System — provides AI tools with queryable access to component APIs, design tokens, and documentation",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "@cobalt/mcp": "dist/index.js",
+    "cobalt-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "data"
+  ],
+  "scripts": {
+    "prebuild": "node scripts/copy-data.mjs",
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.0"
+  }
+}
