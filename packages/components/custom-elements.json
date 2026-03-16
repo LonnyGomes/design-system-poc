@@ -48,9 +48,12 @@
           "parameters": [
             {
               "name": "el"
+            },
+            {
+              "name": "options"
             }
           ],
-          "description": "Runs axe-core accessibility audit on the given element.\nThrows an error if any violations are found."
+          "description": "Runs axe-core accessibility audit on the given element.\nReturns structured results and throws an error if any violations are found."
         }
       ],
       "exports": [
@@ -66,6 +69,111 @@
     },
     {
       "kind": "javascript-module",
+      "path": "dist/test-utils/wcag-manual-checklist.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getManualTestNotes",
+          "parameters": [
+            {
+              "name": "component"
+            }
+          ],
+          "description": "Returns manual testing notes for a given component.\nMerges shared interactive checks with component-specific checks."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "getManualTestNotes",
+          "declaration": {
+            "name": "getManualTestNotes",
+            "module": "dist/test-utils/wcag-manual-checklist.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "dist/test-utils/wcag-mapping.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "WCAG_21_AA_TAGS",
+          "type": {
+            "text": "array"
+          },
+          "default": "['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']",
+          "description": "Tags that indicate a rule contributes to WCAG 2.1 AA conformance"
+        },
+        {
+          "kind": "function",
+          "name": "isWcag21AA",
+          "parameters": [
+            {
+              "name": "tags"
+            }
+          ],
+          "description": "Returns true if any tag indicates WCAG 2.1 AA relevance"
+        },
+        {
+          "kind": "function",
+          "name": "decodeWcagCriteria",
+          "parameters": [
+            {
+              "name": "tags"
+            }
+          ],
+          "description": "Extracts WCAG success criteria numbers from axe-core tags.\ne.g., 'wcag143' → '1.4.3', 'wcag111' → '1.1.1'"
+        },
+        {
+          "kind": "function",
+          "name": "getWcagLevel",
+          "parameters": [
+            {
+              "name": "tags"
+            }
+          ],
+          "description": "Determines the WCAG conformance level from axe-core tags"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "WCAG_21_AA_TAGS",
+          "declaration": {
+            "name": "WCAG_21_AA_TAGS",
+            "module": "dist/test-utils/wcag-mapping.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isWcag21AA",
+          "declaration": {
+            "name": "isWcag21AA",
+            "module": "dist/test-utils/wcag-mapping.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "decodeWcagCriteria",
+          "declaration": {
+            "name": "decodeWcagCriteria",
+            "module": "dist/test-utils/wcag-mapping.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getWcagLevel",
+          "declaration": {
+            "name": "getWcagLevel",
+            "module": "dist/test-utils/wcag-mapping.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/test-utils/a11y.ts",
       "declarations": [
         {
@@ -73,7 +181,7 @@
           "name": "runA11yAudit",
           "return": {
             "type": {
-              "text": "Promise<void>"
+              "text": "Promise<A11yAuditResult>"
             }
           },
           "parameters": [
@@ -82,9 +190,16 @@
               "type": {
                 "text": "Element"
               }
+            },
+            {
+              "name": "options",
+              "optional": true,
+              "type": {
+                "text": "A11yAuditOptions"
+              }
             }
           ],
-          "description": "Runs axe-core accessibility audit on the given element.\nThrows an error if any violations are found."
+          "description": "Runs axe-core accessibility audit on the given element.\nReturns structured results and throws an error if any violations are found."
         }
       ],
       "exports": [
@@ -94,6 +209,143 @@
           "declaration": {
             "name": "runA11yAudit",
             "module": "src/test-utils/a11y.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/test-utils/wcag-manual-checklist.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getManualTestNotes",
+          "return": {
+            "type": {
+              "text": "ManualTestNote[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "component",
+              "type": {
+                "text": "string"
+              }
+            }
+          ],
+          "description": "Returns manual testing notes for a given component.\nMerges shared interactive checks with component-specific checks."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "getManualTestNotes",
+          "declaration": {
+            "name": "getManualTestNotes",
+            "module": "src/test-utils/wcag-manual-checklist.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/test-utils/wcag-mapping.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "WCAG_21_AA_TAGS",
+          "type": {
+            "text": "['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']"
+          },
+          "default": "['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']",
+          "description": "Tags that indicate a rule contributes to WCAG 2.1 AA conformance"
+        },
+        {
+          "kind": "function",
+          "name": "isWcag21AA",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          },
+          "parameters": [
+            {
+              "name": "tags",
+              "type": {
+                "text": "string[]"
+              }
+            }
+          ],
+          "description": "Returns true if any tag indicates WCAG 2.1 AA relevance"
+        },
+        {
+          "kind": "function",
+          "name": "decodeWcagCriteria",
+          "return": {
+            "type": {
+              "text": "string[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "tags",
+              "type": {
+                "text": "string[]"
+              }
+            }
+          ],
+          "description": "Extracts WCAG success criteria numbers from axe-core tags.\ne.g., 'wcag143' → '1.4.3', 'wcag111' → '1.1.1'"
+        },
+        {
+          "kind": "function",
+          "name": "getWcagLevel",
+          "return": {
+            "type": {
+              "text": "'A' | 'AA' | 'best-practice' | 'other'"
+            }
+          },
+          "parameters": [
+            {
+              "name": "tags",
+              "type": {
+                "text": "string[]"
+              }
+            }
+          ],
+          "description": "Determines the WCAG conformance level from axe-core tags"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "WCAG_21_AA_TAGS",
+          "declaration": {
+            "name": "WCAG_21_AA_TAGS",
+            "module": "src/test-utils/wcag-mapping.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isWcag21AA",
+          "declaration": {
+            "name": "isWcag21AA",
+            "module": "src/test-utils/wcag-mapping.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "decodeWcagCriteria",
+          "declaration": {
+            "name": "decodeWcagCriteria",
+            "module": "src/test-utils/wcag-mapping.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getWcagLevel",
+          "declaration": {
+            "name": "getWcagLevel",
+            "module": "src/test-utils/wcag-mapping.ts"
           }
         }
       ]
@@ -127,7 +379,7 @@
         {
           "kind": "variable",
           "name": "cobaltButtonStyles",
-          "default": "css ` /* ── Base ── */ :host { display: inline-block; font-family: var(--co-font-family-sans); font-weight: var(--co-font-weight-medium); line-height: var(--co-font-line-height-tight); border-radius: var(--co-radius-md); border: 1px solid transparent; cursor: pointer; transition: background var(--co-transition-duration-fast) var(--co-transition-easing-default), color var(--co-transition-duration-fast) var(--co-transition-easing-default), border-color var(--co-transition-duration-fast) var(--co-transition-easing-default), box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default); } .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--co-spacing-2); } /* ── Sizes ── */ :host([size=\"sm\"]) { font-size: var(--co-font-size-sm); padding: var(--co-spacing-1) var(--co-spacing-3); } :host, :host([size=\"md\"]) { font-size: var(--co-font-size-md); padding: var(--co-spacing-2) var(--co-spacing-4); } :host([size=\"lg\"]) { font-size: var(--co-font-size-lg); padding: var(--co-spacing-3) var(--co-spacing-6); } /* ── Primary variant (default) ── */ :host, :host([variant=\"primary\"]) { background: var(--co-color-primary-600); color: var(--co-color-foreground-on-primary); } :host([variant=\"primary\"]:hover), :host(:not([variant]):hover) { background: var(--co-color-primary-700); } :host([variant=\"primary\"]:active), :host(:not([variant]):active) { background: var(--co-color-primary-800); } /* ── Secondary variant ── */ :host([variant=\"secondary\"]) { background: var(--co-color-background-default); color: var(--co-color-foreground-default); border-color: var(--co-color-border-default); } :host([variant=\"secondary\"]:hover) { background: var(--co-color-background-subtle); border-color: var(--co-color-border-strong); } :host([variant=\"secondary\"]:active) { background: var(--co-color-neutral-100); } /* ── Danger variant ── */ :host([variant=\"danger\"]) { background: var(--co-color-danger-600); color: var(--co-color-foreground-on-primary); } :host([variant=\"danger\"]:hover) { background: var(--co-color-danger-700); } :host([variant=\"danger\"]:active) { background: var(--co-color-danger-800); } /* ── Ghost variant ── */ :host([variant=\"ghost\"]) { background: transparent; color: var(--co-color-primary-600); } :host([variant=\"ghost\"]:hover) { background: var(--co-color-primary-50); } :host([variant=\"ghost\"]:active) { background: var(--co-color-primary-100); } /* ── Focus ── */ :host(:focus-visible) { outline: 2px solid var(--co-color-primary-500); outline-offset: 2px; } /* ── Disabled ── */ :host([disabled]) { opacity: 0.5; cursor: not-allowed; pointer-events: none; } /* ── Loading ── */ :host([loading]) { cursor: wait; pointer-events: none; } .spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: var(--co-radius-full); animation: co-spin 600ms linear infinite; } @keyframes co-spin { to { transform: rotate(360deg); } } `"
+          "default": "css ` /* ── Base ── */ :host { display: inline-block; font-family: var(--co-font-family-sans); font-weight: var(--co-font-weight-medium); line-height: var(--co-font-line-height-tight); border-radius: var(--co-radius-md); border: 1px solid transparent; cursor: pointer; transition: background var(--co-transition-duration-fast) var(--co-transition-easing-default), color var(--co-transition-duration-fast) var(--co-transition-easing-default), border-color var(--co-transition-duration-fast) var(--co-transition-easing-default), box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default); } .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--co-spacing-2); } /* ── Sizes ── */ :host([size='sm']) { font-size: var(--co-font-size-sm); padding: var(--co-spacing-1) var(--co-spacing-3); } :host, :host([size='md']) { font-size: var(--co-font-size-md); padding: var(--co-spacing-2) var(--co-spacing-4); } :host([size='lg']) { font-size: var(--co-font-size-lg); padding: var(--co-spacing-3) var(--co-spacing-6); } /* ── Primary variant (default) ── */ :host, :host([variant='primary']) { background: var(--co-color-primary-600); color: var(--co-color-foreground-on-primary); } :host([variant='primary']:hover), :host(:not([variant]):hover) { background: var(--co-color-primary-700); } :host([variant='primary']:active), :host(:not([variant]):active) { background: var(--co-color-primary-800); } /* ── Secondary variant ── */ :host([variant='secondary']) { background: var(--co-color-background-default); color: var(--co-color-foreground-default); border-color: var(--co-color-border-default); } :host([variant='secondary']:hover) { background: var(--co-color-background-subtle); border-color: var(--co-color-border-strong); } :host([variant='secondary']:active) { background: var(--co-color-neutral-100); } /* ── Danger variant ── */ :host([variant='danger']) { background: var(--co-color-danger-600); color: var(--co-color-foreground-on-primary); } :host([variant='danger']:hover) { background: var(--co-color-danger-700); } :host([variant='danger']:active) { background: var(--co-color-danger-800); } /* ── Ghost variant ── */ :host([variant='ghost']) { background: transparent; color: var(--co-color-primary-600); } :host([variant='ghost']:hover) { background: var(--co-color-primary-50); } :host([variant='ghost']:active) { background: var(--co-color-primary-100); } /* ── Focus ── */ :host(:focus-visible) { outline: 2px solid var(--co-color-primary-500); outline-offset: 2px; } /* ── Disabled ── */ :host([disabled]) { opacity: 0.5; cursor: not-allowed; pointer-events: none; } /* ── Loading ── */ :host([loading]) { cursor: wait; pointer-events: none; } .spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: var(--co-radius-full); animation: co-spin 600ms linear infinite; } @keyframes co-spin { to { transform: rotate(360deg); } } `"
         }
       ],
       "exports": [
@@ -148,7 +400,7 @@
         {
           "kind": "variable",
           "name": "cobaltButtonStyles",
-          "default": "css` /* ── Base ── */ :host { display: inline-block; font-family: var(--co-font-family-sans); font-weight: var(--co-font-weight-medium); line-height: var(--co-font-line-height-tight); border-radius: var(--co-radius-md); border: 1px solid transparent; cursor: pointer; transition: background var(--co-transition-duration-fast) var(--co-transition-easing-default), color var(--co-transition-duration-fast) var(--co-transition-easing-default), border-color var(--co-transition-duration-fast) var(--co-transition-easing-default), box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default); } .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--co-spacing-2); } /* ── Sizes ── */ :host([size=\"sm\"]) { font-size: var(--co-font-size-sm); padding: var(--co-spacing-1) var(--co-spacing-3); } :host, :host([size=\"md\"]) { font-size: var(--co-font-size-md); padding: var(--co-spacing-2) var(--co-spacing-4); } :host([size=\"lg\"]) { font-size: var(--co-font-size-lg); padding: var(--co-spacing-3) var(--co-spacing-6); } /* ── Primary variant (default) ── */ :host, :host([variant=\"primary\"]) { background: var(--co-color-primary-600); color: var(--co-color-foreground-on-primary); } :host([variant=\"primary\"]:hover), :host(:not([variant]):hover) { background: var(--co-color-primary-700); } :host([variant=\"primary\"]:active), :host(:not([variant]):active) { background: var(--co-color-primary-800); } /* ── Secondary variant ── */ :host([variant=\"secondary\"]) { background: var(--co-color-background-default); color: var(--co-color-foreground-default); border-color: var(--co-color-border-default); } :host([variant=\"secondary\"]:hover) { background: var(--co-color-background-subtle); border-color: var(--co-color-border-strong); } :host([variant=\"secondary\"]:active) { background: var(--co-color-neutral-100); } /* ── Danger variant ── */ :host([variant=\"danger\"]) { background: var(--co-color-danger-600); color: var(--co-color-foreground-on-primary); } :host([variant=\"danger\"]:hover) { background: var(--co-color-danger-700); } :host([variant=\"danger\"]:active) { background: var(--co-color-danger-800); } /* ── Ghost variant ── */ :host([variant=\"ghost\"]) { background: transparent; color: var(--co-color-primary-600); } :host([variant=\"ghost\"]:hover) { background: var(--co-color-primary-50); } :host([variant=\"ghost\"]:active) { background: var(--co-color-primary-100); } /* ── Focus ── */ :host(:focus-visible) { outline: 2px solid var(--co-color-primary-500); outline-offset: 2px; } /* ── Disabled ── */ :host([disabled]) { opacity: 0.5; cursor: not-allowed; pointer-events: none; } /* ── Loading ── */ :host([loading]) { cursor: wait; pointer-events: none; } .spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: var(--co-radius-full); animation: co-spin 600ms linear infinite; } @keyframes co-spin { to { transform: rotate(360deg); } } `"
+          "default": "css` /* ── Base ── */ :host { display: inline-block; font-family: var(--co-font-family-sans); font-weight: var(--co-font-weight-medium); line-height: var(--co-font-line-height-tight); border-radius: var(--co-radius-md); border: 1px solid transparent; cursor: pointer; transition: background var(--co-transition-duration-fast) var(--co-transition-easing-default), color var(--co-transition-duration-fast) var(--co-transition-easing-default), border-color var(--co-transition-duration-fast) var(--co-transition-easing-default), box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default); } .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--co-spacing-2); } /* ── Sizes ── */ :host([size='sm']) { font-size: var(--co-font-size-sm); padding: var(--co-spacing-1) var(--co-spacing-3); } :host, :host([size='md']) { font-size: var(--co-font-size-md); padding: var(--co-spacing-2) var(--co-spacing-4); } :host([size='lg']) { font-size: var(--co-font-size-lg); padding: var(--co-spacing-3) var(--co-spacing-6); } /* ── Primary variant (default) ── */ :host, :host([variant='primary']) { background: var(--co-color-primary-600); color: var(--co-color-foreground-on-primary); } :host([variant='primary']:hover), :host(:not([variant]):hover) { background: var(--co-color-primary-700); } :host([variant='primary']:active), :host(:not([variant]):active) { background: var(--co-color-primary-800); } /* ── Secondary variant ── */ :host([variant='secondary']) { background: var(--co-color-background-default); color: var(--co-color-foreground-default); border-color: var(--co-color-border-default); } :host([variant='secondary']:hover) { background: var(--co-color-background-subtle); border-color: var(--co-color-border-strong); } :host([variant='secondary']:active) { background: var(--co-color-neutral-100); } /* ── Danger variant ── */ :host([variant='danger']) { background: var(--co-color-danger-600); color: var(--co-color-foreground-on-primary); } :host([variant='danger']:hover) { background: var(--co-color-danger-700); } :host([variant='danger']:active) { background: var(--co-color-danger-800); } /* ── Ghost variant ── */ :host([variant='ghost']) { background: transparent; color: var(--co-color-primary-600); } :host([variant='ghost']:hover) { background: var(--co-color-primary-50); } :host([variant='ghost']:active) { background: var(--co-color-primary-100); } /* ── Focus ── */ :host(:focus-visible) { outline: 2px solid var(--co-color-primary-500); outline-offset: 2px; } /* ── Disabled ── */ :host([disabled]) { opacity: 0.5; cursor: not-allowed; pointer-events: none; } /* ── Loading ── */ :host([loading]) { cursor: wait; pointer-events: none; } .spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: var(--co-radius-full); animation: co-spin 600ms linear infinite; } @keyframes co-spin { to { transform: rotate(360deg); } } `"
         }
       ],
       "exports": [
