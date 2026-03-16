@@ -19,12 +19,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "scripts/generate-styles.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/index.ts",
       "declarations": [],
       "exports": [
@@ -37,6 +31,12 @@
           }
         }
       ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "scripts/generate-styles.js",
+      "declarations": [],
+      "exports": []
     },
     {
       "kind": "javascript-module",

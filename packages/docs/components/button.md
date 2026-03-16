@@ -205,27 +205,6 @@ export class AppModule {}
 
 </CodeTabs>
 
-## Accessibility
-
-<ClientOnly>
-<A11yReport component="co-button" />
-</ClientOnly>
-
-### Keyboard interaction
-
-| Key               | Action                                        |
-| ----------------- | --------------------------------------------- |
-| `Enter` / `Space` | Activates the button                          |
-| `Tab`             | Moves focus to the next focusable element     |
-| `Shift+Tab`       | Moves focus to the previous focusable element |
-
-### ARIA notes
-
-- The `<co-button>` element inherits its role from Lion's `LionButton` base class, which sets `role="button"` on the host.
-- When `disabled` is set, the component sets `aria-disabled="true"` and removes the element from the tab order.
-- When `loading` is set, the spinner is hidden from assistive technology via `aria-hidden="true"` and the button label remains accessible.
-- When using `href`, the component renders as an `<a>` element, inheriting link semantics automatically.
-
 ## Best Practices
 
 ### When to use
@@ -295,3 +274,24 @@ export class AppModule {}
 | `label`  | The label wrapper                          |
 | `prefix` | The prefix slot container                  |
 | `suffix` | The suffix slot container                  |
+
+## Accessibility
+
+<ClientOnly>
+<A11yReport component="co-button" />
+</ClientOnly>
+
+### Keyboard interaction
+
+| Key               | Action                                        |
+| ----------------- | --------------------------------------------- |
+| `Enter` / `Space` | Activates the button                          |
+| `Tab`             | Moves focus to the next focusable element     |
+| `Shift+Tab`       | Moves focus to the previous focusable element |
+
+### ARIA notes
+
+- The `<co-button>` element inherits its role from Lion's `LionButton` base class, which sets `role="button"` on the host.
+- When `disabled` is set, the component sets `aria-disabled="true"` and removes the element from the tab order.
+- When `loading` is set, the spinner is hidden from assistive technology via `aria-hidden="true"` and the button label remains accessible.
+- When using `href`, the component renders as an `<a>` element, inheriting link semantics automatically.
