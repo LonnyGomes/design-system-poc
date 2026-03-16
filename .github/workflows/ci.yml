@@ -36,3 +36,10 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+      - name: Upload a11y reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: a11y-reports
+          path: packages/components/a11y-reports/

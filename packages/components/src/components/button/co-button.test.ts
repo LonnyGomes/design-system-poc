@@ -110,17 +110,17 @@ describe('co-button', () => {
   describe('accessibility', () => {
     it('is accessible in default state', async () => {
       const el = await fixture(html`<co-button>Click me</co-button>`);
-      await runA11yAudit(el);
+      await runA11yAudit(el, { component: 'co-button', state: 'default' });
     });
 
     it('is accessible when disabled', async () => {
       const el = await fixture(html`<co-button disabled>Disabled</co-button>`);
-      await runA11yAudit(el);
+      await runA11yAudit(el, { component: 'co-button', state: 'disabled' });
     });
 
     it('is accessible with loading state', async () => {
       const el = await fixture(html`<co-button loading>Loading</co-button>`);
-      await runA11yAudit(el);
+      await runA11yAudit(el, { component: 'co-button', state: 'loading' });
     });
   });
 });
