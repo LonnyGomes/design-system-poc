@@ -24,7 +24,7 @@ import '@cobalt/components/co-button';  // Good
 ### Framework usage:
 
 - **Web Component:** `<co-button variant="primary">Save</co-button>`
-- **React:** `import { Button } from '@cobalt/react'` → `<Button variant="primary">Save</Button>`
+- **React:** `import { CoButton } from '@cobalt/react'` → `<CoButton variant="primary">Save</CoButton>`
 - **Vue:** `import { CoButton } from '@cobalt/vue'` → `<CoButton variant="primary">Save</CoButton>`
 - **Angular:** `import { CobaltButtonModule } from '@cobalt/angular'` → `<co-button variant="primary">Save</co-button>`
 

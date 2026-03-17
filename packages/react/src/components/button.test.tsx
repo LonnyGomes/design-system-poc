@@ -1,44 +1,44 @@
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { Button } from './button.js';
+import { CoButton } from './button.js';
 
-describe('React Button wrapper', () => {
+describe('React CoButton wrapper', () => {
   it('renders a co-button element', () => {
-    const { container } = render(<Button>Click me</Button>);
+    const { container } = render(<CoButton>Click me</CoButton>);
     const el = container.querySelector('co-button');
     expect(el).not.toBeNull();
   });
 
   it('passes aria-label to the custom element', () => {
-    const { container } = render(<Button aria-label="Close dialog">X</Button>);
+    const { container } = render(<CoButton aria-label="Close dialog">X</CoButton>);
     const el = container.querySelector('co-button');
     expect(el?.getAttribute('aria-label')).toBe('Close dialog');
   });
 
   it('passes aria-describedby to the custom element', () => {
-    const { container } = render(<Button aria-describedby="help-text">Save</Button>);
+    const { container } = render(<CoButton aria-describedby="help-text">Save</CoButton>);
     const el = container.querySelector('co-button');
     expect(el?.getAttribute('aria-describedby')).toBe('help-text');
   });
 
   it('passes aria-expanded to the custom element', () => {
-    const { container } = render(<Button aria-expanded="true">Menu</Button>);
+    const { container } = render(<CoButton aria-expanded="true">Menu</CoButton>);
     const el = container.querySelector('co-button');
     expect(el?.getAttribute('aria-expanded')).toBe('true');
   });
 
   it('forwards slot content as children', () => {
-    const { container } = render(<Button>Hello world</Button>);
+    const { container } = render(<CoButton>Hello world</CoButton>);
     const el = container.querySelector('co-button');
     expect(el?.textContent).toBe('Hello world');
   });
 
   it('renders slotted prefix content', () => {
     const { container } = render(
-      <Button>
+      <CoButton>
         <span slot="prefix">icon</span>
         Label
-      </Button>,
+      </CoButton>,
     );
     const prefix = container.querySelector('[slot="prefix"]');
     expect(prefix).not.toBeNull();
@@ -46,7 +46,7 @@ describe('React Button wrapper', () => {
   });
 
   it('does not add spurious attributes to the custom element', () => {
-    const { container } = render(<Button>Clean</Button>);
+    const { container } = render(<CoButton>Clean</CoButton>);
     const el = container.querySelector('co-button')!;
     // Verify no unexpected attributes leak onto the element
     const attrNames = Array.from(el.attributes).map((a) => a.name);
