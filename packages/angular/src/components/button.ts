@@ -1,13 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  type OnInit,
-  type OnChanges,
-  type SimpleChanges,
-} from '@angular/core';
+import { Directive, ElementRef, effect, inject, input, output, type OnInit } from '@angular/core';
 import type { ButtonVariant, ButtonSize } from '@cobalt/components/button';
 import '@cobalt/components/button';
 
@@ -26,22 +17,33 @@ import '@cobalt/components/button';
   selector: 'co-button',
   standalone: true,
 })
-export class CoButtonDirective implements OnInit, OnChanges {
-  @Input() variant: ButtonVariant = 'primary';
-  @Input() size: ButtonSize = 'md';
-  @Input() disabled: boolean = false;
-  @Input() loading: boolean = false;
-  @Input() type: 'submit' | 'reset' | 'button' = 'button';
-  @Input() href?: string;
-  @Input() target?: '_blank' | '_self' | '_parent' | '_top';
+export class CoButtonDirective implements OnInit {
+  readonly variant = input<ButtonVariant>('primary');
+  readonly size = input<ButtonSize>('md');
+  readonly disabled = input(false);
+  readonly loading = input(false);
+  readonly type = input<'submit' | 'reset' | 'button'>('button');
+  readonly href = input<string | undefined>();
+  readonly target = input<'_blank' | '_self' | '_parent' | '_top' | undefined>();
 
-  @Output() coFocus = new EventEmitter<CustomEvent>();
-  @Output() coBlur = new EventEmitter<CustomEvent>();
+  readonly coFocus = output<CustomEvent>();
+  readonly coBlur = output<CustomEvent>();
 
-  private el: HTMLElement;
+  private el = inject(ElementRef).nativeElement;
 
-  constructor(elementRef: ElementRef<HTMLElement>) {
-    this.el = elementRef.nativeElement;
+  constructor() {
+    effect(() => {
+      const el = this.el as any;
+      el.variant = this.variant();
+      el.size = this.size();
+      el.disabled = this.disabled();
+      el.loading = this.loading();
+      el.type = this.type();
+      const href = this.href();
+      if (href !== undefined) el.href = href;
+      const target = this.target();
+      if (target !== undefined) el.target = target;
+    });
   }
 
   ngOnInit(): void {
@@ -51,21 +53,5 @@ export class CoButtonDirective implements OnInit, OnChanges {
     this.el.addEventListener('co-blur', (e: Event) => {
       this.coBlur.emit(e as CustomEvent);
     });
-    this.syncProperties();
-  }
-
-  ngOnChanges(_changes: SimpleChanges): void {
-    this.syncProperties();
-  }
-
-  private syncProperties(): void {
-    const el = this.el as any;
-    el.variant = this.variant;
-    el.size = this.size;
-    el.disabled = this.disabled;
-    el.loading = this.loading;
-    el.type = this.type;
-    if (this.href !== undefined) el.href = this.href;
-    if (this.target !== undefined) el.target = this.target;
   }
 }
