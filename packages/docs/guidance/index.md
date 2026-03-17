@@ -8,12 +8,12 @@ These resources are intended for designers, developers, and content authors work
 
 ## Sections
 
-| Page                                              | Description                                                                        |
-| ------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [Design Principles](./principles.md)              | The core values that drive every decision in Cobalt.                               |
-| [Content & Writing](./content.md)                 | Voice, tone, capitalization, error messages, and formatting rules.                 |
-| [Developer Onboarding](./developer-onboarding.md) | Environment setup, project structure, and first steps with Cobalt.                 |
-| [Migration Guides](./migration.md)                | Step-by-step instructions for moving from Bootstrap, Material UI, or raw HTML/CSS. |
+| Page                                                               | Description                                                                        |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| [Design Principles](./principles.md)                               | The core values that drive every decision in Cobalt.                               |
+| [Content & Writing](./content.md)                                  | Voice, tone, capitalization, error messages, and formatting rules.                 |
+| [Getting Started for Developers](../getting-started/developers.md) | Environment setup, project structure, and first steps with Cobalt.                 |
+| [Migration Guides](./migration.md)                                 | Step-by-step instructions for moving from Bootstrap, Material UI, or raw HTML/CSS. |
 
 ## Who is this for?
 
@@ -24,7 +24,7 @@ These resources are intended for designers, developers, and content authors work
 
 ## How to use these guides
 
-Each page is self-contained. Start with [Design Principles](./principles.md) if you want to understand the philosophy behind the system, or jump straight to [Developer Onboarding](./developer-onboarding.md) if you are ready to write code.
+Each page is self-contained. Start with [Design Principles](./principles.md) if you want to understand the philosophy behind the system, or jump straight to [Getting Started for Developers](../getting-started/developers.md) if you are ready to write code.
 
 > **Tip:** Bookmark the [Content & Writing](./content.md) page — it is the most frequently referenced guide during design reviews.
 

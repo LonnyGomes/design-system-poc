@@ -2,7 +2,7 @@ import React from 'react';
 import { createComponent } from '@lit/react';
 import { CoButton } from '@cobalt/components/button';
 
-export const Button = createComponent({
+export const CoButton = createComponent({
   tagName: 'co-button',
   elementClass: CoButton,
   react: React,

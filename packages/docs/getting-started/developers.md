@@ -1,20 +1,99 @@
 # Getting Started for Developers
 
-This guide covers installation, framework integration, component usage, and design token consumption for engineers working with Cobalt.
+This guide covers everything you need to start building with Cobalt — from setting up your environment to rendering your first component, consuming design tokens, and writing tests.
 
-## Installation
+## Prerequisites
 
-Install the core packages with pnpm:
+### Tooling
+
+| Tool    | Minimum Version | Check Command    |
+| ------- | --------------- | ---------------- |
+| Node.js | 18.x            | `node --version` |
+| pnpm    | 9.x             | `pnpm --version` |
+| Git     | 2.x             | `git --version`  |
+
+> **Tip:** We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage Node versions. The repository includes an `.nvmrc` file.
+
+### Browser support
+
+| Browser       | Minimum Version |
+| ------------- | --------------- |
+| Chrome / Edge | 90+             |
+| Firefox       | 100+            |
+| Safari        | 15.4+           |
+
+### Framework compatibility
+
+Framework wrappers are optional but recommended for better DX (typed props, native event binding, IDE autocompletion).
+
+| Framework | Package              | Minimum Version                |
+| --------- | -------------------- | ------------------------------ |
+| React     | `@cobalt/react`      | React 18.0+ (supports 18 & 19) |
+| Vue       | `@cobalt/vue`        | Vue 3.4+                       |
+| Angular   | `@cobalt/angular`    | Angular 17.3+ (supports 17–19) |
+| None      | `@cobalt/components` | Any (standard web components)  |
+
+> **No framework?** Cobalt components are standard web components built with Lit. They work in any environment that supports custom elements — just import and use.
+
+## Environment Setup
+
+### For consumers
+
+Install the core packages into your project:
 
 ```bash
-pnpm add @cobalt/components @cobalt/tokens
+npm install @cobalt/components @cobalt/tokens
 ```
 
-> **Tip:** Cobalt components are built as standard web components using Lit. They work in any environment that supports custom elements — no framework adapter required.
+Then add the wrapper for your framework:
+
+```bash
+# Pick one (or none — vanilla web components work everywhere)
+npm install @cobalt/react
+npm install @cobalt/vue
+npm install @cobalt/angular
+```
+
+If your organization uses a private registry, configure it first:
+
+```bash
+pnpm config set @cobalt:registry https://registry.your-org.com
+```
+
+### For contributors
+
+Clone the monorepo and build all packages:
+
+```bash
+git clone https://github.com/your-org/cobalt-design-system.git
+cd cobalt-design-system
+pnpm install
+pnpm build         # build all packages
+pnpm dev            # starts docs dev server at http://localhost:5173
+```
+
+## Project Structure
+
+```
+cobalt-design-system/
+├── packages/
+│   ├── tokens/       # Design tokens (JSON → CSS, SCSS, JS)
+│   ├── components/   # Lit web components (co-button, co-input, etc.)
+│   ├── react/        # React wrapper components (@cobalt/react)
+│   ├── vue/          # Vue wrapper components (@cobalt/vue)
+│   ├── angular/      # Angular standalone directives (@cobalt/angular)
+│   ├── icons/        # Icon set (@cobalt/icons)
+│   ├── mcp/          # MCP server for AI-assisted development
+│   └── docs/         # Documentation site — you are here
+├── package.json      # Root workspace configuration
+└── pnpm-workspace.yaml
+```
 
 ## Framework Setup
 
 ### Vanilla HTML
+
+Import the token stylesheet and the component module. No build step required.
 
 ```html
 <link rel="stylesheet" href="node_modules/@cobalt/tokens/css/global.css" />
@@ -27,33 +106,27 @@ pnpm add @cobalt/components @cobalt/tokens
 
 ### React
 
-Install the React wrapper for ergonomic props and event binding:
-
-```bash
-pnpm add @cobalt/react
-```
+The `@cobalt/react` package provides typed wrapper components with proper React event handling.
 
 ```tsx
-import { Button } from '@cobalt/react';
+import { CoButton } from '@cobalt/react';
 
 function LoginForm() {
   return (
     <form>
-      <Button variant="primary" onCoFocus={() => console.log('focused')}>
+      <CoButton variant="primary" onCoFocus={() => console.log('focused')}>
         Sign In
-      </Button>
+      </CoButton>
     </form>
   );
 }
 ```
 
+React wrappers handle the web-component-to-React bridge automatically — no `ref` hacks or manual event listeners needed.
+
 ### Vue
 
-Install the Vue wrapper for typed components with native Vue event handling:
-
-```bash
-pnpm add @cobalt/vue
-```
+The `@cobalt/vue` package provides typed components with native Vue event handling.
 
 ```vue
 <script setup>
@@ -69,11 +142,7 @@ import { CoButton } from '@cobalt/vue';
 
 ### Angular
 
-Install the Angular wrapper for typed directives with `@Input`/`@Output` bindings:
-
-```bash
-pnpm add @cobalt/angular
-```
+The `@cobalt/angular` package provides standalone directives with signal-based inputs and outputs.
 
 ```typescript
 // app.component.ts
@@ -95,6 +164,8 @@ export class AppComponent {}
 <co-button variant="primary" (coFocus)="onFocus($event)"> Sign In </co-button>
 ```
 
+> **Why `CUSTOM_ELEMENTS_SCHEMA`?** Angular needs this schema to allow `<co-*>` tags in templates. Add it to any standalone component that uses Cobalt elements.
+
 ## Importing Components
 
 Cobalt uses per-component entry points for tree-shaking:
@@ -109,7 +180,7 @@ import '@cobalt/components/co-tooltip';
 
 ## Using Design Tokens
 
-After importing `global.css`, all tokens are available as CSS custom properties on `:root`:
+Import `global.css` to make all tokens available as CSS custom properties on `:root`:
 
 ```css
 .card {
@@ -127,7 +198,11 @@ After importing `global.css`, all tokens are available as CSS custom properties 
 | Radius     | `--co-radius-md`          | `8px`                        |
 | Shadow     | `--co-shadow-md`          | `0 4px 12px rgba(0,0,0,0.1)` |
 
-Tokens are also available as JavaScript exports via `import { colorPrimaryBase } from '@cobalt/tokens'`.
+Tokens are also available as JavaScript exports:
+
+```js
+import { colorPrimaryBase } from '@cobalt/tokens';
+```
 
 ## Theming
 
@@ -137,14 +212,67 @@ Cobalt supports light and dark themes via a `data-theme` attribute:
 <html data-theme="dark"></html>
 ```
 
-Custom themes can override any token by redefining CSS custom properties under a scoped selector. See the [Tokens documentation](../tokens/) for the full theming guide.
+Override any token at the root level or scope overrides to a specific subtree:
+
+```css
+/* Global override */
+:root {
+  --co-color-primary-base: #7c3aed;
+}
+
+/* Scoped override for a section */
+.marketing-hero {
+  --co-color-primary-base: #7c3aed;
+  --co-color-surface-default: #1a1025;
+}
+```
+
+> **Important:** Only override token values — never replace the token names themselves. This ensures forward compatibility when upgrading Cobalt.
+
+See the [Colors documentation](../foundations/colors) for the full theming guide.
+
+## Testing
+
+Cobalt uses **Vitest** with **@open-wc/testing** for component tests. To test Cobalt components in your own project:
+
+```bash
+pnpm add -D vitest @open-wc/testing
+```
+
+```js
+import { html, fixture, expect } from '@open-wc/testing';
+import '@cobalt/components/co-button';
+
+describe('co-button', () => {
+  it('renders with the correct label', async () => {
+    const el = await fixture(html`<co-button>Click me</co-button>`);
+    expect(el.shadowRoot.querySelector('button').textContent).to.equal('Click me');
+  });
+});
+```
+
+Within the monorepo, run all tests with:
+
+```bash
+pnpm test              # run all component tests
+pnpm test:watch        # watch mode
+```
 
 ## Troubleshooting
 
-| Problem                    | Solution                                                                          |
-| -------------------------- | --------------------------------------------------------------------------------- |
-| Component not rendering    | Ensure the import runs before the parser encounters the tag. Use `type="module"`. |
-| Styles missing             | Verify `global.css` is imported and not stripped by your bundler.                 |
-| Events not firing in React | Use `@cobalt/react` wrappers or attach listeners via `ref`.                       |
+| Problem                                          | Solution                                                                          |
+| ------------------------------------------------ | --------------------------------------------------------------------------------- |
+| Component not rendering                          | Ensure the import runs before the parser encounters the tag. Use `type="module"`. |
+| Styles missing                                   | Verify `global.css` is imported and not stripped by your bundler.                 |
+| Events not firing in React                       | Use `@cobalt/react` wrappers or attach listeners via `ref`.                       |
+| FOUC on page load                                | Import component modules in your app entry point, not lazily in templates.        |
+| Bundle size too large                            | Use per-component imports instead of the barrel export.                           |
+| Angular unknown element error                    | Add `CUSTOM_ELEMENTS_SCHEMA` to your standalone component's `schemas` array.      |
+| Styles leak into or out of components            | Cobalt uses Shadow DOM. Use CSS custom properties (tokens) to style from outside. |
+| Tests fail with "custom element already defined" | Run each test file in its own browser context or use `--isolation` flag.          |
 
-For further help, browse the [Component documentation](/components/button), the [Tokens reference](/tokens/), or join `#cobalt-engineering` on Slack.
+## Next Steps
+
+- Browse the [Component documentation](/components/button) for API details, demos, and best practices
+- Review the [Coding Standards](../contributing/coding-standards) before submitting a PR
+- Join `#cobalt-engineering` on Slack for questions and discussion

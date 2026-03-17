@@ -114,10 +114,10 @@ A themed button wrapping Shoelace's sl-button.
 ### React (`@cobalt/react`)
 
 ```tsx
-import { Button } from '@cobalt/react';
+import { CoButton } from '@cobalt/react';
 
-<Button variant="primary" onClick={handleSave}>Save</Button>
-<Button variant="danger" onCoFocus={() => log('focused')}>Delete</Button>
+<CoButton variant="primary" onClick={handleSave}>Save</CoButton>
+<CoButton variant="danger" onCoFocus={() => log('focused')}>Delete</CoButton>
 ```
 
 ### Vue (`@cobalt/vue`)

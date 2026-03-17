@@ -100,7 +100,7 @@ Use named slots to add icons or other content before or after the button label.
 <template #react>
 
 ```tsx
-import { Button } from '@cobalt/react';
+import { CoButton } from '@cobalt/react';
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -114,21 +114,21 @@ function App() {
   return (
     <>
       {/* Basic */}
-      <Button variant="primary" onClick={handleClick}>
+      <CoButton variant="primary" onClick={handleClick}>
         Save changes
-      </Button>
+      </CoButton>
 
       {/* With loading state */}
-      <Button loading={loading}>Submitting…</Button>
+      <CoButton loading={loading}>Submitting…</CoButton>
 
       {/* Danger variant */}
-      <Button variant="danger" onCoFocus={() => console.log('focused')}>
+      <CoButton variant="danger" onCoFocus={() => console.log('focused')}>
         Delete account
-      </Button>
+      </CoButton>
 
       {/* Sizes */}
-      <Button size="sm">Small</Button>
-      <Button size="lg">Large</Button>
+      <CoButton size="sm">Small</CoButton>
+      <CoButton size="lg">Large</CoButton>
     </>
   );
 }

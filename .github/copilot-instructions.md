@@ -22,9 +22,9 @@ import '@cobalt/components/co-button';
 **React** (`@cobalt/react`):
 
 ```tsx
-import { Button } from '@cobalt/react';
-<Button variant="primary" onClick={handleSave}>Save</Button>
-<Button variant="danger" onCoFocus={() => log('focused')}>Delete</Button>
+import { CoButton } from '@cobalt/react';
+<CoButton variant="primary" onClick={handleSave}>Save</CoButton>
+<CoButton variant="danger" onCoFocus={() => log('focused')}>Delete</CoButton>
 ```
 
 **Vue** (`@cobalt/vue`):
