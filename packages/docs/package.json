@@ -12,6 +12,9 @@
   "devDependencies": {
     "@cobalt/components": "workspace:*",
     "@cobalt/tokens": "workspace:*",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/noto-sans": "^5.2.10",
     "@phosphor-icons/core": "^2.1.1",
     "@phosphor-icons/vue": "^2.2.1",
     "vitepress": "^1.5.0",

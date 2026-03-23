@@ -4,23 +4,24 @@ Typography in Cobalt is built on a purposeful set of font families, a harmonious
 
 ## Font families
 
-| Token            | Stack                                                          | Usage                          |
-| ---------------- | -------------------------------------------------------------- | ------------------------------ |
-| `--co-font-sans` | `'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif` | Body text, UI labels, headings |
-| `--co-font-mono` | `'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace`   | Code blocks, technical values  |
+| Token            | Stack                                                                       | Usage                          |
+| ---------------- | --------------------------------------------------------------------------- | ------------------------------ |
+| `--co-font-sans` | `'Inter', 'Noto Sans', ui-sans-serif, system-ui, -apple-system, sans-serif` | Body text, UI labels, headings |
+| `--co-font-mono` | `'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace`                | Code blocks, technical values  |
 
-Install the recommended web fonts via your package manager or a CDN:
+Install the recommended web fonts via your package manager:
 
 ```bash
-npm install @fontsource/inter @fontsource/jetbrains-mono
+npm install @fontsource-variable/inter @fontsource-variable/noto-sans @fontsource-variable/jetbrains-mono
 ```
 
 ```css
-@import '@fontsource/inter/variable.css';
-@import '@fontsource/jetbrains-mono/variable.css';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/noto-sans';
+@import '@fontsource-variable/jetbrains-mono';
 ```
 
-> **Tip:** If you cannot load Inter, the token stack falls back to the operating system's default sans-serif font — no blank text will ever appear.
+> **Tip:** Inter is the primary UI font. Noto Sans is included as a fallback for extended character sets (CJK, Cyrillic, Greek, math symbols, etc.). If neither loads, the token stack falls back to the operating system's default sans-serif font.
 
 ## Type scale
 
