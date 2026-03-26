@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary';
-import { readFileSync, writeFileSync } from 'fs';
+import { copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -93,12 +93,16 @@ async function build() {
   const lightCss = readFileSync(lightCssPath, 'utf-8');
   writeFileSync(
     lightCssPath,
-    `@layer co.reset, co.tokens, co.theme, co.overrides;\n\n@layer co.tokens {\n${lightCss}}\n`,
+    `@layer co.reset, co.base, co.tokens, co.theme, co.overrides;\n\n@layer co.tokens {\n${lightCss}}\n`,
   );
 
   const darkCssPath = join(__dirname, 'dist/css/tokens-dark.css');
   const darkCss = readFileSync(darkCssPath, 'utf-8');
   writeFileSync(darkCssPath, `@layer co.theme {\n${darkCss}}\n`);
+
+  // Copy base element styles
+  console.log('Copying base element styles...');
+  copyFileSync(join(__dirname, 'src/base.css'), join(__dirname, 'dist/css/base.css'));
 
   // Generate TypeScript declarations
   console.log('Generating TypeScript declarations...');

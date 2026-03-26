@@ -37,6 +37,7 @@ Tokens live in `packages/tokens/` and are built to multiple formats:
 | Format                 | File                            | Import                                    |
 | ---------------------- | ------------------------------- | ----------------------------------------- |
 | CSS custom properties  | `dist/css/tokens.css`           | `@cobalt/tokens/css/tokens.css`           |
+| Base element styles    | `dist/css/base.css`             | `@cobalt/tokens/css/base`                 |
 | Dark theme overrides   | `dist/css/tokens-dark.css`      | `@cobalt/tokens/css/tokens-dark.css`      |
 | Shoelace mapping       | `dist/css/shoelace-mapping.css` | `@cobalt/tokens/css/shoelace-mapping.css` |
 | SCSS variables         | `dist/scss/_tokens.scss`        | `@cobalt/tokens/scss/_tokens.scss`        |
@@ -170,12 +171,13 @@ Apply `data-theme="dark"` on the `<html>` element. Custom themes override CSS cu
 All global CSS output uses `@layer` to provide a structured cascade hierarchy:
 
 ```
-@layer co.reset, co.tokens, co.theme, co.overrides;
+@layer co.reset, co.base, co.tokens, co.theme, co.overrides;
 ```
 
 | Layer          | Purpose                  | Source                                     |
 | -------------- | ------------------------ | ------------------------------------------ |
 | `co.reset`     | CSS resets               | Empty — consumers place their resets here  |
+| `co.base`      | Base element styles      | `base.css` (opt-in via `[data-co-base]`)   |
 | `co.tokens`    | Design token definitions | `tokens.css` (`:root` custom properties)   |
 | `co.theme`     | Theme overrides          | `tokens-dark.css`, custom themes           |
 | `co.overrides` | Consumer customizations  | Empty — consumers put brand overrides here |
@@ -189,6 +191,21 @@ All global CSS output uses `@layer` to provide a structured cascade hierarchy:
   }
 }
 ```
+
+**Base element styles (opt-in):**
+
+Import `@cobalt/tokens/css/base` and add `data-co-base` to scope base typography/element styles:
+
+```html
+<html data-co-base data-theme="light"></html>
+```
+
+```js
+import '@cobalt/tokens/css';
+import '@cobalt/tokens/css/base';
+```
+
+For gradual migration, scope to a section: `<div data-co-base>...</div>`.
 
 **Import order requirement:** `@cobalt/tokens/css` must be imported first — it declares the layer order.
 
