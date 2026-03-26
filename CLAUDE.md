@@ -165,6 +165,33 @@ import '@cobalt/components/co-button'; // Good — registers only co-button
 
 Apply `data-theme="dark"` on the `<html>` element. Custom themes override CSS custom properties under a scoped selector.
 
+### CSS Cascade Layers
+
+All global CSS output uses `@layer` to provide a structured cascade hierarchy:
+
+```
+@layer co.reset, co.tokens, co.theme, co.overrides;
+```
+
+| Layer          | Purpose                  | Source                                     |
+| -------------- | ------------------------ | ------------------------------------------ |
+| `co.reset`     | CSS resets               | Empty — consumers place their resets here  |
+| `co.tokens`    | Design token definitions | `tokens.css` (`:root` custom properties)   |
+| `co.theme`     | Theme overrides          | `tokens-dark.css`, custom themes           |
+| `co.overrides` | Consumer customizations  | Empty — consumers put brand overrides here |
+
+**Override tokens example:**
+
+```css
+@layer co.overrides {
+  :root {
+    --co-color-primary-500: #8b5cf6;
+  }
+}
+```
+
+**Import order requirement:** `@cobalt/tokens/css` must be imported first — it declares the layer order.
+
 ## Coding Conventions
 
 ### File naming (kebab-case)

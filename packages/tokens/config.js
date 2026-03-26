@@ -86,6 +86,20 @@ async function build() {
   console.log('Building dark tokens...');
   await darkSD.buildAllPlatforms();
 
+  // Wrap CSS output in @layer blocks
+  console.log('Wrapping CSS in @layer...');
+
+  const lightCssPath = join(__dirname, 'dist/css/tokens.css');
+  const lightCss = readFileSync(lightCssPath, 'utf-8');
+  writeFileSync(
+    lightCssPath,
+    `@layer co.reset, co.tokens, co.theme, co.overrides;\n\n@layer co.tokens {\n${lightCss}}\n`,
+  );
+
+  const darkCssPath = join(__dirname, 'dist/css/tokens-dark.css');
+  const darkCss = readFileSync(darkCssPath, 'utf-8');
+  writeFileSync(darkCssPath, `@layer co.theme {\n${darkCss}}\n`);
+
   // Generate TypeScript declarations
   console.log('Generating TypeScript declarations...');
   const jsContent = readFileSync(join(__dirname, 'dist/js/tokens.js'), 'utf-8');
