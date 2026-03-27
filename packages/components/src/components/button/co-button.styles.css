@@ -1,7 +1,9 @@
 /* ── Base ── */
 :host {
   display: inline-block;
+  box-sizing: border-box;
   font-family: var(--co-font-family-sans);
+  font-size: var(--co-font-size-md);
   font-weight: var(--co-font-weight-medium);
   line-height: var(--co-font-line-height-tight);
   border-radius: var(--co-radius-md);
@@ -14,27 +16,28 @@
     box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default);
 }
 
+/* Padding is on the inner element so external resets (e.g. * { padding: 0 })
+   cannot override it — light DOM styles always beat :host rules. */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--co-spacing-2);
+  padding: var(--co-spacing-2) var(--co-spacing-4);
 }
 
 /* ── Sizes ── */
 :host([size='sm']) {
   font-size: var(--co-font-size-sm);
-  padding: var(--co-spacing-1) var(--co-spacing-3);
 }
-
-:host,
-:host([size='md']) {
-  font-size: var(--co-font-size-md);
-  padding: var(--co-spacing-2) var(--co-spacing-4);
+:host([size='sm']) .button {
+  padding: var(--co-spacing-1) var(--co-spacing-3);
 }
 
 :host([size='lg']) {
   font-size: var(--co-font-size-lg);
+}
+:host([size='lg']) .button {
   padding: var(--co-spacing-3) var(--co-spacing-6);
 }
 
