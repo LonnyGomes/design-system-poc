@@ -16,7 +16,7 @@ import '@cobalt/components/icon';
   selector: 'co-icon',
   standalone: true,
 })
-export class CoIconDirective {
+export class CoIcon {
   readonly name = input('');
   readonly variant = input<IconVariant>('outlined');
   readonly size = input<IconSize>('md');

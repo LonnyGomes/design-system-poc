@@ -146,13 +146,13 @@ import { CoIcon, CoButton } from '@cobalt/vue';
 ```typescript
 // app.component.ts
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CoIconDirective } from '@cobalt/angular';
-import { CoButtonDirective } from '@cobalt/angular';
+import { CoIcon } from '@cobalt/angular';
+import { CoButton } from '@cobalt/angular';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CoIconDirective, CoButtonDirective],
+  imports: [CoIcon, CoButton],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
 })

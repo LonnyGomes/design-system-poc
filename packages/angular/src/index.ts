@@ -1,2 +1,2 @@
-export { CoButtonDirective } from './components/button.js';
-export { CoIconDirective } from './components/icon.js';
+export { CoButton } from './components/button.js';
+export { CoIcon } from './components/icon.js';

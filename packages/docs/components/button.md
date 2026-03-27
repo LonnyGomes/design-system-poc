@@ -173,14 +173,14 @@ async function handleClick() {
 <template #angular>
 
 ```typescript
-// app.component.ts — standalone component with CoButtonDirective
+// app.component.ts — standalone component with CoButton
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CoButtonDirective } from '@cobalt/angular';
+import { CoButton } from '@cobalt/angular';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CoButtonDirective],
+  imports: [CoButton],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
 })

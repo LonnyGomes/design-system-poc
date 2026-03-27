@@ -2,11 +2,11 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { CoButtonDirective } from './button.js';
+import { CoButton } from './button.js';
 
 @Component({
   standalone: true,
-  imports: [CoButtonDirective],
+  imports: [CoButton],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <co-button
@@ -43,7 +43,7 @@ class TestHostComponent {
   }
 }
 
-describe('Angular CoButtonDirective', () => {
+describe('Angular CoButton', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let host: TestHostComponent;
   let el: any;
@@ -107,9 +107,7 @@ describe('Angular CoButtonDirective', () => {
   });
 
   it('emits coFocus when co-focus event fires', () => {
-    const directive = fixture.debugElement
-      .query(By.directive(CoButtonDirective))
-      .injector.get(CoButtonDirective);
+    const directive = fixture.debugElement.query(By.directive(CoButton)).injector.get(CoButton);
     let emitted: CustomEvent | undefined;
     directive.coFocus.subscribe((e: CustomEvent) => {
       emitted = e;
@@ -119,9 +117,7 @@ describe('Angular CoButtonDirective', () => {
   });
 
   it('emits coBlur when co-blur event fires', () => {
-    const directive = fixture.debugElement
-      .query(By.directive(CoButtonDirective))
-      .injector.get(CoButtonDirective);
+    const directive = fixture.debugElement.query(By.directive(CoButton)).injector.get(CoButton);
     let emitted: CustomEvent | undefined;
     directive.coBlur.subscribe((e: CustomEvent) => {
       emitted = e;

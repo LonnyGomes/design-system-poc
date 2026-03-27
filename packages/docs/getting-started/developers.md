@@ -155,12 +155,12 @@ The `@cobalt/angular` package provides standalone directives with signal-based i
 ```typescript
 // app.component.ts
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CoButtonDirective } from '@cobalt/angular';
+import { CoButton } from '@cobalt/angular';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CoButtonDirective],
+  imports: [CoButton],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
 })

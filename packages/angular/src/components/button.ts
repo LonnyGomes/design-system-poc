@@ -17,7 +17,7 @@ import '@cobalt/components/button';
   selector: 'co-button',
   standalone: true,
 })
-export class CoButtonDirective implements OnInit {
+export class CoButton implements OnInit {
   readonly variant = input<ButtonVariant>('primary');
   readonly size = input<ButtonSize>('md');
   readonly disabled = input(false);

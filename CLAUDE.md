@@ -138,11 +138,11 @@ import { CoButton } from '@cobalt/vue';
 
 ```typescript
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CoButtonDirective } from '@cobalt/angular';
+import { CoButton } from '@cobalt/angular';
 
 @Component({
   standalone: true,
-  imports: [CoButtonDirective],
+  imports: [CoButton],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   // ...
 })
