@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { iconNames, getIcon } from '@cobalt/icons';
 import type { IconStyle } from '@cobalt/icons';
 
@@ -45,7 +45,16 @@ function getRenderedSvg(style: IconStyle, size: number): string {
 // Infinite scroll
 let observer: IntersectionObserver | null = null;
 
+const isMobile = ref(false);
+
+function checkMobile() {
+  isMobile.value = window.innerWidth < 768;
+}
+
 onMounted(() => {
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+
   observer = new IntersectionObserver(
     (entries) => {
       if (entries[0]?.isIntersecting && visibleCount.value < filteredIcons.value.length) {
@@ -59,6 +68,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   observer?.disconnect();
+  window.removeEventListener('resize', checkMobile);
+  document.body.style.overflow = '';
 });
 
 watch(sentinelRef, (el) => {
@@ -72,15 +83,14 @@ watch([searchQuery, selectedStyle], () => {
 
 function selectIcon(name: string) {
   selectedIcon.value = name;
-  nextTick(() => {
-    if (detailRef.value && window.innerWidth < 768) {
-      detailRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
+  if (isMobile.value) {
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function closeDetail() {
   selectedIcon.value = null;
+  document.body.style.overflow = '';
 }
 
 const copyLabel = ref('Copy SVG');
@@ -189,7 +199,7 @@ function getSnippet(name: string, tabIndex: number): string {
     </div>
 
     <!-- Main content -->
-    <div class="gallery-content" :class="{ 'has-detail': selectedIcon }">
+    <div class="gallery-content" :class="{ 'has-detail': selectedIcon && !isMobile }">
       <!-- Icon grid -->
       <div class="icon-grid-wrap">
         <div class="icon-grid">
@@ -212,8 +222,8 @@ function getSnippet(name: string, tabIndex: number): string {
         </p>
       </div>
 
-      <!-- Detail panel -->
-      <Transition name="detail">
+      <!-- Detail panel — desktop sidebar (stays in grid, scoped styles apply) -->
+      <Transition v-if="!isMobile" name="detail-panel">
         <div v-if="selectedIcon" ref="detailRef" class="detail-panel">
           <div class="detail-header">
             <h3 class="detail-title">{{ selectedIcon }}</h3>
@@ -225,8 +235,6 @@ function getSnippet(name: string, tabIndex: number): string {
               </svg>
             </button>
           </div>
-
-          <!-- Size previews -->
           <div class="detail-section">
             <div class="detail-label">Preview</div>
             <div class="detail-sizes">
@@ -241,8 +249,6 @@ function getSnippet(name: string, tabIndex: number): string {
               </span>
             </div>
           </div>
-
-          <!-- Style comparison -->
           <div class="detail-section">
             <div class="detail-label">Styles</div>
             <div class="detail-weights">
@@ -258,8 +264,6 @@ function getSnippet(name: string, tabIndex: number): string {
               </button>
             </div>
           </div>
-
-          <!-- Actions -->
           <div class="detail-section">
             <div class="detail-label">Export</div>
             <div class="detail-actions">
@@ -284,8 +288,6 @@ function getSnippet(name: string, tabIndex: number): string {
               </div>
             </div>
           </div>
-
-          <!-- Code snippets -->
           <div class="detail-section">
             <div class="detail-label">Code</div>
             <div class="code-snippets">
@@ -308,6 +310,101 @@ function getSnippet(name: string, tabIndex: number): string {
         </div>
       </Transition>
     </div>
+
+    <!-- Mobile bottom sheet — teleported to body to escape VitePress transform containing block -->
+    <Teleport to="body">
+      <Transition name="ig-backdrop">
+        <div v-if="isMobile && selectedIcon" class="ig-detail-backdrop" @click.self="closeDetail" />
+      </Transition>
+      <Transition name="ig-sheet">
+        <div v-if="isMobile && selectedIcon" ref="detailRef" class="ig-detail-sheet">
+          <div class="ig-sheet-header">
+            <h3 class="ig-sheet-title">{{ selectedIcon }}</h3>
+            <button class="ig-sheet-close" aria-label="Close" @click="closeDetail">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="ig-sheet-section">
+            <div class="ig-sheet-label">Preview</div>
+            <div class="ig-sheet-sizes">
+              <span
+                v-for="s in [16, 20, 24, 32, 48]"
+                :key="s"
+                class="ig-size-preview"
+                :title="`${s}px`"
+              >
+                <span v-html="getRenderedSvg(selectedStyle, s)" />
+                <span class="ig-size-label">{{ s }}</span>
+              </span>
+            </div>
+          </div>
+          <div class="ig-sheet-section">
+            <div class="ig-sheet-label">Styles</div>
+            <div class="ig-sheet-weights">
+              <button
+                v-for="s in styles"
+                :key="s"
+                class="ig-weight-preview"
+                :class="{ active: selectedStyle === s }"
+                @click="selectedStyle = s"
+              >
+                <span v-html="getRenderedSvg(s, 32)" />
+                <span class="ig-weight-label">{{ s }}</span>
+              </button>
+            </div>
+          </div>
+          <div class="ig-sheet-section">
+            <div class="ig-sheet-label">Export</div>
+            <div class="ig-sheet-actions">
+              <button class="ig-action-btn" @click="copySvg">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+                  />
+                </svg>
+                {{ copyLabel }}
+              </button>
+              <div class="ig-png-export">
+                <select v-model="pngSize" class="ig-size-select" aria-label="PNG size">
+                  <option v-for="s in pngSizes" :key="s" :value="s">{{ s }}px</option>
+                </select>
+                <button class="ig-action-btn" @click="downloadPng">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                  </svg>
+                  Download PNG
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="ig-sheet-section">
+            <div class="ig-sheet-label">Code</div>
+            <div class="ig-code-snippets">
+              <div class="ig-snippet-tabs">
+                <button
+                  v-for="(tab, i) in snippetTabs"
+                  :key="tab"
+                  class="ig-snippet-tab"
+                  :class="{ active: activeSnippetTab === i }"
+                  @click="activeSnippetTab = i"
+                >
+                  {{ tab }}
+                </button>
+              </div>
+              <div class="ig-snippet">
+                <code class="ig-snippet-code">{{
+                  getSnippet(selectedIcon, activeSnippetTab)
+                }}</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -421,12 +518,6 @@ function getSnippet(name: string, tabIndex: number): string {
   grid-template-columns: 1fr 320px;
 }
 
-@media (max-width: 768px) {
-  .gallery-content.has-detail {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Icon grid */
 .icon-grid-wrap {
   min-width: 0;
@@ -497,7 +588,7 @@ function getSnippet(name: string, tabIndex: number): string {
   color: var(--gallery-text-muted);
 }
 
-/* Detail panel */
+/* Detail panel — desktop sidebar */
 .detail-panel {
   border: 1px solid var(--gallery-border);
   border-radius: var(--gallery-radius);
@@ -507,13 +598,6 @@ function getSnippet(name: string, tabIndex: number): string {
   top: 80px;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
-}
-
-@media (max-width: 768px) {
-  .detail-panel {
-    position: static;
-    max-height: none;
-  }
 }
 
 .detail-header {
@@ -728,25 +812,20 @@ function getSnippet(name: string, tabIndex: number): string {
   border: none;
 }
 
-/* Transitions */
-.detail-enter-active,
-.detail-leave-active {
+/* Transitions — desktop detail panel */
+.detail-panel-enter-active,
+.detail-panel-leave-active {
   transition:
     opacity 0.15s,
     transform 0.15s;
 }
-.detail-enter-from,
-.detail-leave-to {
+.detail-panel-enter-from,
+.detail-panel-leave-to {
   opacity: 0;
   transform: translateX(12px);
 }
 
-@media (max-width: 768px) {
-  .detail-enter-from,
-  .detail-leave-to {
-    transform: translateY(12px);
-  }
-
+@media (max-width: 767px) {
   .gallery-toolbar {
     flex-direction: column;
   }
@@ -758,5 +837,271 @@ function getSnippet(name: string, tabIndex: number): string {
   .icon-grid {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   }
+}
+</style>
+
+<!-- Unscoped styles for mobile bottom sheet (teleported to body, outside scoped DOM) -->
+<style>
+.ig-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.ig-detail-sheet {
+  --ig-radius: 10px;
+  --ig-border: var(--vp-c-divider, #e2e8f0);
+  --ig-surface: var(--vp-c-bg, #ffffff);
+  --ig-text: var(--vp-c-text-1, #213547);
+  --ig-text-muted: var(--vp-c-text-3, #8e99a4);
+  --ig-accent: var(--vp-c-brand-1, #639bff);
+  --ig-accent-soft: var(--vp-c-brand-soft, rgba(99, 155, 255, 0.14));
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 70vh;
+  border-radius: var(--ig-radius) var(--ig-radius) 0 0;
+  border: 1px solid var(--ig-border);
+  border-bottom: none;
+  background: var(--ig-surface);
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 101;
+  font-size: 0.875rem;
+  color: var(--ig-text);
+}
+
+.ig-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ig-sheet-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ig-text);
+}
+
+.ig-sheet-close {
+  background: none;
+  border: none;
+  color: var(--ig-text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  transition: all 0.12s;
+}
+
+.ig-sheet-close:hover {
+  color: var(--ig-text);
+  background: var(--ig-accent-soft);
+}
+
+.ig-sheet-section {
+  margin-bottom: 18px;
+}
+
+.ig-sheet-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ig-text-muted);
+  margin-bottom: 8px;
+}
+
+.ig-sheet-sizes {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ig-size-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--ig-text);
+}
+
+.ig-size-preview svg {
+  display: block;
+}
+
+.ig-size-label {
+  font-size: 0.65rem;
+  color: var(--ig-text-muted);
+}
+
+.ig-sheet-weights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.ig-weight-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px 6px;
+  border: 1px solid var(--ig-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ig-text);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.ig-weight-preview svg {
+  width: 32px;
+  height: 32px;
+}
+
+.ig-weight-preview:hover {
+  background: var(--ig-accent-soft);
+}
+
+.ig-weight-preview.active {
+  border-color: var(--ig-accent);
+  background: var(--ig-accent-soft);
+}
+
+.ig-weight-label {
+  font-size: 0.65rem;
+  color: var(--ig-text-muted);
+  text-transform: capitalize;
+}
+
+.ig-sheet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ig-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--ig-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ig-text);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.ig-action-btn:hover {
+  background: var(--ig-accent-soft);
+  border-color: var(--ig-accent);
+}
+
+.ig-png-export {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.ig-size-select {
+  padding: 7px 8px;
+  border: 1px solid var(--ig-border);
+  border-radius: 8px;
+  background: var(--ig-surface);
+  color: var(--ig-text);
+  font-size: 0.78rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.ig-size-select:focus {
+  border-color: var(--ig-accent);
+}
+
+.ig-code-snippets {
+  border: 1px solid var(--ig-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ig-snippet-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--ig-border);
+  background: var(--vp-c-bg-soft, rgba(0, 0, 0, 0.06));
+}
+
+.ig-snippet-tab {
+  flex: 1;
+  padding: 5px 6px;
+  border: none;
+  background: transparent;
+  color: var(--ig-text-muted);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.ig-snippet-tab:hover {
+  color: var(--ig-text);
+}
+
+.ig-snippet-tab.active {
+  color: var(--ig-accent);
+  box-shadow: inset 0 -2px 0 var(--ig-accent);
+}
+
+.ig-snippet {
+  overflow: hidden;
+}
+
+.ig-snippet-code {
+  display: block;
+  padding: 8px 10px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  font-family: var(--co-font-mono, monospace);
+  color: var(--ig-text);
+  overflow-x: auto;
+  white-space: pre;
+  background: none;
+  border: none;
+}
+
+/* Transitions — backdrop */
+.ig-backdrop-enter-active,
+.ig-backdrop-leave-active {
+  transition: opacity 0.2s;
+}
+.ig-backdrop-enter-from,
+.ig-backdrop-leave-to {
+  opacity: 0;
+}
+
+/* Transitions — bottom sheet */
+.ig-sheet-enter-active,
+.ig-sheet-leave-active {
+  transition:
+    opacity 0.2s,
+    transform 0.25s ease-out;
+}
+.ig-sheet-enter-from,
+.ig-sheet-leave-to {
+  opacity: 0;
+  transform: translateY(100%);
 }
 </style>
