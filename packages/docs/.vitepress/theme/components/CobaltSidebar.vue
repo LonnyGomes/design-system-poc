@@ -116,6 +116,19 @@ const openGroups = ref<Set<string>>(
   ),
 );
 
+// Auto-expand the group containing the active page on route change
+watch(
+  () => route.path,
+  () => {
+    const activeGroup = navigation.find((g) => g.items.some((item) => isActive(item.link)));
+    if (activeGroup && !openGroups.value.has(activeGroup.label)) {
+      const next = new Set(openGroups.value);
+      next.add(activeGroup.label);
+      openGroups.value = next;
+    }
+  },
+);
+
 function toggleGroup(label: string) {
   const next = new Set(openGroups.value);
   if (next.has(label)) {
