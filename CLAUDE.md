@@ -28,6 +28,7 @@ pnpm lint           # ESLint across all packages
 pnpm format         # Prettier
 pnpm clean          # Remove build artifacts
 pnpm rebuild        # Clean + build
+pnpm pack:local     # Pack tarballs for local testing in external apps
 ```
 
 ## Design Tokens

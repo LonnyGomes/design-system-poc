@@ -8,3 +8,4 @@ cache
 a11y-reports
 *.local.json
 .playwright-mcp/
+local-packs/

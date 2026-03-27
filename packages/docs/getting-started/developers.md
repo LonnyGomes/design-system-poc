@@ -30,7 +30,7 @@ Framework wrappers are optional but recommended for better DX (typed props, nati
 | --------- | -------------------- | ------------------------------ |
 | React     | `@cobalt/react`      | React 18.0+ (supports 18 & 19) |
 | Vue       | `@cobalt/vue`        | Vue 3.4+                       |
-| Angular   | `@cobalt/angular`    | Angular 17.3+ (supports 17–19) |
+| Angular   | `@cobalt/angular`    | Angular 17.3+ (supports 17–21) |
 | None      | `@cobalt/components` | Any (standard web components)  |
 
 > **No framework?** Cobalt components are standard web components built with Lit. They work in any environment that supports custom elements — just import and use.
@@ -176,7 +176,8 @@ import '@cobalt/components/co-dialog';
 import '@cobalt/components/co-tooltip';
 ```
 
-> **Warning:** Avoid importing the barrel export (`@cobalt/components`) in production. It registers every component and increases bundle size significantly.
+> [!WARNING]
+> Avoid importing the barrel export (`@cobalt/components`) in production. It registers every component and increases bundle size significantly.
 
 ## Using Design Tokens
 
@@ -257,6 +258,65 @@ Within the monorepo, run all tests with:
 pnpm test              # run all component tests
 pnpm test:watch        # watch mode
 ```
+
+## Local Testing in External Apps
+
+When developing Cobalt, you often need to test your changes in an external application before publishing. There are two approaches depending on your workflow.
+
+### Using `pack:local` (recommended)
+
+The `pack:local` script builds all packages and produces tarballs identical to what `npm publish` would create. This is the most reliable method because it validates package exports, `files` configuration, and build output — catching issues that symlinks would hide.
+
+```bash
+# In the cobalt monorepo
+pnpm pack:local
+```
+
+This creates `.tgz` files in `./local-packs/`. Then install them in your app:
+
+```bash
+# Install all Cobalt packages at once
+npm install /path/to/cobalt/local-packs/*.tgz
+
+# Or install only what you need
+npm install /path/to/cobalt/local-packs/cobalt-components-0.0.1.tgz \
+            /path/to/cobalt/local-packs/cobalt-tokens-0.0.1.tgz
+```
+
+If you already ran `pnpm build` separately, skip the build step:
+
+```bash
+pnpm pack:local --skip-build
+```
+
+After making changes in the monorepo, re-run `pnpm pack:local` and reinstall in your app to pick up the updates.
+
+### Using `pnpm link` (faster iteration)
+
+For rapid development where you are making frequent changes, symlinks avoid the pack-reinstall cycle:
+
+```bash
+# In the cobalt monorepo — register a package globally
+cd packages/components
+pnpm link --global
+
+# In your external app — link the package
+pnpm link --global @cobalt/components
+```
+
+Changes are reflected after running `pnpm build` in the monorepo — no reinstall needed. Repeat for each package you want to link.
+
+::: warning
+Linked packages can cause duplicate dependency issues at runtime (e.g., two copies of Lit or Vue). If you encounter unexpected errors, switch to `pack:local` instead.
+:::
+
+### When you don't need an external app
+
+For most development work, the monorepo itself provides full integration testing:
+
+- **`pnpm build`** — verifies all packages compile and interoperate
+- **`pnpm test`** — runs component unit tests and accessibility checks
+- **`pnpm dev`** — the docs site imports every `@cobalt` package and serves as a live integration environment
 
 ## Troubleshooting
 

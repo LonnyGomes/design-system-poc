@@ -22,17 +22,45 @@ pnpm dev
 
 ### Other Commands
 
-| Command             | Description                              |
-| ------------------- | ---------------------------------------- |
-| `pnpm build`        | Build all packages                       |
-| `pnpm clean`        | Remove all build artifacts and caches    |
-| `pnpm rebuild`      | Clean + build in one step                |
-| `pnpm dev`          | Start the documentation dev server       |
-| `pnpm test`         | Run component tests                      |
-| `pnpm test:watch`   | Run component tests in watch mode        |
-| `pnpm lint`         | Lint TypeScript source files             |
-| `pnpm format`       | Format all files with Prettier           |
-| `pnpm format:check` | Check formatting without writing changes |
+| Command             | Description                                      |
+| ------------------- | ------------------------------------------------ |
+| `pnpm build`        | Build all packages                               |
+| `pnpm clean`        | Remove all build artifacts and caches            |
+| `pnpm rebuild`      | Clean + build in one step                        |
+| `pnpm dev`          | Start the documentation dev server               |
+| `pnpm test`         | Run component tests                              |
+| `pnpm test:watch`   | Run component tests in watch mode                |
+| `pnpm lint`         | Lint TypeScript source files                     |
+| `pnpm format`       | Format all files with Prettier                   |
+| `pnpm format:check` | Check formatting without writing changes         |
+| `pnpm pack:local`   | Pack tarballs for local testing in external apps |
+
+## Local Testing in External Apps
+
+To test Cobalt packages in an external application without publishing to npm, use the `pack:local` script. This produces tarballs identical to what `npm publish` would create, so it validates package exports, file inclusion, and build output.
+
+```bash
+# Build all packages and create tarballs in ./local-packs/
+pnpm pack:local
+
+# If you already ran pnpm build, skip the build step:
+pnpm pack:local --skip-build
+```
+
+Then install the tarballs in your app:
+
+```bash
+# Install all packages at once
+npm install /path/to/cobalt/local-packs/*.tgz
+
+# Or install specific packages
+npm install /path/to/cobalt/local-packs/cobalt-components-0.0.1.tgz \
+            /path/to/cobalt/local-packs/cobalt-tokens-0.0.1.tgz
+```
+
+After making changes in the monorepo, re-run `pnpm pack:local` and reinstall in your app.
+
+**Alternative — `pnpm link`:** For faster iteration during active development, you can symlink packages directly with `pnpm link --global`. Changes are reflected after `pnpm build` without reinstalling. Note that linked packages can occasionally cause duplicate dependency issues at runtime; use `pack:local` if you hit problems.
 
 ## Packages
 
@@ -70,7 +98,7 @@ Vue 3 wrappers using `defineComponent` for type-safe props and event forwarding.
 
 Angular directives that sync properties and forward custom events from the underlying web components.
 
-**Peer dependencies:** Angular 17, 18, or 19
+**Peer dependencies:** Angular 17, 18, 19, 20, or 21
 
 ### `@cobalt/docs`
 
