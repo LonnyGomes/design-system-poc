@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'fs';
 import { join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -65,7 +65,45 @@ function build() {
     registry.set(style, styleMap);
   }
 
+  // Scan custom icons from custom/outlined/ and custom/rounded/
+  const customBase = join(root, 'custom');
+  const customBaseNames = new Set();
+
+  for (const style of STYLES) {
+    const customStyleDir = join(customBase, style);
+    if (!existsSync(customStyleDir)) continue;
+
+    const styleMap = registry.get(style);
+    let files;
+    try {
+      files = readdirSync(customStyleDir).filter((f) => f.endsWith('.svg'));
+    } catch {
+      continue;
+    }
+
+    for (const file of files) {
+      const kebabName = basename(file, '.svg');
+
+      // Validate co- prefix (check base name without -fill suffix)
+      const nameToCheck = kebabName.endsWith('-fill') ? kebabName.slice(0, -5) : kebabName;
+      if (!nameToCheck.startsWith('co-')) {
+        console.warn(`Warning: custom icon "${file}" does not start with "co-" prefix — skipping`);
+        continue;
+      }
+
+      const svgString = readFileSync(join(customStyleDir, file), 'utf-8');
+      const content = extractSvgContent(svgString);
+      styleMap.set(kebabName, content);
+
+      // Track base icon names
+      const baseName = kebabName.endsWith('-fill') ? kebabName.slice(0, -5) : kebabName;
+      baseNames.add(baseName);
+      customBaseNames.add(baseName);
+    }
+  }
+
   const sortedNames = [...baseNames].sort();
+  const sortedCustomNames = [...customBaseNames].sort();
 
   // Build the JS registry module
   const lines = [
@@ -105,6 +143,9 @@ function build() {
   lines.push(`/** All available icon names (kebab-case, without -fill suffix). */`);
   lines.push(`export const iconNames = ${JSON.stringify(sortedNames)};`);
   lines.push('');
+  lines.push(`/** Set of icon names that use the 24×24 viewBox (custom icons). */`);
+  lines.push(`export const customIconNames = new Set(${JSON.stringify(sortedCustomNames)});`);
+  lines.push('');
 
   writeFileSync(join(outDir, 'index.js'), lines.join('\n'));
 
@@ -126,12 +167,15 @@ function build() {
     '/** All available icon names (kebab-case, without -fill suffix). */',
     'export declare const iconNames: string[];',
     '',
+    '/** Set of icon names that use the 24×24 viewBox (custom icons). */',
+    'export declare const customIconNames: Set<string>;',
+    '',
   ];
 
   writeFileSync(join(outDir, 'index.d.ts'), dts.join('\n'));
 
   console.log(
-    `Icon registry built: ${sortedNames.length} icons across ${STYLES.length} styles → dist/index.js`,
+    `Icon registry built: ${sortedNames.length} icons (${sortedCustomNames.length} custom) across ${STYLES.length} styles → dist/index.js`,
   );
 }
 

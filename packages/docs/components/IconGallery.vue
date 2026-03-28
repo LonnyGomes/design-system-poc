@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
-import { iconNames, getIcon } from '@cobalt/icons';
+import { iconNames, getIcon, customIconNames } from '@cobalt/icons';
 import type { IconStyle } from '@cobalt/icons';
 
 const styles: IconStyle[] = ['outlined', 'rounded'];
@@ -33,14 +33,16 @@ const totalCount = computed(() => filteredIcons.value.length);
 function getSvgForGrid(name: string): string {
   const content = getIcon(name, selectedStyle.value, fillToggle.value);
   if (!content) return '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -960 960 960" fill="currentColor">${content}</svg>`;
+  const viewBox = customIconNames.has(name) ? '0 0 24 24' : '0 -960 960 960';
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="${viewBox}" fill="currentColor">${content}</svg>`;
 }
 
 function getRenderedSvg(style: IconStyle, size: number, fill?: boolean): string {
   if (!selectedIcon.value) return '';
   const content = getIcon(selectedIcon.value, style, fill ?? fillToggle.value);
   if (!content) return '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 -960 960 960" fill="currentColor">${content}</svg>`;
+  const viewBox = customIconNames.has(selectedIcon.value) ? '0 0 24 24' : '0 -960 960 960';
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="${viewBox}" fill="currentColor">${content}</svg>`;
 }
 
 // Infinite scroll

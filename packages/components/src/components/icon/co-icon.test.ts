@@ -1,4 +1,5 @@
 import { fixture, html, expect } from '@open-wc/testing';
+import { iconNames, customIconNames } from '@cobalt/icons';
 import { runA11yAudit } from '../../test-utils/a11y.js';
 import './co-icon.js';
 import type { CoIcon } from './co-icon.js';
@@ -89,6 +90,51 @@ describe('co-icon', () => {
     // Content should be different (or at least re-rendered)
     expect(svg1).to.not.be.undefined;
     expect(svg2).to.not.be.undefined;
+  });
+
+  describe('custom icons', () => {
+    it('renders custom icon with viewBox="0 0 24 24"', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="co-placeholder"></co-icon>`);
+      const svg = el.shadowRoot!.querySelector('svg');
+      expect(svg).to.exist;
+      expect(svg!.getAttribute('viewBox')).to.equal('0 0 24 24');
+    });
+
+    it('renders Material icon with viewBox="0 -960 960 960"', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="home"></co-icon>`);
+      const svg = el.shadowRoot!.querySelector('svg');
+      expect(svg).to.exist;
+      expect(svg!.getAttribute('viewBox')).to.equal('0 -960 960 960');
+    });
+
+    it('resolves custom icon across variants and fill states', async () => {
+      for (const variant of ['outlined', 'rounded'] as const) {
+        for (const fill of [false, true]) {
+          const el = await fixture<CoIcon>(
+            html`<co-icon name="co-placeholder" .variant=${variant} .fill=${fill}></co-icon>`,
+          );
+          const svg = el.shadowRoot!.querySelector('svg');
+          expect(svg, `${variant}/${fill ? 'fill' : 'no-fill'} should render`).to.exist;
+          expect(svg!.getAttribute('viewBox')).to.equal('0 0 24 24');
+        }
+      }
+    });
+
+    it('includes custom icon names in iconNames', () => {
+      expect(iconNames).to.include('co-placeholder');
+    });
+
+    it('customIconNames contains only co- prefixed names', () => {
+      for (const name of customIconNames) {
+        expect(name.startsWith('co-'), `"${name}" should start with "co-"`).to.be.true;
+      }
+    });
+
+    it('customIconNames is a subset of iconNames', () => {
+      for (const name of customIconNames) {
+        expect(iconNames).to.include(name);
+      }
+    });
   });
 
   describe('accessibility', () => {

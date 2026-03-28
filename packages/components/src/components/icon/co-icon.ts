@@ -1,7 +1,7 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
-import { getIcon } from '@cobalt/icons';
+import { getIcon, customIconNames } from '@cobalt/icons';
 import type { IconStyle } from '@cobalt/icons';
 import { cobaltIconStyles } from './co-icon.styles.js';
 
@@ -44,12 +44,13 @@ export class CoIcon extends LitElement {
     if (!svgContent) return nothing;
 
     const isDecorative = !this.label;
+    const viewBox = customIconNames.has(this.name) ? '0 0 24 24' : '0 -960 960 960';
 
     return html`
       <svg
         part="svg"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 -960 960 960"
+        viewBox=${viewBox}
         fill="currentColor"
         role=${isDecorative ? 'presentation' : 'img'}
         aria-hidden=${isDecorative ? 'true' : 'false'}

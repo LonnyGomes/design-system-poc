@@ -130,9 +130,45 @@ For icon-only buttons, set `aria-label` on the button rather than the icon:
 
 > **Tip:** Always test icon-only controls with a screen reader. If the announced label doesn't make sense without seeing the icon, you need a better `aria-label`.
 
-## Designing Custom Icons
+## Custom Icons
 
-When the Material Symbols library doesn't cover your use case, you can design custom icons for Cobalt. Follow these specifications to ensure visual consistency with the existing icon set.
+When the Material Symbols library doesn't cover your use case, Cobalt supports custom SVG icons that render through the same `<co-icon>` component with full variant and fill support.
+
+### The `co-` naming convention
+
+Custom icons are namespaced with a **`co-` prefix** (e.g., `co-chart`, `co-brand-logo`) to clearly differentiate them from the Material Symbols collection. This prefix is required — the build pipeline validates it and skips files without it.
+
+### Adding custom icons
+
+Place SVG files in the `packages/icons/custom/` directory, mirroring the Material Symbols layout:
+
+```
+packages/icons/custom/
+  outlined/
+    co-chart.svg          # outlined, unfilled
+    co-chart-fill.svg     # outlined, filled
+  rounded/
+    co-chart.svg          # rounded, unfilled
+    co-chart-fill.svg     # rounded, filled
+```
+
+Each icon can have up to 4 variants (outlined/rounded × unfilled/filled). Custom icons use `viewBox="0 0 24 24"` (the standard 24×24 grid), while Material Symbols use their native `0 -960 960 960` viewBox — the component handles this automatically.
+
+After adding SVGs, run `pnpm build` in the icons package. Custom icons will appear in the icon gallery alongside Material Symbols.
+
+### Usage
+
+```html
+<co-icon name="co-chart"></co-icon> <co-icon name="co-chart" variant="rounded" fill></co-icon>
+```
+
+```tsx
+<CoIcon name="co-chart" variant="rounded" fill />
+```
+
+### Designing Custom Icons
+
+When designing custom icons, follow these specifications to ensure visual consistency with the existing icon set.
 
 ### Grid & Layout
 
