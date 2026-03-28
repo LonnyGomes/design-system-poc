@@ -6,15 +6,12 @@ This directory contains custom SVG icons that augment the Material Symbols set. 
 
 ```
 custom/
-  outlined/
-    co-example.svg          # outlined, unfilled
-    co-example-fill.svg     # outlined, filled
   rounded/
-    co-example.svg          # rounded, unfilled
-    co-example-fill.svg     # rounded, filled
+    co-example.svg          # unfilled
+    co-example-fill.svg     # filled
 ```
 
-Each icon can have up to 4 variants (outlined/rounded × unfilled/filled). At minimum, provide the outlined unfilled variant.
+Each icon can have up to 2 variants (unfilled/filled). At minimum, provide the unfilled variant.
 
 ## Naming Conventions
 
@@ -37,7 +34,7 @@ Each icon can have up to 4 variants (outlined/rounded × unfilled/filled). At mi
 After adding SVGs, run `pnpm build` in the icons package. Custom icons appear in the registry and can be used like any other icon:
 
 ```html
-<co-icon name="co-chart"></co-icon> <co-icon name="co-chart" variant="rounded" fill></co-icon>
+<co-icon name="co-chart"></co-icon> <co-icon name="co-chart" fill></co-icon>
 ```
 
 See [Designing Custom Icons](../../docs/foundations/iconography.md) for full design specifications.

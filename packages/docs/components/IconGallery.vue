@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { iconNames, getIcon, customIconNames } from '@cobalt/icons';
-import type { IconStyle } from '@cobalt/icons';
 
-const styles: IconStyle[] = ['outlined', 'rounded'];
 const pngSizes = [16, 20, 24, 32, 48, 96, 192];
 
 const searchQuery = ref('');
-const selectedStyle = ref<IconStyle>('outlined');
 const fillToggle = ref(false);
 const selectedIcon = ref<string | null>(null);
 const visibleCount = ref(120);
@@ -31,15 +28,15 @@ const visibleIcons = computed(() => filteredIcons.value.slice(0, visibleCount.va
 const totalCount = computed(() => filteredIcons.value.length);
 
 function getSvgForGrid(name: string): string {
-  const content = getIcon(name, selectedStyle.value, fillToggle.value);
+  const content = getIcon(name, 'rounded', fillToggle.value);
   if (!content) return '';
   const viewBox = customIconNames.has(name) ? '0 0 24 24' : '0 -960 960 960';
   return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="${viewBox}" fill="currentColor">${content}</svg>`;
 }
 
-function getRenderedSvg(style: IconStyle, size: number, fill?: boolean): string {
+function getRenderedSvg(size: number, fill?: boolean): string {
   if (!selectedIcon.value) return '';
-  const content = getIcon(selectedIcon.value, style, fill ?? fillToggle.value);
+  const content = getIcon(selectedIcon.value, 'rounded', fill ?? fillToggle.value);
   if (!content) return '';
   const viewBox = customIconNames.has(selectedIcon.value) ? '0 0 24 24' : '0 -960 960 960';
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="${viewBox}" fill="currentColor">${content}</svg>`;
@@ -80,7 +77,7 @@ watch(sentinelRef, (el) => {
 });
 
 // Reset visible count on filter change
-watch([searchQuery, selectedStyle, fillToggle], () => {
+watch([searchQuery, fillToggle], () => {
   visibleCount.value = 120;
 });
 
@@ -100,7 +97,7 @@ const copyLabel = ref('Copy SVG');
 
 async function copySvg() {
   if (!selectedIcon.value) return;
-  const svg = getRenderedSvg(selectedStyle.value, 24, fillToggle.value);
+  const svg = getRenderedSvg(24, fillToggle.value);
   if (svg) {
     await navigator.clipboard.writeText(svg);
     copyLabel.value = 'Copied!';
@@ -111,7 +108,7 @@ async function copySvg() {
 async function downloadPng() {
   if (!selectedIcon.value) return;
   const size = pngSize.value;
-  const svg = getRenderedSvg(selectedStyle.value, size, fillToggle.value);
+  const svg = getRenderedSvg(size, fillToggle.value);
   if (!svg) return;
 
   const canvas = document.createElement('canvas');
@@ -131,7 +128,7 @@ async function downloadPng() {
 
     const link = document.createElement('a');
     const fillSuffix = fillToggle.value ? '-fill' : '';
-    link.download = `${selectedIcon.value!}-${selectedStyle.value}${fillSuffix}-${size}px.png`;
+    link.download = `${selectedIcon.value!}-rounded${fillSuffix}-${size}px.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
   };
@@ -140,22 +137,22 @@ async function downloadPng() {
 
 function webComponentSnippet(name: string): string {
   const fillAttr = fillToggle.value ? ' fill' : '';
-  return `<co-icon name="${name}" variant="${selectedStyle.value}"${fillAttr}></co-icon>`;
+  return `<co-icon name="${name}"${fillAttr}></co-icon>`;
 }
 
 function reactSnippet(name: string): string {
   const fillProp = fillToggle.value ? ' fill' : '';
-  return `<CoIcon name="${name}" variant="${selectedStyle.value}"${fillProp} />`;
+  return `<CoIcon name="${name}"${fillProp} />`;
 }
 
 function vueSnippet(name: string): string {
   const fillProp = fillToggle.value ? ' fill' : '';
-  return `<CoIcon name="${name}" variant="${selectedStyle.value}"${fillProp} />`;
+  return `<CoIcon name="${name}"${fillProp} />`;
 }
 
 function angularSnippet(name: string): string {
   const fillAttr = fillToggle.value ? ' fill' : '';
-  return `<co-icon name="${name}" variant="${selectedStyle.value}"${fillAttr}></co-icon>`;
+  return `<co-icon name="${name}"${fillAttr}></co-icon>`;
 }
 
 function getSnippet(name: string, tabIndex: number): string {
@@ -192,17 +189,6 @@ function getSnippet(name: string, tabIndex: number): string {
           aria-label="Search icons"
         />
         <span class="search-count">{{ totalCount }} of {{ iconNames.length }}</span>
-      </div>
-      <div class="weight-selector">
-        <button
-          v-for="s in styles"
-          :key="s"
-          class="weight-btn"
-          :class="{ active: selectedStyle === s }"
-          @click="selectedStyle = s"
-        >
-          {{ s }}
-        </button>
       </div>
       <label class="fill-toggle">
         <input v-model="fillToggle" type="checkbox" class="fill-checkbox" />
@@ -256,24 +242,9 @@ function getSnippet(name: string, tabIndex: number): string {
                 class="size-preview"
                 :title="`${s}px`"
               >
-                <span v-html="getRenderedSvg(selectedStyle, s)" />
+                <span v-html="getRenderedSvg(s)" />
                 <span class="size-label">{{ s }}</span>
               </span>
-            </div>
-          </div>
-          <div class="detail-section">
-            <div class="detail-label">Styles</div>
-            <div class="detail-weights">
-              <button
-                v-for="s in styles"
-                :key="s"
-                class="weight-preview"
-                :class="{ active: selectedStyle === s }"
-                @click="selectedStyle = s"
-              >
-                <span v-html="getRenderedSvg(s, 32)" />
-                <span class="weight-label">{{ s }}</span>
-              </button>
             </div>
           </div>
           <div class="detail-section">
@@ -349,24 +320,9 @@ function getSnippet(name: string, tabIndex: number): string {
                 class="ig-size-preview"
                 :title="`${s}px`"
               >
-                <span v-html="getRenderedSvg(selectedStyle, s)" />
+                <span v-html="getRenderedSvg(s)" />
                 <span class="ig-size-label">{{ s }}</span>
               </span>
-            </div>
-          </div>
-          <div class="ig-sheet-section">
-            <div class="ig-sheet-label">Styles</div>
-            <div class="ig-sheet-weights">
-              <button
-                v-for="s in styles"
-                :key="s"
-                class="ig-weight-preview"
-                :class="{ active: selectedStyle === s }"
-                @click="selectedStyle = s"
-              >
-                <span v-html="getRenderedSvg(s, 32)" />
-                <span class="ig-weight-label">{{ s }}</span>
-              </button>
             </div>
           </div>
           <div class="ig-sheet-section">

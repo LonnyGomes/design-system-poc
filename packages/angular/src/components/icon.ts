@@ -1,5 +1,5 @@
 import { Directive, ElementRef, effect, inject, input } from '@angular/core';
-import type { IconVariant, IconSize } from '@cobalt/components/icon';
+import type { IconSize } from '@cobalt/components/icon';
 import '@cobalt/components/icon';
 
 /**
@@ -7,7 +7,7 @@ import '@cobalt/components/icon';
  *
  * @example
  * ```html
- * <co-icon name="arrow-forward" variant="outlined" size="md"></co-icon>
+ * <co-icon name="arrow-forward" size="md"></co-icon>
  * <co-icon name="home" label="Home page"></co-icon>
  * ```
  */
@@ -18,7 +18,6 @@ import '@cobalt/components/icon';
 })
 export class CoIcon {
   readonly name = input('');
-  readonly variant = input<IconVariant>('outlined');
   readonly size = input<IconSize>('md');
   readonly fill = input(false);
   readonly label = input<string | undefined>();
@@ -29,7 +28,6 @@ export class CoIcon {
     effect(() => {
       const el = this.el as any;
       el.name = this.name();
-      el.variant = this.variant();
       el.size = this.size();
       el.fill = this.fill();
       const label = this.label();

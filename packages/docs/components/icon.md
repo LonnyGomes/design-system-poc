@@ -1,34 +1,18 @@
 # Icon
 
-The `co-icon` component renders Material Symbols icons as inline SVGs. It supports 2 style variants (outlined, rounded), a fill toggle, 4 sizes, and built-in accessibility for both decorative and informative use cases.
+The `co-icon` component renders Material Symbols icons as inline SVGs. It supports a fill toggle, 4 sizes, and built-in accessibility for both decorative and informative use cases.
 
 ## Interactive Demo
 
 <ComponentDemo
   tag="co-icon"
-  :defaults="{ name: 'home', variant: 'outlined', size: 'md', fill: false }"
-  :options="{ variant: ['outlined', 'rounded'], size: ['xs', 'sm', 'md', 'lg'] }"
+  :defaults="{ name: 'home', size: 'md', fill: false }"
+  :options="{ size: ['xs', 'sm', 'md', 'lg'] }"
   :booleans="['fill']"
   :textInputs="['name', 'label']"
 />
 
-## Variants (Styles)
-
-<ClientOnly>
-<div style="display: flex; gap: 16px; align-items: center; margin: 16px 0 24px;">
-  <co-icon name="home" variant="outlined" size="lg"></co-icon>
-  <co-icon name="home" variant="rounded" size="lg"></co-icon>
-  <co-icon name="home" variant="outlined" size="lg" fill></co-icon>
-  <co-icon name="home" variant="rounded" size="lg" fill></co-icon>
-</div>
-</ClientOnly>
-
-| Variant    | Description                                |
-| ---------- | ------------------------------------------ |
-| `outlined` | Default. Outlined icons for general UI use |
-| `rounded`  | Rounded corners for a softer appearance    |
-
-### Fill Toggle
+## Fill Toggle
 
 Set the `fill` boolean property to render the filled version of any icon. Use filled icons for active or selected states.
 
@@ -72,7 +56,7 @@ Set the `fill` boolean property to render the filled version of any icon. Use fi
 </script>
 
 <!-- Basic usage -->
-<co-icon name="arrow-forward" variant="outlined"></co-icon>
+<co-icon name="arrow-forward"></co-icon>
 
 <!-- Filled icon -->
 <co-icon name="star" fill></co-icon>
@@ -105,7 +89,7 @@ function App() {
   return (
     <>
       {/* Basic */}
-      <CoIcon name="arrow-forward" variant="outlined" />
+      <CoIcon name="arrow-forward" />
 
       {/* Filled */}
       <CoIcon name="star" fill />
@@ -138,7 +122,7 @@ import { CoIcon, CoButton } from '@cobalt/vue';
 
 <template>
   <!-- Basic -->
-  <CoIcon name="arrow-forward" variant="outlined" />
+  <CoIcon name="arrow-forward" />
 
   <!-- Filled -->
   <CoIcon name="star" fill />
@@ -182,7 +166,7 @@ export class AppComponent {}
 <!-- app.component.html -->
 
 <!-- Basic -->
-<co-icon name="arrow-forward" variant="outlined"></co-icon>
+<co-icon name="arrow-forward"></co-icon>
 
 <!-- Filled -->
 <co-icon name="star" fill></co-icon>
@@ -222,9 +206,7 @@ export class AppComponent {}
 
 ### Content guidelines
 
-- Use `outlined` variant as the default for consistency
 - Use `fill` for active/selected states to provide visual feedback
-- Use `rounded` for a softer, friendlier aesthetic
 - Stick to one size per context — don't mix `xs` and `md` in the same row
 - Always provide a `label` for icon-only controls
 
@@ -232,13 +214,12 @@ export class AppComponent {}
 
 ### Properties
 
-| Property  | Type                           | Default      | Description                                    |
-| --------- | ------------------------------ | ------------ | ---------------------------------------------- |
-| `name`    | `string`                       | `''`         | Icon name in kebab-case (e.g. `arrow-forward`) |
-| `variant` | `'outlined' \| 'rounded'`      | `'outlined'` | Icon style variant                             |
-| `size`    | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'`       | Icon size                                      |
-| `fill`    | `boolean`                      | `false`      | Whether to render the filled version           |
-| `label`   | `string \| undefined`          | `undefined`  | Accessible label — makes the icon informative  |
+| Property | Type                           | Default     | Description                                    |
+| -------- | ------------------------------ | ----------- | ---------------------------------------------- |
+| `name`   | `string`                       | `''`        | Icon name in kebab-case (e.g. `arrow-forward`) |
+| `size`   | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'`      | Icon size                                      |
+| `fill`   | `boolean`                      | `false`     | Whether to render the filled version           |
+| `label`  | `string \| undefined`          | `undefined` | Accessible label — makes the icon informative  |
 
 ### CSS Parts
 

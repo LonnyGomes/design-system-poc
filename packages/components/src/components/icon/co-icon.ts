@@ -2,10 +2,8 @@ import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { getIcon, customIconNames } from '@cobalt/icons';
-import type { IconStyle } from '@cobalt/icons';
 import { cobaltIconStyles } from './co-icon.styles.js';
 
-export type IconVariant = IconStyle;
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg';
 
 /**
@@ -22,10 +20,6 @@ export class CoIcon extends LitElement {
   @property({ reflect: true })
   name = '';
 
-  /** The icon style variant. */
-  @property({ reflect: true })
-  variant: IconVariant = 'outlined';
-
   /** The icon size. */
   @property({ reflect: true })
   size: IconSize = 'md';
@@ -39,7 +33,7 @@ export class CoIcon extends LitElement {
   label?: string;
 
   override render() {
-    const svgContent = getIcon(this.name, this.variant, this.fill);
+    const svgContent = getIcon(this.name, 'rounded', this.fill);
 
     if (!svgContent) return nothing;
 

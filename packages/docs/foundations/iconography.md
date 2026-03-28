@@ -1,6 +1,6 @@
 # Iconography
 
-Cobalt uses [Material Symbols](https://fonts.google.com/icons) — 2,500+ icons in 2 style variants (outlined, rounded) with an optional fill toggle. Icons are rendered via the `<co-icon>` web component, which uses inline SVGs with `currentColor` for full control over color, size, and animation via CSS.
+Cobalt uses [Material Symbols](https://fonts.google.com/icons) — 2,500+ icons in the rounded style with an optional fill toggle. Icons are rendered via the `<co-icon>` web component, which uses inline SVGs with `currentColor` for full control over color, size, and animation via CSS.
 
 ## Icon Gallery
 
@@ -32,8 +32,8 @@ The recommended way to use icons is through the `<co-icon>` component, which han
   import '@cobalt/components/icon';
 </script>
 
-<co-icon name="arrow-forward" variant="outlined"></co-icon>
-<co-icon name="check" variant="rounded" size="sm"></co-icon>
+<co-icon name="arrow-forward"></co-icon>
+<co-icon name="check" size="sm"></co-icon>
 <co-icon name="home" fill></co-icon>
 ```
 
@@ -45,8 +45,8 @@ import { CoIcon } from '@cobalt/react';
 function Example() {
   return (
     <>
-      <CoIcon name="arrow-forward" variant="outlined" />
-      <CoIcon name="check" variant="rounded" size="sm" />
+      <CoIcon name="arrow-forward" />
+      <CoIcon name="check" size="sm" />
       <CoIcon name="home" fill />
     </>
   );
@@ -61,8 +61,8 @@ import { CoIcon } from '@cobalt/vue';
 </script>
 
 <template>
-  <CoIcon name="arrow-forward" variant="outlined" />
-  <CoIcon name="check" variant="rounded" size="sm" />
+  <CoIcon name="arrow-forward" />
+  <CoIcon name="check" size="sm" />
   <CoIcon name="home" fill />
 </template>
 ```
@@ -70,8 +70,8 @@ import { CoIcon } from '@cobalt/vue';
 ### Angular
 
 ```html
-<co-icon name="arrow-forward" variant="outlined"></co-icon>
-<co-icon name="check" variant="rounded" size="sm"></co-icon>
+<co-icon name="arrow-forward"></co-icon>
+<co-icon name="check" size="sm"></co-icon>
 <co-icon name="home" fill></co-icon>
 ```
 
@@ -132,7 +132,7 @@ For icon-only buttons, set `aria-label` on the button rather than the icon:
 
 ## Custom Icons
 
-When the Material Symbols library doesn't cover your use case, Cobalt supports custom SVG icons that render through the same `<co-icon>` component with full variant and fill support.
+When the Material Symbols library doesn't cover your use case, Cobalt supports custom SVG icons that render through the same `<co-icon>` component with full fill support.
 
 ### The `co-` naming convention
 
@@ -140,30 +140,27 @@ Custom icons are namespaced with a **`co-` prefix** (e.g., `co-chart`, `co-brand
 
 ### Adding custom icons
 
-Place SVG files in the `packages/icons/custom/` directory, mirroring the Material Symbols layout:
+Place SVG files in the `packages/icons/custom/rounded/` directory:
 
 ```
 packages/icons/custom/
-  outlined/
-    co-chart.svg          # outlined, unfilled
-    co-chart-fill.svg     # outlined, filled
   rounded/
-    co-chart.svg          # rounded, unfilled
-    co-chart-fill.svg     # rounded, filled
+    co-chart.svg          # unfilled
+    co-chart-fill.svg     # filled
 ```
 
-Each icon can have up to 4 variants (outlined/rounded × unfilled/filled). Custom icons use `viewBox="0 0 24 24"` (the standard 24×24 grid), while Material Symbols use their native `0 -960 960 960` viewBox — the component handles this automatically.
+Each icon can have up to 2 variants (unfilled/filled). Custom icons use `viewBox="0 0 24 24"` (the standard 24×24 grid), while Material Symbols use their native `0 -960 960 960` viewBox — the component handles this automatically.
 
 After adding SVGs, run `pnpm build` in the icons package. Custom icons will appear in the icon gallery alongside Material Symbols.
 
 ### Usage
 
 ```html
-<co-icon name="co-chart"></co-icon> <co-icon name="co-chart" variant="rounded" fill></co-icon>
+<co-icon name="co-chart"></co-icon> <co-icon name="co-chart" fill></co-icon>
 ```
 
 ```tsx
-<CoIcon name="co-chart" variant="rounded" fill />
+<CoIcon name="co-chart" fill />
 ```
 
 ### Designing Custom Icons
@@ -234,14 +231,14 @@ Use this checklist before handing off a custom icon:
 - [ ] Paths only (no strokes, no clip paths, no transforms)
 - [ ] `fill="currentColor"` or no fill attribute
 - [ ] Works at all four sizes (16, 20, 24, 32px) — no details lost at small sizes
-- [ ] Both outlined and filled variants provided
+- [ ] Filled variant provided alongside the default
 - [ ] File name in kebab-case
 - [ ] Tested in light and dark themes
 
 ## Best Practices
 
 1. **Use a single size per context.** Don't mix 16 px and 20 px icons in the same button.
-2. **Use outlined for most UI.** Add `fill` for active/selected states to provide visual feedback. Use `rounded` for a softer feel.
+2. **Use `fill` for active/selected states** to provide visual feedback.
 3. **Avoid icon overload.** If a row of actions has more than four icon-only buttons, add visible labels.
 4. **Align icons optically.** Some icons (e.g., play triangles) may need 1-2 px nudges to look visually centered.
 

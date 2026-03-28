@@ -9,7 +9,6 @@ describe('co-icon', () => {
     const el = await fixture<CoIcon>(html`<co-icon name="home"></co-icon>`);
     expect(el).to.exist;
     expect(el.name).to.equal('home');
-    expect(el.variant).to.equal('outlined');
     expect(el.size).to.equal('md');
     expect(el.fill).to.equal(false);
     expect(el.label).to.be.undefined;
@@ -19,12 +18,6 @@ describe('co-icon', () => {
     const el = await fixture<CoIcon>(html`<co-icon name="arrow-forward"></co-icon>`);
     expect(el.name).to.equal('arrow-forward');
     expect(el.getAttribute('name')).to.equal('arrow-forward');
-  });
-
-  it('reflects variant attribute', async () => {
-    const el = await fixture<CoIcon>(html`<co-icon name="home" variant="rounded"></co-icon>`);
-    expect(el.variant).to.equal('rounded');
-    expect(el.getAttribute('variant')).to.equal('rounded');
   });
 
   it('reflects size attribute', async () => {
@@ -107,16 +100,14 @@ describe('co-icon', () => {
       expect(svg!.getAttribute('viewBox')).to.equal('0 -960 960 960');
     });
 
-    it('resolves custom icon across variants and fill states', async () => {
-      for (const variant of ['outlined', 'rounded'] as const) {
-        for (const fill of [false, true]) {
-          const el = await fixture<CoIcon>(
-            html`<co-icon name="co-placeholder" .variant=${variant} .fill=${fill}></co-icon>`,
-          );
-          const svg = el.shadowRoot!.querySelector('svg');
-          expect(svg, `${variant}/${fill ? 'fill' : 'no-fill'} should render`).to.exist;
-          expect(svg!.getAttribute('viewBox')).to.equal('0 0 24 24');
-        }
+    it('resolves custom icon with fill', async () => {
+      for (const fill of [false, true]) {
+        const el = await fixture<CoIcon>(
+          html`<co-icon name="co-placeholder" .fill=${fill}></co-icon>`,
+        );
+        const svg = el.shadowRoot!.querySelector('svg');
+        expect(svg, `${fill ? 'fill' : 'no-fill'} should render`).to.exist;
+        expect(svg!.getAttribute('viewBox')).to.equal('0 0 24 24');
       }
     });
 

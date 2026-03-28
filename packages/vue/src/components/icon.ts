@@ -1,10 +1,9 @@
 import { defineComponent, h, type PropType } from 'vue';
-import type { IconVariant, IconSize } from '@cobalt/components/icon';
+import type { IconSize } from '@cobalt/components/icon';
 import '@cobalt/components/icon';
 
 export type CoIconProps = {
   name?: string;
-  variant?: IconVariant;
   size?: IconSize;
   fill?: boolean;
   label?: string;
@@ -16,10 +15,6 @@ export const CoIcon = defineComponent({
     name: {
       type: String,
       default: '',
-    },
-    variant: {
-      type: String as PropType<IconVariant>,
-      default: 'outlined',
     },
     size: {
       type: String as PropType<IconSize>,
@@ -38,7 +33,6 @@ export const CoIcon = defineComponent({
     return () =>
       h('co-icon', {
         name: props.name,
-        variant: props.variant,
         size: props.size,
         fill: props.fill,
         label: props.label,
