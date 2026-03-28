@@ -127,3 +127,17 @@ Use `co-stack` for vertical rhythm and `co-inline` for horizontal arrangements. 
   <span>Feature announcement</span>
 </co-inline>
 ```
+
+## Utility Classes
+
+For quick layout composition without writing custom CSS, Cobalt provides a set of token-backed utility classes modeled after Tailwind CSS conventions. Utilities are ideal for the structural glue between components — grid columns, flex alignment, gap, and responsive visibility.
+
+```html
+<div class="co-grid co-grid-cols-1 md:co-grid-cols-2 lg:co-grid-cols-3 co-gap-4">
+  <co-card>Item 1</co-card>
+  <co-card>Item 2</co-card>
+  <co-card>Item 3</co-card>
+</div>
+```
+
+See the full [Utility Classes](../foundations/utilities.md) reference for available classes, responsive prefixes, and migration guidance.

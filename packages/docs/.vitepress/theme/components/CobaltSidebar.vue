@@ -49,6 +49,7 @@ const navigation: NavGroup[] = [
       { text: 'Breakpoints', link: '/foundations/breakpoints' },
       { text: 'Iconography', link: '/foundations/iconography' },
       { text: 'Accessibility', link: '/foundations/accessibility' },
+      { text: 'Utility Classes', link: '/foundations/utilities' },
     ],
   },
   {

@@ -93,7 +93,7 @@ async function build() {
   const lightCss = readFileSync(lightCssPath, 'utf-8');
   writeFileSync(
     lightCssPath,
-    `@layer co.reset, co.base, co.tokens, co.theme, co.overrides;\n\n@layer co.tokens {\n${lightCss}}\n`,
+    `@layer co.reset, co.base, co.tokens, co.theme, co.utilities, co.overrides;\n\n@layer co.tokens {\n${lightCss}}\n`,
   );
 
   const darkCssPath = join(__dirname, 'dist/css/tokens-dark.css');
@@ -107,6 +107,10 @@ async function build() {
   // Copy font-face stylesheet
   console.log('Copying font-face stylesheet...');
   copyFileSync(join(__dirname, 'src/fonts.css'), join(__dirname, 'dist/css/fonts.css'));
+
+  // Copy utility classes
+  console.log('Copying utility classes...');
+  copyFileSync(join(__dirname, 'src/utilities.css'), join(__dirname, 'dist/css/utilities.css'));
 
   // Generate TypeScript declarations
   console.log('Generating TypeScript declarations...');
