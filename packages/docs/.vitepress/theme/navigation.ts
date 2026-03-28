@@ -113,3 +113,33 @@ export const flatNavItems: FlatNavItem[] = navigation.flatMap((group) =>
     .filter((item): item is NavItem & { link: string } => !!item.link)
     .map((item) => ({ text: item.text, link: item.link, group: group.label })),
 );
+
+/**
+ * Derive the VitePress `themeConfig.sidebar` array from the navigation data.
+ */
+export function toVitePressSidebar(): { text: string; items: { text: string; link: string }[] }[] {
+  return navigation.map((group) => ({
+    text: group.label,
+    items: group.items
+      .filter((item): item is NavItem & { link: string } => !!item.link)
+      .map((item) => ({ text: item.text, link: item.link })),
+  }));
+}
+
+/**
+ * Derive the VitePress `themeConfig.nav` array from the navigation data.
+ * Picks the groups that make sense as top-level nav entries (skips Overview and Changelog).
+ */
+const topNavGroups = ['Get Started', 'Design Foundations', 'Components', 'Patterns', 'Guidance'];
+
+export function toVitePressNav(): { text: string; link: string }[] {
+  return navigation
+    .filter((group) => topNavGroups.includes(group.label))
+    .map((group) => {
+      const firstLink = group.items.find((item) => item.link)?.link ?? '/';
+      return {
+        text: group.label === 'Design Foundations' ? 'Foundations' : group.label,
+        link: firstLink,
+      };
+    });
+}
