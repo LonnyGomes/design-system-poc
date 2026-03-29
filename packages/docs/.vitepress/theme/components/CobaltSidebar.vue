@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-import { useRoute, withBase } from 'vitepress';
+import { useData, useRoute, withBase } from 'vitepress';
+
+const { theme } = useData();
 import { navigation } from '../navigation';
 import type { NavGroup } from '../navigation';
 
@@ -111,7 +113,7 @@ function isGroupActive(group: NavGroup): boolean {
     <!-- Bottom section -->
     <div class="sidebar-footer">
       <div class="sidebar-badge">
-        <span class="badge-version">v0.0.1</span>
+        <span class="badge-version">v{{ theme.cobaltVersion }}</span>
         <span class="badge-label">alpha</span>
       </div>
     </div>

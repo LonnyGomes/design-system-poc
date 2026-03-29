@@ -259,3 +259,7 @@ This sets `role="img"` and `aria-label` on the SVG, making it accessible to scre
 | Icon next to visible label | No `label` needed (decorative by default) |
 | Icon-only button           | Set `aria-label` on the button            |
 | Icon conveying status      | Set `label` on `co-icon`                  |
+
+## Changelog
+
+<ComponentChangelog component="co-icon" />

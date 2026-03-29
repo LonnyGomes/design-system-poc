@@ -308,3 +308,7 @@ export class AppComponent {
 - When `disabled` is set, the component sets `aria-disabled="true"` and removes the element from the tab order.
 - When `loading` is set, the spinner is hidden from assistive technology via `aria-hidden="true"` and the button label remains accessible.
 - When using `href`, the component renders as an `<a>` element, inheriting link semantics automatically.
+
+## Changelog
+
+<ComponentChangelog component="co-button" />

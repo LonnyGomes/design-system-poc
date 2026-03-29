@@ -1,0 +1,17 @@
+{
+  "0.0.1": {
+    "summary": "Initial alpha release",
+    "highlights": [
+      "Monorepo setup",
+      "CI/CD pipeline",
+      "Initial token definitions",
+      "Changeset integration",
+      "Created co-button component",
+      "Created co-icon component",
+      "Wrappers for React, Angular, and Vue",
+      "Design tokens pipeline",
+      "React wrappers",
+      "Temporary documentation site for MVP"
+    ]
+  }
+}

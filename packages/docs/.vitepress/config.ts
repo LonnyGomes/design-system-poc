@@ -1,5 +1,13 @@
 import { defineConfig } from 'vitepress';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { toVitePressNav, toVitePressSidebar } from './theme/navigation';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const pkg = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, '../../components/package.json'), 'utf-8'),
+);
 
 export default defineConfig({
   base: '/design-system-poc/',
@@ -19,6 +27,7 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
+    cobaltVersion: pkg.version,
     search: {
       provider: 'local',
     },

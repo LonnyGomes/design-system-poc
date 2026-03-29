@@ -5,6 +5,7 @@
   "private": true,
   "description": "Cobalt Design System documentation",
   "scripts": {
+    "prebuild": "node scripts/generate-component-changelogs.js",
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview"

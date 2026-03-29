@@ -2,9 +2,24 @@
 
 The Cobalt Design System follows [Semantic Versioning](https://semver.org/) (semver) and uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs across the monorepo.
 
+## Fixed / Lockstep Versioning
+
+All publishable Cobalt packages share a single version number. When any package receives a changeset, **all six packages** bump to the same version:
+
+- `@cobalt/tokens`
+- `@cobalt/icons`
+- `@cobalt/components`
+- `@cobalt/react`
+- `@cobalt/vue`
+- `@cobalt/angular`
+
+This is enforced by the `"fixed"` configuration in `.changeset/config.json`. Consumers can always assume that all `@cobalt/*` packages at the same version are compatible.
+
+> The docs package (`@cobalt/docs`) is excluded from versioning — it is private and not published to npm.
+
 ## Semantic Versioning
 
-Every package in the Cobalt monorepo is versioned independently. Version numbers follow the `MAJOR.MINOR.PATCH` format:
+Version numbers follow the `MAJOR.MINOR.PATCH` format:
 
 | Increment | When to Use                                   | Example |
 | --------- | --------------------------------------------- | ------- |
@@ -58,16 +73,25 @@ You'll be prompted to:
 
 This creates a markdown file in the `.changeset/` directory. Commit this file along with your code changes.
 
+### Convenience Commands
+
+| Command              | Description                                   |
+| -------------------- | --------------------------------------------- |
+| `pnpm changeset`     | Create a new changeset interactively          |
+| `pnpm version:bump`  | Apply pending changesets — bumps all packages |
+| `pnpm version:check` | Show pending changesets without applying them |
+| `pnpm release`       | Publish updated packages to npm               |
+
 ### Changeset Summary Guidelines
 
 Write summaries from the consumer's perspective:
 
 ```markdown
 ---
-'@cobalt/co-button': minor
+'@cobalt/components': minor
 ---
 
-Added `loading` property to display a spinner and disable interactions while an async action is in progress.
+Added `loading` property to co-button to display a spinner and disable interactions while an async action is in progress.
 ```
 
 Keep summaries:
@@ -98,10 +122,10 @@ For testing unstable features, we maintain pre-release channels:
 
 ```bash
 # Install a beta version
-pnpm add @cobalt/co-button@beta
+pnpm add @cobalt/components@beta
 
 # Install a specific pre-release
-pnpm add @cobalt/co-button@3.0.0-beta.1
+pnpm add @cobalt/components@3.0.0-beta.1
 ```
 
 Pre-release versions follow the pattern `{version}-{channel}.{number}` (e.g., `3.0.0-beta.1`).

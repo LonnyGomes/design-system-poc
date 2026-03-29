@@ -62,6 +62,48 @@ After making changes in the monorepo, re-run `pnpm pack:local` and reinstall in 
 
 **Alternative — `pnpm link`:** For faster iteration during active development, you can symlink packages directly with `pnpm link --global`. Changes are reflected after `pnpm build` without reinstalling. Note that linked packages can occasionally cause duplicate dependency issues at runtime; use `pack:local` if you hit problems.
 
+## Versioning & Releases
+
+All publishable `@cobalt/*` packages use **fixed/lockstep versioning** — every release bumps all six packages to the same version number. This is managed by [Changesets](https://github.com/changesets/changesets).
+
+### Adding a changeset
+
+After making changes, create a changeset to describe what changed:
+
+```bash
+pnpm changeset
+```
+
+Select the affected packages, choose a bump type (major/minor/patch), and write a short consumer-facing summary. Commit the generated `.changeset/*.md` file with your code.
+
+### Checking pending changes
+
+```bash
+pnpm version:check
+```
+
+### Bumping versions
+
+Apply all pending changesets, updating package versions and generating CHANGELOG entries:
+
+```bash
+pnpm version:bump
+```
+
+### Publishing
+
+```bash
+pnpm release
+```
+
+### CI release flow
+
+1. Changesets accumulate on `main` as PRs are merged
+2. The Changesets GitHub Action opens a **Version Packages** PR automatically
+3. Merging that PR triggers the publish pipeline to npm
+
+For the full policy (semver rules, breaking change criteria, deprecation process), see the [Versioning docs](packages/docs/contributing/versioning.md).
+
 ## Packages
 
 This monorepo is managed with [pnpm workspaces](https://pnpm.io/workspaces). All packages live under `packages/`.

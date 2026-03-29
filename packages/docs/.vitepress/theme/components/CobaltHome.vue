@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { withBase } from 'vitepress';
+import { useData, withBase } from 'vitepress';
+
+const { theme } = useData();
 
 const features = [
   {
@@ -36,7 +38,7 @@ const features = [
       <div class="hero-content">
         <div class="hero-badge">
           <span class="badge-dot"></span>
-          <span>v0.0.1 — Proof of Concept</span>
+          <span>v{{ theme.cobaltVersion }}</span>
         </div>
 
         <h1 class="hero-title">

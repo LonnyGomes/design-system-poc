@@ -14,6 +14,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "pack:local": "bash scripts/pack-local.sh",
+    "changeset": "changeset",
+    "version:bump": "changeset version",
+    "version:check": "changeset status",
+    "release": "changeset publish",
     "prepare": "husky"
   },
   "lint-staged": {
