@@ -1,37 +1,35 @@
 # Colors
 
+<script setup>
+import { data } from './colors.data';
+</script>
+
 The Cobalt color system is organized into **primitive palettes** and **semantic tokens**. Primitives define the raw hues and shades; semantic tokens map those primitives to UI roles so that themes and dark mode work automatically.
 
-## Primitive palette
+## Core palette
 
-Each primitive scale runs from `50` (lightest) to `950` (darkest).
+The core palette includes **Neutral** and the four colors used by semantic tokens (Blue, Red, Green, Orange).
 
-<ColorSwatch :colors="[
-  { scale: '50',  blue: '#eff6ff', gray: '#f9fafb', green: '#f0fdf4', red: '#fef2f2', amber: '#fffbeb' },
-  { scale: '100', blue: '#dbeafe', gray: '#f3f4f6', green: '#dcfce7', red: '#fee2e2', amber: '#fef3c7' },
-  { scale: '200', blue: '#bfdbfe', gray: '#e5e7eb', green: '#bbf7d0', red: '#fecaca', amber: '#fde68a' },
-  { scale: '300', blue: '#93c5fd', gray: '#d1d5db', green: '#86efac', red: '#fca5a5', amber: '#fcd34d' },
-  { scale: '400', blue: '#60a5fa', gray: '#9ca3af', green: '#4ade80', red: '#f87171', amber: '#fbbf24' },
-  { scale: '500', blue: '#3b82f6', gray: '#6b7280', green: '#22c55e', red: '#ef4444', amber: '#f59e0b' },
-  { scale: '600', blue: '#2563eb', gray: '#4b5563', green: '#16a34a', red: '#dc2626', amber: '#d97706' },
-  { scale: '700', blue: '#1d4ed8', gray: '#374151', green: '#15803d', red: '#b91c1c', amber: '#b45309' },
-  { scale: '800', blue: '#1e40af', gray: '#1f2937', green: '#166534', red: '#991b1b', amber: '#92400e' },
-  { scale: '900', blue: '#1e3a8a', gray: '#111827', green: '#14532d', red: '#7f1d1d', amber: '#78350f' },
-  { scale: '950', blue: '#172554', gray: '#030712', green: '#052e16', red: '#450a0a', amber: '#451a03' },
-]" />
+<ColorSwatch :palettes="data.corePalettes" />
+
+## Extended palette
+
+Additional primitives available for illustrations, data visualization, status indicators, and brand expression. These do not have semantic aliases — reference them directly via `--co-color-primitive-{name}-{shade}`.
+
+<ColorSwatch :palettes="data.extendedPalettes" />
 
 ## Semantic tokens
 
 Semantic tokens abstract primitives so your UI adapts to theme changes without touching component code.
 
-| Token                    | Light mode value | Dark mode value | Usage                       |
-| ------------------------ | ---------------- | --------------- | --------------------------- |
-| `--co-color-primary-600` | Blue 600         | Blue 400        | Primary actions, links      |
-| `--co-color-neutral-100` | Gray 100         | Gray 800        | Subtle backgrounds          |
-| `--co-color-neutral-900` | Gray 900         | Gray 50         | Body text                   |
-| `--co-color-danger-600`  | Red 600          | Red 400         | Destructive actions, errors |
-| `--co-color-success-600` | Green 600        | Green 400       | Success states              |
-| `--co-color-warning-500` | Amber 500        | Amber 300       | Warning indicators          |
+| Token                    | Primitive   | Light mode value | Dark mode value | Usage                       |
+| ------------------------ | ----------- | ---------------- | --------------- | --------------------------- |
+| `--co-color-primary-600` | Blue 600    | `#154bcc`        | Blue 300        | Primary actions, links      |
+| `--co-color-neutral-100` | Neutral 100 | `#f2f2f2`        | Neutral 800     | Subtle backgrounds          |
+| `--co-color-neutral-900` | Neutral 900 | `#1e1f21`        | Neutral 50      | Body text                   |
+| `--co-color-danger-600`  | Red 600     | `#a61b12`        | Red 300         | Destructive actions, errors |
+| `--co-color-success-600` | Green 600   | `#16652a`        | Green 300       | Success states              |
+| `--co-color-warning-500` | Orange 500  | `#f8a01c`        | Orange 400      | Warning indicators          |
 
 ## Usage in CSS
 
@@ -40,7 +38,7 @@ Reference tokens with `var()`:
 ```css
 .co-button--primary {
   background-color: var(--co-color-primary-600);
-  color: var(--co-color-neutral-0);
+  color: var(--co-color-foreground-on-primary);
 }
 
 .co-alert--danger {
@@ -57,13 +55,13 @@ Cobalt ships two token layers. The default layer uses light-mode values. When th
 ```css
 /* Automatically provided by @cobalt/tokens */
 :root {
-  --co-color-primary-600: #2563eb;
-  --co-color-neutral-0: #ffffff;
+  --co-color-primary-600: #154bcc;
+  --co-color-neutral-900: #1e1f21;
 }
 
 [data-theme='dark'] {
-  --co-color-primary-600: #60a5fa;
-  --co-color-neutral-0: #0a0a0a;
+  --co-color-primary-600: #769eff;
+  --co-color-neutral-900: #f2f2f2;
 }
 ```
 
@@ -75,7 +73,7 @@ No component CSS needs to change — the same `var(--co-color-primary-600)` reso
 
 - All default semantic pairings satisfy WCAG 2.1 AA contrast requirements.
 - Never rely on color alone to communicate meaning — always pair color with text, icons, or patterns.
-- Use the `--co-color-focus-ring` token (`Blue 500` at 50 % opacity) for keyboard-focus outlines.
+- Use the `--co-color-focus-ring` token for keyboard-focus outlines.
 
 ## Related
 
