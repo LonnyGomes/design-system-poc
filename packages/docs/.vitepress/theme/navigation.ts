@@ -20,7 +20,7 @@ export const navigation: NavGroup[] = [
   },
   {
     label: 'Get Started',
-    icon: 'rocket',
+    icon: 'rocket-launch',
     defaultOpen: false,
     items: [
       { text: 'Overview', link: '/getting-started/' },
@@ -49,7 +49,7 @@ export const navigation: NavGroup[] = [
   },
   {
     label: 'Components',
-    icon: 'components',
+    icon: 'widgets',
     defaultOpen: true,
     items: [
       { text: 'Button', link: '/components/button' },
@@ -58,7 +58,7 @@ export const navigation: NavGroup[] = [
   },
   {
     label: 'Patterns',
-    icon: 'patterns',
+    icon: 'grid-view',
     defaultOpen: false,
     items: [
       { text: 'Overview', link: '/patterns/' },
@@ -71,7 +71,7 @@ export const navigation: NavGroup[] = [
   },
   {
     label: 'Guidance',
-    icon: 'guidance',
+    icon: 'info',
     defaultOpen: false,
     items: [
       { text: 'Overview', link: '/guidance/' },
@@ -83,7 +83,7 @@ export const navigation: NavGroup[] = [
   },
   {
     label: 'Contributing',
-    icon: 'contributing',
+    icon: 'person-add',
     defaultOpen: false,
     items: [
       { text: 'Overview', link: '/contributing/' },
@@ -97,7 +97,7 @@ export const navigation: NavGroup[] = [
   },
   {
     label: 'Changelog',
-    icon: 'changelog',
+    icon: 'description',
     defaultOpen: false,
     items: [{ text: 'Release Notes', link: '/changelog' }],
   },
