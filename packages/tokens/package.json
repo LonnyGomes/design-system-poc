@@ -19,7 +19,12 @@
     "./css/fonts": "./dist/css/fonts.css",
     "./css/utilities": "./dist/css/utilities.css",
     "./scss": "./dist/scss/_tokens.scss",
-    "./json": "./dist/tokens.json"
+    "./json": "./dist/tokens.json",
+    "./tailwind": {
+      "import": "./dist/tailwind/preset.js",
+      "types": "./dist/tailwind/preset.d.ts"
+    },
+    "./tailwind/css": "./dist/tailwind/theme.css"
   },
   "scripts": {
     "build": "node config.js",

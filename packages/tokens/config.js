@@ -2,6 +2,7 @@ import StyleDictionary from 'style-dictionary';
 import { copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { generateTailwindPreset } from './src/generate-tailwind-preset.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -124,6 +125,10 @@ async function build() {
     })
     .filter(Boolean);
   writeFileSync(join(__dirname, 'dist/js/tokens.d.ts'), dtsLines.join('\n') + '\n');
+
+  // Generate Tailwind CSS preset
+  console.log('Generating Tailwind preset...');
+  await generateTailwindPreset(__dirname);
 
   console.log('Token build complete!');
 }
