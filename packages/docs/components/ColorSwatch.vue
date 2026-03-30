@@ -1,112 +1,149 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+export interface ColorPalette {
+  name: string;
+  shades: { scale: string; value: string }[];
+}
+
 defineProps<{
-  colors: {
-    scale: string;
-    blue: string;
-    gray: string;
-    green: string;
-    red: string;
-    amber: string;
-  }[];
+  palettes: ColorPalette[];
 }>();
+
+const copiedKey = ref<string | null>(null);
+
+async function copyHex(palette: string, scale: string, value: string) {
+  const key = `${palette}-${scale}`;
+  await navigator.clipboard.writeText(value);
+  copiedKey.value = key;
+  setTimeout(() => {
+    if (copiedKey.value === key) copiedKey.value = null;
+  }, 1500);
+}
 </script>
 
 <template>
-  <div class="swatch-table">
-    <div class="swatch-header">
-      <span class="swatch-col swatch-col-scale">Scale</span>
-      <span class="swatch-col">Blue</span>
-      <span class="swatch-col">Gray</span>
-      <span class="swatch-col">Green</span>
-      <span class="swatch-col">Red</span>
-      <span class="swatch-col">Amber</span>
-    </div>
-    <div v-for="row in colors" :key="row.scale" class="swatch-row">
-      <span class="swatch-col swatch-col-scale">{{ row.scale }}</span>
-      <span v-for="key in ['blue', 'gray', 'green', 'red', 'amber']" :key="key" class="swatch-col">
-        <span class="swatch-chip" :style="{ background: (row as any)[key] }"></span>
-        <code class="swatch-hex">{{ (row as any)[key] }}</code>
-      </span>
+  <div class="swatch-grid">
+    <p class="swatch-hint">Click any swatch to copy its hex value.</p>
+    <div v-for="palette in palettes" :key="palette.name" class="palette">
+      <div class="palette-label">{{ palette.name }}</div>
+      <div class="palette-chips">
+        <div v-for="shade in palette.shades" :key="shade.scale" class="chip-cell">
+          <button
+            class="chip"
+            :class="{ copied: copiedKey === `${palette.name}-${shade.scale}` }"
+            :style="{ background: shade.value }"
+            :title="`Copy ${shade.value}`"
+            @click="copyHex(palette.name, shade.scale, shade.value)"
+          >
+            <svg
+              v-if="copiedKey === `${palette.name}-${shade.scale}`"
+              class="chip-icon"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3.5 8.5 6.5 11.5 12.5 4.5" />
+            </svg>
+          </button>
+          <span class="chip-scale">{{ shade.scale }}</span>
+          <code class="chip-hex">{{ shade.value }}</code>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.swatch-table {
-  border: 1px solid var(--co-border, rgba(99, 155, 255, 0.12));
-  border-radius: 12px;
-  overflow: hidden;
+.swatch-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   margin: 16px 0 24px;
-  font-size: 0.84rem;
 }
 
-.swatch-header {
-  display: grid;
-  grid-template-columns: 60px repeat(5, 1fr);
-  gap: 0;
-  padding: 10px 16px;
-  background: var(--co-surface, rgba(15, 29, 50, 0.5));
-  border-bottom: 1px solid var(--co-border-strong, rgba(99, 155, 255, 0.2));
+.swatch-hint {
+  font-size: 0.8rem;
+  color: var(--co-text-muted, #6d84a3);
+  margin: 0;
+}
+
+.palette {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.palette-label {
+  font-size: 0.82rem;
   font-weight: 600;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
   color: var(--co-text-secondary, #9badc6);
+  text-transform: capitalize;
 }
 
-.swatch-row {
-  display: grid;
-  grid-template-columns: 60px repeat(5, 1fr);
-  gap: 0;
-  padding: 8px 16px;
-  border-bottom: 1px solid var(--co-border, rgba(99, 155, 255, 0.08));
+.palette-chips {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px;
+}
+
+.chip-cell {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 4px;
+  min-width: 56px;
+  flex: 1;
 }
 
-.swatch-row:last-child {
-  border-bottom: none;
-}
-
-.swatch-col {
+.chip {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 0;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease;
 }
 
-.swatch-col-scale {
+.chip:hover {
+  transform: scale(1.05);
+}
+
+.chip:active {
+  transform: scale(0.98);
+}
+
+.chip-icon {
+  width: 16px;
+  height: 16px;
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+.chip-scale {
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--co-text-muted, #6d84a3);
   font-variant-numeric: tabular-nums;
 }
 
-.swatch-chip {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  flex-shrink: 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.swatch-hex {
+.chip-hex {
   font-family: var(--co-font-mono, monospace);
-  font-size: 0.75rem;
-  color: var(--co-text-secondary, #9badc6);
+  font-size: 0.62rem;
+  color: var(--co-text-muted, #6d84a3);
   background: none;
   padding: 0;
   border: none;
-}
-
-@media (max-width: 768px) {
-  .swatch-table {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .swatch-header,
-  .swatch-row {
-    min-width: 600px;
-  }
+  opacity: 0.8;
 }
 </style>
