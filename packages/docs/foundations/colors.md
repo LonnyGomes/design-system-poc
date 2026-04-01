@@ -22,14 +22,16 @@ Additional primitives available for illustrations, data visualization, status in
 
 Semantic tokens abstract primitives so your UI adapts to theme changes without touching component code.
 
-| Token                    | Primitive   | Light mode value | Dark mode value | Usage                       |
-| ------------------------ | ----------- | ---------------- | --------------- | --------------------------- |
-| `--co-color-primary-600` | Blue 600    | `#154bcc`        | Blue 300        | Primary actions, links      |
-| `--co-color-neutral-100` | Neutral 100 | `#f2f2f2`        | Neutral 800     | Subtle backgrounds          |
-| `--co-color-neutral-900` | Neutral 900 | `#1e1f21`        | Neutral 50      | Body text                   |
-| `--co-color-danger-600`  | Red 600     | `#a61b12`        | Red 300         | Destructive actions, errors |
-| `--co-color-success-600` | Green 600   | `#16652a`        | Green 300       | Success states              |
-| `--co-color-warning-500` | Orange 500  | `#f8a01c`        | Orange 400      | Warning indicators          |
+| Token                            | Primitive   | Light mode value | Dark mode value | Usage                       |
+| -------------------------------- | ----------- | ---------------- | --------------- | --------------------------- |
+| `--co-color-primary-base`        | Blue 600    | `#154bcc`        | Blue 400        | Primary actions, links      |
+| `--co-color-surface-raised`      | Neutral 50  | `#fcfcfc`        | Neutral 900     | Subtle backgrounds          |
+| `--co-color-text-default`        | Neutral 900 | `#1e1f21`        | Neutral 50      | Body text                   |
+| `--co-color-danger-base`         | Red 600     | `#a61b12`        | Red 400         | Destructive actions, errors |
+| `--co-color-success-base`        | Green 600   | `#16652a`        | Green 400       | Success states              |
+| `--co-color-warning-base`        | Orange 600  | `#c78017`        | Orange 400      | Warning indicators          |
+| `--co-color-interactive-default` | Blue 600    | `#154bcc`        | Blue 500        | Button/link backgrounds     |
+| `--co-color-interactive-hover`   | Blue 700    | `#103899`        | Blue 400        | Hover states                |
 
 ## Usage in CSS
 
@@ -37,14 +39,14 @@ Reference tokens with `var()`:
 
 ```css
 .co-button--primary {
-  background-color: var(--co-color-primary-600);
-  color: var(--co-color-foreground-on-primary);
+  background-color: var(--co-color-interactive-default);
+  color: var(--co-color-text-on-primary);
 }
 
 .co-alert--danger {
-  background-color: var(--co-color-danger-50);
-  border-left: 4px solid var(--co-color-danger-600);
-  color: var(--co-color-danger-900);
+  background-color: var(--co-color-feedback-danger-bg);
+  border-left: 4px solid var(--co-color-danger-base);
+  color: var(--co-color-feedback-danger-text);
 }
 ```
 
@@ -55,17 +57,17 @@ Cobalt ships two token layers. The default layer uses light-mode values. When th
 ```css
 /* Automatically provided by @cobalt/tokens */
 :root {
-  --co-color-primary-600: #154bcc;
-  --co-color-neutral-900: #1e1f21;
+  --co-color-primary-base: #154bcc;
+  --co-color-text-default: #1e1f21;
 }
 
 [data-theme='dark'] {
-  --co-color-primary-600: #769eff;
-  --co-color-neutral-900: #f2f2f2;
+  --co-color-primary-base: #487eff;
+  --co-color-text-default: #fcfcfc;
 }
 ```
 
-No component CSS needs to change — the same `var(--co-color-primary-600)` resolves to the correct value in either mode.
+No component CSS needs to change — the same `var(--co-color-primary-base)` resolves to the correct value in either mode.
 
 > **Tip:** Always verify that foreground/background pairings meet a minimum contrast ratio of **4.5:1** for normal text and **3:1** for large text, as required by WCAG 2.1 AA.
 

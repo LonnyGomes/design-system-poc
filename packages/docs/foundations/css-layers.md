@@ -65,9 +65,8 @@ Need to change a token value for your brand? Place your overrides in `co.overrid
 ```css
 @layer co.overrides {
   :root {
-    --co-color-primary-500: #8b5cf6;
-    --co-color-primary-600: #7c3aed;
-    --co-radius-md: 8px;
+    --co-color-primary-base: #8b5cf6;
+    --co-shape-radius-md: 8px;
   }
 }
 ```

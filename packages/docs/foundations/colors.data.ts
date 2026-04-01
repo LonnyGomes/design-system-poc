@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const colorTokensPath = path.resolve(__dirname, '../../tokens/src/global/color.json');
+const colorTokensPath = path.resolve(__dirname, '../../tokens/tokens/color.primitive.json');
 
 export interface ColorShade {
   scale: string;
@@ -28,7 +28,7 @@ function capitalize(s: string): string {
 }
 
 export default {
-  watch: ['../../tokens/src/global/color.json'],
+  watch: ['../../tokens/tokens/color.primitive.json'],
   load(): ColorsData {
     const raw = JSON.parse(fs.readFileSync(colorTokensPath, 'utf-8'));
     const primitives = raw.co.color.primitive;

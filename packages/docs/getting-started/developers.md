@@ -202,18 +202,18 @@ Import `global.css` to make all tokens available as CSS custom properties on `:r
 ```css
 .card {
   background: var(--co-color-surface-default);
-  padding: var(--co-spacing-lg);
-  border-radius: var(--co-radius-md);
+  padding: var(--co-space-lg);
+  border-radius: var(--co-shape-radius-md);
 }
 ```
 
-| Category   | Example Token             | Default Value                |
-| ---------- | ------------------------- | ---------------------------- |
-| Color      | `--co-color-primary-base` | `#0057FF`                    |
-| Spacing    | `--co-spacing-md`         | `16px`                       |
-| Typography | `--co-font-size-body`     | `14px`                       |
-| Radius     | `--co-radius-md`          | `8px`                        |
-| Shadow     | `--co-shadow-md`          | `0 4px 12px rgba(0,0,0,0.1)` |
+| Category   | Example Token              | Default Value                |
+| ---------- | -------------------------- | ---------------------------- |
+| Color      | `--co-color-primary-base`  | `#0057FF`                    |
+| Spacing    | `--co-space-md`            | `16px`                       |
+| Typography | `--co-font-size-body`      | `14px`                       |
+| Radius     | `--co-shape-radius-md`     | `8px`                        |
+| Shadow     | `--co-elevation-shadow-md` | `0 4px 12px rgba(0,0,0,0.1)` |
 
 Tokens are also available as JavaScript exports:
 

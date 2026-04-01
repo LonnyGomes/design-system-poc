@@ -36,12 +36,12 @@ Set the `fill` boolean property to render the filled version of any icon. Use fi
 </div>
 </ClientOnly>
 
-| Size | Token          | Pixels | Typical use                        |
-| ---- | -------------- | ------ | ---------------------------------- |
-| `xs` | `--co-icon-xs` | 16 px  | Inline indicators, badges, tags    |
-| `sm` | `--co-icon-sm` | 20 px  | Inside buttons, form controls      |
-| `md` | `--co-icon-md` | 24 px  | Standalone icons, navigation items |
-| `lg` | `--co-icon-lg` | 32 px  | Empty states, feature highlights   |
+| Size | Token                 | Pixels | Typical use                        |
+| ---- | --------------------- | ------ | ---------------------------------- |
+| `xs` | `--co-sizing-icon-xs` | 16 px  | Inline indicators, badges, tags    |
+| `sm` | `--co-sizing-icon-sm` | 20 px  | Inside buttons, form controls      |
+| `md` | `--co-sizing-icon-md` | 24 px  | Standalone icons, navigation items |
+| `lg` | `--co-sizing-icon-lg` | 32 px  | Empty states, feature highlights   |
 
 ## Usage
 

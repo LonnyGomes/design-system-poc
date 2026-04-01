@@ -50,29 +50,44 @@ Tokens live in `packages/tokens/` and are built to multiple formats:
 
 All CSS tokens use the `--co-` prefix. In JSON/JS they use `Co` prefix in camelCase.
 
-**Categories:** color, spacing, radius, shadow, font, z-index, transition, breakpoint.
+**Categories:** color, space, shape, elevation, font, motion, sizing, opacity, breakpoint.
 
-**Semantic layers:**
+**Three-tier architecture:**
 
-- **Primitive:** `--co-color-primitive-blue-500` — raw palette values
-- **Semantic:** `--co-color-primary-500`, `--co-color-danger-600` — role-based aliases
-- **Contextual:** `--co-color-background-default`, `--co-color-foreground-muted` — usage-specific
+- **Primitive:** `--co-color-primitive-blue-500` — raw palette values (avoid direct use)
+- **Semantic:** `--co-color-primary-base`, `--co-color-danger-dark` — 5 functional variants per role (base, light, dark, subtle, contrast)
+- **Contextual:** `--co-color-surface-default`, `--co-color-text-secondary`, `--co-color-interactive-hover` — usage-specific
 
-When writing CSS, always prefer semantic/contextual tokens over primitives:
+**Token categories and patterns:**
+
+| Category  | Pattern                                            | Examples                                                     |
+| --------- | -------------------------------------------------- | ------------------------------------------------------------ |
+| Color     | `--co-color-{group}-{variant}`                     | `--co-color-surface-default`, `--co-color-interactive-hover` |
+| Space     | `--co-space-{scale}` or `--co-space-{role}-{size}` | `--co-space-4`, `--co-space-gap-md`, `--co-space-inset-lg`   |
+| Shape     | `--co-shape-{property}-{size}`                     | `--co-shape-radius-md`, `--co-shape-border-width-thin`       |
+| Elevation | `--co-elevation-{type}-{size}`                     | `--co-elevation-shadow-lg`, `--co-elevation-z-modal`         |
+| Font      | `--co-font-{property}-{value}`                     | `--co-font-size-md`, `--co-font-weight-semibold`             |
+| Motion    | `--co-motion-{property}-{value}`                   | `--co-motion-duration-fast`, `--co-motion-easing-default`    |
+| Sizing    | `--co-sizing-{element}-{size}`                     | `--co-sizing-icon-md`                                        |
+| Opacity   | `--co-opacity-{role}`                              | `--co-opacity-disabled`, `--co-opacity-overlay`              |
+
+When writing CSS, always prefer contextual/semantic tokens over primitives:
 
 ```css
-/* Good */
-background: var(--co-color-background-default);
-color: var(--co-color-foreground-default);
-padding: var(--co-spacing-4);
-border-radius: var(--co-radius-md);
+/* Good — self-documenting, theme-safe */
+background: var(--co-color-interactive-default);
+color: var(--co-color-text-on-primary);
+padding: var(--co-space-4);
+border-radius: var(--co-shape-radius-md);
+box-shadow: var(--co-elevation-shadow-md);
+transition: background var(--co-motion-duration-fast) var(--co-motion-easing-default);
 
-/* Avoid */
-background: #ffffff;
-color: var(--co-color-primitive-gray-900);
+/* Avoid — hard-coded values or primitives */
+background: #154bcc;
+color: var(--co-color-primitive-neutral-900);
 ```
 
-For the full token list, read `packages/tokens/dist/tokens.json` (174 tokens).
+For the full token list, read `packages/tokens/dist/tokens.json`.
 
 ## Components
 
@@ -189,7 +204,7 @@ All global CSS output uses `@layer` to provide a structured cascade hierarchy:
 ```css
 @layer co.overrides {
   :root {
-    --co-color-primary-500: #8b5cf6;
+    --co-color-primary-base: #8b5cf6;
   }
 }
 ```
@@ -264,11 +279,11 @@ Validated by commitlint hook.
 
 ## Key Files for Detailed Lookups
 
-| What                         | Where                                            |
-| ---------------------------- | ------------------------------------------------ |
-| Full component API manifest  | `packages/components/custom-elements.json`       |
-| All 174 design tokens        | `packages/tokens/dist/tokens.json`               |
-| Component docs with examples | `packages/docs/components/*.md`                  |
-| Coding standards             | `packages/docs/contributing/coding-standards.md` |
-| Developer setup guide        | `packages/docs/getting-started/developers.md`    |
-| Token source definitions     | `packages/tokens/tokens/*.json`                  |
+| What                         | Where                                                                            |
+| ---------------------------- | -------------------------------------------------------------------------------- |
+| Full component API manifest  | `packages/components/custom-elements.json`                                       |
+| All 174 design tokens        | `packages/tokens/dist/tokens.json`                                               |
+| Component docs with examples | `packages/docs/components/*.md`                                                  |
+| Coding standards             | `packages/docs/contributing/coding-standards.md`                                 |
+| Developer setup guide        | `packages/docs/getting-started/developers.md`                                    |
+| Token source definitions     | `packages/tokens/tokens/*.json` (core, color.primitive, color.light, color.dark) |

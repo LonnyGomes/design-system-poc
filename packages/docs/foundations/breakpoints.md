@@ -22,7 +22,7 @@ Cobalt defines five responsive breakpoints that align with common device categor
 .co-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--co-spacing-16);
+  gap: var(--co-space-16);
 }
 
 @media (min-width: 640px) {
@@ -34,7 +34,7 @@ Cobalt defines five responsive breakpoints that align with common device categor
 @media (min-width: 1024px) {
   .co-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--co-spacing-24);
+    gap: var(--co-space-24);
   }
 }
 
@@ -97,13 +97,13 @@ function Navigation() {
 
 ## Design guidelines
 
-| Guideline                 | Detail                                                                         |
-| ------------------------- | ------------------------------------------------------------------------------ |
-| Mobile-first              | Write base styles for the narrowest screen, then add `min-width` queries.      |
-| Avoid orientation queries | Use width breakpoints instead — they cover more real-world cases.              |
-| Test at edges             | Verify layouts at exactly 640, 768, 1024, 1280, and 1536 px.                   |
-| Combine with spacing      | Increase `--co-spacing-*` values at wider breakpoints for comfortable density. |
-| Don't hide content        | Responsive design should re-arrange content, not remove it entirely.           |
+| Guideline                 | Detail                                                                       |
+| ------------------------- | ---------------------------------------------------------------------------- |
+| Mobile-first              | Write base styles for the narrowest screen, then add `min-width` queries.    |
+| Avoid orientation queries | Use width breakpoints instead — they cover more real-world cases.            |
+| Test at edges             | Verify layouts at exactly 640, 768, 1024, 1280, and 1536 px.                 |
+| Combine with spacing      | Increase `--co-space-*` values at wider breakpoints for comfortable density. |
+| Don't hide content        | Responsive design should re-arrange content, not remove it entirely.         |
 
 ## Best practices
 

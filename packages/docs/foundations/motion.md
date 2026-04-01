@@ -28,15 +28,15 @@ Motion makes interfaces feel responsive and alive. The Cobalt motion system defi
 
 ```css
 .co-button {
-  background: var(--co-color-primary-600);
+  background: var(--co-color-interactive-default);
   transition:
     background-color var(--co-duration-normal) var(--co-ease),
     box-shadow var(--co-duration-normal) var(--co-ease);
 }
 
 .co-button:hover {
-  background: var(--co-color-primary-700);
-  box-shadow: var(--co-shadow-md);
+  background: var(--co-color-interactive-hover);
+  box-shadow: var(--co-elevation-shadow-md);
 }
 ```
 

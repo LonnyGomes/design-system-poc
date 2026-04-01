@@ -83,40 +83,41 @@ The preset maps every Cobalt token category to standard Tailwind theme keys:
 
 ### Colors
 
-| Tailwind class                             | Cobalt token                                  |
-| ------------------------------------------ | --------------------------------------------- |
-| `bg-primary-500`, `text-primary-500`       | `var(--co-color-primary-500)`                 |
-| `bg-neutral-200`                           | `var(--co-color-neutral-200)`                 |
-| `bg-danger-500`, `text-danger-500`         | `var(--co-color-danger-500)`                  |
-| `bg-success-500`                           | `var(--co-color-success-500)`                 |
-| `bg-warning-500`                           | `var(--co-color-warning-500)`                 |
-| `bg-background`, `bg-background-subtle`    | `var(--co-color-background-{default,subtle})` |
-| `text-foreground`, `text-foreground-muted` | `var(--co-color-foreground-{default,muted})`  |
-| `border-border`, `border-border-strong`    | `var(--co-color-border-{default,strong})`     |
-| `bg-primitive-blue-500`                    | `var(--co-color-primitive-blue-500)`          |
+| Tailwind class                           | Cobalt token                                  |
+| ---------------------------------------- | --------------------------------------------- |
+| `bg-primary`, `text-primary`             | `var(--co-color-primary-base)`                |
+| `bg-neutral-light`                       | `var(--co-color-neutral-light)`               |
+| `bg-danger`, `text-danger`               | `var(--co-color-danger-base)`                 |
+| `bg-success`                             | `var(--co-color-success-base)`                |
+| `bg-warning`                             | `var(--co-color-warning-base)`                |
+| `bg-surface`, `bg-surface-raised`        | `var(--co-color-surface-{default,raised})`    |
+| `text-text`, `text-text-secondary`       | `var(--co-color-text-{default,secondary})`    |
+| `border-border`, `border-border-strong`  | `var(--co-color-border-{default,strong})`     |
+| `bg-interactive`, `bg-interactive-hover` | `var(--co-color-interactive-{default,hover})` |
+| `bg-primitive-blue-500`                  | `var(--co-color-primitive-blue-500)`          |
 
-Color scales (primary, neutral, danger, success, warning) use shade `500` as the `DEFAULT`, so `bg-primary` is equivalent to `bg-primary-500`.
+Color roles (primary, neutral, danger, success, warning) use variant `base` as the `DEFAULT`, so `bg-primary` is equivalent to `bg-primary-base`.
 
 ### Spacing
 
-| Tailwind class       | Cobalt token                                         |
-| -------------------- | ---------------------------------------------------- |
-| `p-0` through `p-24` | `var(--co-spacing-0)` through `var(--co-spacing-24)` |
-| `m-4`, `gap-6`, etc. | Same spacing scale                                   |
+| Tailwind class       | Cobalt token                                     |
+| -------------------- | ------------------------------------------------ |
+| `p-0` through `p-24` | `var(--co-space-0)` through `var(--co-space-24)` |
+| `m-4`, `gap-6`, etc. | Same spacing scale                               |
 
 Available steps: 0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, px.
 
 ### Border Radius
 
-| Tailwind class      | Cobalt token            |
-| ------------------- | ----------------------- |
-| `rounded-none`      | `var(--co-radius-none)` |
-| `rounded-sm`        | `var(--co-radius-sm)`   |
-| `rounded` (default) | `var(--co-radius-md)`   |
-| `rounded-lg`        | `var(--co-radius-lg)`   |
-| `rounded-xl`        | `var(--co-radius-xl)`   |
-| `rounded-2xl`       | `var(--co-radius-2xl)`  |
-| `rounded-full`      | `var(--co-radius-full)` |
+| Tailwind class      | Cobalt token                  |
+| ------------------- | ----------------------------- |
+| `rounded-none`      | `var(--co-shape-radius-none)` |
+| `rounded-sm`        | `var(--co-shape-radius-sm)`   |
+| `rounded` (default) | `var(--co-shape-radius-md)`   |
+| `rounded-lg`        | `var(--co-shape-radius-lg)`   |
+| `rounded-xl`        | `var(--co-shape-radius-xl)`   |
+| `rounded-2xl`       | `var(--co-shape-radius-2xl)`  |
+| `rounded-full`      | `var(--co-shape-radius-full)` |
 
 ### Typography
 
@@ -134,37 +135,37 @@ Note: Cobalt's `md` font size maps to Tailwind's `base` (`text-base`), and Cobal
 
 ### Shadows
 
-| Tailwind class                  | Cobalt token          |
-| ------------------------------- | --------------------- |
-| `shadow-sm`                     | `var(--co-shadow-sm)` |
-| `shadow` (default), `shadow-md` | `var(--co-shadow-md)` |
-| `shadow-lg`                     | `var(--co-shadow-lg)` |
-| `shadow-xl`                     | `var(--co-shadow-xl)` |
-| `shadow-none`                   | `none`                |
+| Tailwind class                  | Cobalt token                    |
+| ------------------------------- | ------------------------------- |
+| `shadow-sm`                     | `var(--co-elevation-shadow-sm)` |
+| `shadow` (default), `shadow-md` | `var(--co-elevation-shadow-md)` |
+| `shadow-lg`                     | `var(--co-elevation-shadow-lg)` |
+| `shadow-xl`                     | `var(--co-elevation-shadow-xl)` |
+| `shadow-none`                   | `none`                          |
 
 ### Z-Index
 
-| Tailwind class     | Cobalt token                       |
-| ------------------ | ---------------------------------- |
-| `z-dropdown`       | `var(--co-z-index-dropdown)`       |
-| `z-sticky`         | `var(--co-z-index-sticky)`         |
-| `z-fixed`          | `var(--co-z-index-fixed)`          |
-| `z-modal-backdrop` | `var(--co-z-index-modal-backdrop)` |
-| `z-modal`          | `var(--co-z-index-modal)`          |
-| `z-popover`        | `var(--co-z-index-popover)`        |
-| `z-tooltip`        | `var(--co-z-index-tooltip)`        |
+| Tailwind class     | Cobalt token                           |
+| ------------------ | -------------------------------------- |
+| `z-dropdown`       | `var(--co-elevation-z-dropdown)`       |
+| `z-sticky`         | `var(--co-elevation-z-sticky)`         |
+| `z-fixed`          | `var(--co-elevation-z-fixed)`          |
+| `z-modal-backdrop` | `var(--co-elevation-z-modal-backdrop)` |
+| `z-modal`          | `var(--co-elevation-z-modal)`          |
+| `z-popover`        | `var(--co-elevation-z-popover)`        |
+| `z-tooltip`        | `var(--co-elevation-z-tooltip)`        |
 
 ### Transitions
 
-| Tailwind class                          | Cobalt token                           |
-| --------------------------------------- | -------------------------------------- |
-| `duration-fast`                         | `var(--co-transition-duration-fast)`   |
-| `duration` (default), `duration-normal` | `var(--co-transition-duration-normal)` |
-| `duration-slow`                         | `var(--co-transition-duration-slow)`   |
-| `ease` (default)                        | `var(--co-transition-easing-default)`  |
-| `ease-in`                               | `var(--co-transition-easing-in)`       |
-| `ease-out`                              | `var(--co-transition-easing-out)`      |
-| `ease-in-out`                           | `var(--co-transition-easing-in-out)`   |
+| Tailwind class                          | Cobalt token                       |
+| --------------------------------------- | ---------------------------------- |
+| `duration-fast`                         | `var(--co-motion-duration-fast)`   |
+| `duration` (default), `duration-normal` | `var(--co-motion-duration-normal)` |
+| `duration-slow`                         | `var(--co-motion-duration-slow)`   |
+| `ease` (default)                        | `var(--co-motion-easing-default)`  |
+| `ease-in`                               | `var(--co-motion-easing-in)`       |
+| `ease-out`                              | `var(--co-motion-easing-out)`      |
+| `ease-in-out`                           | `var(--co-motion-easing-in-out)`   |
 
 ### Breakpoints
 

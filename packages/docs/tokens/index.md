@@ -27,19 +27,20 @@ import { CoColorPrimary600 } from '@cobalt/tokens';
 
 ### Primary
 
-| Token                    | Value                                                                                                                                      |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--co-color-primary-50`  | <span style="display:inline-block;width:16px;height:16px;background:#eff6ff;border:1px solid #ccc;vertical-align:middle"></span> `#eff6ff` |
-| `--co-color-primary-500` | <span style="display:inline-block;width:16px;height:16px;background:#3b82f6;border:1px solid #ccc;vertical-align:middle"></span> `#3b82f6` |
-| `--co-color-primary-600` | <span style="display:inline-block;width:16px;height:16px;background:#2563eb;border:1px solid #ccc;vertical-align:middle"></span> `#2563eb` |
-| `--co-color-primary-900` | <span style="display:inline-block;width:16px;height:16px;background:#1e3a8a;border:1px solid #ccc;vertical-align:middle"></span> `#1e3a8a` |
+| Token                         | Value                                                                                                                                      |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--co-color-primary-subtle`   | <span style="display:inline-block;width:16px;height:16px;background:#e8efff;border:1px solid #ccc;vertical-align:middle"></span> `#e8efff` |
+| `--co-color-primary-light`    | <span style="display:inline-block;width:16px;height:16px;background:#a3bfff;border:1px solid #ccc;vertical-align:middle"></span> `#a3bfff` |
+| `--co-color-primary-base`     | <span style="display:inline-block;width:16px;height:16px;background:#154bcc;border:1px solid #ccc;vertical-align:middle"></span> `#154bcc` |
+| `--co-color-primary-dark`     | <span style="display:inline-block;width:16px;height:16px;background:#0a2666;border:1px solid #ccc;vertical-align:middle"></span> `#0a2666` |
+| `--co-color-primary-contrast` | <span style="display:inline-block;width:16px;height:16px;background:#ffffff;border:1px solid #ccc;vertical-align:middle"></span> `#ffffff` |
 
 ## Spacing Scale
 
-| Token            | Value           |
-| ---------------- | --------------- |
-| `--co-spacing-1` | `0.25rem` (4px) |
-| `--co-spacing-2` | `0.5rem` (8px)  |
-| `--co-spacing-4` | `1rem` (16px)   |
-| `--co-spacing-6` | `1.5rem` (24px) |
-| `--co-spacing-8` | `2rem` (32px)   |
+| Token          | Value           |
+| -------------- | --------------- |
+| `--co-space-1` | `0.25rem` (4px) |
+| `--co-space-2` | `0.5rem` (8px)  |
+| `--co-space-4` | `1rem` (16px)   |
+| `--co-space-6` | `1.5rem` (24px) |
+| `--co-space-8` | `2rem` (32px)   |

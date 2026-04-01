@@ -1,7 +1,7 @@
 /**
  * Generates Tailwind CSS v3 preset and v4 theme CSS from Cobalt design tokens.
  *
- * Reads dist/tokens.json (built by Style Dictionary) and writes:
+ * Reads dist/css/tokens.css (built by Style Dictionary) and writes:
  *   - dist/tailwind/preset.js   (Tailwind v3 preset, ES module)
  *   - dist/tailwind/preset.d.ts (TypeScript declarations)
  *   - dist/tailwind/theme.css   (Tailwind v4 @theme block)
@@ -12,7 +12,7 @@ import { join } from 'path';
 
 /**
  * Read the built CSS tokens file and extract all CSS variable declarations.
- * Returns a map of variable name → raw value (e.g. "--co-breakpoint-sm" → "640px").
+ * Returns a map of variable name → raw value (e.g. "--co-space-4" → "1rem").
  */
 function loadTokens(rootDir) {
   const css = readFileSync(join(rootDir, 'dist/css/tokens.css'), 'utf-8');
@@ -32,33 +32,81 @@ function buildMappings(tokens) {
   // ── Colors ──────────────────────────────────────────────────────────────────
   const colors = {};
 
-  // Semantic color scales: primary, neutral, danger, success, warning
+  // Semantic color roles: 5 functional variants per role
   for (const role of ['primary', 'neutral', 'danger', 'success', 'warning']) {
     colors[role] = {};
-    for (const shade of ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900']) {
-      const varName = `--co-color-${role}-${shade}`;
+    for (const variant of ['base', 'light', 'dark', 'subtle', 'contrast']) {
+      const varName = `--co-color-${role}-${variant}`;
       if (varName in tokens) {
-        colors[role][shade] = `var(${varName})`;
-        if (shade === '500') colors[role].DEFAULT = `var(${varName})`;
+        colors[role][variant] = `var(${varName})`;
+        if (variant === 'base') colors[role].DEFAULT = `var(${varName})`;
       }
     }
   }
 
-  // Contextual colors: background, foreground, border
-  const contextualGroups = {
-    background: { default: 'default', subtle: 'subtle', muted: 'muted' },
-    foreground: { default: 'default', muted: 'muted', 'on-primary': 'on-primary' },
-    border: { default: 'default', strong: 'strong' },
-  };
+  // Surface colors
+  colors.surface = {};
+  for (const variant of ['default', 'raised', 'sunken', 'overlay']) {
+    const varName = `--co-color-surface-${variant}`;
+    if (varName in tokens) {
+      colors.surface[variant] = `var(${varName})`;
+      if (variant === 'default') colors.surface.DEFAULT = `var(${varName})`;
+    }
+  }
 
-  for (const [group, variants] of Object.entries(contextualGroups)) {
-    colors[group] = {};
-    for (const [twKey, tokenKey] of Object.entries(variants)) {
-      const varName = `--co-color-${group}-${tokenKey}`;
-      if (varName in tokens) {
-        colors[group][twKey] = `var(${varName})`;
-        if (twKey === 'default') colors[group].DEFAULT = `var(${varName})`;
-      }
+  // Text colors
+  colors.text = {};
+  for (const variant of ['default', 'secondary', 'disabled', 'inverse', 'on-primary', 'link']) {
+    const varName = `--co-color-text-${variant}`;
+    if (varName in tokens) {
+      colors.text[variant] = `var(${varName})`;
+      if (variant === 'default') colors.text.DEFAULT = `var(${varName})`;
+    }
+  }
+
+  // Border colors
+  colors.border = {};
+  for (const variant of ['default', 'strong', 'subtle', 'focus']) {
+    const varName = `--co-color-border-${variant}`;
+    if (varName in tokens) {
+      colors.border[variant] = `var(${varName})`;
+      if (variant === 'default') colors.border.DEFAULT = `var(${varName})`;
+    }
+  }
+
+  // Interactive colors
+  colors.interactive = {};
+  for (const variant of [
+    'default',
+    'hover',
+    'active',
+    'disabled',
+    'subtle-hover',
+    'subtle-active',
+    'danger-default',
+    'danger-hover',
+    'danger-active',
+  ]) {
+    const varName = `--co-color-interactive-${variant}`;
+    if (varName in tokens) {
+      colors.interactive[variant] = `var(${varName})`;
+      if (variant === 'default') colors.interactive.DEFAULT = `var(${varName})`;
+    }
+  }
+
+  // Feedback colors
+  colors.feedback = {};
+  for (const variant of [
+    'danger-bg',
+    'danger-text',
+    'success-bg',
+    'success-text',
+    'warning-bg',
+    'warning-text',
+  ]) {
+    const varName = `--co-color-feedback-${variant}`;
+    if (varName in tokens) {
+      colors.feedback[variant] = `var(${varName})`;
     }
   }
 
@@ -110,22 +158,30 @@ function buildMappings(tokens) {
   // ── Spacing ─────────────────────────────────────────────────────────────────
   const spacing = {};
   for (const step of ['0', '1', '2', '3', '4', '5', '6', '8', '10', '12', '16', '20', '24']) {
-    const varName = `--co-spacing-${step}`;
+    const varName = `--co-space-${step}`;
     if (varName in tokens) {
       spacing[step] = `var(${varName})`;
     }
   }
   spacing.px = '1px';
 
+  // Semantic spacing aliases
+  for (const size of ['xs', 'sm', 'md', 'lg', 'xl']) {
+    const gapVar = `--co-space-gap-${size}`;
+    if (gapVar in tokens) spacing[`gap-${size}`] = `var(${gapVar})`;
+    const insetVar = `--co-space-inset-${size}`;
+    if (insetVar in tokens) spacing[`inset-${size}`] = `var(${insetVar})`;
+  }
+
   // ── Border Radius ───────────────────────────────────────────────────────────
   const borderRadius = {};
   for (const key of ['none', 'sm', 'md', 'lg', 'xl', '2xl', 'full']) {
-    const varName = `--co-radius-${key}`;
+    const varName = `--co-shape-radius-${key}`;
     if (varName in tokens) {
       borderRadius[key] = `var(${varName})`;
     }
   }
-  borderRadius.DEFAULT = 'var(--co-radius-md)';
+  borderRadius.DEFAULT = 'var(--co-shape-radius-md)';
 
   // ── Font Family ─────────────────────────────────────────────────────────────
   const fontFamily = {
@@ -166,39 +222,39 @@ function buildMappings(tokens) {
 
   // ── Box Shadow ──────────────────────────────────────────────────────────────
   const boxShadow = {
-    sm: 'var(--co-shadow-sm)',
-    DEFAULT: 'var(--co-shadow-md)',
-    md: 'var(--co-shadow-md)',
-    lg: 'var(--co-shadow-lg)',
-    xl: 'var(--co-shadow-xl)',
+    sm: 'var(--co-elevation-shadow-sm)',
+    DEFAULT: 'var(--co-elevation-shadow-md)',
+    md: 'var(--co-elevation-shadow-md)',
+    lg: 'var(--co-elevation-shadow-lg)',
+    xl: 'var(--co-elevation-shadow-xl)',
     none: 'none',
   };
 
   // ── Z-Index ─────────────────────────────────────────────────────────────────
   const zIndex = {
-    dropdown: 'var(--co-z-index-dropdown)',
-    sticky: 'var(--co-z-index-sticky)',
-    fixed: 'var(--co-z-index-fixed)',
-    'modal-backdrop': 'var(--co-z-index-modal-backdrop)',
-    modal: 'var(--co-z-index-modal)',
-    popover: 'var(--co-z-index-popover)',
-    tooltip: 'var(--co-z-index-tooltip)',
+    dropdown: 'var(--co-elevation-z-dropdown)',
+    sticky: 'var(--co-elevation-z-sticky)',
+    fixed: 'var(--co-elevation-z-fixed)',
+    'modal-backdrop': 'var(--co-elevation-z-modal-backdrop)',
+    modal: 'var(--co-elevation-z-modal)',
+    popover: 'var(--co-elevation-z-popover)',
+    tooltip: 'var(--co-elevation-z-tooltip)',
   };
 
   // ── Transition Duration ─────────────────────────────────────────────────────
   const transitionDuration = {
-    fast: 'var(--co-transition-duration-fast)',
-    DEFAULT: 'var(--co-transition-duration-normal)',
-    normal: 'var(--co-transition-duration-normal)',
-    slow: 'var(--co-transition-duration-slow)',
+    fast: 'var(--co-motion-duration-fast)',
+    DEFAULT: 'var(--co-motion-duration-normal)',
+    normal: 'var(--co-motion-duration-normal)',
+    slow: 'var(--co-motion-duration-slow)',
   };
 
   // ── Transition Timing Function ──────────────────────────────────────────────
   const transitionTimingFunction = {
-    DEFAULT: 'var(--co-transition-easing-default)',
-    in: 'var(--co-transition-easing-in)',
-    out: 'var(--co-transition-easing-out)',
-    'in-out': 'var(--co-transition-easing-in-out)',
+    DEFAULT: 'var(--co-motion-easing-default)',
+    in: 'var(--co-motion-easing-in)',
+    out: 'var(--co-motion-easing-out)',
+    'in-out': 'var(--co-motion-easing-in-out)',
   };
 
   // ── Breakpoints (raw values — var() not supported in @media) ────────────────
@@ -209,6 +265,13 @@ function buildMappings(tokens) {
       screens[bp] = tokens[varName];
     }
   }
+
+  // ── Opacity ─────────────────────────────────────────────────────────────────
+  const opacity = {
+    disabled: 'var(--co-opacity-disabled)',
+    overlay: 'var(--co-opacity-overlay)',
+    placeholder: 'var(--co-opacity-placeholder)',
+  };
 
   return {
     colors,
@@ -223,6 +286,7 @@ function buildMappings(tokens) {
     transitionDuration,
     transitionTimingFunction,
     screens,
+    opacity,
   };
 }
 
@@ -253,6 +317,7 @@ function generateV3Preset(mappings) {
     ['transitionDuration', mappings.transitionDuration],
     ['transitionTimingFunction', mappings.transitionTimingFunction],
     ['screens', mappings.screens],
+    ['opacity', mappings.opacity],
   ];
 
   for (const [key, value] of entries) {
@@ -419,6 +484,13 @@ function generateV4ThemeCSS(mappings) {
   lines.push('  /* Breakpoints */');
   for (const [key, value] of Object.entries(mappings.screens)) {
     lines.push(`  --breakpoint-${key}: ${value};`);
+  }
+
+  // Opacity
+  lines.push('');
+  lines.push('  /* Opacity */');
+  for (const [key, value] of Object.entries(mappings.opacity)) {
+    lines.push(`  --opacity-${key}: ${value};`);
   }
 
   lines.push('}');

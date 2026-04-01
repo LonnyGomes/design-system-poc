@@ -118,22 +118,22 @@ This means token values and theme overrides are resolved before utilities apply,
 
 ## Spacing
 
-All spacing utilities map to `--co-spacing-*` tokens, keeping values consistent with the design system's 4 px base unit.
+All spacing utilities map to `--co-space-*` tokens, keeping values consistent with the design system's 4 px base unit.
 
 ### Gap
 
-| Class       | Token             |
-| ----------- | ----------------- |
-| `co-gap-0`  | `--co-spacing-0`  |
-| `co-gap-1`  | `--co-spacing-1`  |
-| `co-gap-2`  | `--co-spacing-2`  |
-| `co-gap-3`  | `--co-spacing-3`  |
-| `co-gap-4`  | `--co-spacing-4`  |
-| `co-gap-5`  | `--co-spacing-5`  |
-| `co-gap-6`  | `--co-spacing-6`  |
-| `co-gap-8`  | `--co-spacing-8`  |
-| `co-gap-10` | `--co-spacing-10` |
-| `co-gap-12` | `--co-spacing-12` |
+| Class       | Token           |
+| ----------- | --------------- |
+| `co-gap-0`  | `--co-space-0`  |
+| `co-gap-1`  | `--co-space-1`  |
+| `co-gap-2`  | `--co-space-2`  |
+| `co-gap-3`  | `--co-space-3`  |
+| `co-gap-4`  | `--co-space-4`  |
+| `co-gap-5`  | `--co-space-5`  |
+| `co-gap-6`  | `--co-space-6`  |
+| `co-gap-8`  | `--co-space-8`  |
+| `co-gap-10` | `--co-space-10` |
+| `co-gap-12` | `--co-space-12` |
 
 ### Padding
 

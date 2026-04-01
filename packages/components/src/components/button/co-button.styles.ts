@@ -11,14 +11,14 @@ export const cobaltButtonStyles = css`
     font-size: var(--co-font-size-md);
     font-weight: var(--co-font-weight-medium);
     line-height: var(--co-font-line-height-tight);
-    border-radius: var(--co-radius-md);
-    border: 1px solid transparent;
+    border-radius: var(--co-shape-radius-md);
+    border: var(--co-shape-border-width-thin) solid transparent;
     cursor: pointer;
     transition:
-      background var(--co-transition-duration-fast) var(--co-transition-easing-default),
-      color var(--co-transition-duration-fast) var(--co-transition-easing-default),
-      border-color var(--co-transition-duration-fast) var(--co-transition-easing-default),
-      box-shadow var(--co-transition-duration-fast) var(--co-transition-easing-default);
+      background var(--co-motion-duration-fast) var(--co-motion-easing-default),
+      color var(--co-motion-duration-fast) var(--co-motion-easing-default),
+      border-color var(--co-motion-duration-fast) var(--co-motion-easing-default),
+      box-shadow var(--co-motion-duration-fast) var(--co-motion-easing-default);
   }
 
   /* Padding is on the inner element so external resets (e.g. * { padding: 0 })
@@ -27,8 +27,8 @@ export const cobaltButtonStyles = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--co-spacing-2);
-    padding: var(--co-spacing-2) var(--co-spacing-4);
+    gap: var(--co-space-2);
+    padding: var(--co-space-2) var(--co-space-4);
   }
 
   /* ── Sizes ── */
@@ -36,78 +36,78 @@ export const cobaltButtonStyles = css`
     font-size: var(--co-font-size-sm);
   }
   :host([size='sm']) .button {
-    padding: var(--co-spacing-1) var(--co-spacing-3);
+    padding: var(--co-space-1) var(--co-space-3);
   }
 
   :host([size='lg']) {
     font-size: var(--co-font-size-lg);
   }
   :host([size='lg']) .button {
-    padding: var(--co-spacing-3) var(--co-spacing-6);
+    padding: var(--co-space-3) var(--co-space-6);
   }
 
   /* ── Primary variant (default) ── */
   :host,
   :host([variant='primary']) {
-    background: var(--co-color-primary-600);
-    color: var(--co-color-foreground-on-primary);
+    background: var(--co-color-interactive-default);
+    color: var(--co-color-text-on-primary);
   }
   :host([variant='primary']:hover),
   :host(:not([variant]):hover) {
-    background: var(--co-color-primary-700);
+    background: var(--co-color-interactive-hover);
   }
   :host([variant='primary']:active),
   :host(:not([variant]):active) {
-    background: var(--co-color-primary-800);
+    background: var(--co-color-interactive-active);
   }
 
   /* ── Secondary variant ── */
   :host([variant='secondary']) {
-    background: var(--co-color-background-default);
-    color: var(--co-color-foreground-default);
+    background: var(--co-color-surface-default);
+    color: var(--co-color-text-default);
     border-color: var(--co-color-border-default);
   }
   :host([variant='secondary']:hover) {
-    background: var(--co-color-background-subtle);
+    background: var(--co-color-surface-raised);
     border-color: var(--co-color-border-strong);
   }
   :host([variant='secondary']:active) {
-    background: var(--co-color-neutral-100);
+    background: var(--co-color-surface-sunken);
   }
 
   /* ── Danger variant ── */
   :host([variant='danger']) {
-    background: var(--co-color-danger-600);
-    color: var(--co-color-foreground-on-primary);
+    background: var(--co-color-interactive-danger-default);
+    color: var(--co-color-text-on-primary);
   }
   :host([variant='danger']:hover) {
-    background: var(--co-color-danger-700);
+    background: var(--co-color-interactive-danger-hover);
   }
   :host([variant='danger']:active) {
-    background: var(--co-color-danger-800);
+    background: var(--co-color-interactive-danger-active);
   }
 
   /* ── Ghost variant ── */
   :host([variant='ghost']) {
     background: transparent;
-    color: var(--co-color-primary-600);
+    color: var(--co-color-text-link);
   }
   :host([variant='ghost']:hover) {
-    background: var(--co-color-primary-50);
+    background: var(--co-color-interactive-subtle-hover);
   }
   :host([variant='ghost']:active) {
-    background: var(--co-color-primary-100);
+    background: var(--co-color-interactive-subtle-active);
   }
 
   /* ── Focus ── */
   :host(:focus-visible) {
-    outline: 2px solid var(--co-color-primary-500);
+    outline: var(--co-shape-border-width-thick) solid var(--co-color-border-focus);
     outline-offset: 2px;
   }
 
   /* ── Disabled ── */
   :host([disabled]) {
-    opacity: 0.5;
+    opacity: var(--co-opacity-disabled);
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -123,7 +123,7 @@ export const cobaltButtonStyles = css`
     height: 1em;
     border: 2px solid currentColor;
     border-right-color: transparent;
-    border-radius: var(--co-radius-full);
+    border-radius: var(--co-shape-radius-full);
     animation: co-spin 600ms linear infinite;
   }
 

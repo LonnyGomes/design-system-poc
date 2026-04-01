@@ -14,12 +14,12 @@ Browse, search, and export any icon. Click an icon to see all styles, copy SVG, 
 
 All icons are designed on a 24 px grid but scale cleanly to the four supported sizes:
 
-| Token          | Size  | Usage                                 |
-| -------------- | ----- | ------------------------------------- |
-| `--co-icon-xs` | 16 px | Inline indicators inside badges, tags |
-| `--co-icon-sm` | 20 px | Inside buttons, form controls         |
-| `--co-icon-md` | 24 px | Standalone icons, navigation items    |
-| `--co-icon-lg` | 32 px | Empty states, feature highlights      |
+| Token                 | Size  | Usage                                 |
+| --------------------- | ----- | ------------------------------------- |
+| `--co-sizing-icon-xs` | 16 px | Inline indicators inside badges, tags |
+| `--co-sizing-icon-sm` | 20 px | Inside buttons, form controls         |
+| `--co-sizing-icon-md` | 24 px | Standalone icons, navigation items    |
+| `--co-sizing-icon-lg` | 32 px | Empty states, feature highlights      |
 
 ## Usage with the `co-icon` Component
 
@@ -82,12 +82,12 @@ Icons inherit `currentColor` by default, so they match the surrounding text colo
 ```css
 /* Icon inherits color from parent */
 .nav-item {
-  color: var(--co-color-foreground-default);
+  color: var(--co-color-text-default);
 }
 
 /* Override color independently */
 .status-icon--success {
-  color: var(--co-color-success-600);
+  color: var(--co-color-success-base);
 }
 ```
 

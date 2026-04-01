@@ -2,13 +2,17 @@ import StyleDictionary from 'style-dictionary';
 import { copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { generateTailwindPreset } from './src/generate-tailwind-preset.js';
+import { generateTailwindPreset } from './scripts/generate-tailwind-preset.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Shared sources: core tokens + primitive color palette.
+// Theme-specific color files (light/dark) are added per-build to avoid collisions.
+const sharedSources = ['tokens/core.json', 'tokens/color.primitive.json'];
+
 // ── Light theme build ───────────────────────────────────────────────────────
 const lightSD = new StyleDictionary({
-  source: ['src/global/**/*.json', 'src/semantic/color.light.json'],
+  source: [...sharedSources, 'tokens/color.light.json'],
   platforms: {
     css: {
       transformGroup: 'css',
@@ -61,7 +65,7 @@ const lightSD = new StyleDictionary({
 
 // ── Dark theme build ────────────────────────────────────────────────────────
 const darkSD = new StyleDictionary({
-  source: ['src/global/**/*.json', 'src/semantic/color.dark.json'],
+  source: [...sharedSources, 'tokens/color.dark.json'],
   platforms: {
     css: {
       transformGroup: 'css',

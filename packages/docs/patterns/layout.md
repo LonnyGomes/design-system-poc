@@ -22,7 +22,7 @@ A standard Cobalt application page consists of a top navigation, an optional sid
 
 ## Grid System
 
-Cobalt uses a 12-column fluid grid. Columns are defined with `co-grid` and `co-col`. Gutters default to `--co-spacing-400` (16px).
+Cobalt uses a 12-column fluid grid. Columns are defined with `co-grid` and `co-col`. Gutters default to `--co-space-400` (16px).
 
 ```html
 <co-grid>
@@ -101,14 +101,14 @@ Use `co-container` to constrain content width within the main area. This prevent
 
 Consistent spacing creates visual hierarchy and grouping. Use spacing tokens rather than arbitrary pixel values.
 
-| Token               | Value | Usage                         |
-| ------------------- | ----- | ----------------------------- |
-| `--co-spacing-100`  | 4px   | Tight inline elements         |
-| `--co-spacing-200`  | 8px   | Related items, icon gaps      |
-| `--co-spacing-400`  | 16px  | Grid gutters, form field gaps |
-| `--co-spacing-600`  | 24px  | Section padding               |
-| `--co-spacing-800`  | 32px  | Page section separation       |
-| `--co-spacing-1200` | 48px  | Major content divisions       |
+| Token             | Value | Usage                         |
+| ----------------- | ----- | ----------------------------- |
+| `--co-space-100`  | 4px   | Tight inline elements         |
+| `--co-space-200`  | 8px   | Related items, icon gaps      |
+| `--co-space-400`  | 16px  | Grid gutters, form field gaps |
+| `--co-space-600`  | 24px  | Section padding               |
+| `--co-space-800`  | 32px  | Page section separation       |
+| `--co-space-1200` | 48px  | Major content divisions       |
 
 > **Warning:** Avoid mixing spacing tokens with hard-coded values. Inconsistent spacing is one of the most common causes of visual drift across products.
 

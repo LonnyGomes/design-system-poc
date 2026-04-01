@@ -58,7 +58,7 @@ The scale uses a modular ratio that produces consistent visual hierarchy.
   font-size: var(--co-text-2xl);
   font-weight: var(--co-font-bold);
   line-height: var(--co-leading-tight);
-  color: var(--co-color-neutral-900);
+  color: var(--co-color-text-default);
 }
 
 .co-body {
@@ -66,7 +66,7 @@ The scale uses a modular ratio that produces consistent visual hierarchy.
   font-size: var(--co-text-base);
   font-weight: var(--co-font-regular);
   line-height: var(--co-leading-normal);
-  color: var(--co-color-neutral-700);
+  color: var(--co-color-neutral-dark);
 }
 ```
 

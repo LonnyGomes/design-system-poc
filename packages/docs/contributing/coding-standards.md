@@ -42,8 +42,8 @@ Examples:
   --co-button-background-primary: var(--co-color-brand-500);
   --co-button-background-primary-hover: var(--co-color-brand-600);
   --co-button-color-primary: var(--co-color-white);
-  --co-button-border-radius: var(--co-radius-md);
-  --co-button-padding-inline: var(--co-spacing-4);
+  --co-button-border-radius: var(--co-shape-radius-md);
+  --co-button-padding-inline: var(--co-space-4);
 }
 ```
 

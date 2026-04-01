@@ -35,14 +35,14 @@ Then reference any token in your styles:
 
 ```css
 .card {
-  background: var(--co-color-neutral-0);
-  padding: var(--co-spacing-16);
-  border-radius: var(--co-radius-md);
-  box-shadow: var(--co-shadow-md);
+  background: var(--co-color-surface-default);
+  padding: var(--co-space-16);
+  border-radius: var(--co-shape-radius-md);
+  box-shadow: var(--co-elevation-shadow-md);
 }
 ```
 
-> **Tip:** Prefer semantic tokens (e.g. `--co-color-primary-600`) over raw hex values. This ensures your UI adapts correctly to theme changes and dark mode.
+> **Tip:** Prefer semantic tokens (e.g. `--co-color-primary-base`) over raw hex values. This ensures your UI adapts correctly to theme changes and dark mode.
 
 ## Guiding principles
 

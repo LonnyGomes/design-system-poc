@@ -17,14 +17,14 @@ Cobalt's semantic color tokens are pre-validated to meet these ratios in both li
 ```css
 /* Safe pairing — contrast ratio 7.1:1 */
 .co-text {
-  color: var(--co-color-neutral-900);
-  background: var(--co-color-neutral-0);
+  color: var(--co-color-text-default);
+  background: var(--co-color-surface-default);
 }
 
 /* Danger — verify custom combinations */
 .co-alert--danger {
-  color: var(--co-color-danger-900); /* dark red text */
-  background: var(--co-color-danger-50); /* light red bg — ratio 8.2:1 */
+  color: var(--co-color-danger-dark); /* dark red text */
+  background: var(--co-color-danger-subtle); /* light red bg — ratio 8.2:1 */
 }
 ```
 
@@ -52,7 +52,7 @@ Visible focus indicators are critical for keyboard users. Cobalt provides a stan
 
 ```css
 :focus-visible {
-  outline: 2px solid var(--co-color-primary-600);
+  outline: 2px solid var(--co-color-primary-base);
   outline-offset: 2px;
 }
 ```

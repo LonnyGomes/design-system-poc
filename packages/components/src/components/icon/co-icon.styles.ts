@@ -23,22 +23,22 @@ export const cobaltIconStyles = css`
   /* ── Sizes ── */
   :host,
   :host([size='md']) {
-    width: var(--co-icon-md, 24px);
-    height: var(--co-icon-md, 24px);
+    width: var(--co-sizing-icon-md, 24px);
+    height: var(--co-sizing-icon-md, 24px);
   }
 
   :host([size='xs']) {
-    width: var(--co-icon-xs, 16px);
-    height: var(--co-icon-xs, 16px);
+    width: var(--co-sizing-icon-xs, 16px);
+    height: var(--co-sizing-icon-xs, 16px);
   }
 
   :host([size='sm']) {
-    width: var(--co-icon-sm, 20px);
-    height: var(--co-icon-sm, 20px);
+    width: var(--co-sizing-icon-sm, 20px);
+    height: var(--co-sizing-icon-sm, 20px);
   }
 
   :host([size='lg']) {
-    width: var(--co-icon-lg, 32px);
-    height: var(--co-icon-lg, 32px);
+    width: var(--co-sizing-icon-lg, 32px);
+    height: var(--co-sizing-icon-lg, 32px);
   }
 `;

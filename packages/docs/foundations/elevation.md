@@ -4,17 +4,17 @@ Elevation tokens provide consistent shadow values that communicate depth and hie
 
 ## Shadow levels
 
-| Token            | CSS value                                                             | Typical use                                  |
-| ---------------- | --------------------------------------------------------------------- | -------------------------------------------- |
-| `--co-shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.05)`                                       | Subtle lift — buttons at rest, input borders |
-| `--co-shadow-md` | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)`    | Cards, dropdowns                             |
-| `--co-shadow-lg` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)`  | Popovers, floating toolbars                  |
-| `--co-shadow-xl` | `0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)` | Modals, dialogs                              |
+| Token                      | CSS value                                                             | Typical use                                  |
+| -------------------------- | --------------------------------------------------------------------- | -------------------------------------------- |
+| `--co-elevation-shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.05)`                                       | Subtle lift — buttons at rest, input borders |
+| `--co-elevation-shadow-md` | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)`    | Cards, dropdowns                             |
+| `--co-elevation-shadow-lg` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)`  | Popovers, floating toolbars                  |
+| `--co-elevation-shadow-xl` | `0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)` | Modals, dialogs                              |
 
 A special **none** token is also available for explicitly removing shadows:
 
 ```css
---co-shadow-none: 0 0 #0000;
+--co-elevation-shadow-none: 0 0 #0000;
 ```
 
 ## When to use each level
@@ -26,19 +26,19 @@ A special **none** token is also available for explicitly removing shadows:
 | **lg** | Floating elements that overlay page content temporarily — popovers, tooltips, date pickers.             |
 | **xl** | Full-screen or near-full-screen overlays — modals, dialogs, command palettes.                           |
 
-> **Tip:** Avoid stacking multiple elevated elements on top of each other. If a popover appears inside a modal, both should use `--co-shadow-xl` to sit at the same perceived layer.
+> **Tip:** Avoid stacking multiple elevated elements on top of each other. If a popover appears inside a modal, both should use `--co-elevation-shadow-xl` to sit at the same perceived layer.
 
 ## Usage in CSS
 
 ```css
 .co-card {
-  box-shadow: var(--co-shadow-md);
-  border-radius: var(--co-radius-lg);
-  background: var(--co-color-neutral-0);
+  box-shadow: var(--co-elevation-shadow-md);
+  border-radius: var(--co-shape-radius-lg);
+  background: var(--co-color-surface-default);
 }
 
 .co-card:hover {
-  box-shadow: var(--co-shadow-lg);
+  box-shadow: var(--co-elevation-shadow-lg);
 }
 
 .co-dialog-overlay {
@@ -48,9 +48,9 @@ A special **none** token is also available for explicitly removing shadows:
 }
 
 .co-dialog {
-  box-shadow: var(--co-shadow-xl);
-  border-radius: var(--co-radius-xl);
-  background: var(--co-color-neutral-0);
+  box-shadow: var(--co-elevation-shadow-xl);
+  border-radius: var(--co-shape-radius-xl);
+  background: var(--co-color-surface-default);
 }
 ```
 
@@ -60,8 +60,8 @@ In dark mode, shadows alone are not enough to communicate depth because the base
 
 ```css
 [data-theme='dark'] {
-  --co-surface-raised: var(--co-color-neutral-800);
-  --co-surface-overlay: var(--co-color-neutral-700);
+  --co-surface-raised: var(--co-color-neutral-dark);
+  --co-surface-overlay: var(--co-color-neutral-dark);
 }
 ```
 
