@@ -195,36 +195,33 @@ A curated set of icons support microanimations. Set the `animated` boolean to ac
 
 <ClientOnly>
 <div style="display: flex; gap: 24px; align-items: center; margin: 16px 0 24px;">
-  <co-icon name="notifications" size="lg" animated></co-icon>
-  <co-icon name="refresh" size="lg" animated></co-icon>
-  <co-icon name="check-circle" size="lg" animated></co-icon>
+  <co-icon name="progress-activity" size="lg" animated></co-icon>
 </div>
 </ClientOnly>
 
 ```html
-<!-- Bell ring animation -->
-<co-icon name="notifications" animated></co-icon>
-
-<!-- Continuous spin -->
-<co-icon name="refresh" animated></co-icon>
-
-<!-- Checkmark scale-in -->
-<co-icon name="check-circle" animated></co-icon>
+<!-- Progress spinner -->
+<co-icon name="progress-activity" animated></co-icon>
 ```
 
-**Available animated icons:** `notifications` (bell ring), `refresh` (spin), `check-circle` (checkmark scale-in).
+### Available animated icons
 
-Animations automatically respect `prefers-reduced-motion: reduce` — all animations are disabled when the user's OS is configured to reduce motion.
+| Icon name           | Continuous | Animation description |
+| ------------------- | ---------- | --------------------- |
+| `check-circle`      | no         | checkmark scales in   |
+| `notifications`     | no         | bell rings            |
+| `progress-activity` | yes        | spinner rotates       |
+
+> **NOTE:** Animations automatically respect `prefers-reduced-motion: reduce` — all animations are disabled when the user's OS is configured to reduce motion.
 
 ### Replaying animations
 
-One-shot animations (bell ring, check scale-in) play once on mount. Call `replay()` to restart them at any time — useful for reacting to events like incoming notifications.
+One-shot animations, such as `bell-ring`, or `check-circle`, play once on mount. Call `replay()` to restart them at any time which is useful for reacting to events like incoming notifications.
 
 <ClientOnly>
 <div style="display: flex; gap: 24px; align-items: center; margin: 16px 0 24px;">
   <co-icon id="demo-bell" name="notifications" size="lg" animated></co-icon>
   <co-icon id="demo-check" name="check-circle" size="lg" animated></co-icon>
-  <co-icon id="demo-refresh" name="refresh" size="lg" animated></co-icon>
   <co-button  size="sm" onclick="document.getElementById('demo-bell').replay(); document.getElementById('demo-check').replay();">
     Replay
   </co-button>
