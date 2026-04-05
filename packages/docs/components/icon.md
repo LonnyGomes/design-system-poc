@@ -8,7 +8,7 @@ The `co-icon` component renders Material Symbols icons as inline SVGs. It suppor
   tag="co-icon"
   :defaults="{ name: 'home', size: 'md', fill: false }"
   :options="{ size: ['xs', 'sm', 'md', 'lg'] }"
-  :booleans="['fill']"
+  :booleans="['fill', 'animated']"
   :textInputs="['name', 'label']"
 />
 
@@ -189,6 +189,60 @@ export class AppComponent {}
 
 </CodeTabs>
 
+## Animated Icons
+
+A curated set of icons support microanimations. Set the `animated` boolean to activate the animated variant. Icons without an animated variant simply render their static version.
+
+<ClientOnly>
+<div style="display: flex; gap: 24px; align-items: center; margin: 16px 0 24px;">
+  <co-icon name="notifications" size="lg" animated></co-icon>
+  <co-icon name="refresh" size="lg" animated></co-icon>
+  <co-icon name="check-circle" size="lg" animated></co-icon>
+</div>
+</ClientOnly>
+
+```html
+<!-- Bell ring animation -->
+<co-icon name="notifications" animated></co-icon>
+
+<!-- Continuous spin -->
+<co-icon name="refresh" animated></co-icon>
+
+<!-- Checkmark scale-in -->
+<co-icon name="check-circle" animated></co-icon>
+```
+
+**Available animated icons:** `notifications` (bell ring), `refresh` (spin), `check-circle` (checkmark scale-in).
+
+Animations automatically respect `prefers-reduced-motion: reduce` — all animations are disabled when the user's OS is configured to reduce motion.
+
+### Replaying animations
+
+One-shot animations (bell ring, check scale-in) play once on mount. Call `replay()` to restart them at any time — useful for reacting to events like incoming notifications.
+
+<ClientOnly>
+<div style="display: flex; gap: 24px; align-items: center; margin: 16px 0 24px;">
+  <co-icon id="demo-bell" name="notifications" size="lg" animated></co-icon>
+  <co-icon id="demo-check" name="check-circle" size="lg" animated></co-icon>
+  <co-icon id="demo-refresh" name="refresh" size="lg" animated></co-icon>
+  <co-button  size="sm" onclick="document.getElementById('demo-bell').replay(); document.getElementById('demo-check').replay();">
+    Replay
+  </co-button>
+</div>
+</ClientOnly>
+
+```js
+// Trigger or restart animation on an event
+const icon = document.querySelector('co-icon[name="notifications"]');
+icon.replay();
+
+// Also works if animated wasn't set yet — replay() enables it automatically
+icon.replay(); // sets animated = true and plays the animation
+
+// Stop animation
+icon.animated = false;
+```
+
 ## Best Practices
 
 ### When to use
@@ -214,12 +268,19 @@ export class AppComponent {}
 
 ### Properties
 
-| Property | Type                           | Default     | Description                                    |
-| -------- | ------------------------------ | ----------- | ---------------------------------------------- |
-| `name`   | `string`                       | `''`        | Icon name in kebab-case (e.g. `arrow-forward`) |
-| `size`   | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'`      | Icon size                                      |
-| `fill`   | `boolean`                      | `false`     | Whether to render the filled version           |
-| `label`  | `string \| undefined`          | `undefined` | Accessible label — makes the icon informative  |
+| Property   | Type                           | Default     | Description                                    |
+| ---------- | ------------------------------ | ----------- | ---------------------------------------------- |
+| `name`     | `string`                       | `''`        | Icon name in kebab-case (e.g. `arrow-forward`) |
+| `size`     | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'`      | Icon size                                      |
+| `fill`     | `boolean`                      | `false`     | Whether to render the filled version           |
+| `animated` | `boolean`                      | `false`     | Use animated variant if available              |
+| `label`    | `string \| undefined`          | `undefined` | Accessible label — makes the icon informative  |
+
+### Methods
+
+| Method     | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| `replay()` | Restart the animation from the beginning. Enables `animated` if not set. |
 
 ### CSS Parts
 

@@ -1,5 +1,5 @@
 import { fixture, html, expect } from '@open-wc/testing';
-import { iconNames, customIconNames } from '@cobalt/icons';
+import { iconNames, customIconNames, animatedIconNames } from '@cobalt/icons';
 import { runA11yAudit } from '../../test-utils/a11y.js';
 import './co-icon.js';
 import type { CoIcon } from './co-icon.js';
@@ -128,6 +128,69 @@ describe('co-icon', () => {
     });
   });
 
+  describe('animated icons', () => {
+    it('animated defaults to false', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="home"></co-icon>`);
+      expect(el.animated).to.equal(false);
+      expect(el.hasAttribute('animated')).to.be.false;
+    });
+
+    it('reflects animated attribute when set', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="notifications" animated></co-icon>`);
+      expect(el.animated).to.equal(true);
+      expect(el.hasAttribute('animated')).to.be.true;
+    });
+
+    it('renders animated variant with co-anim-* classes when animated is set', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="notifications" animated></co-icon>`);
+      const svg = el.shadowRoot!.querySelector('svg');
+      expect(svg).to.exist;
+      const animEl = svg!.querySelector('.co-anim-bell-body');
+      expect(animEl, 'should contain co-anim-bell-body class').to.exist;
+    });
+
+    it('falls back to static icon when animated is set but no animated variant exists', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="home" animated></co-icon>`);
+      const svg = el.shadowRoot!.querySelector('svg');
+      expect(svg).to.exist;
+      // Should render the static icon (no co-anim-* elements)
+      const animEl = svg!.querySelector('[class^="co-anim-"]');
+      expect(animEl).to.not.exist;
+    });
+
+    it('renders static icon when animated is false even for icons with animated variants', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="notifications"></co-icon>`);
+      const svg = el.shadowRoot!.querySelector('svg');
+      expect(svg).to.exist;
+      const animEl = svg!.querySelector('.co-anim-bell-body');
+      expect(animEl).to.not.exist;
+    });
+
+    it('replay() enables animated when not already set', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="notifications"></co-icon>`);
+      expect(el.animated).to.equal(false);
+      await el.replay();
+      expect(el.animated).to.equal(true);
+    });
+
+    it('replay() restarts animation when already animated', async () => {
+      const el = await fixture<CoIcon>(html`<co-icon name="notifications" animated></co-icon>`);
+      expect(el.animated).to.equal(true);
+      await el.replay();
+      // Should still be animated after replay
+      expect(el.animated).to.equal(true);
+      await el.updateComplete;
+      const svg = el.shadowRoot!.querySelector('svg');
+      expect(svg!.querySelector('.co-anim-bell-body')).to.exist;
+    });
+
+    it('animatedIconNames contains expected icons', () => {
+      expect(animatedIconNames.has('notifications')).to.be.true;
+      expect(animatedIconNames.has('refresh')).to.be.true;
+      expect(animatedIconNames.has('check-circle')).to.be.true;
+    });
+  });
+
   // WCAG 2.1 AA: automated via axe-core
   describe('accessibility', () => {
     it('is accessible as decorative icon', async () => {
@@ -165,6 +228,18 @@ describe('co-icon', () => {
     it('is accessible as custom informative icon', async () => {
       const el = await fixture(html`<co-icon name="co-placeholder" label="Placeholder"></co-icon>`);
       await runA11yAudit(el, { component: 'co-icon', state: 'custom-informative' });
+    });
+
+    it('is accessible with animated', async () => {
+      const el = await fixture(html`<co-icon name="notifications" animated></co-icon>`);
+      await runA11yAudit(el, { component: 'co-icon', state: 'animated' });
+    });
+
+    it('is accessible with animated and label', async () => {
+      const el = await fixture(
+        html`<co-icon name="notifications" animated label="New notifications"></co-icon>`,
+      );
+      await runA11yAudit(el, { component: 'co-icon', state: 'animated-informative' });
     });
   });
 });

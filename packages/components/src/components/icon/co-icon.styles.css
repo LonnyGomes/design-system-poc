@@ -37,3 +37,75 @@ svg {
   width: var(--co-sizing-icon-lg, 32px);
   height: var(--co-sizing-icon-lg, 32px);
 }
+
+/* ── Animations ──
+   Per-part CSS animations target SVG <g> elements inside the shadow DOM.
+   These work in Chrome and Firefox. Safari does not support CSS transforms
+   on SVG child elements, so the component detects this at runtime and
+   falls back to the Web Animations API on the :host element. */
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :host([animated]),
+  :host([animated]) svg * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Bell ring (notifications) — swings the bell body from the top pivot */
+:host([animated]) .co-anim-bell-body {
+  transform-box: fill-box;
+  transform-origin: center top;
+  animation: co-bell-ring 400ms var(--co-motion-easing-in-out, ease-in-out) 2;
+}
+@keyframes co-bell-ring {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(12deg);
+  }
+  30% {
+    transform: rotate(-10deg);
+  }
+  45% {
+    transform: rotate(6deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Spin (refresh, sync, etc.) — rotates the entire icon path */
+:host([animated]) .co-anim-rotate {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: co-spin 1200ms linear infinite;
+}
+@keyframes co-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Check scale-in — pops in the checkmark */
+:host([animated]) .co-anim-check {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: co-check-in 300ms var(--co-motion-easing-out, ease-out) forwards;
+}
+@keyframes co-check-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

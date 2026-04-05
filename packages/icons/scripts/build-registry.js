@@ -102,8 +102,40 @@ function build() {
     }
   }
 
+  // Scan animated icon variants from animated/{style}/
+  const animatedBase = join(root, 'animated');
+  const animatedRegistry = new Map();
+  const animatedBaseNames = new Set();
+
+  for (const style of STYLES) {
+    const animatedStyleDir = join(animatedBase, style);
+    const animatedStyleMap = new Map();
+
+    if (existsSync(animatedStyleDir)) {
+      let files;
+      try {
+        files = readdirSync(animatedStyleDir).filter((f) => f.endsWith('.svg'));
+      } catch {
+        files = [];
+      }
+
+      for (const file of files) {
+        const kebabName = basename(file, '.svg');
+        const svgString = readFileSync(join(animatedStyleDir, file), 'utf-8');
+        const content = extractSvgContent(svgString);
+        animatedStyleMap.set(kebabName, content);
+
+        const baseName = kebabName.endsWith('-fill') ? kebabName.slice(0, -5) : kebabName;
+        animatedBaseNames.add(baseName);
+      }
+    }
+
+    animatedRegistry.set(style, animatedStyleMap);
+  }
+
   const sortedNames = [...baseNames].sort();
   const sortedCustomNames = [...customBaseNames].sort();
+  const sortedAnimatedNames = [...animatedBaseNames].sort();
 
   // Build the JS registry module
   const lines = [
@@ -147,6 +179,40 @@ function build() {
   lines.push(`export const customIconNames = new Set(${JSON.stringify(sortedCustomNames)});`);
   lines.push('');
 
+  // Animated registry
+  lines.push('/** @type {Record<string, Record<string, string>>} */');
+  lines.push('const animatedReg = {');
+
+  for (const style of STYLES) {
+    const styleMap = animatedRegistry.get(style);
+    lines.push(`  "${style}": {`);
+    for (const [name, content] of styleMap) {
+      const escaped = content.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
+      lines.push(`    "${name}": \`${escaped}\`,`);
+    }
+    lines.push('  },');
+  }
+
+  lines.push('};');
+  lines.push('');
+  lines.push('/**');
+  lines.push(' * Get the animated SVG variant for an icon.');
+  lines.push(' * @param {string} name - Kebab-case icon name');
+  lines.push(' * @param {IconStyle} [style="rounded"] - Icon style variant');
+  lines.push(' * @param {boolean} [fill=false] - Whether to use the filled version');
+  lines.push(' * @returns {string | undefined}');
+  lines.push(' */');
+  lines.push('export function getAnimatedIcon(name, style = "rounded", fill = false) {');
+  lines.push("  const key = fill ? name + '-fill' : name;");
+  lines.push('  return animatedReg[style]?.[key];');
+  lines.push('}');
+  lines.push('');
+  lines.push(
+    `/** Set of icon names that have animated variants (kebab-case, without -fill suffix). */`,
+  );
+  lines.push(`export const animatedIconNames = new Set(${JSON.stringify(sortedAnimatedNames)});`);
+  lines.push('');
+
   writeFileSync(join(outDir, 'index.js'), lines.join('\n'));
 
   // Build TypeScript declarations
@@ -170,12 +236,24 @@ function build() {
     '/** Set of icon names that use the 24×24 viewBox (custom icons). */',
     'export declare const customIconNames: Set<string>;',
     '',
+    '/**',
+    ' * Get the animated SVG variant for an icon.',
+    ' * @param name - Kebab-case icon name',
+    ' * @param style - Icon style variant (default: "rounded")',
+    ' * @param fill - Whether to use the filled version (default: false)',
+    ' * @returns The animated SVG content string, or undefined if not found',
+    ' */',
+    'export declare function getAnimatedIcon(name: string, style?: IconStyle, fill?: boolean): string | undefined;',
+    '',
+    '/** Set of icon names that have animated variants (kebab-case, without -fill suffix). */',
+    'export declare const animatedIconNames: Set<string>;',
+    '',
   ];
 
   writeFileSync(join(outDir, 'index.d.ts'), dts.join('\n'));
 
   console.log(
-    `Icon registry built: ${sortedNames.length} icons (${sortedCustomNames.length} custom) across ${STYLES.length} styles → dist/index.js`,
+    `Icon registry built: ${sortedNames.length} icons (${sortedCustomNames.length} custom, ${sortedAnimatedNames.length} animated) across ${STYLES.length} styles → dist/index.js`,
   );
 }
 

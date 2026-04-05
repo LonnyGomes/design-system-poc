@@ -1,7 +1,7 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
-import { getIcon, customIconNames } from '@cobalt/icons';
+import { getIcon, getAnimatedIcon, customIconNames } from '@cobalt/icons';
 import { cobaltIconStyles } from './co-icon.styles.js';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -28,12 +28,37 @@ export class CoIcon extends LitElement {
   @property({ type: Boolean, reflect: true })
   fill = false;
 
+  /** Whether to use the animated variant of the icon (if available). */
+  @property({ type: Boolean, reflect: true })
+  animated = false;
+
   /** Accessible label. When set, the icon is treated as informative (role="img"). */
   @property()
   label?: string;
 
+  /**
+   * Restart the animation from the beginning.
+   * Useful for one-shot animations like bell ring or check scale-in.
+   */
+  async replay(): Promise<void> {
+    if (!this.animated) {
+      this.animated = true;
+      await this.updateComplete;
+      return;
+    }
+    // Toggle animated off → render → reflow → on → render.
+    // This restarts CSS animations by removing and re-adding the attribute.
+    this.animated = false;
+    await this.updateComplete;
+    this.getBoundingClientRect(); // force reflow so browser registers removal
+    this.animated = true;
+    await this.updateComplete;
+  }
+
   override render() {
-    const svgContent = getIcon(this.name, 'rounded', this.fill);
+    const svgContent =
+      (this.animated && getAnimatedIcon(this.name, 'rounded', this.fill)) ||
+      getIcon(this.name, 'rounded', this.fill);
 
     if (!svgContent) return nothing;
 
