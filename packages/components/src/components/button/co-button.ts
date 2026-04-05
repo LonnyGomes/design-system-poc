@@ -2,6 +2,7 @@ import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { LionButton } from '@lion/ui/button.js';
 import { cobaltButtonStyles } from './co-button.styles.js';
+import '../icon/co-icon.js';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -93,7 +94,15 @@ export class CoButton extends LionButton {
         <slot name="prefix" part="prefix"></slot>
         <slot part="label"></slot>
         <slot name="suffix" part="suffix"></slot>
-        ${this.loading ? html`<span part="spinner" class="spinner"></span>` : ''}
+        ${this.loading
+          ? html`<co-icon
+              part="spinner"
+              name="progress-activity"
+              size=${{ sm: 'xs', md: 'sm', lg: 'md' }[this.size]}
+              animated
+              aria-hidden="true"
+            ></co-icon>`
+          : ''}
       </div>
     `;
   }

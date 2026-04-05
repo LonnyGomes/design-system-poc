@@ -39,13 +39,14 @@ describe('co-button', () => {
 
   it('shows spinner when loading', async () => {
     const el = await fixture<CoButton>(html`<co-button loading>Loading</co-button>`);
-    const spinner = el.shadowRoot!.querySelector('.spinner');
+    const spinner = el.shadowRoot!.querySelector('co-icon[name="progress-activity"]');
     expect(spinner).to.exist;
+    expect(spinner!.hasAttribute('animated')).to.be.true;
   });
 
   it('does not show spinner when not loading', async () => {
     const el = await fixture<CoButton>(html`<co-button>Click</co-button>`);
-    const spinner = el.shadowRoot!.querySelector('.spinner');
+    const spinner = el.shadowRoot!.querySelector('co-icon[name="progress-activity"]');
     expect(spinner).to.not.exist;
   });
 

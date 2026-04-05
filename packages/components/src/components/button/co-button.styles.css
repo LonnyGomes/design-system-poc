@@ -113,18 +113,3 @@
   cursor: wait;
   pointer-events: none;
 }
-
-.spinner {
-  width: 1em;
-  height: 1em;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: var(--co-shape-radius-full);
-  animation: co-spin 600ms linear infinite;
-}
-
-@keyframes co-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
