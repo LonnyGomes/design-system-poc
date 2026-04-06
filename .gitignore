@@ -10,3 +10,4 @@ a11y-reports
 .playwright-mcp/
 local-packs/
 .generated/
+worktrees/
