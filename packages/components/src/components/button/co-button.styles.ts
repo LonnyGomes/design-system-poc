@@ -11,7 +11,7 @@ export const cobaltButtonStyles = css`
     font-size: var(--co-font-size-md);
     font-weight: var(--co-font-weight-medium);
     line-height: var(--co-font-line-height-tight);
-    border-radius: var(--co-shape-radius-md);
+    border-radius: var(--co-shape-radius-sm);
     border: var(--co-shape-border-width-thin) solid transparent;
     cursor: pointer;
     transition:
@@ -27,7 +27,7 @@ export const cobaltButtonStyles = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--co-space-2);
+    gap: var(--co-space-gap-sm);
     padding: var(--co-space-2) var(--co-space-4);
   }
 
