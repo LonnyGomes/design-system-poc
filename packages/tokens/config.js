@@ -1,8 +1,9 @@
 import StyleDictionary from 'style-dictionary';
-import { copyFileSync, readFileSync, writeFileSync } from 'fs';
+import { copyFileSync, readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { generateTailwindPreset } from './scripts/generate-tailwind-preset.js';
+import { mergeTokens } from './scripts/merge-tokens.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -133,6 +134,11 @@ async function build() {
   // Generate Tailwind CSS preset
   console.log('Generating Tailwind preset...');
   await generateTailwindPreset(__dirname);
+
+  // Generate merged Token Studio-compatible JSON
+  console.log('Generating merged tokens for Figma sync...');
+  const merged = mergeTokens();
+  writeFileSync(join(__dirname, 'dist/tokens-merged.json'), JSON.stringify(merged, null, 2) + '\n');
 
   console.log('Token build complete!');
 }
