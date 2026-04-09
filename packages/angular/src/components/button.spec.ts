@@ -25,7 +25,7 @@ import { CoButton } from './button.js';
   `,
 })
 class TestHostComponent {
-  variant: 'primary' | 'secondary' | 'error' | 'success' = 'primary';
+  variant: 'primary' | 'secondary' | 'danger' | 'success' = 'primary';
   size: 'sm' | 'md' | 'lg' = 'md';
   disabled = false;
   loading = false;
@@ -71,9 +71,9 @@ describe('Angular CoButton', () => {
   });
 
   it('syncs variant property to the element', () => {
-    host.variant = 'error';
+    host.variant = 'danger';
     fixture.detectChanges();
-    expect(el.variant).toBe('error');
+    expect(el.variant).toBe('danger');
   });
 
   it('syncs size property to the element', () => {

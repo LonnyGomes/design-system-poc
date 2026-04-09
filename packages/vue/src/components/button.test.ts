@@ -10,11 +10,11 @@ describe('Vue CoButton wrapper', () => {
 
   it('sets variant property on the element', () => {
     const wrapper = mount(CoButton, {
-      props: { variant: 'error' },
+      props: { variant: 'danger' },
       slots: { default: 'Delete' },
     });
     const el = wrapper.find('co-button').element as any;
-    expect(el.variant).toBe('error');
+    expect(el.variant).toBe('danger');
   });
 
   it('sets size property on the element', () => {

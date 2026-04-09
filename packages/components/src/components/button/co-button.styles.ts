@@ -6,6 +6,7 @@ export const cobaltButtonStyles = css`
   :host {
     display: inline-block;
     box-sizing: border-box;
+    min-block-size: var(--co-control-height-md);
     padding: 0;
     font-family: var(--co-font-family-sans);
     font-size: var(--co-font-size-md);
@@ -34,6 +35,7 @@ export const cobaltButtonStyles = css`
   /* ── Sizes ── */
   :host([size='sm']) {
     font-size: var(--co-font-size-sm);
+    min-block-size: var(--co-control-height-sm);
   }
   :host([size='sm']) .button {
     padding: var(--co-space-1) var(--co-space-3);
@@ -41,6 +43,7 @@ export const cobaltButtonStyles = css`
 
   :host([size='lg']) {
     font-size: var(--co-font-size-lg);
+    min-block-size: var(--co-control-height-lg);
   }
   :host([size='lg']) .button {
     padding: var(--co-space-3) var(--co-space-6);
@@ -75,15 +78,15 @@ export const cobaltButtonStyles = css`
     background: var(--co-color-surface-sunken);
   }
 
-  /* ── Error variant ── */
-  :host([variant='error']) {
+  /* ── Danger variant ── */
+  :host([variant='danger']) {
     background: var(--co-color-interactive-danger-default);
     color: var(--co-color-text-on-primary);
   }
-  :host([variant='error']:hover) {
+  :host([variant='danger']:hover) {
     background: var(--co-color-interactive-danger-hover);
   }
-  :host([variant='error']:active) {
+  :host([variant='danger']:active) {
     background: var(--co-color-interactive-danger-active);
   }
 

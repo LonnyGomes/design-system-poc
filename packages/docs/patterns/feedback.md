@@ -119,7 +119,7 @@ Use `co-dialog` for destructive or irreversible actions. State the consequence c
     cannot be undone.
   </p>
   <co-button slot="secondary" variant="secondary">Cancel</co-button>
-  <co-button slot="primary" variant="error">Delete project</co-button>
+  <co-button slot="primary" variant="danger">Delete project</co-button>
 </co-dialog>
 ```
 

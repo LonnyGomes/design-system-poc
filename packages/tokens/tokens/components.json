@@ -1,3 +1,25 @@
 {
-  "co": {}
+  "co": {
+    "component": {
+      "avatar": {
+        "size": {
+          "sm": {
+            "$value": "24px",
+            "$type": "dimension",
+            "description": "Compact avatar size for dense layouts, tables, and inline references."
+          },
+          "md": {
+            "$value": "32px",
+            "$type": "dimension",
+            "description": "Default avatar size for navigation, lists, and standard UI surfaces."
+          },
+          "lg": {
+            "$value": "38px",
+            "$type": "dimension",
+            "description": "Large avatar size for profile headers and prominent identity surfaces."
+          }
+        }
+      }
+    }
+  }
 }
