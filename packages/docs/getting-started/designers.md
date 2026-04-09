@@ -104,6 +104,7 @@ Before marking a design as ready:
 ## Resources
 
 - **Figma Library:** search "Cobalt" in Team Libraries
+- **Token Structure:** [How tokens are organized](../tokens/structure.md)
 - **Token Reference:** [Tokens Documentation](../tokens/)
 - **Custom Icons:** Need to design a custom icon for Cobalt? See the [Designing Custom Icons](/foundations/iconography#designing-custom-icons) guide for grid specs, keyline templates, and an export checklist.
 - **Slack:** `#cobalt-design`

@@ -1,0 +1,196 @@
+# Token Structure
+
+This page explains how Cobalt tokens are organized and how to decide where a token belongs.
+
+For designers working in Figma, the main idea is simple:
+
+- **Primitives** are raw ingredients
+- **Semantic tokens** describe design intent
+- **Theme tokens** change that intent by theme or mode
+- **Component tokens** are reserved for true component-specific needs
+
+## The Five Layers
+
+| Layer                                | What it means                                            | Use it for                                                          | Examples                                                            |
+| ------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `primitives.json`                    | Raw foundational values                                  | Spacing scale, radius scale, type scale, motion values, breakpoints | `space.4`, `shape.radius.sm`, `font.size.md`                        |
+| `primitives.color.json`              | Raw color palette                                        | Neutral and brand ramps                                             | `neutral.100`, `blue.500`, `red.600`                                |
+| `semantic.shared.json`               | Shared design decisions that stay the same across themes | Text roles, control sizing, focus rules, shared layout values       | `text.body.size`, `control.height.md`, `focus.ring.width`           |
+| `semantic.theme.<theme>.<mode>.json` | Semantic tokens that change by theme or mode             | Mostly color behavior today                                         | `color.text.default`, `color.surface.default`, `color.primary.base` |
+| `components.json`                    | Component-specific tokens                                | Public component contracts or intentional exceptions                | `component.avatar.size.md`                                          |
+
+## Why The Five Layers
+
+The five layer structure separates:
+
+1. raw values
+2. shared system rules
+3. theme-specific changes
+4. component-specific exceptions
+
+This makes the token system easier to scale as more themes are added and easier to understand in Figma handoff.
+
+## What This Means In Practice
+
+### 1. Primitives are not design decisions
+
+Primitives are the building blocks.
+
+Examples:
+
+- `font.size.md`
+- `space.4`
+- `shape.radius.sm`
+- `blue.500`
+
+These values exist so the system has a consistent base scale, but they do not explain how the value should be used.
+
+### 2. Shared semantics describe the system's rules
+
+`semantic.shared.json` is where we store design intent that should stay consistent across the whole system.
+
+Examples:
+
+- `text.body.*`
+- `text.label.*`
+- `text.heading.h1.*`
+- `control.height.md`
+- `control.padding-inline.md`
+- `control.radius`
+
+These tokens answer questions like:
+
+- What should body text look like?
+- How tall is a medium control?
+- What radius should standard controls use?
+
+### 3. Theme files only hold what changes by theme
+
+`semantic.theme.<theme>.<mode>.json` is for semantic values that need to change when the theme changes.
+
+Today, that is mostly color.
+
+Examples:
+
+- `color.text.default`
+- `color.surface.raised`
+- `color.border.focus`
+- `color.interactive.default`
+
+This keeps theme files focused and prevents shared rules like typography or spacing from being repeated in every theme.
+
+### 4. Component tokens stay selective
+
+`components.json` is not meant to mirror the entire token system.
+
+It exists for cases where a component has its own public sizing or behavior contract.
+
+Example:
+
+- `component.avatar.size.sm`
+- `component.avatar.size.md`
+- `component.avatar.size.lg`
+
+This keeps component tokens useful without creating token bloat.
+
+## A Simple Decision Guide
+
+When adding or reviewing a token, ask these questions in order:
+
+### Is this just a raw value?
+
+If yes, it belongs in `primitives`.
+
+Example:
+
+- a new spacing step
+- a new radius
+- a new palette color
+
+### Is this a reusable design rule across the system?
+
+If yes, it belongs in `semantic.shared`.
+
+Example:
+
+- body text style
+- default control height
+- focus ring width
+- content max width
+
+### Does this value change by theme or mode?
+
+If yes, it belongs in `semantic.theme.<theme>.<mode>`.
+
+Example:
+
+- text color in light vs dark
+- surface color in light vs dark
+- interactive color in different branded themes
+
+### Is this specific to one component?
+
+If yes, it belongs in `components`.
+
+Example:
+
+- avatar size
+- a unique component-only spacing rule
+- a component shape that should not become a system-wide standard
+
+## Common Examples
+
+| Need                            | Best location                 | Why                                     |
+| ------------------------------- | ----------------------------- | --------------------------------------- |
+| Body text size                  | `semantic.shared`             | It is a shared role, not a raw number   |
+| Primary text color in dark mode | `semantic.theme.default.dark` | It changes by theme                     |
+| Button and input height         | `semantic.shared`             | It is a shared control rule             |
+| Avatar sizes                    | `components`                  | It belongs to Avatar, not every control |
+| New gray ramp                   | `primitives.color`            | It is a raw palette                     |
+| New radius scale step           | `primitives`                  | It is a foundational value              |
+
+## About The `control` Section
+
+The `control` section is for shared rules used by standard interactive controls.
+
+Examples:
+
+- buttons
+- inputs
+- selects
+- segmented controls
+
+Current control tokens cover:
+
+- height
+- radius
+- inline padding
+- inline gap
+
+This was added so controls feel related to each other instead of each component inventing its own sizing rules.
+
+This section should **not** be used for:
+
+- avatars
+- icons
+- cards
+- layout containers
+
+## Recommended Figma Mindset
+
+When working in Figma:
+
+- use semantic tokens first
+- use primitives when you are building the underlying system
+- use theme tokens when reviewing light/dark or future brand theme behavior
+- use component tokens only for real component-specific contracts
+
+If a token feels like a system rule, it probably belongs in `semantic.shared`.
+
+If it only makes sense for one component, it probably belongs in `components`.
+
+## Related Pages
+
+- [Token Reference](./index.md)
+- [Typography](../foundations/typography.md)
+- [Colors](../foundations/colors.md)

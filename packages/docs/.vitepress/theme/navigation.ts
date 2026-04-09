@@ -46,6 +46,7 @@ export const navigation: NavGroup[] = [
       { text: 'Utility Classes', link: '/foundations/utilities' },
       { text: 'CSS Layers', link: '/foundations/css-layers' },
       { text: 'Tailwind Integration', link: '/foundations/tailwind' },
+      { text: 'Token Structure', link: '/tokens/structure' },
       { text: 'Token Reference', link: '/tokens/' },
     ],
   },

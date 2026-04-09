@@ -6,6 +6,8 @@ import { data } from './tokens.data';
 
 Browse and search all Cobalt design tokens. Click any token name to copy it to your clipboard. Use the category pills or the search bar to narrow down tokens — search works across names, values, categories, and tiers.
 
+Need a quick explanation of how the token system is organized? Start with [Token Structure](./structure.md).
+
 ## Categories
 
 | Category       | Prefix                          | What it covers                                                                                                             |
