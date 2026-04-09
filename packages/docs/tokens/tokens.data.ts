@@ -18,15 +18,20 @@ export interface TokensData {
 }
 
 const CATEGORY_MAP: Record<string, string> = {
-  space: 'Space',
-  color: 'Color',
-  font: 'Font',
-  shape: 'Shape',
-  elevation: 'Elevation',
-  motion: 'Motion',
-  sizing: 'Sizing',
-  opacity: 'Opacity',
   breakpoint: 'Breakpoint',
+  color: 'Color',
+  component: 'Component',
+  control: 'Control',
+  elevation: 'Elevation',
+  focus: 'Focus',
+  font: 'Font',
+  layout: 'Layout',
+  motion: 'Motion',
+  opacity: 'Opacity',
+  shape: 'Shape',
+  sizing: 'Sizing',
+  space: 'Space',
+  text: 'Text',
 };
 
 function deriveCategory(name: string): string {

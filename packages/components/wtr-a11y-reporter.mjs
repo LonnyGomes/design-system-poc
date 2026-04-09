@@ -7,7 +7,7 @@ const REPORTS_DIR = 'a11y-reports';
 const WCAG_21_AA_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
 
 /** Interactive components that get shared manual checks */
-const INTERACTIVE_COMPONENTS = ['co-button'];
+const INTERACTIVE_COMPONENTS = ['co-button', 'co-input'];
 
 const INTERACTIVE_CHECKS = [
   { criterion: '2.1.1', title: 'Keyboard', description: 'All functions operable via keyboard' },
@@ -34,6 +34,18 @@ const COMPONENT_CHECKS = {
       criterion: '2.5.5',
       title: 'Target Size',
       description: 'Touch target is at least 44×44 CSS pixels',
+    },
+  ],
+  'co-input': [
+    {
+      criterion: '1.3.1',
+      title: 'Info and Relationships',
+      description: 'Visible labels, helper text, and error text remain programmatically associated',
+    },
+    {
+      criterion: '2.5.5',
+      title: 'Target Size',
+      description: 'Interactive input surface is at least 44×44 CSS pixels when used on touch devices',
     },
   ],
   'co-icon': [

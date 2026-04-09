@@ -1,0 +1,133 @@
+// Auto-generated from .styles.css — do not edit directly
+import { css } from 'lit';
+
+export const cobaltInputStyles = css`
+  :host {
+    display: block;
+    color: var(--co-color-text-default);
+  }
+
+  .input-shell {
+    display: flex;
+    flex-direction: column;
+    gap: var(--co-space-1);
+  }
+
+  .label {
+    font-family: var(--co-text-label-font-family);
+    font-size: var(--co-text-label-size);
+    font-weight: var(--co-text-label-weight);
+    line-height: var(--co-text-label-line-height);
+    color: var(--co-color-text-default);
+  }
+
+  .required-indicator {
+    color: var(--co-color-interactive-danger-default);
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--co-control-height-md);
+    padding-inline: var(--co-control-padding-inline-md);
+    gap: var(--co-control-inline-gap);
+    border: var(--co-shape-border-width-thin) solid var(--co-color-border-default);
+    border-radius: var(--co-control-radius);
+    background: var(--co-color-surface-default);
+    transition:
+      background var(--co-motion-duration-fast) var(--co-motion-easing-default),
+      border-color var(--co-motion-duration-fast) var(--co-motion-easing-default),
+      box-shadow var(--co-motion-duration-fast) var(--co-motion-easing-default);
+  }
+
+  .field:hover {
+    border-color: var(--co-color-border-strong);
+    background: var(--co-color-surface-raised);
+  }
+
+  .field:focus-within {
+    outline: var(--co-focus-ring-width) solid var(--co-color-border-focus);
+    outline-offset: var(--co-focus-ring-offset);
+    border-color: var(--co-color-border-focus);
+  }
+
+  :host([size='sm']) .field {
+    min-block-size: var(--co-control-height-sm);
+    padding-inline: var(--co-control-padding-inline-sm);
+  }
+
+  :host([size='lg']) .field {
+    min-block-size: var(--co-control-height-lg);
+    padding-inline: var(--co-control-padding-inline-lg);
+  }
+
+  .affix {
+    display: inline-flex;
+    align-items: center;
+    color: var(--co-color-text-secondary);
+  }
+
+  .affix[hidden] {
+    display: none;
+  }
+
+  .input {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: var(--co-color-text-default);
+    font-family: var(--co-text-body-font-family);
+    font-size: var(--co-text-body-size);
+    font-weight: var(--co-text-body-weight);
+    line-height: var(--co-text-body-line-height);
+    outline: none;
+  }
+
+  :host([size='sm']) .input {
+    font-size: var(--co-text-caption-size);
+  }
+
+  :host([size='lg']) .input {
+    font-size: var(--co-font-size-lg);
+  }
+
+  .input::placeholder {
+    color: var(--co-color-text-secondary);
+    opacity: var(--co-opacity-placeholder);
+  }
+
+  .message {
+    font-family: var(--co-text-caption-font-family);
+    font-size: var(--co-text-caption-size);
+    font-weight: var(--co-text-caption-weight);
+    line-height: var(--co-text-caption-line-height);
+    color: var(--co-color-text-secondary);
+  }
+
+  :host([invalid]) .field {
+    border-color: var(--co-color-interactive-danger-default);
+  }
+
+  :host([invalid]) .field:hover {
+    border-color: var(--co-color-interactive-danger-hover);
+  }
+
+  :host([invalid]) .message {
+    color: var(--co-color-feedback-danger-text);
+  }
+
+  :host([disabled]) {
+    opacity: var(--co-opacity-disabled);
+  }
+
+  :host([disabled]) .field {
+    background: var(--co-color-surface-sunken);
+    cursor: not-allowed;
+  }
+
+  :host([disabled]) .input {
+    cursor: not-allowed;
+  }
+`;

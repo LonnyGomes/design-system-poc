@@ -42,6 +42,19 @@ const COMPONENT_CHECKS: Record<string, ManualTestNote[]> = {
       description: 'Touch target is at least 44×44 CSS pixels',
     },
   ],
+  'co-input': [
+    {
+      criterion: '1.3.1',
+      title: 'Info and Relationships',
+      description: 'Visible labels, helper text, and error text remain programmatically associated',
+    },
+    {
+      criterion: '2.5.5',
+      title: 'Target Size',
+      description:
+        'Interactive input surface is at least 44×44 CSS pixels when used on touch devices',
+    },
+  ],
   'co-icon': [
     {
       criterion: '1.1.1',
@@ -70,7 +83,7 @@ const COMPONENT_CHECKS: Record<string, ManualTestNote[]> = {
 };
 
 /** Interactive components that get the shared interactive checks */
-const INTERACTIVE_COMPONENTS = ['co-button'];
+const INTERACTIVE_COMPONENTS = ['co-button', 'co-input'];
 
 /**
  * Returns manual testing notes for a given component.

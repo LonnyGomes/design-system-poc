@@ -4,10 +4,10 @@
   box-sizing: border-box;
   min-block-size: var(--co-control-height-md);
   padding: 0;
-  font-family: var(--co-font-family-sans);
-  font-size: var(--co-font-size-md);
-  font-weight: var(--co-font-weight-medium);
-  line-height: var(--co-font-line-height-tight);
+  font-family: var(--co-text-control-font-family);
+  font-size: var(--co-text-control-size);
+  font-weight: var(--co-text-control-weight);
+  line-height: var(--co-text-control-line-height);
   border-radius: var(--co-control-radius);
   border: var(--co-shape-border-width-thin) solid transparent;
   cursor: pointer;
@@ -24,17 +24,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--co-space-gap-sm);
-  padding: var(--co-space-2) var(--co-space-4);
+  gap: var(--co-control-inline-gap);
+  padding: var(--co-space-2) var(--co-control-padding-inline-md);
 }
 
 /* ── Sizes ── */
 :host([size='sm']) {
-  font-size: var(--co-font-size-sm);
+  font-size: var(--co-text-label-size);
   min-block-size: var(--co-control-height-sm);
 }
 :host([size='sm']) .button {
-  padding: var(--co-space-1) var(--co-space-3);
+  padding: var(--co-space-1) var(--co-control-padding-inline-sm);
 }
 
 :host([size='lg']) {
@@ -42,7 +42,7 @@
   min-block-size: var(--co-control-height-lg);
 }
 :host([size='lg']) .button {
-  padding: var(--co-space-3) var(--co-space-6);
+  padding: var(--co-space-3) var(--co-control-padding-inline-lg);
 }
 
 /* ── Primary variant (default) ── */

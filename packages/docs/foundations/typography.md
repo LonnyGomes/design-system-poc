@@ -1,98 +1,102 @@
 # Typography
 
-Typography in Cobalt is built on a purposeful set of font families, a harmonious type scale, and consistent weight and line-height tokens. These choices ensure readability and visual rhythm across every screen size.
+Cobalt typography now has two layers:
 
-## Font families
+- foundational font tokens for raw scale, weight, and family values
+- semantic text-role tokens for stable UI and content roles
 
-| Token            | Stack                                                                       | Usage                          |
-| ---------------- | --------------------------------------------------------------------------- | ------------------------------ |
-| `--co-font-sans` | `'Inter', 'Noto Sans', ui-sans-serif, system-ui, -apple-system, sans-serif` | Body text, UI labels, headings |
-| `--co-font-mono` | `'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace`                | Code blocks, technical values  |
+Use the semantic roles when you want consistency across components and screens. Reach for the foundational scale only when you are defining or revising the system itself.
 
-Import the self-hosted fonts from `@cobalt/tokens` — no additional packages needed:
+## Foundations
 
-```css
-@import '@cobalt/tokens/css/fonts';
-```
+The foundational layer defines the reusable font families, type scale, weights, and line heights.
 
-> **Tip:** Inter is the primary UI font. Noto Sans is included as a fallback for extended character sets (CJK, Cyrillic, Greek, math symbols, etc.). If neither loads, the token stack falls back to the operating system's default sans-serif font.
+| Foundation token               | Value                   | Purpose                               |
+| ------------------------------ | ----------------------- | ------------------------------------- |
+| `--co-font-family-sans`        | Inter / Noto Sans stack | Primary UI and content font           |
+| `--co-font-family-mono`        | JetBrains Mono stack    | Code and technical values             |
+| `--co-font-size-sm`            | `0.875rem`              | Compact UI text                       |
+| `--co-font-size-md`            | `1rem`                  | Default body/control size             |
+| `--co-font-size-lg`            | `1.125rem`              | Prominent controls and short headings |
+| `--co-font-size-4xl`           | `2.25rem`               | Large page titles                     |
+| `--co-font-weight-regular`     | `400`                   | Body text                             |
+| `--co-font-weight-medium`      | `500`                   | Labels and controls                   |
+| `--co-font-weight-semibold`    | `600`                   | Sub-headings                          |
+| `--co-font-weight-bold`        | `700`                   | Primary headings                      |
+| `--co-font-line-height-tight`  | `1.25`                  | Headings and controls                 |
+| `--co-font-line-height-normal` | `1.5`                   | Body and caption text                 |
 
-## Type scale
+## Semantic Roles
 
-The scale uses a modular ratio that produces consistent visual hierarchy.
+The semantic layer turns those foundations into named roles that components and documentation can depend on.
 
-| Token            | Size  | Rem       | Typical use              |
-| ---------------- | ----- | --------- | ------------------------ |
-| `--co-text-xs`   | 12 px | 0.75 rem  | Captions, badges         |
-| `--co-text-sm`   | 14 px | 0.875 rem | Helper text, table cells |
-| `--co-text-base` | 16 px | 1 rem     | Body copy                |
-| `--co-text-lg`   | 18 px | 1.125 rem | Subtitles, card titles   |
-| `--co-text-xl`   | 20 px | 1.25 rem  | Section headings         |
-| `--co-text-2xl`  | 24 px | 1.5 rem   | Page sub-headings        |
-| `--co-text-3xl`  | 30 px | 1.875 rem | Page titles              |
+| Semantic token group                | Purpose                                           |
+| ----------------------------------- | ------------------------------------------------- |
+| `--co-text-body-*`                  | Default reading and paragraph text                |
+| `--co-text-control-*`               | Button labels and control chrome                  |
+| `--co-text-label-*`                 | Form labels and dense UI labels                   |
+| `--co-text-caption-*`               | Helper text, metadata, and supporting copy        |
+| `--co-text-code-*`                  | Inline code and technical snippets                |
+| `--co-text-heading-h1-*` ... `h6-*` | Content hierarchy for editorial and docs surfaces |
 
-## Font weights
+## Recommended Usage
 
-| Token                | Value | Usage                        |
-| -------------------- | ----- | ---------------------------- |
-| `--co-font-regular`  | 400   | Body text                    |
-| `--co-font-medium`   | 500   | Labels, navigation items     |
-| `--co-font-semibold` | 600   | Sub-headings, emphasis       |
-| `--co-font-bold`     | 700   | Page titles, strong emphasis |
-
-## Line heights
-
-| Token                  | Value | Pairing                            |
-| ---------------------- | ----- | ---------------------------------- |
-| `--co-leading-tight`   | 1.25  | Headings (`text-xl` and above)     |
-| `--co-leading-normal`  | 1.5   | Body text (`text-base`, `text-sm`) |
-| `--co-leading-relaxed` | 1.75  | Long-form reading, help text       |
-
-## Usage examples
-
-### CSS
+### Body text
 
 ```css
-.co-heading {
-  font-family: var(--co-font-sans);
-  font-size: var(--co-text-2xl);
-  font-weight: var(--co-font-bold);
-  line-height: var(--co-leading-tight);
+.article-copy {
+  font-family: var(--co-text-body-font-family);
+  font-size: var(--co-text-body-size);
+  font-weight: var(--co-text-body-weight);
+  line-height: var(--co-text-body-line-height);
   color: var(--co-color-text-default);
 }
+```
 
-.co-body {
-  font-family: var(--co-font-sans);
-  font-size: var(--co-text-base);
-  font-weight: var(--co-font-regular);
-  line-height: var(--co-leading-normal);
-  color: var(--co-color-neutral-dark);
+### Controls
+
+```css
+.primary-action {
+  font-family: var(--co-text-control-font-family);
+  font-size: var(--co-text-control-size);
+  font-weight: var(--co-text-control-weight);
+  line-height: var(--co-text-control-line-height);
 }
 ```
 
-### React / TSX
+### Field labels and helper text
 
-```tsx
-import styles from './Article.module.css';
+```css
+.field-label {
+  font-family: var(--co-text-label-font-family);
+  font-size: var(--co-text-label-size);
+  font-weight: var(--co-text-label-weight);
+  line-height: var(--co-text-label-line-height);
+}
 
-export function Article({ title, body }: { title: string; body: string }) {
-  return (
-    <article>
-      <h1 className={styles.heading}>{title}</h1>
-      <p className={styles.body}>{body}</p>
-    </article>
-  );
+.field-help {
+  font-family: var(--co-text-caption-font-family);
+  font-size: var(--co-text-caption-size);
+  font-weight: var(--co-text-caption-weight);
+  line-height: var(--co-text-caption-line-height);
 }
 ```
 
-## Best practices
+## Current System Mapping
 
-- Set `font-size: 100%` on `<html>` so rem values respect user browser settings.
-- Avoid absolute units (`px`) for font sizes in component CSS; rely on the token rem values instead.
-- Limit the number of sizes on a single screen to three or four to maintain clear hierarchy.
-- Pair `--co-leading-tight` with headings and `--co-leading-normal` with body text for optimal readability.
+These semantic roles are already wired into the system:
+
+- base rich-text styles consume `body`, `caption`, `code`, and `heading` roles
+- `co-button` consumes `text.control`
+- `co-input` consumes `text.body`, `text.label`, and `text.caption`
+
+## Governance Rule
+
+- Use `co.text.*` tokens in component and docs styling when you mean a stable role
+- Use `co.font.*` primitives only when defining new semantic roles or making intentional one-off exceptions
 
 ## Related
 
-- [Colors](./colors.md) — text color tokens
-- [Accessibility](./accessibility.md) — readable font sizes and contrast
+- [Colors](./colors.md)
+- [Accessibility](./accessibility.md)
+- [Token Reference](/tokens/)

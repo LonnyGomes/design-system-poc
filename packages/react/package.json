@@ -20,6 +20,10 @@
     "./icon": {
       "import": "./dist/components/icon.js",
       "types": "./dist/components/icon.d.ts"
+    },
+    "./input": {
+      "import": "./dist/components/input.js",
+      "types": "./dist/components/input.d.ts"
     }
   },
   "scripts": {
