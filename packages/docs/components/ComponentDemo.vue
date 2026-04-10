@@ -7,6 +7,7 @@ const props = defineProps<{
   defaults?: Record<string, string | boolean>;
   options?: Record<string, string[]>;
   booleans?: string[];
+  textInputs?: string[];
 }>();
 
 const state = ref<Record<string, string | boolean>>({
@@ -36,15 +37,23 @@ onUnmounted(() => {
 });
 
 const attrString = computed(() => {
+  const toAttributeName = (key: string) => {
+    if (key === 'readOnly') return 'readonly';
+    return key.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
+  };
+
   return Object.entries(state.value)
     .filter(([, v]) => v !== false && v !== '' && v !== undefined)
-    .map(([k, v]) => (v === true ? k : `${k}="${v}"`))
+    .map(([k, v]) => {
+      const attr = toAttributeName(k);
+      return v === true ? attr : `${attr}="${v}"`;
+    })
     .join(' ');
 });
 
 const previewHtml = computed(() => {
   const attrs = attrString.value ? ' ' + attrString.value : '';
-  const text = props.label || 'Button';
+  const text = props.label ?? '';
   return `<${props.tag}${attrs}>${text}</${props.tag}>`;
 });
 
@@ -72,6 +81,10 @@ watch(state, () => renderKey.value++, { deep: true });
           </span>
           <span class="demo-toggle-label">{{ b }}</span>
         </label>
+      </div>
+      <div v-if="textInputs" v-for="field in textInputs" :key="field" class="demo-field">
+        <label class="demo-label" :for="`demo-${field}`">{{ field }}</label>
+        <input :id="`demo-${field}`" v-model="state[field]" type="text" class="demo-text-input" />
       </div>
       <div class="demo-field demo-theme-toggle">
         <button
@@ -166,7 +179,8 @@ watch(state, () => renderKey.value++, { deep: true });
   position: relative;
 }
 
-.demo-select {
+.demo-select,
+.demo-text-input {
   appearance: none;
   padding: 5px 28px 5px 10px;
   border: 1px solid var(--co-border-strong, rgba(99, 155, 255, 0.18));
@@ -175,18 +189,28 @@ watch(state, () => renderKey.value++, { deep: true });
   color: var(--co-text-primary, #e8edf5);
   font-family: var(--co-font-mono, monospace);
   font-size: 0.78rem;
-  cursor: pointer;
   transition: border-color 0.2s ease;
 }
 
-.demo-select:hover {
+.demo-select {
+  cursor: pointer;
+}
+
+.demo-select:hover,
+.demo-text-input:hover {
   border-color: var(--co-blue-500, #3b82f6);
 }
 
-.demo-select:focus {
+.demo-select:focus,
+.demo-text-input:focus {
   outline: none;
   border-color: var(--co-blue-500, #3b82f6);
   box-shadow: 0 0 0 2px var(--co-blue-alpha-15, rgba(37, 99, 235, 0.15));
+}
+
+.demo-text-input {
+  min-width: 150px;
+  padding-right: 10px;
 }
 
 .demo-select-wrap::after {
