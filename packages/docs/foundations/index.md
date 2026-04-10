@@ -6,16 +6,16 @@ Foundations are the visual and structural building blocks of the Cobalt Design S
 
 Each foundation category provides a set of **design tokens** — named values that you use in CSS, JavaScript, or design tools instead of hard-coded literals. Tokens make it easy to update the entire system from a single source of truth.
 
-| Foundation                          | Purpose                                                             |
-| ----------------------------------- | ------------------------------------------------------------------- |
-| [Colors](./colors.md)               | Primitive palette and semantic color tokens for light and dark mode |
-| [Typography](./typography.md)       | Font families, type scale, weights, and line heights                |
-| [Spacing](./spacing.md)             | Consistent spacing units based on a 4 px grid                       |
-| [Elevation](./elevation.md)         | Shadow levels that convey depth and hierarchy                       |
-| [Motion](./motion.md)               | Duration and easing tokens for animations and transitions           |
-| [Breakpoints](./breakpoints.md)     | Responsive viewport breakpoints for layout adaptation               |
-| [Iconography](./iconography.md)     | Icon sizing, usage patterns, and accessibility                      |
-| [Accessibility](./accessibility.md) | WCAG 2.1 AA standards, focus management, and ARIA patterns          |
+| Foundation                          | Purpose                                                                           |
+| ----------------------------------- | --------------------------------------------------------------------------------- |
+| [Colors](./colors.md)               | Primitive palette and semantic color tokens for the default light and dark themes |
+| [Typography](./typography.md)       | Font families, type scale, weights, and line heights                              |
+| [Spacing](./spacing.md)             | Consistent spacing units based on a 4 px grid                                     |
+| [Elevation](./elevation.md)         | Shadow levels that convey depth and hierarchy                                     |
+| [Motion](./motion.md)               | Duration and easing tokens for animations and transitions                         |
+| [Breakpoints](./breakpoints.md)     | Responsive viewport breakpoints for layout adaptation                             |
+| [Iconography](./iconography.md)     | Icon sizing, usage patterns, and accessibility                                    |
+| [Accessibility](./accessibility.md) | WCAG 2.1 AA standards, focus management, and ARIA patterns                        |
 
 ## Using tokens
 
@@ -28,7 +28,7 @@ npm install @cobalt/tokens
 Import the tokens stylesheet at the root of your application:
 
 ```css
-@import '@cobalt/tokens/css/tokens.css';
+@import '@cobalt/tokens/css';
 ```
 
 Then reference any token in your styles:
@@ -36,13 +36,13 @@ Then reference any token in your styles:
 ```css
 .card {
   background: var(--co-color-surface-default);
-  padding: var(--co-space-16);
+  padding: var(--co-space-inset-md);
   border-radius: var(--co-shape-radius-md);
   box-shadow: var(--co-elevation-shadow-md);
 }
 ```
 
-> **Tip:** Prefer semantic tokens (e.g. `--co-color-primary-base`) over raw hex values. This ensures your UI adapts correctly to theme changes and dark mode.
+> **Tip:** Prefer semantic tokens (e.g. `--co-color-primary-base`, `--co-control-height-md`) over raw values where they exist. This ensures your UI adapts correctly to theme changes and shared system rules.
 
 ## Guiding principles
 

@@ -56,6 +56,7 @@ Before marking a design ready:
 
 - [ ] existing semantic styles are used where available
 - [ ] new token requests are clearly labeled
+- [ ] typography uses existing font tokens or clearly requests a reusable typography rule
 - [ ] all required states are shown
 - [ ] all supported sizes are shown
 - [ ] theme differences are documented
@@ -77,8 +78,8 @@ Use this when requesting a new token:
 
 ### Good
 
-- "Uses existing body text role and default surface tokens."
-- "Input uses shared control height and shared control padding."
+- "Uses existing font-size and semantic color tokens."
+- "Input uses shared control height and shared control radius."
 - "Dark mode changes only the semantic color layer."
 - "Avatar sizes are component-specific and should not become system-wide."
 

@@ -4,7 +4,7 @@
 import { data } from './colors.data';
 </script>
 
-The Cobalt color system is organized into **primitive palettes** and **semantic tokens**. Primitives define the raw hues and shades; semantic tokens map those primitives to UI roles so that themes and dark mode work automatically.
+The Cobalt color system is organized into **primitive palettes** and **semantic color tokens**. Primitive colors live in `primitives.color.json`; semantic color roles live in `semantic.theme.default.light.json` and `semantic.theme.default.dark.json` so the same UI role can adapt by theme or mode.
 
 ## Core palette
 
@@ -22,16 +22,18 @@ Additional primitives available for illustrations, data visualization, status in
 
 Semantic tokens abstract primitives so your UI adapts to theme changes without touching component code.
 
-| Token                            | Primitive   | Light mode value | Dark mode value | Usage                       |
-| -------------------------------- | ----------- | ---------------- | --------------- | --------------------------- |
-| `--co-color-primary-base`        | Blue 600    | `#154bcc`        | Blue 400        | Primary actions, links      |
-| `--co-color-surface-raised`      | Neutral 50  | `#fcfcfc`        | Neutral 900     | Subtle backgrounds          |
-| `--co-color-text-default`        | Neutral 900 | `#1e1f21`        | Neutral 50      | Body text                   |
-| `--co-color-danger-base`         | Red 600     | `#a61b12`        | Red 400         | Destructive actions, errors |
-| `--co-color-success-base`        | Green 600   | `#16652a`        | Green 400       | Success states              |
-| `--co-color-warning-base`        | Orange 600  | `#c78017`        | Orange 400      | Warning indicators          |
-| `--co-color-interactive-default` | Blue 600    | `#154bcc`        | Blue 500        | Button/link backgrounds     |
-| `--co-color-interactive-hover`   | Blue 700    | `#103899`        | Blue 400        | Hover states                |
+| Token                            | Light mode value | Dark mode value | Usage                             |
+| -------------------------------- | ---------------- | --------------- | --------------------------------- |
+| `--co-color-primary-base`        | `#154bcc`        | `#487eff`       | Primary actions, links            |
+| `--co-color-surface-page`        | `#f7f7f7`        | `#0c0c0d`       | Page background                   |
+| `--co-color-surface-raised`      | `#fcfcfc`        | `#1e1f21`       | Subtle backgrounds                |
+| `--co-color-text-default`        | `#1e1f21`        | `#fcfcfc`       | Body text                         |
+| `--co-color-text-tertiary`       | `#b1b1b1`        | `#919191`       | Low-emphasis text                 |
+| `--co-color-danger-base`         | `#a61b12`        | `#d94e45`       | Destructive actions, errors       |
+| `--co-color-success-base`        | `#16652a`        | `#49985d`       | Success states                    |
+| `--co-color-warning-base`        | `#c78017`        | `#fab34a`       | Warning indicators                |
+| `--co-color-interactive-default` | `#1a5eff`        | `#1a5eff`       | Default interactive backgrounds   |
+| `--co-color-border-focus`        | `#1a5eff`        | `#487eff`       | Focus outlines and active borders |
 
 ## Usage in CSS
 
@@ -52,7 +54,12 @@ Reference tokens with `var()`:
 
 ## Light and dark mode
 
-Cobalt ships two token layers. The default layer uses light-mode values. When the `[data-theme="dark"]` attribute is set on a parent element (typically `<html>`), the dark layer overrides the semantic tokens.
+Cobalt ships two published token layers today:
+
+- `@cobalt/tokens/css` for the default light values
+- `@cobalt/tokens/css/dark` for the default dark overrides
+
+The recommended selector model for dark mode is `data-theme="default" data-mode="dark"`. For backward compatibility, the dark stylesheet also supports `data-theme="dark"` for the default dark theme.
 
 ```css
 /* Automatically provided by @cobalt/tokens */
@@ -61,7 +68,8 @@ Cobalt ships two token layers. The default layer uses light-mode values. When th
   --co-color-text-default: #1e1f21;
 }
 
-[data-theme='dark'] {
+[data-theme='dark'],
+[data-theme='default'][data-mode='dark'] {
   --co-color-primary-base: #487eff;
   --co-color-text-default: #fcfcfc;
 }
@@ -75,7 +83,7 @@ No component CSS needs to change — the same `var(--co-color-primary-base)` res
 
 - All default semantic pairings satisfy WCAG 2.1 AA contrast requirements.
 - Never rely on color alone to communicate meaning — always pair color with text, icons, or patterns.
-- Use the `--co-color-focus-ring` token for keyboard-focus outlines.
+- Use the `--co-color-border-focus` token for keyboard-focus outlines.
 
 ## Related
 

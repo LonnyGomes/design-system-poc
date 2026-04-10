@@ -15,7 +15,7 @@ For designers working in Figma, the main idea is simple:
 | ------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `primitives.json`                    | Raw foundational values                                  | Spacing scale, radius scale, type scale, motion values, breakpoints | `space.4`, `shape.radius.sm`, `font.size.md`                        |
 | `primitives.color.json`              | Raw color palette                                        | Neutral and brand ramps                                             | `neutral.100`, `blue.500`, `red.600`                                |
-| `semantic.shared.json`               | Shared design decisions that stay the same across themes | Text roles, control sizing, focus rules, shared layout values       | `text.body.size`, `control.height.md`, `focus.ring.width`           |
+| `semantic.shared.json`               | Shared design decisions that stay the same across themes | Control sizing, focus rules, shared layout values                   | `control.height.md`, `control.radius`, `focus.ring.width`           |
 | `semantic.theme.<theme>.<mode>.json` | Semantic tokens that change by theme or mode             | Mostly color behavior today                                         | `color.text.default`, `color.surface.default`, `color.primary.base` |
 | `components.json`                    | Component-specific tokens                                | Public component contracts or intentional exceptions                | `component.avatar.size.md`                                          |
 
@@ -51,18 +51,17 @@ These values exist so the system has a consistent base scale, but they do not ex
 
 Examples:
 
-- `text.body.*`
-- `text.label.*`
-- `text.heading.h1.*`
+- `focus.ring.width`
+- `focus.ring.offset`
 - `control.height.md`
-- `control.padding-inline.md`
 - `control.radius`
+- `layout.content.max-width.lg`
 
 These tokens answer questions like:
 
-- What should body text look like?
 - How tall is a medium control?
 - What radius should standard controls use?
+- How wide should shared content containers be?
 
 ### 3. Theme files only hold what changes by theme
 
@@ -113,8 +112,8 @@ If yes, it belongs in `semantic.shared`.
 
 Example:
 
-- body text style
 - default control height
+- default control radius
 - focus ring width
 - content max width
 
@@ -142,7 +141,7 @@ Example:
 
 | Need                            | Best location                 | Why                                     |
 | ------------------------------- | ----------------------------- | --------------------------------------- |
-| Body text size                  | `semantic.shared`             | It is a shared role, not a raw number   |
+| Focus ring width                | `semantic.shared`             | It is a shared interaction rule         |
 | Primary text color in dark mode | `semantic.theme.default.dark` | It changes by theme                     |
 | Button and input height         | `semantic.shared`             | It is a shared control rule             |
 | Avatar sizes                    | `components`                  | It belongs to Avatar, not every control |
@@ -164,8 +163,6 @@ Current control tokens cover:
 
 - height
 - radius
-- inline padding
-- inline gap
 
 This was added so controls feel related to each other instead of each component inventing its own sizing rules.
 

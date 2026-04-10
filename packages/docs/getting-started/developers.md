@@ -105,9 +105,9 @@ cobalt-design-system/
 Import the token stylesheet and the component module. No build step required.
 
 ```html
-<link rel="stylesheet" href="node_modules/@cobalt/tokens/css/global.css" />
+<link rel="stylesheet" href="node_modules/@cobalt/tokens/dist/css/tokens.css" />
 <script type="module">
-  import '@cobalt/components/co-button';
+  import '@cobalt/components/button';
 </script>
 
 <co-button variant="primary">Save Changes</co-button>
@@ -151,7 +151,7 @@ import { CoButton } from '@cobalt/vue';
 
 ### Angular
 
-The `@cobalt/angular` package provides standalone directives with signal-based inputs and outputs.
+The `@cobalt/angular` package provides standalone directives with Angular inputs and outputs.
 
 ```typescript
 // app.component.ts
@@ -187,43 +187,52 @@ Make sure your global `styles.css` imports the design tokens — Angular does no
 Cobalt uses per-component entry points for tree-shaking:
 
 ```js
-import '@cobalt/components/co-button';
-import '@cobalt/components/co-dialog';
-import '@cobalt/components/co-tooltip';
+import '@cobalt/components/button';
+import '@cobalt/components/icon';
 ```
+
+Additional components follow the same `@cobalt/components/<name>` pattern as they are published.
 
 > [!WARNING]
 > Avoid importing the barrel export (`@cobalt/components`) in production. It registers every component and increases bundle size significantly.
 
 ## Using Design Tokens
 
-Import `global.css` to make all tokens available as CSS custom properties on `:root`:
+Import the main token stylesheet to make all tokens available as CSS custom properties on `:root`:
 
 ```css
 .card {
   background: var(--co-color-surface-default);
-  padding: var(--co-space-lg);
+  padding: var(--co-space-inset-md);
   border-radius: var(--co-shape-radius-md);
 }
 ```
 
-| Category   | Example Token              | Default Value                |
-| ---------- | -------------------------- | ---------------------------- |
-| Color      | `--co-color-primary-base`  | `#0057FF`                    |
-| Spacing    | `--co-space-md`            | `16px`                       |
-| Typography | `--co-font-size-body`      | `14px`                       |
-| Radius     | `--co-shape-radius-md`     | `8px`                        |
-| Shadow     | `--co-elevation-shadow-md` | `0 4px 12px rgba(0,0,0,0.1)` |
+| Category   | Example Token              | Default Value                                                      |
+| ---------- | -------------------------- | ------------------------------------------------------------------ |
+| Color      | `--co-color-primary-base`  | `#154bcc`                                                          |
+| Spacing    | `--co-space-inset-md`      | `16px`                                                             |
+| Typography | `--co-font-size-md`        | `1rem`                                                             |
+| Radius     | `--co-shape-radius-md`     | `6px`                                                              |
+| Shadow     | `--co-elevation-shadow-md` | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)` |
 
 Tokens are also available as JavaScript exports:
 
 ```js
-import { colorPrimaryBase } from '@cobalt/tokens';
+import { CoColorPrimaryBase } from '@cobalt/tokens';
 ```
 
 ## Theming
 
-Cobalt supports light and dark themes via a `data-theme` attribute:
+Cobalt ships default light values in `@cobalt/tokens/css` and a default dark override in `@cobalt/tokens/css/dark`.
+
+The recommended selector model is:
+
+```html
+<html data-theme="default" data-mode="dark"></html>
+```
+
+For backward compatibility, the published dark stylesheet also supports:
 
 ```html
 <html data-theme="dark"></html>
@@ -339,7 +348,7 @@ For most development work, the monorepo itself provides full integration testing
 | Problem                                          | Solution                                                                          |
 | ------------------------------------------------ | --------------------------------------------------------------------------------- |
 | Component not rendering                          | Ensure the import runs before the parser encounters the tag. Use `type="module"`. |
-| Styles missing                                   | Verify `global.css` is imported and not stripped by your bundler.                 |
+| Styles missing                                   | Verify `@cobalt/tokens/css` is imported and not stripped by your bundler.         |
 | Events not firing in React                       | Use `@cobalt/react` wrappers or attach listeners via `ref`.                       |
 | FOUC on page load                                | Import component modules in your app entry point, not lazily in templates.        |
 | Bundle size too large                            | Use per-component imports instead of the barrel export.                           |

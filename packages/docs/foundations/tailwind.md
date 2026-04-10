@@ -5,13 +5,13 @@ description: Use Tailwind CSS utility classes backed by Cobalt design tokens.
 
 # Tailwind Integration
 
-The `@cobalt/tokens` package includes an opt-in Tailwind CSS preset that maps standard Tailwind utility classes to Cobalt design tokens via CSS custom properties. This means classes like `bg-primary-500`, `p-4`, and `rounded-lg` resolve to `var(--co-*)` values, so dark mode, theming, and runtime overrides propagate automatically.
+The `@cobalt/tokens` package includes an opt-in Tailwind CSS preset that maps standard Tailwind utility classes to Cobalt design tokens via CSS custom properties. This means classes like `bg-primary`, `p-4`, and `rounded-lg` resolve to `var(--co-*)` values, so dark mode, theming, and runtime overrides propagate automatically.
 
 ## Why CSS variables?
 
 The preset binds Tailwind theme values to `var(--co-*)` references rather than static hex/rem values. This gives you:
 
-- **Automatic dark mode** — load `@cobalt/tokens/css/dark` and toggle `data-theme="dark"`. All Tailwind classes update instantly, no `darkMode` configuration needed.
+- **Automatic dark mode** — load `@cobalt/tokens/css/dark` and toggle `data-theme="default" data-mode="dark"` for the recommended default-dark selector. `data-theme="dark"` is still supported for backward compatibility.
 - **Runtime theming** — override any `--co-*` variable in CSS and every Tailwind utility that references it updates.
 - **Single source of truth** — tokens are defined once in the design system. Tailwind reads from the same variables as web components.
 
@@ -179,10 +179,10 @@ Note: Cobalt's `md` font size maps to Tailwind's `base` (`text-base`), and Cobal
 
 ## Dark Mode
 
-Dark mode works automatically. Import the dark theme tokens and toggle the `data-theme` attribute:
+Dark mode works automatically. Import the dark theme tokens and toggle the recommended default-dark selector:
 
 ```html
-<html data-theme="dark"></html>
+<html data-theme="default" data-mode="dark"></html>
 ```
 
 ```css
@@ -191,6 +191,8 @@ Dark mode works automatically. Import the dark theme tokens and toggle the `data
 ```
 
 Because the Tailwind preset references `var(--co-*)` values, when dark theme overrides those variables, every Tailwind utility updates. No `darkMode` configuration is needed in `tailwind.config.js`.
+
+If you are migrating older consumers, `data-theme="dark"` still works for the default dark theme.
 
 ## Relationship to Utility Classes
 

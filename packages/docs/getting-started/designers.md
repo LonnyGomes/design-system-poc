@@ -28,20 +28,17 @@ Design tokens are the single source of truth for visual style. Every color, spac
 
 ### Token Naming Convention
 
-Tokens follow a structured naming pattern:
-
-```
-cobalt/{category}/{property}/{variant}
-```
+Figma should mirror the same token categories used in code. In code, tokens are exposed as `--co-*` CSS variables; in Figma, the library should preserve the same category and role structure so handoff stays unambiguous.
 
 Examples:
 
-| Token Name                  | Value     | Usage                         |
-| --------------------------- | --------- | ----------------------------- |
-| `cobalt/color/primary/base` | `#0057FF` | Primary action buttons, links |
-| `cobalt/color/neutral/700`  | `#374151` | Body text                     |
-| `cobalt/spacing/md`         | `16px`    | Default padding and gaps      |
-| `cobalt/font/size/lg`       | `18px`    | Subheadings                   |
+| Token Name                      | Value      | Usage                             |
+| ------------------------------- | ---------- | --------------------------------- |
+| `--co-color-primary-base`       | `#154bcc`  | Primary actions, key links        |
+| `--co-color-surface-raised`     | `#fcfcfc`  | Raised surfaces and subtle cards  |
+| `--co-space-inset-md`           | `16px`     | Default component padding         |
+| `--co-font-size-lg`             | `1.125rem` | Subheadings and emphasized labels |
+| `--co-component-avatar-size-md` | `32px`     | Default avatar size               |
 
 ### Applying Tokens in Figma
 

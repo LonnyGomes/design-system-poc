@@ -8,13 +8,13 @@ Cobalt is a unified design system that provides reusable components, design toke
 
 ## Core Principles
 
-| Principle         | Description                                                                       |
-| ----------------- | --------------------------------------------------------------------------------- |
-| **Consistency**   | Every component follows the same visual and interaction patterns across products. |
-| **Accessibility** | All components meet WCAG 2.1 AA standards out of the box.                         |
-| **Composability** | Components are designed to be combined in flexible ways without breaking.         |
-| **Performance**   | Lightweight web components with minimal runtime overhead.                         |
-| **Theming**       | Full support for light and dark modes via design tokens.                          |
+| Principle         | Description                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| **Consistency**   | Every component follows the same visual and interaction patterns across products.  |
+| **Accessibility** | All components meet WCAG 2.1 AA standards out of the box.                          |
+| **Composability** | Components are designed to be combined in flexible ways without breaking.          |
+| **Performance**   | Lightweight web components with minimal runtime overhead.                          |
+| **Theming**       | Default light and dark themes today, with a token structure ready for more themes. |
 
 ## Choose Your Path
 
@@ -55,17 +55,11 @@ Cobalt is distributed as a set of scoped npm packages:
 pnpm add @cobalt/components @cobalt/tokens
 ```
 
-Then import the global stylesheet and any components you need:
+Then import the token stylesheet and any components you need:
 
 ```js
-import '@cobalt/tokens/css/global.css';
-import '@cobalt/components/co-button';
+import '@cobalt/tokens/css';
+import '@cobalt/components/button';
 ```
 
 > **Tip:** You do not need to install `@cobalt/tokens` separately if you are already using `@cobalt/components` — tokens are included as a dependency. The explicit install is only needed if you want tokens without the component library.
-
-## Need Help?
-
-- **Slack:** `#cobalt-support`
-- **GitHub:** File an issue in the `cobalt-design-system` repository
-- **Office Hours:** Wednesdays 2-3 PM ET — drop in with any question

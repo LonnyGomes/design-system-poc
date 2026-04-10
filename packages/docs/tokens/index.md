@@ -21,6 +21,10 @@ Need a quick explanation of how the token system is organized? Start with [Token
 | **Sizing**     | <nobr>`--co-sizing-`</nobr>     | Fixed dimensions for icons across four sizes                                                                               |
 | **Opacity**    | <nobr>`--co-opacity-`</nobr>    | Alpha values for disabled elements, overlays, and placeholder text                                                         |
 | **Breakpoint** | <nobr>`--co-breakpoint-`</nobr> | Responsive viewport widths for media queries                                                                               |
+| **Focus**      | <nobr>`--co-focus-`</nobr>      | Shared focus ring width and offset                                                                                         |
+| **Control**    | <nobr>`--co-control-`</nobr>    | Shared control sizing values such as height and radius                                                                     |
+| **Layout**     | <nobr>`--co-layout-`</nobr>     | Shared layout constraints such as content max widths                                                                       |
+| **Component**  | <nobr>`--co-component-`</nobr>  | Component-specific tokens such as avatar sizes                                                                             |
 
 <TokenTable :tokens="data.tokens" />
 
@@ -45,7 +49,7 @@ Tokens are available in multiple formats via the `@cobalt/tokens` package:
 
 ```css
 @import '@cobalt/tokens/css';
-@import '@cobalt/tokens/css/dark'; /* opt-in dark theme */
+@import '@cobalt/tokens/css/dark'; /* opt-in default dark theme */
 
 .card {
   padding: var(--co-space-inset-md);

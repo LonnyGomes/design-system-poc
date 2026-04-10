@@ -22,7 +22,7 @@ Cobalt defines five responsive breakpoints that align with common device categor
 .co-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--co-space-16);
+  gap: var(--co-space-4);
 }
 
 @media (min-width: 640px) {
@@ -34,7 +34,7 @@ Cobalt defines five responsive breakpoints that align with common device categor
 @media (min-width: 1024px) {
   .co-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--co-space-24);
+    gap: var(--co-space-6);
   }
 }
 

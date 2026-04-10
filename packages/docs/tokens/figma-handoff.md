@@ -129,7 +129,7 @@ This helps developers place the token correctly.
 Before marking a design ready:
 
 - [ ] colors use existing semantic styles or clearly request a new semantic/theme token
-- [ ] text uses existing text roles or clearly requests a new text role
+- [ ] typography uses existing font tokens or clearly requests a new reusable typography rule
 - [ ] spacing and radius values use existing system scales where possible
 - [ ] component sizes and states are shown explicitly
 - [ ] light and dark differences are documented when relevant
@@ -138,22 +138,22 @@ Before marking a design ready:
 
 ## Common Examples
 
-| Design need                             | Best request type     | Why                                     |
-| --------------------------------------- | --------------------- | --------------------------------------- |
-| New body text style for product content | Shared semantic token | It should be reusable across the system |
-| Different text color in dark mode       | Theme semantic token  | It changes by mode                      |
-| New brand palette ramp                  | Primitive color token | It is a raw palette input               |
-| New avatar sizes                        | Component token       | It belongs to Avatar, not every control |
-| New default field height                | Shared semantic token | It affects standard controls            |
+| Design need                       | Best request type     | Why                                     |
+| --------------------------------- | --------------------- | --------------------------------------- |
+| Different text color in dark mode | Theme semantic token  | It changes by mode                      |
+| New brand palette ramp            | Primitive color token | It is a raw palette input               |
+| New avatar sizes                  | Component token       | It belongs to Avatar, not every control |
+| New default field height          | Shared semantic token | It affects standard controls            |
+| New content max width             | Shared semantic token | It affects shared layout behavior       |
 
 ## Good Handoff Notes
 
 Use notes like these:
 
-- "Uses existing body text role and default surface tokens."
+- "Uses existing font-size and semantic color tokens."
 - "Dark mode changes only the semantic color layer; spacing and typography stay the same."
 - "Avatar sizes are component-specific and should not become global control sizes."
-- "Input uses shared control height and shared control padding."
+- "Input uses shared control height and shared control radius."
 
 Avoid notes like these:
 

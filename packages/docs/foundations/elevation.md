@@ -56,12 +56,13 @@ A special **none** token is also available for explicitly removing shadows:
 
 ## Dark mode considerations
 
-In dark mode, shadows alone are not enough to communicate depth because the base background is already dark. Cobalt supplements shadows with subtle background-color shifts:
+In dark mode, shadows alone are not enough to communicate depth because the base background is already dark. Cobalt supplements shadows with semantic surface shifts:
 
 ```css
-[data-theme='dark'] {
-  --co-surface-raised: var(--co-color-neutral-dark);
-  --co-surface-overlay: var(--co-color-neutral-dark);
+[data-theme='dark'],
+[data-theme='default'][data-mode='dark'] {
+  --co-color-surface-raised: var(--co-color-primitive-neutral-900);
+  --co-color-surface-overlay: var(--co-color-primitive-neutral-950);
 }
 ```
 
@@ -73,7 +74,7 @@ Pair elevation changes with the motion system so shadows animate smoothly:
 
 ```css
 .co-card {
-  transition: box-shadow var(--co-duration-normal) var(--co-ease);
+  transition: box-shadow var(--co-motion-duration-normal) var(--co-motion-easing-default);
 }
 ```
 
