@@ -119,7 +119,8 @@
       },
       "border-width": {
         "thin": { "$value": "1px", "$type": "dimension" },
-        "thick": { "$value": "2px", "$type": "dimension" }
+        "thick": { "$value": "2px", "$type": "dimension" },
+        "lg": { "$value": "3px", "$type": "dimension" }
       }
     },
     "opacity": {

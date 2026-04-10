@@ -47,6 +47,7 @@ export const navigation: NavGroup[] = [
       { text: 'CSS Layers', link: '/foundations/css-layers' },
       { text: 'Tailwind Integration', link: '/foundations/tailwind' },
       { text: 'Token Structure', link: '/tokens/structure' },
+      { text: 'Figma Alignment', link: '/tokens/figma-alignment' },
       { text: 'Figma Handoff', link: '/tokens/figma-handoff' },
       { text: 'Figma Checklist', link: '/tokens/figma-checklist' },
       { text: 'Token Reference', link: '/tokens/' },

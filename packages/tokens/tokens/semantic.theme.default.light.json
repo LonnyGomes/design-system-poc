@@ -37,14 +37,18 @@
         "contrast": { "$value": "{co.color.primitive.neutral.900}", "$type": "color" }
       },
       "surface": {
+        "page": { "$value": "#f7f7f7", "$type": "color" },
         "default": { "$value": "{co.color.primitive.white}", "$type": "color" },
         "raised": { "$value": "{co.color.primitive.neutral.50}", "$type": "color" },
         "sunken": { "$value": "{co.color.primitive.neutral.100}", "$type": "color" },
+        "disabled": { "$value": "{co.color.primitive.neutral.300}", "$type": "color" },
         "overlay": { "$value": "{co.color.primitive.neutral.900}", "$type": "color" }
       },
       "text": {
         "default": { "$value": "{co.color.primitive.neutral.900}", "$type": "color" },
         "secondary": { "$value": "{co.color.primitive.neutral.500}", "$type": "color" },
+        "tertiary": { "$value": "#b1b1b1", "$type": "color" },
+        "placeholder": { "$value": "{co.color.primitive.neutral.600}", "$type": "color" },
         "disabled": { "$value": "{co.color.primitive.neutral.400}", "$type": "color" },
         "inverse": { "$value": "{co.color.primitive.white}", "$type": "color" },
         "on-primary": { "$value": "{co.color.primitive.white}", "$type": "color" },
@@ -54,6 +58,9 @@
         "default": { "$value": "{co.color.primitive.neutral.200}", "$type": "color" },
         "strong": { "$value": "{co.color.primitive.neutral.300}", "$type": "color" },
         "subtle": { "$value": "{co.color.primitive.neutral.100}", "$type": "color" },
+        "active": { "$value": "{co.color.primitive.blue.700}", "$type": "color" },
+        "danger": { "$value": "{co.color.primitive.red.500}", "$type": "color" },
+        "success": { "$value": "{co.color.primitive.green.500}", "$type": "color" },
         "focus": { "$value": "{co.color.primitive.blue.500}", "$type": "color" }
       },
       "interactive": {
