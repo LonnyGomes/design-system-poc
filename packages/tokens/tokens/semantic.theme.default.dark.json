@@ -43,7 +43,7 @@
         "sunken": { "$value": "{co.color.primitive.neutral.950}", "$type": "color" },
         "disabled": { "$value": "{co.color.primitive.neutral.700}", "$type": "color" },
         "overlay": { "$value": "{co.color.primitive.neutral.950}", "$type": "color" },
-        "bold": { "$value": "{co.color.primitive.neutral.900}", "$type": "color" }
+        "bold": { "$value": "{co.color.primitive.neutral.800}", "$type": "color" }
       },
       "text": {
         "default": { "$value": "{co.color.primitive.neutral.50}", "$type": "color" },
