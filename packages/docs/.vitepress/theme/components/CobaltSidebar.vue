@@ -346,17 +346,6 @@ function isGroupActive(group: NavGroup): boolean {
   border: 1px solid var(--co-blue-alpha-15);
 }
 
-/* ── Mobile: slide-in overlay ──────────────────────────── */
-@media (max-width: 768px) {
-  .cobalt-sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.3s var(--co-ease, cubic-bezier(0.2, 0, 0, 1));
-    z-index: 70;
-    background: var(--co-midnight, #0a1628);
-  }
-
-  .cobalt-sidebar.is-open {
-    transform: translateX(0);
-  }
-}
+/* Mobile slide-in overlay rules live in CobaltLayout.vue (unscoped)
+   so the .is-open class passed from the parent matches reliably. */
 </style>

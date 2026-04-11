@@ -852,15 +852,41 @@ div[class*='language-'] > button.copy.copied::before {
   }
 
   .cobalt-topbar {
-    padding: 0 16px;
+    padding: 0 12px;
+    gap: 8px;
   }
 
   .brand-tag {
     display: none;
   }
 
+  /* Hide search on mobile — it crowds out the theme toggle and GitHub link.
+     Users can navigate via the hamburger menu instead. */
+  .topbar-nav :deep(.VPNavBarSearch) {
+    display: none;
+  }
+
+  .topbar-nav {
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
   .cobalt-main {
     margin-left: 0;
+  }
+
+  /* Sidebar slides in as an overlay on mobile.
+     Kept in the parent (unscoped) so the .is-open class bound from here
+     reliably triggers the transform regardless of scoped-CSS hashing. */
+  .cobalt-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s var(--co-ease, cubic-bezier(0.2, 0, 0, 1));
+    z-index: 70;
+    background: var(--co-midnight);
+  }
+
+  .cobalt-sidebar.is-open {
+    transform: translateX(0);
   }
 
   .cobalt-content {
