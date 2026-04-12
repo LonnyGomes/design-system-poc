@@ -55,8 +55,8 @@ Use named slots to add icons or other content before or after the button label.
 
 <ClientOnly>
 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px;">
-  <co-button><span slot="prefix">★</span> With Prefix</co-button>
-  <co-button>With Suffix <span slot="suffix">→</span></co-button>
+  <co-button><co-icon slot="prefix" name="star" size="sm"></co-icon> With Prefix</co-button>
+  <co-button>With Suffix <co-icon slot="suffix" name="east" size="sm"></co-icon></co-button>
 </div>
 </ClientOnly>
 
@@ -70,14 +70,15 @@ Use named slots to add icons or other content before or after the button label.
 <!-- Import once in your app -->
 <script type="module">
   import '@cobalt/components/button';
+  import '@cobalt/components/icon';
 </script>
 
 <!-- Basic usage -->
 <co-button variant="primary">Save changes</co-button>
 
-<!-- With slots -->
+<!-- With slots: use <co-icon> for prefix/suffix content -->
 <co-button variant="secondary" size="lg">
-  <span slot="prefix">📎</span>
+  <co-icon slot="prefix" name="attachment" size="sm"></co-icon>
   Attach file
 </co-button>
 
@@ -100,35 +101,31 @@ Use named slots to add icons or other content before or after the button label.
 <template #react>
 
 ```tsx
-import { CoButton } from '@cobalt/react';
+import { CoButton, CoIcon } from '@cobalt/react';
 
 function App() {
-  const [loading, setLoading] = useState(false);
-
-  async function handleClick() {
-    setLoading(true);
-    await saveChanges();
-    setLoading(false);
-  }
-
   return (
     <>
-      {/* Basic */}
-      <CoButton variant="primary" onClick={handleClick}>
-        Save changes
+      {/* Basic usage */}
+      <CoButton variant="primary">Save changes</CoButton>
+
+      {/* With slots: use CoIcon for prefix/suffix content */}
+      <CoButton variant="secondary" size="lg">
+        <CoIcon slot="prefix" name="attachment" size="sm" />
+        Attach file
       </CoButton>
 
-      {/* With loading state */}
-      <CoButton loading={loading}>Submitting…</CoButton>
+      {/* Disabled + loading states */}
+      <CoButton disabled>Can't touch this</CoButton>
+      <CoButton loading>Submitting…</CoButton>
 
-      {/* Danger variant */}
-      <CoButton variant="danger" onCoFocus={() => console.log('focused')}>
-        Delete account
+      {/* As a link */}
+      <CoButton href="https://example.com" target="_blank">
+        Visit site
       </CoButton>
 
-      {/* Sizes */}
-      <CoButton size="sm">Small</CoButton>
-      <CoButton size="lg">Large</CoButton>
+      {/* Listen to events */}
+      <CoButton onCoFocus={() => console.log('focused')}>Click me</CoButton>
     </>
   );
 }
@@ -140,31 +137,32 @@ function App() {
 
 ```vue
 <script setup>
-import { ref } from 'vue';
-import { CoButton } from '@cobalt/vue';
+import { CoButton, CoIcon } from '@cobalt/vue';
 
-const loading = ref(false);
-
-async function handleClick() {
-  loading.value = true;
-  await saveChanges();
-  loading.value = false;
+function onFocus() {
+  console.log('focused');
 }
 </script>
 
 <template>
-  <!-- Basic -->
-  <CoButton variant="primary" @click="handleClick"> Save changes </CoButton>
+  <!-- Basic usage -->
+  <CoButton variant="primary">Save changes</CoButton>
 
-  <!-- With loading state -->
-  <CoButton :loading="loading">Submitting…</CoButton>
+  <!-- With slots: use CoIcon for prefix/suffix content -->
+  <CoButton variant="secondary" size="lg">
+    <CoIcon slot="prefix" name="attachment" size="sm" />
+    Attach file
+  </CoButton>
 
-  <!-- Danger variant -->
-  <CoButton variant="danger" @co-focus="onFocus"> Delete account </CoButton>
+  <!-- Disabled + loading states -->
+  <CoButton disabled>Can't touch this</CoButton>
+  <CoButton loading>Submitting…</CoButton>
 
-  <!-- Sizes -->
-  <CoButton size="sm">Small</CoButton>
-  <CoButton size="lg">Large</CoButton>
+  <!-- As a link -->
+  <CoButton href="https://example.com" target="_blank">Visit site</CoButton>
+
+  <!-- Listen to events -->
+  <CoButton @co-focus="onFocus">Click me</CoButton>
 </template>
 ```
 
@@ -173,26 +171,20 @@ async function handleClick() {
 <template #angular>
 
 ```typescript
-// app.component.ts — standalone component with CoButton
+// app.component.ts — standalone component with CoButton + CoIcon
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CoButton } from '@cobalt/angular';
+import { CoButton, CoIcon } from '@cobalt/angular';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CoButton],
+  imports: [CoButton, CoIcon],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  variant = 'primary';
-  isLoading = false;
-
-  handleClick() {
-    /* ... */
-  }
   onFocus(event: CustomEvent) {
-    /* ... */
+    console.log('focused');
   }
 }
 ```
@@ -200,18 +192,24 @@ export class AppComponent {
 ```html
 <!-- app.component.html -->
 
-<!-- Basic -->
-<co-button variant="primary" (click)="handleClick()"> Save changes </co-button>
+<!-- Basic usage -->
+<co-button variant="primary">Save changes</co-button>
 
-<!-- Bound properties -->
-<co-button [variant]="variant" [loading]="isLoading"> Submitting… </co-button>
+<!-- With slots: use <co-icon> for prefix/suffix content -->
+<co-button variant="secondary" size="lg">
+  <co-icon slot="prefix" name="attachment" size="sm"></co-icon>
+  Attach file
+</co-button>
 
-<!-- Danger variant with events -->
-<co-button variant="danger" (coFocus)="onFocus($event)"> Delete account </co-button>
+<!-- Disabled + loading states -->
+<co-button disabled>Can't touch this</co-button>
+<co-button loading>Submitting…</co-button>
 
-<!-- Sizes -->
-<co-button size="sm">Small</co-button>
-<co-button size="lg">Large</co-button>
+<!-- As a link -->
+<co-button href="https://example.com" target="_blank">Visit site</co-button>
+
+<!-- Listen to events -->
+<co-button (coFocus)="onFocus($event)">Click me</co-button>
 ```
 
 </template>
