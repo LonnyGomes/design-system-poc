@@ -122,7 +122,7 @@ function toggleSidebar() {
           </svg>
         </div>
         <span class="brand-name">Cobalt</span>
-        <span class="brand-tag">Design System</span>
+        <span class="brand-tag">The Design System for Apps and Tools</span>
       </a>
       <nav class="topbar-nav">
         <VPNavBarSearch />

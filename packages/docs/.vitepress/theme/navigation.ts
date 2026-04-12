@@ -28,7 +28,7 @@ export const navigation: NavGroup[] = [
   {
     label: 'Design Foundations',
     railLabel: 'Foundations',
-    icon: 'palette',
+    icon: 'stacks',
     defaultOpen: false,
     items: [
       { text: 'Overview', link: '/foundations/' },

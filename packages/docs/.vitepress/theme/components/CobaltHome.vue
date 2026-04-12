@@ -8,21 +8,21 @@ const features = [
     iconName: 'palette',
     title: 'Design Tokens',
     description:
-      'Style Dictionary powers a multi-format token pipeline — CSS, SCSS, and JS. Tokens apply directly to components with no mapping layer.',
+      'Style Dictionary powers a multi-format token pipeline with outputs for CSS, SCSS, and JS. Tokens apply directly to components and a Cobalt CSS utility library.',
     link: '/tokens/',
   },
   {
     iconName: 'widgets',
     title: 'Web Components',
     description:
-      'Components extend Lion Web Components with Cobalt theming. White-label foundations with full styling control.',
-    link: '/components/button',
+      'Lit provides a structured foundation for components that abstract implementation. Components ship with token-driven Cobalt theming.',
+    link: '/components',
   },
   {
     iconName: 'code-blocks',
     title: 'Framework Wrappers',
     description:
-      'Auto-generated React, Vue, and Angular wrappers from Custom Elements Manifest. Native DX in every framework.',
+      'Thin wrappers for React, Vue, and Angular leverage shared web components while providing native developer experieces in each framework.',
     link: '/getting-started/developers',
   },
 ];
@@ -47,20 +47,22 @@ const features = [
         </h1>
 
         <p class="hero-subtitle">
-          A composable design system architecture. Lit web components extend Lion, themed by Style
-          Dictionary tokens, with wrappers for every framework.
+          A composable design system for tools and applications. Built as framework-agnostic web
+          components, themed with design tokens, with wrappers for React, Vue, and Angular.
+        </p>
+        <p class="hero-subtitle">
+          This is the temporary home of Cobalt while we integrate with a larger enterprise solution.
         </p>
 
         <div class="hero-actions">
-          <a :href="withBase('/getting-started')" class="hero-action-link">
-            <co-button variant="primary" size="md">
-              <span>Get Started</span>
-              <co-icon slot="suffix" name="arrow-right-alt" size="sm" aria-hidden="true"></co-icon>
-            </co-button>
-          </a>
-          <a :href="withBase('/components/button')" class="hero-action-link">
-            <co-button variant="secondary" size="lg">Explore Components</co-button>
-          </a>
+          <co-button :href="withBase('/getting-started')" variant="primary" size="md">
+            Get Started
+            <co-icon slot="suffix" name="arrow-right-alt" size="md" aria-hidden="true"></co-icon>
+          </co-button>
+          <co-button :href="withBase('/foundations')" variant="secondary" size="md">
+            <co-icon slot="prefix" name="stacks" size="md" aria-hidden="true"></co-icon>
+            Explore Foundations</co-button
+          >
         </div>
       </div>
 
@@ -278,9 +280,9 @@ const features = [
 .title-accent {
   background: linear-gradient(
     135deg,
-    var(--co-code-color) 0%,
-    var(--co-blue-500) 50%,
-    var(--co-code-color) 100%
+    var(--co-color-interactive-default) 0%,
+    var(--co-color-primitive-blue-400) 50%,
+    var(--co-color-interactive-default) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
