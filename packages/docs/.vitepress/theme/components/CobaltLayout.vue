@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useData, useRoute, withBase } from 'vitepress';
+import { useData, useRoute, useRouter, withBase } from 'vitepress';
 import { ref, computed, onMounted, watch, onUnmounted } from 'vue';
 import CobaltRail from './CobaltRail.vue';
 import CobaltSidebar from './CobaltSidebar.vue';
@@ -11,6 +11,7 @@ import VPNavBarSearch from 'vitepress/dist/client/theme-default/components/VPNav
 
 const { frontmatter } = useData();
 const route = useRoute();
+const router = useRouter();
 
 const isDark = ref(false);
 const sidebarOpen = ref(false);
@@ -36,6 +37,10 @@ const activeCategoryIndex = computed(() => selectedCategoryIndex.value ?? routeC
 
 function selectCategory(i: number) {
   selectedCategoryIndex.value = i;
+  const firstLink = navigation[i].items.find((item) => item.link)?.link;
+  if (firstLink) {
+    router.go(withBase(firstLink));
+  }
 }
 
 onMounted(() => {
