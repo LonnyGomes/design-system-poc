@@ -1,6 +1,6 @@
 # Cobalt Design System — Copilot Instructions
 
-This is the Cobalt Design System, a Lit + Shoelace web component library with React, Vue, and Angular wrappers.
+This is the Cobalt Design System, a Lit web component library with React, Vue, and Angular wrappers.
 
 ## Component Usage
 

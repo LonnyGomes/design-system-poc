@@ -29,7 +29,7 @@ Cobalt builds on top of these open-source projects:
 | Technology       | Role in Cobalt          | Documentation                                      |
 | ---------------- | ----------------------- | -------------------------------------------------- |
 | Lit              | Web component framework | [lit.dev](https://lit.dev)                         |
-| Shoelace         | Base component library  | [shoelace.style](https://shoelace.style)           |
+| Lion             | Base component library  | [lion.js.org](https://lion.js.org)                 |
 | Style Dictionary | Token build pipeline    | [styledictionary.com](https://styledictionary.com) |
 | VitePress        | Documentation site      | [vitepress.dev](https://vitepress.dev)             |
 

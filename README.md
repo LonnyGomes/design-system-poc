@@ -1,6 +1,6 @@
 # Cobalt Design System
 
-A token-first design system built with [Lit](https://lit.dev/) and [Shoelace](https://shoelace.style/), with framework wrappers for React, Vue, and Angular.
+A token-first design system built with [Lit](https://lit.dev/) with framework wrappers for React, Vue, and Angular.
 
 ## Prerequisites
 
@@ -116,11 +116,10 @@ Design tokens — the single source of truth for colors, typography, spacing, el
 - **SCSS** variables
 - **JavaScript/TypeScript** module
 - **JSON**
-- **Shoelace mapping** — bridges Cobalt tokens to Shoelace's `--sl-*` variables
 
 ### `@cobalt/components`
 
-Framework-agnostic web components built with [Lit](https://lit.dev/) that wrap and theme [Shoelace](https://shoelace.style/) primitives. Each component applies Cobalt tokens and exposes a consistent API with slots, CSS custom properties, and custom events.
+Framework-agnostic web components built with [Lit](https://lit.dev/) that wrap implementation from base libraries such as Lion. Each component applies Cobalt tokens and exposes a consistent API with slots, CSS custom properties, and custom events.
 
 Components use the `co-` prefix (e.g., `<co-button>`).
 

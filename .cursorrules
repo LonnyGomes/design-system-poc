@@ -1,6 +1,6 @@
 # Cobalt Design System
 
-You are working in the Cobalt Design System — a Lit + Shoelace web component library with React, Vue, and Angular wrappers. Monorepo managed with pnpm workspaces.
+You are working in the Cobalt Design System — a Lit web component library with React, Vue, and Angular wrappers. Monorepo managed with pnpm workspaces.
 
 ## Packages
 

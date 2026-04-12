@@ -1,6 +1,6 @@
 # Cobalt Design System
 
-Cobalt is a web component design system built with **Lit** on top of **Shoelace**, with framework wrappers for React, Vue, and Angular. It uses design tokens managed via Style Dictionary.
+Cobalt is a web component design system built with **Lit**, with framework wrappers for React, Vue, and Angular. It uses design tokens managed via Style Dictionary.
 
 ## Repository Structure
 
@@ -35,16 +35,15 @@ pnpm pack:local     # Pack tarballs for local testing in external apps
 
 Tokens live in `packages/tokens/` and are built to multiple formats:
 
-| Format                 | File                            | Import                                    |
-| ---------------------- | ------------------------------- | ----------------------------------------- |
-| CSS custom properties  | `dist/css/tokens.css`           | `@cobalt/tokens/css/tokens.css`           |
-| Base element styles    | `dist/css/base.css`             | `@cobalt/tokens/css/base`                 |
-| Self-hosted fonts      | `dist/css/fonts.css`            | `@cobalt/tokens/css/fonts`                |
-| Dark theme overrides   | `dist/css/tokens-dark.css`      | `@cobalt/tokens/css/tokens-dark.css`      |
-| Shoelace mapping       | `dist/css/shoelace-mapping.css` | `@cobalt/tokens/css/shoelace-mapping.css` |
-| SCSS variables         | `dist/scss/_tokens.scss`        | `@cobalt/tokens/scss/_tokens.scss`        |
-| JS/TS exports          | `dist/js/tokens.js`             | `@cobalt/tokens`                          |
-| Flat JSON (all tokens) | `dist/tokens.json`              | Machine-readable reference                |
+| Format                 | File                       | Import                               |
+| ---------------------- | -------------------------- | ------------------------------------ |
+| CSS custom properties  | `dist/css/tokens.css`      | `@cobalt/tokens/css/tokens.css`      |
+| Base element styles    | `dist/css/base.css`        | `@cobalt/tokens/css/base`            |
+| Self-hosted fonts      | `dist/css/fonts.css`       | `@cobalt/tokens/css/fonts`           |
+| Dark theme overrides   | `dist/css/tokens-dark.css` | `@cobalt/tokens/css/tokens-dark.css` |
+| SCSS variables         | `dist/scss/_tokens.scss`   | `@cobalt/tokens/scss/_tokens.scss`   |
+| JS/TS exports          | `dist/js/tokens.js`        | `@cobalt/tokens`                     |
+| Flat JSON (all tokens) | `dist/tokens.json`         | Machine-readable reference           |
 
 ### Token naming convention
 
@@ -94,28 +93,6 @@ For the full token list, read `packages/tokens/dist/tokens.json`.
 Components are Lit-based web components in `packages/components/src/components/`. Each component registers a `<co-*>` custom element.
 
 For the full machine-readable API (props, events, slots, CSS parts), read `packages/components/custom-elements.json`.
-
-### co-button
-
-A themed button wrapping Shoelace's sl-button.
-
-**Properties:**
-
-| Property   | Type                                               | Default     | Description                         |
-| ---------- | -------------------------------------------------- | ----------- | ----------------------------------- |
-| `variant`  | `'primary' \| 'secondary' \| 'error' \| 'success'` | `'primary'` | Visual style                        |
-| `size`     | `'sm' \| 'md' \| 'lg'`                             | `'md'`      | Controls padding and font size      |
-| `disabled` | `boolean`                                          | `false`     | Prevents interaction                |
-| `loading`  | `boolean`                                          | `false`     | Shows spinner, disables interaction |
-| `type`     | `'submit' \| 'reset' \| 'button'`                  | `'button'`  | HTML button type                    |
-| `href`     | `string`                                           | —           | Renders as anchor element           |
-| `target`   | `'_blank' \| '_self' \| '_parent' \| '_top'`       | —           | Link target (when href is set)      |
-
-**Events:** `co-focus`, `co-blur`
-
-**Slots:** default (label), `prefix`, `suffix`
-
-**CSS Parts:** `base`, `label`, `prefix`, `suffix`
 
 ## Framework Usage Patterns
 
