@@ -43,23 +43,25 @@ export class CoButton extends LionButton {
   loading = false;
 
   /** An optional href to render the button as a link. */
-  @property()
+  @property({ reflect: true })
   href?: string;
 
   /** Where to open the link (when href is set). */
-  @property()
+  @property({ reflect: true })
   target?: '_blank' | '_self' | '_parent' | '_top';
 
   connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener('focus', this._handleFocus);
     this.addEventListener('blur', this._handleBlur);
+    this.addEventListener('click', this._handleClick);
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
     this.removeEventListener('focus', this._handleFocus);
     this.removeEventListener('blur', this._handleBlur);
+    this.removeEventListener('click', this._handleClick);
   }
 
   private _handleFocus = () => {
@@ -68,6 +70,15 @@ export class CoButton extends LionButton {
 
   private _handleBlur = () => {
     this.dispatchEvent(new CustomEvent('co-blur', { bubbles: true, composed: true }));
+  };
+
+  private _handleClick = () => {
+    if (this.disabled || !this.href) return;
+    if (this.target && this.target !== '_self') {
+      window.open(this.href, this.target, this.target === '_blank' ? 'noopener,noreferrer' : '');
+    } else {
+      window.location.href = this.href;
+    }
   };
 
   render() {
