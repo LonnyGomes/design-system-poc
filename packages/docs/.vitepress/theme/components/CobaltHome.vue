@@ -5,25 +5,25 @@ const { theme } = useData();
 
 const features = [
   {
-    icon: 'tokens',
+    iconName: 'palette',
     title: 'Design Tokens',
     description:
       'Style Dictionary powers a multi-format token pipeline — CSS, SCSS, and JS. Tokens apply directly to components with no mapping layer.',
     link: '/tokens/',
   },
   {
-    icon: 'components',
+    iconName: 'widgets',
     title: 'Web Components',
     description:
       'Components extend Lion Web Components with Cobalt theming. White-label foundations with full styling control.',
     link: '/components/button',
   },
   {
-    icon: 'frameworks',
+    iconName: 'code-blocks',
     title: 'Framework Wrappers',
     description:
       'Auto-generated React, Vue, and Angular wrappers from Custom Elements Manifest. Native DX in every framework.',
-    link: '/components/button',
+    link: '/getting-started/developers',
   },
 ];
 </script>
@@ -52,27 +52,14 @@ const features = [
         </p>
 
         <div class="hero-actions">
-          <a :href="withBase('/components/button')" class="hero-action-link">
+          <a :href="withBase('/getting-started')" class="hero-action-link">
             <co-button variant="primary" size="md">
-              <span>Explore Components</span>
-              <svg
-                slot="suffix"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="3" y1="8" x2="13" y2="8" />
-                <polyline points="9 4 13 8 9 12" />
-              </svg>
+              <span>Get Started</span>
+              <co-icon slot="suffix" name="arrow-right-alt" size="sm" aria-hidden="true"></co-icon>
             </co-button>
           </a>
-          <a :href="withBase('/tokens/')" class="hero-action-link">
-            <co-button variant="secondary" size="lg">View Tokens</co-button>
+          <a :href="withBase('/components/button')" class="hero-action-link">
+            <co-button variant="secondary" size="lg">Explore Components</co-button>
           </a>
         </div>
       </div>
@@ -162,58 +149,7 @@ const features = [
         :style="{ animationDelay: `${200 + i * 100}ms` }"
       >
         <div class="feature-icon">
-          <!-- Tokens icon -->
-          <svg
-            v-if="feature.icon === 'tokens'"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="3" />
-            <circle cx="12" cy="12" r="8" stroke-dasharray="4 4" />
-            <line x1="12" y1="1" x2="12" y2="4" />
-            <line x1="12" y1="20" x2="12" y2="23" />
-            <line x1="1" y1="12" x2="4" y2="12" />
-            <line x1="20" y1="12" x2="23" y2="12" />
-          </svg>
-          <!-- Components icon -->
-          <svg
-            v-else-if="feature.icon === 'components'"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="2" y="2" width="8" height="8" rx="2" />
-            <rect x="14" y="2" width="8" height="8" rx="2" />
-            <rect x="2" y="14" width="8" height="8" rx="2" />
-            <path d="M18 14v8M14 18h8" />
-          </svg>
-          <!-- Frameworks icon -->
-          <svg
-            v-else
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
-            <line x1="12" y1="22" x2="12" y2="15.5" />
-            <polyline points="22 8.5 12 15.5 2 8.5" />
-          </svg>
+          <co-icon :name="feature.iconName" size="md" aria-hidden="true"></co-icon>
         </div>
         <h3 class="feature-title">{{ feature.title }}</h3>
         <p class="feature-desc">{{ feature.description }}</p>
@@ -234,63 +170,6 @@ const features = [
           </svg>
         </span>
       </a>
-    </section>
-
-    <!-- Architecture summary -->
-    <section class="arch-section">
-      <div class="arch-label">Architecture</div>
-      <div class="arch-flow">
-        <div class="arch-node">
-          <span class="arch-node-label">Style Dictionary</span>
-          <span class="arch-node-sub">tokens</span>
-        </div>
-        <div class="arch-arrow" aria-hidden="true">
-          <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
-            <line
-              x1="0"
-              y1="8"
-              x2="28"
-              y2="8"
-              stroke="var(--co-blue-500)"
-              stroke-width="1"
-              stroke-dasharray="3 3"
-            />
-            <polyline
-              points="24,4 28,8 24,12"
-              stroke="var(--co-blue-500)"
-              stroke-width="1"
-              fill="none"
-            />
-          </svg>
-        </div>
-        <div class="arch-node">
-          <span class="arch-node-label">Lit + Lion</span>
-          <span class="arch-node-sub">components</span>
-        </div>
-        <div class="arch-arrow" aria-hidden="true">
-          <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
-            <line
-              x1="0"
-              y1="8"
-              x2="28"
-              y2="8"
-              stroke="var(--co-blue-500)"
-              stroke-width="1"
-              stroke-dasharray="3 3"
-            />
-            <polyline
-              points="24,4 28,8 24,12"
-              stroke="var(--co-blue-500)"
-              stroke-width="1"
-              fill="none"
-            />
-          </svg>
-        </div>
-        <div class="arch-node">
-          <span class="arch-node-label">React / Vue / Angular</span>
-          <span class="arch-node-sub">wrappers</span>
-        </div>
-      </div>
     </section>
   </div>
 </template>
@@ -503,15 +382,25 @@ const features = [
   align-items: center;
   justify-content: center;
   border-radius: 11px;
-  background: var(--co-blue-alpha-10);
-  color: var(--co-blue-400);
+  background: var(--co-color-surface-disabled);
+  color: var(--co-color-text-default);
   margin-bottom: 18px;
   transition: all var(--co-duration) var(--co-ease);
 }
 
 .feature-card:hover .feature-icon {
-  background: var(--co-blue-alpha-15);
-  box-shadow: 0 0 20px -4px var(--co-blue-alpha-25);
+  background: var(--co-color-primitive-neutral-400);
+}
+
+/* Dark-mode tiles sit darker than the card (which is surface-raised /
+   neutral-800), recessing into the page neutral so the muted icon
+   reads as a quiet inset rather than a bright accent. */
+[data-theme='dark'] .feature-icon {
+  background: var(--co-color-primitive-neutral-900);
+}
+
+[data-theme='dark'] .feature-card:hover .feature-icon {
+  background: var(--co-color-primitive-neutral-950);
 }
 
 .feature-title {
@@ -549,59 +438,6 @@ const features = [
   gap: 8px;
 }
 
-/* ── Architecture Flow ─────────────────────────── */
-.arch-section {
-  padding: 40px 0;
-  border-top: 1px solid var(--co-border);
-}
-
-.arch-label {
-  font-size: var(--co-typography-eyebrow-size);
-  font-weight: var(--co-typography-eyebrow-weight);
-  letter-spacing: var(--co-typography-eyebrow-tracking);
-  line-height: var(--co-typography-eyebrow-line-height);
-  text-transform: uppercase;
-  color: var(--co-color-text-tertiary);
-  margin-bottom: 24px;
-}
-
-.arch-flow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.arch-node {
-  display: flex;
-  flex-direction: column;
-  padding: 14px 20px;
-  background: var(--co-color-surface-raised);
-  border: 1px solid var(--co-border);
-  border-radius: 10px;
-  flex: 1;
-}
-
-.arch-node-label {
-  font-size: var(--co-typography-label-size);
-  font-weight: var(--co-typography-label-weight);
-  letter-spacing: var(--co-typography-label-tracking);
-  line-height: var(--co-typography-label-line-height);
-  color: var(--co-text-primary);
-}
-
-.arch-node-sub {
-  font-size: var(--co-typography-caption-size);
-  font-weight: var(--co-typography-caption-weight);
-  letter-spacing: var(--co-typography-caption-tracking);
-  line-height: var(--co-typography-caption-line-height);
-  color: var(--co-color-text-tertiary);
-  margin-top: 2px;
-}
-
-.arch-arrow {
-  flex-shrink: 0;
-}
-
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 768px) {
   /* On small screens, step the hero down one role. */
@@ -624,15 +460,6 @@ const features = [
   .features {
     grid-template-columns: 1fr;
     gap: 12px;
-  }
-
-  .arch-flow {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .arch-arrow {
-    transform: rotate(90deg);
   }
 }
 </style>

@@ -4,7 +4,7 @@ Welcome to the Cobalt Design System. This guide will help you get up and running
 
 ## What is Cobalt?
 
-Cobalt is a unified design system that provides reusable components, design tokens, and guidelines to help teams build consistent, accessible, and performant user interfaces. It bridges the gap between design and engineering by offering a shared language and toolkit.
+Cobalt is a unified design system that provides reusable components, design tokens, and guidelines to help teams build consistent, accessible, and performant user interfaces. It bridges the gap between design and developers by offering a shared language and toolkit.
 
 ## Core Principles
 
@@ -22,7 +22,7 @@ Cobalt serves designers, developers, and product managers. Pick the guide that f
 
 ### For Designers
 
-Learn how to use the Cobalt Figma library, apply design tokens in your mockups, and hand off specs to engineering with confidence.
+Learn how to use the Cobalt Figma library, apply design tokens in your mockups, and hand off specs to developers with confidence.
 
 [Read the Designers Guide](./designers.md)
 
@@ -39,6 +39,28 @@ Understand what the design system provides, how to request new components, and t
 [Read the Product Managers Guide](./product-managers.md)
 
 ## Architecture Overview
+
+Cobalt flows from design tokens through themed web components into framework-native wrappers:
+
+<ArchitectureFlow />
+
+### Style Dictionary tokens
+
+The foundation of Cobalt is a single source of truth for design decisions, authored in the [DTCG](https://tr.designtokens.org/format/) format and transformed by [Style Dictionary](https://styledictionary.com/).
+
+**DTCG** stands for the [Design Tokens Community Group](https://www.designtokens.org/), a W3C community group defining an open, vendor-neutral standard for how design tokens are structured and serialized. The format prescribes a predictable JSON shape — each token carries a `$value`, `$type`, and optional `$description` — plus a reference syntax (`{color.brand.500}`) for aliasing tokens to other tokens.
+
+This matters because it turns tokens into portable data: Figma, PenPot, Tokens Studio, Style Dictionary, and any future tool that speaks DTCG can read and write the same files without a custom adapter. It future-proofs the pipeline against tool churn and lets design and developers share one canonical definition of every value.
+
+From one set of DTCG JSON files we generate CSS custom properties, SCSS variables, JS/TS exports, and a flat JSON reference so designers, developers, and tooling all consume the same values. A three-tier structure (primitive → semantic → component) keeps raw palette values out of components and makes theming a matter of swapping semantic mappings.
+
+### Lit-based web components
+
+Components are built on [Lit](https://lit.dev/), a thin layer over the native Web Components APIs. This gives us standards-based custom elements that run in any modern browser without a framework runtime — the output is just HTML tags like `<co-button>`. Lit keeps bundles small, supports declarative templates and reactive properties, and lets us ship a single component library that stays portable across frameworks, server-rendered pages, and vanilla HTML.
+
+### Framework wrappers
+
+To make the web components feel native in each ecosystem, Cobalt publishes thin auto-generated wrappers for **React**, **Vue**, and **Angular**, derived from the Custom Elements Manifest. Each wrapper exposes idiomatic props, events, and types for its framework — `onClick` handlers in React, `v-model` and kebab-cased events in Vue, and Angular's `CUSTOM_ELEMENTS_SCHEMA` integration — while delegating all rendering and behavior to the underlying Lit element. One implementation, three first-class developer experiences.
 
 Cobalt is distributed as a set of scoped npm packages:
 

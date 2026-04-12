@@ -1,44 +1,14 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
 import { useData, useRoute, withBase } from 'vitepress';
-
-const { theme } = useData();
-import { navigation } from '../navigation';
 import type { NavGroup } from '../navigation';
 
+const { theme } = useData();
 const route = useRoute();
 
-// Track open groups — auto-open groups that contain the active page
-const openGroups = ref<Set<string>>(
-  new Set(
-    navigation
-      .filter((g) => g.defaultOpen || g.items.some((item) => isActive(item.link)))
-      .map((g) => g.label),
-  ),
-);
-
-// Auto-expand the group containing the active page on route change
-watch(
-  () => route.path,
-  () => {
-    const activeGroup = navigation.find((g) => g.items.some((item) => isActive(item.link)));
-    if (activeGroup && !openGroups.value.has(activeGroup.label)) {
-      const next = new Set(openGroups.value);
-      next.add(activeGroup.label);
-      openGroups.value = next;
-    }
-  },
-);
-
-function toggleGroup(label: string) {
-  const next = new Set(openGroups.value);
-  if (next.has(label)) {
-    next.delete(label);
-  } else {
-    next.add(label);
-  }
-  openGroups.value = next;
-}
+defineProps<{
+  category: NavGroup;
+  categoryIndex: number;
+}>();
 
 function isActive(link: string | undefined): boolean {
   if (!link) return false;
@@ -46,71 +16,35 @@ function isActive(link: string | undefined): boolean {
   const targetPath = withBase(link).replace(/\/$/, '') || '/';
   return currentPath === targetPath;
 }
-
-function isGroupActive(group: NavGroup): boolean {
-  return group.items.some((item) => isActive(item.link));
-}
 </script>
 
 <template>
-  <aside class="cobalt-sidebar">
-    <!-- Decorative top gradient line -->
-    <div class="sidebar-accent" aria-hidden="true"></div>
-
-    <nav class="sidebar-nav">
-      <div v-for="group in navigation" :key="group.label" class="nav-group">
-        <!-- Group header (collapsible) -->
-        <button
-          class="group-header"
-          :class="{ 'is-active': isGroupActive(group) }"
-          @click="toggleGroup(group.label)"
-          :aria-expanded="openGroups.has(group.label)"
-        >
-          <div class="group-icon">
-            <co-icon
-              :name="group.icon"
-              size="sm"
-              :fill="isGroupActive(group) || undefined"
-            ></co-icon>
-          </div>
-          <span class="group-label">{{ group.label }}</span>
-          <svg
-            class="group-chevron"
-            :class="{ 'is-open': openGroups.has(group.label) }"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+  <aside
+    class="cobalt-sidebar"
+    id="cobalt-subnav"
+    :aria-labelledby="`subnav-title-${categoryIndex}`"
+  >
+    <h2 class="subnav-title" :id="`subnav-title-${categoryIndex}`">
+      {{ category.label }}
+    </h2>
+    <nav class="subnav-nav">
+      <ul class="subnav-list">
+        <li v-for="item in category.items" :key="item.link ?? item.text">
+          <a
+            v-if="item.link"
+            :href="withBase(item.link)"
+            class="nav-item"
+            :class="{ 'is-active': isActive(item.link) }"
+            :aria-current="isActive(item.link) ? 'page' : undefined"
           >
-            <polyline points="6 4 10 8 6 12" />
-          </svg>
-        </button>
-
-        <!-- Group items (collapsible) -->
-        <div class="group-items" :class="{ 'is-open': openGroups.has(group.label) }">
-          <div class="group-items-inner">
-            <a
-              v-for="item in group.items"
-              :key="item.text"
-              :href="withBase(item.link || '')"
-              class="nav-item"
-              :class="{ 'is-active': isActive(item.link) }"
-            >
-              <!-- Active indicator pill -->
-              <div class="nav-item-indicator" aria-hidden="true"></div>
-              <span class="nav-item-dot" aria-hidden="true"></span>
-              <span class="nav-item-text">{{ item.text }}</span>
-            </a>
-          </div>
-        </div>
-      </div>
+            <span class="nav-item-indicator" aria-hidden="true"></span>
+            <span class="nav-item-dot" aria-hidden="true"></span>
+            <span class="nav-item-text">{{ item.text }}</span>
+          </a>
+        </li>
+      </ul>
     </nav>
 
-    <!-- Bottom section -->
     <div class="sidebar-footer">
       <div class="sidebar-badge">
         <span class="badge-version">v{{ theme.cobaltVersion }}</span>
@@ -123,129 +57,43 @@ function isGroupActive(group: NavGroup): boolean {
 <style scoped>
 .cobalt-sidebar {
   position: fixed;
-  top: var(--co-topbar-height);
-  left: 0;
-  bottom: 0;
+  top: calc(var(--co-topbar-height) + var(--co-panel-gap));
+  left: calc(var(--co-panel-gap) + var(--co-rail-width) + var(--co-panel-gap));
+  bottom: var(--co-panel-gap);
   width: var(--co-sidebar-width);
   z-index: 50;
   display: flex;
   flex-direction: column;
-  background: var(--co-sidebar-bg);
-  border-right: 1px solid var(--co-border);
+  background: var(--co-color-surface-default);
+  border: 1px solid var(--co-color-border-subtle);
+  border-radius: var(--co-shape-radius-md);
+  box-shadow: var(--co-elevation-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.08));
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.sidebar-accent {
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--co-blue-600) 0%,
-    var(--co-blue-400) 40%,
-    transparent 100%
-  );
-  opacity: 0.6;
-  flex-shrink: 0;
+.subnav-title {
+  padding: 20px 20px 12px;
+  margin: 0;
+  font-size: var(--co-typography-title-size);
+  font-weight: var(--co-typography-title-weight);
+  letter-spacing: var(--co-typography-title-tracking);
+  line-height: var(--co-typography-title-line-height);
+  color: var(--co-text-primary);
 }
 
-.sidebar-nav {
+.subnav-nav {
   flex: 1;
-  padding: 16px 12px;
+  padding: 4px 12px 16px;
+}
+
+.subnav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-}
-
-/* ── Group ─────────────────────────────────── */
-.nav-group {
-  margin-bottom: 4px;
-}
-
-.group-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 8px 12px;
-  border: none;
-  background: none;
-  border-radius: 10px;
-  cursor: pointer;
-  color: var(--co-text-secondary);
-  font-family: var(--co-font-body);
-  font-size: var(--co-typography-label-size);
-  font-weight: var(--co-typography-label-weight);
-  letter-spacing: var(--co-typography-label-tracking);
-  line-height: var(--co-typography-label-line-height);
-  transition: all var(--co-duration) var(--co-ease);
-  position: relative;
-}
-
-.group-header:hover {
-  color: var(--co-text-primary);
-  background: var(--co-shimmer);
-}
-
-.group-header.is-active {
-  color: var(--co-code-color);
-}
-
-.group-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: var(--co-shimmer);
-  color: var(--co-blue-400);
-  flex-shrink: 0;
-  transition: all var(--co-duration) var(--co-ease);
-}
-
-.group-header:hover .group-icon {
-  background: var(--co-blue-alpha-15);
-}
-
-.group-header.is-active .group-icon {
-  background: var(--co-blue-alpha-18);
-  color: var(--co-code-color);
-}
-
-.group-label {
-  flex: 1;
-  text-align: left;
-}
-
-.group-chevron {
-  color: var(--co-color-text-tertiary);
-  transition: transform 0.3s var(--co-ease);
-  flex-shrink: 0;
-}
-
-.group-chevron.is-open {
-  transform: rotate(90deg);
-}
-
-/* ── Group Items (collapsible) ─────────────── */
-.group-items {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s var(--co-ease);
-}
-
-.group-items.is-open {
-  grid-template-rows: 1fr;
-}
-
-.group-items-inner {
-  overflow: hidden;
-  padding-left: 22px;
-}
-
-.group-items.is-open .group-items-inner {
-  padding-top: 2px;
-  padding-bottom: 4px;
+  gap: 1px;
 }
 
 /* ── Nav Item ──────────────────────────────── */
@@ -253,10 +101,10 @@ function isGroupActive(group: NavGroup): boolean {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 12px;
+  padding: 8px 12px;
   margin: 1px 0;
   border-radius: 9px;
-  color: var(--co-color-text-tertiary);
+  color: var(--co-color-text-default);
   text-decoration: none;
   font-size: var(--co-typography-body-sm-size);
   font-weight: var(--co-typography-body-sm-weight);
@@ -272,7 +120,7 @@ function isGroupActive(group: NavGroup): boolean {
   background: var(--co-shimmer);
 }
 
-/* Active indicator — M3-style pill */
+/* Active indicator pill */
 .nav-item-indicator {
   position: absolute;
   inset: 0;
@@ -318,8 +166,8 @@ function isGroupActive(group: NavGroup): boolean {
 
 /* ── Footer ────────────────────────────────── */
 .sidebar-footer {
-  padding: 16px;
-  border-top: 1px solid var(--co-border);
+  padding: 16px 20px;
+  border-top: 1px solid var(--co-color-border-subtle);
   flex-shrink: 0;
 }
 
@@ -354,10 +202,10 @@ function isGroupActive(group: NavGroup): boolean {
 /* ── Mobile: slide-in overlay ──────────────────────────── */
 @media (max-width: 768px) {
   .cobalt-sidebar {
-    transform: translateX(-100%);
+    left: calc(var(--co-panel-gap) + var(--co-rail-width) + var(--co-panel-gap));
+    transform: translateX(calc(-100% - var(--co-rail-width) - var(--co-panel-gap) * 3));
     transition: transform 0.3s var(--co-ease);
     z-index: 70;
-    background: var(--co-midnight);
   }
 
   .cobalt-sidebar.is-open {

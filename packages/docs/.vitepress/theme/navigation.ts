@@ -9,6 +9,8 @@ export interface NavGroup {
   icon: string;
   items: NavItem[];
   defaultOpen?: boolean;
+  /** Short label used in the rail when the full label is too long. */
+  railLabel?: string;
 }
 
 export const navigation: NavGroup[] = [
@@ -31,6 +33,7 @@ export const navigation: NavGroup[] = [
   },
   {
     label: 'Design Foundations',
+    railLabel: 'Foundations',
     icon: 'palette',
     defaultOpen: false,
     items: [
@@ -88,6 +91,7 @@ export const navigation: NavGroup[] = [
   },
   {
     label: 'Contributing',
+    railLabel: 'Contribute',
     icon: 'person-add',
     defaultOpen: false,
     items: [

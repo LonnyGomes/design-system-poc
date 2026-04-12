@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { useData, useRoute, withBase } from 'vitepress';
-import { ref, onMounted, watch, onUnmounted } from 'vue';
+import { ref, computed, onMounted, watch, onUnmounted } from 'vue';
+import CobaltRail from './CobaltRail.vue';
 import CobaltSidebar from './CobaltSidebar.vue';
 import CobaltHome from './CobaltHome.vue';
 import CobaltPrevNext from './CobaltPrevNext.vue';
 import CobaltToc from './CobaltToc.vue';
+import { navigation } from '../navigation';
 import VPNavBarSearch from 'vitepress/dist/client/theme-default/components/VPNavBarSearch.vue';
 
 const { frontmatter } = useData();
@@ -12,6 +14,29 @@ const route = useRoute();
 
 const isDark = ref(false);
 const sidebarOpen = ref(false);
+
+function normalizePath(p: string) {
+  return p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+}
+
+// Which category contains the current route?
+const routeCategoryIndex = computed(() => {
+  const currentPath = normalizePath(route.path);
+  const idx = navigation.findIndex((g) =>
+    g.items.some((item) => item.link && normalizePath(withBase(item.link)) === currentPath),
+  );
+  return idx === -1 ? 0 : idx;
+});
+
+// User's explicit rail selection — null means "follow the route".
+const selectedCategoryIndex = ref<number | null>(null);
+
+// The effective active category.
+const activeCategoryIndex = computed(() => selectedCategoryIndex.value ?? routeCategoryIndex.value);
+
+function selectCategory(i: number) {
+  selectedCategoryIndex.value = i;
+}
 
 onMounted(() => {
   const saved = localStorage.getItem('cobalt-theme');
@@ -23,11 +48,12 @@ onMounted(() => {
   }
 });
 
-// Close sidebar on route change (mobile)
+// Close sidebar on route change (mobile) + clear user's rail override so rail re-syncs.
 watch(
   () => route.path,
   () => {
     sidebarOpen.value = false;
+    selectedCategoryIndex.value = null;
   },
 );
 
@@ -166,8 +192,17 @@ function toggleSidebar() {
         aria-hidden="true"
       ></div>
 
-      <!-- M3-style sidebar -->
-      <CobaltSidebar :class="{ 'is-open': sidebarOpen }" />
+      <!-- Primary rail + section subnav -->
+      <CobaltRail
+        :active-index="activeCategoryIndex"
+        :class="{ 'is-open': sidebarOpen }"
+        @select="selectCategory"
+      />
+      <CobaltSidebar
+        :category="navigation[activeCategoryIndex]"
+        :category-index="activeCategoryIndex"
+        :class="{ 'is-open': sidebarOpen }"
+      />
 
       <!-- Main content -->
       <main class="cobalt-main">
@@ -273,8 +308,10 @@ function toggleSidebar() {
   --co-font-mono: var(--co-font-family-mono);
 
   /* Layout metrics (not theme) */
-  --co-sidebar-width: 280px;
+  --co-rail-width: 92px;
+  --co-sidebar-width: 260px;
   --co-topbar-height: 56px;
+  --co-panel-gap: 12px;
 
   /* Transitions */
   --co-ease: var(--co-motion-easing-default);
@@ -328,9 +365,8 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: var(--co-topbar-bg);
-  backdrop-filter: blur(16px) saturate(1.4);
-  border-bottom: 1px solid var(--co-border);
+  background: var(--co-color-surface-default);
+  border-bottom: 1px solid var(--co-color-border-default);
 }
 
 .topbar-brand {
@@ -359,7 +395,7 @@ body {
   font-weight: var(--co-typography-caption-weight);
   letter-spacing: var(--co-typography-caption-tracking);
   line-height: var(--co-typography-caption-line-height);
-  color: var(--co-color-text-tertiary);
+  color: var(--co-color-text-secondary);
   padding-left: 10px;
   border-left: 1px solid var(--co-border-strong);
 }
@@ -414,7 +450,7 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  color: var(--co-text-secondary);
+  color: var(--co-text-primary);
   transition: all var(--co-duration) var(--co-ease);
 }
 
@@ -452,7 +488,10 @@ body {
 /* ── Main Content ───────────────────────────────────────────── */
 .cobalt-main {
   flex: 1;
-  margin-left: var(--co-sidebar-width);
+  margin-left: calc(
+    var(--co-panel-gap) + var(--co-rail-width) + var(--co-panel-gap) + var(--co-sidebar-width) +
+      var(--co-panel-gap)
+  );
   min-width: 0;
 }
 

@@ -8,6 +8,7 @@ import A11yReport from '../../components/A11yReport.vue';
 import ComponentChangelog from '../../components/ComponentChangelog.vue';
 import ChangelogPage from '../../components/ChangelogPage.vue';
 import TokenTable from '../../components/TokenTable.vue';
+import ArchitectureFlow from '../../components/ArchitectureFlow.vue';
 
 // Cobalt design tokens
 import '@cobalt/tokens/css';
@@ -29,6 +30,7 @@ export default {
     app.component('ComponentChangelog', ComponentChangelog);
     app.component('ChangelogPage', ChangelogPage);
     app.component('TokenTable', TokenTable);
+    app.component('ArchitectureFlow', ArchitectureFlow);
 
     // Register Cobalt web components (client-side only)
     if (typeof window !== 'undefined') {
