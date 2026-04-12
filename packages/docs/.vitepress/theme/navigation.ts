@@ -55,6 +55,7 @@ export const navigation: NavGroup[] = [
     icon: 'widgets',
     defaultOpen: true,
     items: [
+      { text: 'Overview', link: '/components/' },
       { text: 'Button', link: '/components/button' },
       { text: 'Icon', link: '/components/icon' },
     ],
