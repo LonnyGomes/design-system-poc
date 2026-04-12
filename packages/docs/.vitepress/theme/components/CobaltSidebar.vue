@@ -153,7 +153,7 @@ function isActive(link: string | undefined): boolean {
 }
 
 .nav-item.is-active .nav-item-marker {
-  color: var(--co-blue-400);
+  color: var(--co-color-interactive-default);
   opacity: 1;
 }
 

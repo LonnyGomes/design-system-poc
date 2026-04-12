@@ -105,25 +105,15 @@ function toggleSidebar() {
       <a :href="withBase('/')" class="topbar-brand">
         <div class="brand-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <rect x="2" y="2" width="24" height="24" rx="6" fill="url(#cobalt-gem)" />
+            <rect x="2" y="2" width="24" height="24" rx="6" fill="currentColor" />
             <path
+              class="gem-outline"
               d="M14 7L20 11V17L14 21L8 17V11L14 7Z"
               fill="none"
-              stroke="rgba(255,255,255,0.9)"
               stroke-width="1.5"
               stroke-linejoin="round"
             />
-            <path
-              d="M14 7V21M8 11L20 17M20 11L8 17"
-              stroke="rgba(255,255,255,0.3)"
-              stroke-width="1"
-            />
-            <defs>
-              <linearGradient id="cobalt-gem" x1="2" y1="2" x2="26" y2="26">
-                <stop stop-color="#2563eb" />
-                <stop offset="1" stop-color="#1e3a8a" />
-              </linearGradient>
-            </defs>
+            <path class="gem-inner" d="M14 7V21M8 11L20 17M20 11L8 17" stroke-width="1" />
           </svg>
         </div>
         <span class="brand-name">Cobalt</span>
@@ -379,7 +369,18 @@ body {
 
 .brand-icon {
   display: flex;
+  color: var(--co-color-interactive-default);
   filter: var(--co-icon-glow);
+}
+
+.brand-icon .gem-outline {
+  stroke: var(--co-color-text-on-primary);
+  opacity: 0.9;
+}
+
+.brand-icon .gem-inner {
+  stroke: var(--co-color-text-on-primary);
+  opacity: 0.3;
 }
 
 .brand-name {
