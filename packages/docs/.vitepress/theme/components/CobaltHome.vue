@@ -51,7 +51,7 @@ const features = [
           components, themed with design tokens, with wrappers for React, Vue, and Angular.
         </p>
         <p class="hero-subtitle">
-          This is the temporary home of Cobalt while we integrate with a larger enterprise solution.
+          This is the temporary home of Cobalt while we integrate an enterprise solution.
         </p>
 
         <div class="hero-actions">
@@ -432,7 +432,7 @@ const features = [
   font-weight: var(--co-typography-label-weight);
   letter-spacing: var(--co-typography-label-tracking);
   line-height: var(--co-typography-label-line-height);
-  color: var(--co-blue-400);
+  color: var(--co-color-primary-base);
   transition: gap var(--co-duration) var(--co-ease);
 }
 

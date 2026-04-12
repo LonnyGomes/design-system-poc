@@ -141,7 +141,7 @@ function toggleSidebar() {
           </svg>
         </div>
         <span class="brand-name">Cobalt</span>
-        <span class="brand-tag">The Design System for Apps and Tools</span>
+        <span class="brand-tag">The design system for tools and apps</span>
       </a>
       <nav class="topbar-nav">
         <VPNavBarSearch />
