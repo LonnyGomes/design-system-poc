@@ -186,7 +186,7 @@ describe('co-icon', () => {
 
     it('animatedIconNames contains expected icons', () => {
       expect(animatedIconNames.has('notifications')).to.be.true;
-      expect(animatedIconNames.has('refresh')).to.be.true;
+      expect(animatedIconNames.has('progress-activity')).to.be.true;
       expect(animatedIconNames.has('check-circle')).to.be.true;
     });
   });
