@@ -6,6 +6,16 @@ Welcome to the Cobalt Design System. This guide will help you get up and running
 
 Cobalt is a unified design system that provides reusable components, design tokens, and guidelines to help teams build consistent, accessible, and performant user interfaces. It bridges the gap between design and developers by offering a shared language and toolkit.
 
+## Why Cobalt?
+
+The element cobalt is known for two things: extraordinary resilience and a vivid blue that has shaped art and craft for millennia. Both qualities inspired the name of this design system.
+
+**Built to endure.** Cobalt superalloys withstand the extreme heat inside jet engine turbine blades. A design system faces a different kind of stress — scaling across teams, supporting enteprise-grade products, and edge cases — but the demand is the same: hold up under pressure without losing integrity.
+
+**Rooted in craft.** Cobalt's blue pigment appears in Egyptian faience, the frescoes of Pompeii, and Chinese porcelain dating to the Tang Dynasty. Centuries of use across cultures are a reminder that good design outlasts trends.
+
+**Woven into the system.** Cobalt's periodic symbol, `Co`, namespaces every token, and component. As a period-four element it sits on the fourth row of the periodic table, and the number four echoes throughout the system: a 4 px base unit for spacing, as well as a four-level elevation scale. The result is a consistent rhythm that is easy to learn and easy to extend.
+
 ## Core Principles
 
 | Principle         | Description                                                                        |
