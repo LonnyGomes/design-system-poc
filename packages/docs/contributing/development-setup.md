@@ -86,6 +86,55 @@ All commands should be run from the **repository root**.
 | `pnpm format`                           | Run Prettier on all files                     |
 | `pnpm clean`                            | Remove all build artifacts and `node_modules` |
 
+## Component Workbench
+
+The workbench is a lightweight Vite-powered environment for developing and previewing components in isolation. It offers instant hot-reload for component code, styles, and design tokens — without the caching issues of the full docs site.
+
+```bash
+pnpm workbench
+```
+
+This starts a dev server at `http://localhost:5173` with a landing page linking to each component preview.
+
+### How it works
+
+- **Component changes** — Editing a component's `.ts` or `.styles.css` file triggers an immediate hot-reload in the browser.
+- **Token changes** — Editing token source files in `packages/tokens/tokens/` triggers an automatic token rebuild and browser refresh.
+- **Theme toggle** — Each preview includes a light/dark theme toggle.
+- **Composed components** — Previews can import multiple components (e.g. `co-icon` inside `co-button`).
+
+### Adding a preview for a new component
+
+Create a new `.ts` file in `packages/workbench/previews/`:
+
+```ts
+// packages/workbench/previews/input.ts
+import '@cobalt/components/input';
+
+export const title = '<co-input>';
+
+export const html = `
+  <section class="wb-section">
+    <h2 class="wb-heading">Variants</h2>
+    <div class="wb-row">
+      <co-input placeholder="Default"></co-input>
+      <co-input placeholder="Disabled" disabled></co-input>
+    </div>
+  </section>
+`;
+```
+
+Then add a link on the landing page (`packages/workbench/index.html`):
+
+```html
+<a class="card" href="/preview.html?component=input">
+  <div class="card-name">Input</div>
+  <div class="card-tag">&lt;co-input&gt;</div>
+</a>
+```
+
+Use the `wb-section`, `wb-heading`, and `wb-row` CSS classes to keep preview layouts consistent.
+
 ## Running the Documentation Site
 
 The docs site is built with VitePress and can be started locally:

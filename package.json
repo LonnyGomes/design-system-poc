@@ -8,6 +8,7 @@
     "build": "pnpm -r --stream build",
     "rebuild": "pnpm clean && pnpm build",
     "dev": "pnpm --filter @cobalt/docs dev",
+    "workbench": "pnpm --filter @cobalt/workbench dev",
     "test": "pnpm -r --stream test",
     "test:watch": "pnpm --filter @cobalt/components test:watch",
     "lint": "eslint 'packages/*/src/**/*.ts'",

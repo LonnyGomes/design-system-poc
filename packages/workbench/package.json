@@ -1,0 +1,20 @@
+{
+  "name": "@cobalt/workbench",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Lightweight component development environment for Cobalt",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@cobalt/components": "workspace:*",
+    "@cobalt/icons": "workspace:*",
+    "@cobalt/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "^6.3.0"
+  }
+}

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en" data-co-base>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cobalt Workbench</title>
+    <script type="module">
+      import '@cobalt/tokens/css';
+      import '@cobalt/tokens/css/fonts';
+      import '@cobalt/tokens/css/base';
+    </script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        font-family: var(--co-font-family-sans);
+        background: var(--co-color-surface-sunken);
+        color: var(--co-color-text-default);
+        padding: 0;
+        line-height: var(--co-font-line-height-normal);
+      }
+
+      .wb-header {
+        display: flex;
+        align-items: center;
+        padding: var(--co-space-3) var(--co-space-6);
+        background: var(--co-color-surface-default);
+        border-bottom: var(--co-shape-border-width-thin) solid var(--co-color-border-default);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .wb-header h1 {
+        font-size: var(--co-font-size-md);
+        font-weight: var(--co-font-weight-semibold);
+        color: var(--co-color-text-link);
+      }
+
+      .wb-main {
+        padding: var(--co-space-8) var(--co-space-6);
+        max-width: 960px;
+      }
+
+      .subtitle {
+        color: var(--co-color-text-secondary);
+        font-size: var(--co-font-size-sm);
+        margin-bottom: var(--co-space-8);
+        max-width: 640px;
+        line-height: var(--co-font-line-height-relaxed);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: var(--co-space-4);
+      }
+
+      .card {
+        display: block;
+        padding: var(--co-space-5);
+        background: var(--co-color-surface-default);
+        border: var(--co-shape-border-width-thin) solid var(--co-color-border-default);
+        border-radius: var(--co-shape-radius-md);
+        text-decoration: none;
+        color: inherit;
+        transition:
+          border-color var(--co-motion-duration-fast) var(--co-motion-easing-default),
+          box-shadow var(--co-motion-duration-fast) var(--co-motion-easing-default);
+      }
+
+      .card:hover {
+        border-color: var(--co-color-border-strong);
+        box-shadow: var(--co-elevation-shadow-sm);
+      }
+
+      .card-name {
+        font-size: var(--co-font-size-md);
+        font-weight: var(--co-font-weight-semibold);
+        margin-bottom: var(--co-space-1);
+      }
+
+      .card-tag {
+        font-family: var(--co-font-family-mono);
+        font-size: var(--co-font-size-sm);
+        color: var(--co-color-text-secondary);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="wb-header">
+      <h1>Cobalt Workbench</h1>
+    </header>
+    <main class="wb-main">
+      <p class="subtitle">
+        The Cobalt workbench is a lightweight internal development utility to enhance developer
+        experience when developing web components. Use the existing templates or follow instructions
+        in the "Contributing" &rarr; "Development Setup" section of the docs site to create a new
+        preview template for your component.
+      </p>
+      <div class="grid">
+        <a class="card" href="/preview.html?component=button">
+          <div class="card-name">Button</div>
+          <div class="card-tag">&lt;co-button&gt;</div>
+        </a>
+        <a class="card" href="/preview.html?component=icon">
+          <div class="card-name">Icon</div>
+          <div class="card-tag">&lt;co-icon&gt;</div>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

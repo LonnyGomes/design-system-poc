@@ -1,0 +1,83 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: var(--co-font-family-sans, system-ui, -apple-system, sans-serif);
+  background: var(--co-color-surface-sunken, #f5f5f5);
+  color: var(--co-color-text-default, #1a1a1a);
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* ── Header ── */
+.wb-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: var(--co-color-surface-default, #fff);
+  border-bottom: 1px solid var(--co-color-border-default, #e5e5e5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.wb-back {
+  font-size: 14px;
+  color: var(--co-color-interactive-default, #1a5eff);
+  text-decoration: none;
+}
+
+.wb-back:hover {
+  text-decoration: underline;
+}
+
+.wb-title {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--co-font-family-mono, monospace);
+  flex: 1;
+}
+
+.wb-theme-toggle {
+  font-size: 13px;
+  padding: 6px 12px;
+  border: 1px solid var(--co-color-border-default, #e5e5e5);
+  border-radius: 6px;
+  background: var(--co-color-surface-default, #fff);
+  color: var(--co-color-text-default, #1a1a1a);
+  cursor: pointer;
+}
+
+.wb-theme-toggle:hover {
+  background: var(--co-color-surface-raised, #fafafa);
+}
+
+/* ── Main ── */
+.wb-main {
+  padding: 32px 24px;
+  max-width: 960px;
+}
+
+.wb-section {
+  margin-bottom: 32px;
+}
+
+.wb-heading {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--co-color-text-secondary, #666);
+  margin-bottom: 12px;
+}
+
+.wb-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
