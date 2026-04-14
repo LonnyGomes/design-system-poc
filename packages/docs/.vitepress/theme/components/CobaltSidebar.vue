@@ -117,7 +117,6 @@ function isActive(link: string | undefined): boolean {
   letter-spacing: var(--co-typography-body-sm-tracking);
   line-height: var(--co-typography-body-sm-line-height);
   position: relative;
-  transition: all var(--co-duration) var(--co-ease);
   cursor: pointer;
 }
 
@@ -132,13 +131,13 @@ function isActive(link: string | undefined): boolean {
   inset: 0;
   border-radius: 9px;
   background: transparent;
-  transition: all 0.35s var(--co-ease);
+  border: 1px solid transparent;
   z-index: -1;
 }
 
 .nav-item.is-active .nav-item-indicator {
   background: var(--co-color-interactive-subtle-selected);
-  border: 1px solid var(--co-color-border-selected);
+  border-color: var(--co-color-border-selected);
 }
 
 .nav-item-marker {
