@@ -264,8 +264,8 @@ function toggleSidebar() {
   --co-text-muted: var(--co-color-text-secondary);
 
   /* Borders */
-  --co-border: var(--co-color-border-subtle);
-  --co-border-strong: var(--co-color-border-default);
+  --co-border: var(--co-color-border-default);
+  --co-border-strong: var(--co-color-border-strong);
 
   /* Topbar/sidebar gradient backgrounds derived from page surface */
   --co-topbar-bg: linear-gradient(
@@ -733,7 +733,7 @@ body {
 
 .cobalt-article tbody td {
   padding: 10px 16px;
-  border-bottom: 1px solid var(--co-border);
+  border-bottom: 1px solid var(--co-border-strong);
   color: var(--co-text-secondary);
   vertical-align: top;
 }
