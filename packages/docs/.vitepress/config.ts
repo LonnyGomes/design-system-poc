@@ -17,6 +17,7 @@ const env = loadEnv('production', repoRoot, 'COBALT_');
 const githubOrg = env.COBALT_GITHUB_ORG || 'vizualization-lab';
 const githubRepo = env.COBALT_GITHUB_REPO || 'cobalt-design-system';
 const githubUrl = env.COBALT_GITHUB_URL || `https://github.com/${githubOrg}/${githubRepo}`;
+const registryUrl = env.COBALT_REGISTRY_URL || 'https://registry.your-org.com';
 
 /**
  * Markdown-it plugin that replaces %GITHUB_URL% placeholders in the raw
@@ -26,6 +27,7 @@ const githubUrl = env.COBALT_GITHUB_URL || `https://github.com/${githubOrg}/${gi
 function replacePlaceholders(md: any) {
   const replacements: Record<string, string> = {
     '%GITHUB_URL%': githubUrl,
+    '%REGISTRY_URL%': registryUrl,
   };
 
   const originalParse = md.parse.bind(md);

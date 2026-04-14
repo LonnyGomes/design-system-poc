@@ -63,10 +63,10 @@ Then import the design tokens stylesheet in your app's global CSS (e.g., `styles
 
 The first import provides all `--co-*` CSS custom properties that components need for colors, spacing, typography, and more. Without it, components will render without visual styles. The second import loads self-hosted Inter, Noto Sans, and JetBrains Mono fonts — if omitted, the font-family tokens fall back to system fonts.
 
-If your organization uses a private registry, configure it first:
+In order to use npm to install cobalt packages, you first must configure the private npm registry:
 
 ```bash
-pnpm config set @cobalt:registry https://registry.your-org.com
+pnpm config set @cobalt:registry %REGISTRY_URL%
 ```
 
 ### For contributors
