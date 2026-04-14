@@ -4,15 +4,15 @@ Welcome to the Cobalt Design System. This guide will help you get up and running
 
 ## What is Cobalt?
 
-Cobalt is a unified design system that provides reusable components, design tokens, and guidelines to help teams build consistent, accessible, and performant user interfaces. It bridges the gap between design and developers by offering a shared language and toolkit.
+Cobalt is a unified design system that provides reusable components, design tokens, and guidelines to help teams build accessible, and performant user interfaces that share a common look and feel, and a consistent experience. It bridges the gap between design and developers by offering a shared language and toolkit.
 
 ## Why Cobalt?
 
-The element cobalt is known for two things: extraordinary resilience and a vivid blue that has shaped art and craft for millennia. Both qualities inspired the name of this design system.
+The element cobalt is known for two things: extraordinary resilience and a vivid blue hue that has shaped art and craft for millennia. Both qualities inspired the name of this design system.
 
 **Built to endure.** Cobalt superalloys withstand the extreme heat inside jet engine turbine blades. A design system faces a different kind of stress — scaling across teams, supporting enteprise-grade products, and edge cases — but the demand is the same: hold up under pressure without losing integrity.
 
-**Rooted in craft.** Cobalt's blue pigment appears in Egyptian faience, the frescoes of Pompeii, and Chinese porcelain dating to the Tang Dynasty. Centuries of use across cultures are a reminder that good design outlasts trends.
+**Rooted in craft.** Cobalt's blue pigment appears in Egyptian jewelry, the frescoes of Pompeii, and Chinese porcelain dating to the Tang Dynasty. Good design outlasts trends, and we crafted our design system to remain relevant amidst fleeting design trends.
 
 **Woven into the system.** Cobalt's periodic symbol, `Co`, namespaces every token, and component. As a period-four element it sits on the fourth row of the periodic table, and the number four echoes throughout the system: a 4 px base unit for spacing, as well as a four-level elevation scale. The result is a consistent rhythm that is easy to learn and easy to extend.
 
@@ -30,11 +30,11 @@ The element cobalt is known for two things: extraordinary resilience and a vivid
 
 ## Choose Your Path
 
-Cobalt serves designers, developers, and product managers. Pick the guide that fits your role to get the most relevant onboarding experience.
+In addition to providing identifiable, and enjoyable experiences for end users, Cobalt also serves designers, developers, and product managers. Pick the guide that fits your role to get the most relevant onboarding experience.
 
 ### For Designers
 
-Learn how to use the Cobalt Figma library, apply design tokens in your mockups, and hand off specs to developers with confidence.
+Learn how to use the Cobalt Figma, Penpot and XD resources, and hand off specs to developers with confidence.
 
 [Read the Designers Guide](./designers.md)
 
@@ -46,7 +46,7 @@ Install packages, set up your framework of choice, import components, and start 
 
 ### For Product Managers
 
-Understand what the design system provides, how to request new components, and the governance model that keeps Cobalt evolving.
+Understand what the design system provides, how , and the governance model that keeps Cobalt evolving.
 
 [Read the Product Managers Guide](./product-managers.md)
 
@@ -62,7 +62,7 @@ The foundation of Cobalt is a single source of truth for design decisions, autho
 
 **DTCG** stands for the [Design Tokens Community Group](https://www.designtokens.org/), a W3C community group defining an open, vendor-neutral standard for how design tokens are structured and serialized. The format prescribes a predictable JSON shape — each token carries a `$value`, `$type`, and optional `$description` — plus a reference syntax (`{color.brand.500}`) for aliasing tokens to other tokens.
 
-This matters because it turns tokens into portable data: Figma, PenPot, Tokens Studio, Style Dictionary, and any future tool that speaks DTCG can read and write the same files without a custom adapter. It future-proofs the pipeline against tool churn and lets design and developers share one canonical definition of every value.
+This matters because it turns tokens into portable data: Figma, PenPot, Tokens Studio, Style Dictionary, and any future tool that speaks DTCG can read and write the same files without a custom adapter. It future-proofs the pipeline against tool churn and lets designers and developers share one canonical definition of every value.
 
 From one set of DTCG JSON files we generate CSS custom properties, SCSS variables, JS/TS exports, and a flat JSON reference so designers, developers, and tooling all consume the same values. A three-tier structure (primitive → semantic → component) keeps raw palette values out of components and makes theming a matter of swapping semantic mappings.
 
