@@ -21,7 +21,7 @@ The element cobalt is known for two things: extraordinary resilience and a vivid
 | Principle         | Description                                                                            |
 | ----------------- | -------------------------------------------------------------------------------------- |
 | **Identifiable**  | Branded in both name and a timeless visual aesthetic.                                  |
-| **Collaborative** | Developed in the open, with clear guidance for how to [contribute](/contributing).     |
+| **Collaborative** | Developed in the open, with clear guidance for how to [contribute](/contributing/).    |
 | **Maintainable**  | Automated tooling formats the code, and generates semantically versioned changelogs.   |
 | **Composable**    | Components are designed to be combined in flexible ways without breaking.              |
 | **Enjoyable**     | Developer and designer experience is prioritized, centralizing resources and guidance. |
