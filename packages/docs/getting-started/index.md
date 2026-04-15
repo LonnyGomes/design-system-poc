@@ -4,17 +4,17 @@ Welcome to the Cobalt Design System. This guide will help you get up and running
 
 ## What is Cobalt?
 
-Cobalt is a unified design system that provides reusable components, design tokens, and guidelines to help teams build accessible, and performant user interfaces that share a common look and feel, and a consistent experience. It bridges the gap between design and developers by offering a shared language and toolkit.
+Cobalt is a unified design system that provides reusable components, design tokens, and guidelines to help teams build accessible, performant interfaces with a consistent look and feel. It bridges the gap between designers and developers by offering a shared language and toolkit.
 
 ## Why Cobalt?
 
 The element cobalt is known for two things: extraordinary resilience and a vivid blue hue that has shaped art and craft for millennia. Both qualities inspired the name of this design system.
 
-**Built to endure.** Cobalt superalloys withstand the extreme heat inside jet engine turbine blades. A design system faces a different kind of stress — scaling across teams, supporting enteprise-grade products, and edge cases — but the demand is the same: hold up under pressure without losing integrity.
+**Built to endure.** Cobalt superalloys withstand the extreme heat inside jet engine turbine blades. A design system faces a different kind of stress — scaling across teams, supporting enterprise-grade products, and edge cases — but the demand is the same: hold up under pressure without losing integrity.
 
-**Rooted in craft.** Cobalt's blue pigment appears in Egyptian jewelry, the frescoes of Pompeii, and Chinese porcelain dating to the Tang Dynasty. Good design outlasts trends, and we crafted our design system to remain relevant amidst fleeting design trends.
+**Rooted in craft.** Cobalt's blue pigment appears in Egyptian jewelry, the frescoes of Pompeii, and Chinese porcelain dating to the Tang Dynasty. Good design outlasts trends, and Cobalt is crafted to remain relevant as styles evolve.
 
-**Woven into the system.** Cobalt's periodic symbol, `Co`, namespaces every token, and component. As a period-four element it sits on the fourth row of the periodic table, and the number four echoes throughout the system: a 4 px base unit for spacing, as well as a four-level elevation scale. The result is a consistent rhythm that is easy to learn and easy to extend.
+**Woven into the system.** Cobalt's periodic symbol, `Co`, namespaces every token and component. As a period-four element, it sits on the fourth row of the periodic table, and the number four echoes throughout the system: a 4 px base unit for spacing, as well as a four-level elevation scale. The result is a consistent rhythm that is easy to learn and easy to extend.
 
 ## Core Principles
 
@@ -30,11 +30,11 @@ The element cobalt is known for two things: extraordinary resilience and a vivid
 
 ## Choose Your Path
 
-In addition to providing identifiable, and enjoyable experiences for end users, Cobalt also serves designers, developers, and product managers. Pick the guide that fits your role to get the most relevant onboarding experience.
+Beyond serving end users, Cobalt provides role-specific onboarding for designers, developers, and product managers. Pick the guide that fits your role.
 
 ### For Designers
 
-Learn how to use the Cobalt Figma, Penpot and XD resources, and hand off specs to developers with confidence.
+Learn how to use the Cobalt Figma, Penpot, and XD resources and hand off specs to developers with confidence.
 
 [Read the Designers Guide](./designers.md)
 
@@ -46,7 +46,7 @@ Install packages, set up your framework of choice, import components, and start 
 
 ### For Product Managers
 
-Understand what the design system provides, how , and the governance model that keeps Cobalt evolving.
+Understand what the design system provides, how it can benefit your team, and the governance model that keeps Cobalt evolving.
 
 [Read the Product Managers Guide](./product-managers.md)
 
@@ -72,7 +72,7 @@ Components are built on [Lit](https://lit.dev/), a thin layer over the native We
 
 ### Framework wrappers
 
-To make the web components feel native in each ecosystem, Cobalt publishes thin auto-generated wrappers for **React**, **Vue**, and **Angular**, derived from the Custom Elements Manifest. Each wrapper exposes idiomatic props, events, and types for its framework — `onClick` handlers in React, `v-model` and kebab-cased events in Vue, and Angular's `CUSTOM_ELEMENTS_SCHEMA` integration — while delegating all rendering and behavior to the underlying Lit element. One implementation, three first-class developer experiences.
+To make the web components feel native in each ecosystem, Cobalt publishes thin wrappers for **React**, **Vue**, and **Angular**. Each wrapper exposes idiomatic props, events, and types for its framework while delegating all rendering and behavior to the underlying Lit element. One implementation, three first-party developer experiences.
 
 Cobalt is distributed as a set of scoped npm packages:
 
@@ -80,20 +80,6 @@ Cobalt is distributed as a set of scoped npm packages:
 | -------------------- | ------------------------------------------------------------------------------------------ |
 | `@cobalt/tokens`     | Design tokens (colors, spacing, typography, etc.) as CSS custom properties and JS objects. |
 | `@cobalt/components` | Web components built with Lit, usable in any framework.                                    |
-| `@cobalt/icons`      | SVG icon library with tree-shakable exports.                                               |
-| `@cobalt/utils`      | Shared utilities for focus management, ID generation, and more.                            |
-
-## Quick Install
-
-```bash
-pnpm add @cobalt/components @cobalt/tokens
-```
-
-Then import the token stylesheet and any components you need:
-
-```js
-import '@cobalt/tokens/css';
-import '@cobalt/components/button';
-```
-
-> **Tip:** You do not need to install `@cobalt/tokens` separately if you are already using `@cobalt/components` — tokens are included as a dependency. The explicit install is only needed if you want tokens without the component library.
+| `@cobalt/react`      | React wrappers for Cobalt web components, with proper prop and event binding.              |
+| `@cobalt/vue`        | Vue 3 wrappers for Cobalt web components, using `defineComponent` for type safety.         |
+| `@cobalt/angular`    | Angular directives that adopt modern patterns such as signals and standalone components.   |

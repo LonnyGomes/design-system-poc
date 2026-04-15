@@ -9,22 +9,15 @@ Cobalt is a shared library of reusable UI components, design tokens, and guideli
 - **Faster delivery** — teams spend less time designing and building common UI patterns from scratch.
 - **Consistent experience** — users see the same interactions and visual language across every product surface.
 - **Built-in accessibility** — every component meets WCAG 2.1 AA standards, reducing compliance risk.
+- **Cross-tool integration** — a shared language and toolkit enables streamlined integration between various tools.
 
 ## How It Fits Your Workflow
 
 ### During Discovery
 
-When scoping a feature, check the Cobalt component library first. Many common patterns are already solved:
+When scoping a feature, check the Cobalt component library first. Many common patterns are already solved and the component list is growing.
 
-| Pattern      | Cobalt Component                         | Notes                                              |
-| ------------ | ---------------------------------------- | -------------------------------------------------- |
-| Form inputs  | `co-input`, `co-select`, `co-checkbox`   | Includes built-in validation and error states      |
-| Actions      | `co-button`, `co-icon-button`            | Primary, secondary, ghost, and danger variants     |
-| Feedback     | `co-toast`, `co-alert`, `co-dialog`      | Covers success, warning, error, and info scenarios |
-| Navigation   | `co-tabs`, `co-breadcrumb`, `co-sidebar` | Responsive by default                              |
-| Data display | `co-table`, `co-card`, `co-badge`        | Sortable tables, status badges                     |
-
-Using existing components means less design and engineering effort, which translates to smaller estimates and faster time-to-market.
+Using existing components means less design and engineering effort, which translates to smaller estimates and faster development times.
 
 ### During Design Review
 
@@ -39,7 +32,7 @@ Look for these signals that the design is aligned with Cobalt:
 
 ### During Development
 
-Cobalt components are production-ready. When engineering picks up a story, they import the component and configure it with props — they do not rebuild it. This means:
+Cobalt components are production-ready. When a developer picks up a story, they import the component and configure it with props — they do not rebuild it. This means:
 
 - Fewer bugs related to UI behavior.
 - Shorter code review cycles for UI-heavy features.
@@ -47,24 +40,17 @@ Cobalt components are production-ready. When engineering picks up a story, they 
 
 ## Requesting New Components
 
-Not every pattern exists in Cobalt yet. When you identify a gap, here is the process for requesting a new component or enhancement.
+Not every pattern exists in Cobalt yet. When you identify a gap, here is how to get a new component or enhancement added.
 
-### Step 1 — Check Existing Components
+### Check Existing Components First
 
 Search the [component documentation](/components/button) to confirm the pattern is not already covered. Sometimes an existing component with different props can solve the use case.
 
-### Step 2 — Submit a Request
+### Submit a Proposal
 
-Open a request in the `cobalt-design-system` GitHub repository using the **Component Request** issue template. Include:
+If no existing component fits, submit a proposal through the [Component Proposal Process](/contributing/component-proposal). The proposal template asks for use case, scope, and examples — include priority and cross-team demand to help with prioritization.
 
-- **Use case:** What problem does this component solve?
-- **Scope:** Which products or teams need it?
-- **Priority:** Is this blocking a launch or a nice-to-have?
-- **Examples:** Screenshots, competitor references, or links to designs.
-
-### Step 3 — Review and Prioritization
-
-The Cobalt team reviews requests on a two-week cadence. Requests are evaluated against these criteria:
+When reviewing proposals, the team weighs these criteria:
 
 | Criteria                | Weight | Description                                          |
 | ----------------------- | ------ | ---------------------------------------------------- |
@@ -74,28 +60,9 @@ The Cobalt team reviews requests on a two-week cadence. Requests are evaluated a
 | Workaround availability | Medium | Can teams use an existing component as a stopgap?    |
 | Strategic alignment     | Low    | Does this support a broader platform initiative?     |
 
-### Step 4 — Tracking
+## Governance and Contributions
 
-Accepted requests appear on the Cobalt roadmap board. You will receive status updates in the GitHub issue and in `#cobalt-announcements` on Slack.
-
-## Governance Model
-
-Cobalt is maintained by a dedicated design system team, but it is governed collaboratively:
-
-- **Design System Team** — owns the codebase, reviews contributions, publishes releases, and maintains documentation.
-- **Product Teams** — submit requests, contribute components, and provide feedback on existing patterns.
-- **Design Council** — a rotating group of senior designers and PMs who meet monthly to review the roadmap and resolve cross-team conflicts.
-
-### Contributing a Component
-
-Product teams can contribute components directly. The process is:
-
-1. Propose the component via a GitHub issue.
-2. The design system team provides a spec review and API guidance.
-3. The product team builds the component following Cobalt conventions.
-4. The design system team reviews, tests, and merges the contribution.
-
-> **Warning:** Components that are merged into Cobalt become the responsibility of the design system team. Make sure the use case is general enough to justify long-term maintenance.
+Cobalt is maintained by a dedicated design system team, but it is governed collaboratively with product teams. Product teams can also contribute components directly. For details on governance roles and the contribution process, see the [Contributing](/contributing/) guide.
 
 ## Measuring Impact
 

@@ -37,15 +37,19 @@ Framework wrappers are optional but recommended for better DX (typed props, nati
 
 ## Environment Setup
 
-### For consumers
+First, configure the private npm registry so you can install Cobalt packages:
 
-Install the core packages into your project:
+```bash
+pnpm config set @cobalt:registry %REGISTRY_URL%
+```
+
+Then install the core packages into your project:
 
 ```bash
 npm install @cobalt/components @cobalt/tokens
 ```
 
-Then add the wrapper for your framework:
+Add the wrapper for your framework:
 
 ```bash
 # Pick one (or none — vanilla web components work everywhere)
@@ -54,7 +58,7 @@ npm install @cobalt/vue
 npm install @cobalt/angular
 ```
 
-Then import the design tokens stylesheet in your app's global CSS (e.g., `styles.css`):
+Finally, import the design tokens stylesheet in your app's global CSS (e.g., `styles.css`):
 
 ```css
 @import '@cobalt/tokens/css'; /* tokens (required) */
@@ -63,40 +67,7 @@ Then import the design tokens stylesheet in your app's global CSS (e.g., `styles
 
 The first import provides all `--co-*` CSS custom properties that components need for colors, spacing, typography, and more. Without it, components will render without visual styles. The second import loads self-hosted Inter, Noto Sans, and JetBrains Mono fonts — if omitted, the font-family tokens fall back to system fonts.
 
-In order to use npm to install cobalt packages, you first must configure the private npm registry:
-
-```bash
-pnpm config set @cobalt:registry %REGISTRY_URL%
-```
-
-### For contributors
-
-Clone the monorepo and build all packages:
-
-```bash
-git clone %GITHUB_URL%.git
-cd cobalt-design-system
-pnpm install
-pnpm build         # build all packages
-pnpm dev            # starts docs dev server at http://localhost:5173
-```
-
-## Project Structure
-
-```
-cobalt-design-system/
-├── packages/
-│   ├── tokens/       # Design tokens (JSON → CSS, SCSS, JS)
-│   ├── components/   # Lit web components (co-button, co-input, etc.)
-│   ├── react/        # React wrapper components (@cobalt/react)
-│   ├── vue/          # Vue wrapper components (@cobalt/vue)
-│   ├── angular/      # Angular standalone directives (@cobalt/angular)
-│   ├── icons/        # Icon set (@cobalt/icons)
-│   ├── mcp/          # MCP server for AI-assisted development
-│   └── docs/         # Documentation site — you are here
-├── package.json      # Root workspace configuration
-└── pnpm-workspace.yaml
-```
+> **Contributing to Cobalt?** See the [Development Setup](/contributing/development-setup) guide for cloning the monorepo, building packages, and running the dev environment.
 
 ## Framework Setup
 
@@ -277,84 +248,19 @@ describe('co-button', () => {
 });
 ```
 
-Within the monorepo, run all tests with:
-
-```bash
-pnpm test              # run all component tests
-pnpm test:watch        # watch mode
-```
-
-## Local Testing in External Apps
-
-When developing Cobalt, you often need to test your changes in an external application before publishing. There are two approaches depending on your workflow.
-
-### Using `pack:local` (recommended)
-
-The `pack:local` script builds all packages and produces tarballs identical to what `npm publish` would create. This is the most reliable method because it validates package exports, `files` configuration, and build output — catching issues that symlinks would hide.
-
-```bash
-# In the cobalt monorepo
-pnpm pack:local
-```
-
-This creates `.tgz` files in `./local-packs/`. Then install them in your app:
-
-```bash
-# Install all Cobalt packages at once
-npm install /path/to/cobalt/local-packs/*.tgz
-
-# Or install only what you need
-npm install /path/to/cobalt/local-packs/cobalt-components-0.0.1.tgz \
-            /path/to/cobalt/local-packs/cobalt-tokens-0.0.1.tgz
-```
-
-If you already ran `pnpm build` separately, skip the build step:
-
-```bash
-pnpm pack:local --skip-build
-```
-
-After making changes in the monorepo, re-run `pnpm pack:local` and reinstall in your app to pick up the updates.
-
-### Using `pnpm link` (faster iteration)
-
-For rapid development where you are making frequent changes, symlinks avoid the pack-reinstall cycle:
-
-```bash
-# In the cobalt monorepo — register a package globally
-cd packages/components
-pnpm link --global
-
-# In your external app — link the package
-pnpm link --global @cobalt/components
-```
-
-Changes are reflected after running `pnpm build` in the monorepo — no reinstall needed. Repeat for each package you want to link.
-
-::: warning
-Linked packages can cause duplicate dependency issues at runtime (e.g., two copies of Lit or Vue). If you encounter unexpected errors, switch to `pack:local` instead.
-:::
-
-### When you don't need an external app
-
-For most development work, the monorepo itself provides full integration testing:
-
-- **`pnpm build`** — verifies all packages compile and interoperate
-- **`pnpm test`** — runs component unit tests and accessibility checks
-- **`pnpm dev`** — the docs site imports every `@cobalt` package and serves as a live integration environment
+For running tests within the monorepo, see [Development Setup — Running Tests](/contributing/development-setup#running-tests).
 
 ## Troubleshooting
 
-| Problem                                          | Solution                                                                          |
-| ------------------------------------------------ | --------------------------------------------------------------------------------- |
-| Component not rendering                          | Ensure the import runs before the parser encounters the tag. Use `type="module"`. |
-| Styles missing                                   | Verify `@cobalt/tokens/css` is imported and not stripped by your bundler.         |
-| Events not firing in React                       | Use `@cobalt/react` wrappers or attach listeners via `ref`.                       |
-| FOUC on page load                                | Import component modules in your app entry point, not lazily in templates.        |
-| Bundle size too large                            | Use per-component imports instead of the barrel export.                           |
-| Angular unknown element error                    | Add `CUSTOM_ELEMENTS_SCHEMA` to your standalone component's `schemas` array.      |
-| Styles leak into or out of components            | Cobalt uses Shadow DOM. Use CSS custom properties (tokens) to style from outside. |
-| Tests fail with "custom element already defined" | Run each test file in its own browser context or use `--isolation` flag.          |
+| Problem                               | Solution                                                                          |
+| ------------------------------------- | --------------------------------------------------------------------------------- |
+| Component not rendering               | Ensure the import runs before the parser encounters the tag. Use `type="module"`. |
+| Styles missing                        | Verify `@cobalt/tokens/css` is imported and not stripped by your bundler.         |
+| Events not firing in React            | Use `@cobalt/react` wrappers or attach listeners via `ref`.                       |
+| FOUC on page load                     | Import component modules in your app entry point, not lazily in templates.        |
+| Bundle size too large                 | Use per-component imports instead of the barrel export.                           |
+| Angular unknown element error         | Add `CUSTOM_ELEMENTS_SCHEMA` to your standalone component's `schemas` array.      |
+| Styles leak into or out of components | Cobalt uses Shadow DOM. Use CSS custom properties (tokens) to style from outside. |
 
 ## Next Steps
 

@@ -41,6 +41,23 @@ The general process for contributing code or design changes follows these stages
 7. **Review and iterate** — Address feedback from reviewers until the PR is approved
 8. **Merge** — A core maintainer merges the PR once all checks pass
 
+## Governance Model
+
+Cobalt is maintained by a dedicated design system team, but it is governed collaboratively:
+
+- **Design Team** - Owns the design language, visual guidelines, and Figma libraries, and tokenized design decisions.
+- **Dev Team** — owns the codebase, reviews contributions, publishes releases, and maintains the web presence.
+- **Product Teams** — submit requests, contribute components, and provide feedback on existing patterns.
+
+Product teams can contribute components directly. The process is:
+
+1. Propose the component via the [Component Proposal Process](./component-proposal.md).
+2. The design system team provides a spec review and API guidance.
+3. The product team builds the component following Cobalt conventions.
+4. The design system team reviews, tests, and merges the contribution.
+
+> **Warning:** Components that are merged into Cobalt become the responsibility of the design system team. Make sure the use case is general enough to justify long-term maintenance.
+
 ## Code of Conduct
 
 All contributors are expected to follow our Code of Conduct. We are committed to providing a welcoming and inclusive experience for everyone. Please be respectful, constructive, and professional in all interactions.

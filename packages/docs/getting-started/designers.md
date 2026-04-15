@@ -1,6 +1,6 @@
 # Getting Started for Designers
 
-This guide walks you through setting up the Cobalt Figma library, working with design tokens, and handing off your designs to engineering.
+This guide walks you through setting up the Cobalt Figma library, working with design tokens, and handing off your designs to developers.
 
 ## Setting Up Figma
 
@@ -14,12 +14,12 @@ Open any Figma file, then go to **Assets > Team Library** and enable the followi
 
 > **Tip:** Pin the Cobalt libraries to keep them at the top of your asset panel. This makes drag-and-drop much faster during daily work.
 
-### 2. Install the Cobalt Figma Plugin
+### 2. Install the Tokens Studio Figma Plugin
 
-The Cobalt plugin helps you inspect token values, check contrast ratios, and sync with the latest token updates.
+The Tokens Studio plugin helps you import and export design tokens, and synchronize with Figma variables.
 
 1. Open **Plugins > Browse plugins** in Figma.
-2. Search for "Cobalt Design System."
+2. Search for "Tokens Studio" and select the plugin.
 3. Click **Install**.
 
 ## Working with Tokens
@@ -73,7 +73,7 @@ Good handoff reduces back-and-forth and speeds up implementation. Follow these s
 
 ### 1. Annotate with Token Names
 
-Use the Cobalt plugin's **Redline** mode to auto-annotate spacing, color, and typography tokens on your frames.
+Ensure tokens are assigned to all colors, text styles, and spacing. Developers should be able to use dev mode to identify all of the token names directly from the design.
 
 ### 2. Document Interaction Behavior
 
@@ -85,7 +85,7 @@ Add notes for states and transitions that are not obvious from static frames:
 
 ### 3. Link to the Component Docs
 
-In your handoff notes, include links to the relevant Cobalt documentation pages so engineers can reference the API and usage examples.
+In your handoff notes, include links to the relevant Cobalt documentation pages so developers can reference the API and usage examples.
 
 ### 4. Use the Handoff Checklist
 
@@ -100,10 +100,8 @@ Before marking a design as ready:
 
 ## Resources
 
-- **Figma Library:** search "Cobalt" in Team Libraries
 - **Token Structure:** [How tokens are organized](../tokens/structure.md)
 - **Figma Handoff:** [What to hand off with tokens](../tokens/figma-handoff.md)
 - **Figma Checklist:** [Copy-paste handoff template](../tokens/figma-checklist.md)
 - **Token Reference:** [Tokens Documentation](../tokens/)
 - **Custom Icons:** Need to design a custom icon for Cobalt? See the [Designing Custom Icons](/foundations/iconography#designing-custom-icons) guide for grid specs, keyline templates, and an export checklist.
-- **Slack:** `#cobalt-design`

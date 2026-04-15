@@ -174,6 +174,65 @@ pnpm test:coverage
 
 Tests use Web Test Runner with Playwright for browser-based testing. Accessibility tests use `@open-wc/testing` helpers along with `axe-core`.
 
+## Local Testing in External Apps
+
+When developing Cobalt, you often need to test your changes in an external application before publishing. There are two approaches depending on your workflow.
+
+### Using `pack:local` (recommended)
+
+The `pack:local` script builds all packages and produces tarballs identical to what `npm publish` would create. This is the most reliable method because it validates package exports, `files` configuration, and build output — catching issues that symlinks would hide.
+
+```bash
+# In the cobalt monorepo
+pnpm pack:local
+```
+
+This creates `.tgz` files in `./local-packs/`. Then install them in your app:
+
+```bash
+# Install all Cobalt packages at once
+npm install /path/to/cobalt/local-packs/*.tgz
+
+# Or install only what you need
+npm install /path/to/cobalt/local-packs/cobalt-components-0.0.1.tgz \
+            /path/to/cobalt/local-packs/cobalt-tokens-0.0.1.tgz
+```
+
+If you already ran `pnpm build` separately, skip the build step:
+
+```bash
+pnpm pack:local --skip-build
+```
+
+After making changes in the monorepo, re-run `pnpm pack:local` and reinstall in your app to pick up the updates.
+
+### Using `pnpm link` (faster iteration)
+
+For rapid development where you are making frequent changes, symlinks avoid the pack-reinstall cycle:
+
+```bash
+# In the cobalt monorepo — register a package globally
+cd packages/components
+pnpm link --global
+
+# In your external app — link the package
+pnpm link --global @cobalt/components
+```
+
+Changes are reflected after running `pnpm build` in the monorepo — no reinstall needed. Repeat for each package you want to link.
+
+::: warning
+Linked packages can cause duplicate dependency issues at runtime (e.g., two copies of Lit or Vue). If you encounter unexpected errors, switch to `pack:local` instead.
+:::
+
+### When you don't need an external app
+
+For most development work, the monorepo itself provides full integration testing:
+
+- **`pnpm build`** — verifies all packages compile and interoperate
+- **`pnpm test`** — runs component unit tests and accessibility checks
+- **`pnpm dev`** — the docs site imports every `@cobalt` package and serves as a live integration environment
+
 ## Troubleshooting
 
 | Problem                                          | Solution                                                                     |
@@ -181,5 +240,6 @@ Tests use Web Test Runner with Playwright for browser-based testing. Accessibili
 | `pnpm install` fails with peer dependency errors | Run `pnpm install --no-frozen-lockfile` and commit the updated lockfile      |
 | Components not reflecting changes                | Ensure `pnpm dev` is running; try `pnpm clean && pnpm install && pnpm build` |
 | Tests timeout in CI                              | Run `pnpm exec playwright install` to install browser binaries               |
+| Tests fail with "custom element already defined" | Run each test file in its own browser context or use `--isolation` flag      |
 
 > **Note:** If you encounter issues not covered here, check our [Contact page](/resources/contact) for support channels.
