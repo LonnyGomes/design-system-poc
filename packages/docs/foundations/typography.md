@@ -20,10 +20,10 @@ Practical consequences:
 
 ## Font families
 
-| Token                   | Stack                                                                                     | Usage                          |
-| ----------------------- | ----------------------------------------------------------------------------------------- | ------------------------------ |
-| `--co-font-family-sans` | `'Inter', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif` | Body text, UI labels, headings |
-| `--co-font-family-mono` | `'JetBrains Mono', 'Fira Code', monospace`                                                | Code blocks, technical values  |
+| Token                   | Stack                                                           | Usage                          |
+| ----------------------- | --------------------------------------------------------------- | ------------------------------ |
+| `--co-font-family-sans` | `'Inter Variable', 'Noto Sans Variable', system-ui, sans-serif` | Body text, UI labels, headings |
+| `--co-font-family-mono` | `'JetBrains Mono Variable', 'Fira Code', monospace`             | Code blocks, technical values  |
 
 Import the self-hosted variable fonts from `@cobalt/tokens`:
 

@@ -34,10 +34,13 @@
     "font": {
       "family": {
         "sans": {
-          "$value": "'Inter', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "$value": "'Inter Variable', 'Noto Sans Variable', system-ui, sans-serif",
           "$type": "fontFamily"
         },
-        "mono": { "$value": "'JetBrains Mono', 'Fira Code', monospace", "$type": "fontFamily" }
+        "mono": {
+          "$value": "'JetBrains Mono Variable', 'Fira Code', monospace",
+          "$type": "fontFamily"
+        }
       },
       "size": {
         "xs": { "$value": "0.75rem", "$type": "dimension" },
