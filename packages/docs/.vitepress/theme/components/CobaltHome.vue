@@ -281,7 +281,7 @@ const features = [
   background: linear-gradient(
     135deg,
     var(--co-color-interactive-default) 0%,
-    var(--co-color-primitive-blue-400) 50%,
+    var(--co-color-primitive-cobalt-400) 50%,
     var(--co-color-interactive-default) 100%
   );
   background-clip: text;

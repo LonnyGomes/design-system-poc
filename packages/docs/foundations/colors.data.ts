@@ -20,7 +20,7 @@ export interface ColorsData {
   extendedPalettes: ColorPalette[];
 }
 
-const CORE_FAMILIES = new Set(['neutral', 'blue', 'red', 'green', 'orange']);
+const CORE_FAMILIES = new Set(['neutral', 'cobalt', 'red', 'green', 'orange']);
 const EXCLUDED_KEYS = new Set(['white', 'black']);
 
 function capitalize(s: string): string {
@@ -56,7 +56,7 @@ export default {
     }
 
     // Preserve a stable order matching the original docs
-    const coreOrder = ['neutral', 'blue', 'red', 'green', 'orange'];
+    const coreOrder = ['neutral', 'cobalt', 'red', 'green', 'orange'];
     corePalettes.sort(
       (a, b) => coreOrder.indexOf(a.name.toLowerCase()) - coreOrder.indexOf(b.name.toLowerCase()),
     );

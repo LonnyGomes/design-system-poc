@@ -132,10 +132,10 @@ function onKey(event: KeyboardEvent, i: number) {
   color: var(--co-color-text-on-bold);
 }
 
-/* Icon pops in brand blue when selected — uses a primitive so it stays
+/* Icon pops in brand cobalt when selected — uses a primitive so it stays
    identical in light and dark (the rail background is dark in both). */
 .rail-item.is-active co-icon {
-  color: var(--co-color-primitive-blue-300);
+  color: var(--co-color-primitive-cobalt-300);
 }
 
 .rail-item-label {
