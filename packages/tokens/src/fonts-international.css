@@ -1,0 +1,9 @@
+@layer co.tokens {
+  :root {
+    --co-font-family-sans:
+      'Inter Variable', 'Noto Sans Variable', 'Noto Sans Arabic Variable',
+      'Noto Sans Bengali Variable', 'Noto Sans Thai Variable', 'Noto Sans JP Variable',
+      'Noto Sans SC Variable', 'Noto Sans TC Variable', 'Noto Sans KR Variable', system-ui,
+      sans-serif;
+  }
+}

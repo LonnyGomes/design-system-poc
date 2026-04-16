@@ -187,6 +187,10 @@ async function build() {
 
   console.log('Copying font-face stylesheet...');
   copyFileSync(join(__dirname, 'src/fonts.css'), join(__dirname, 'dist/css/fonts.css'));
+  copyFileSync(
+    join(__dirname, 'src/fonts-international.css'),
+    join(__dirname, 'dist/css/fonts-international.css'),
+  );
 
   console.log('Generating utility classes...');
   generateUtilitiesCss(__dirname, tokensDir);

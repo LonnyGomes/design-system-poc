@@ -33,6 +33,49 @@ Import the self-hosted variable fonts from `@cobalt/tokens`:
 
 > **Variable fonts.** All three families ship as variable fonts via `@fontsource-variable/*`, so any weight from 100 to 900 is available natively — no synthesized weights, no additional downloads per weight.
 
+### International script support
+
+Inter covers **Latin**, **Cyrillic**, **Greek**, and **Vietnamese**. Noto Sans is included as a fallback and adds **Devanagari** (Hindi, Marathi, Nepali), the one major script family that Inter doesn't support. Both fonts use `unicode-range` descriptors in their `@font-face` rules, so the browser only downloads the subsets it actually needs. A Latin-only page never fetches Devanagari glyphs.
+
+For scripts beyond what Inter and Noto Sans provide, install additional `@fontsource-variable/noto-sans-*` packages:
+
+| Package                                  | Script              | Languages             |
+| ---------------------------------------- | ------------------- | --------------------- |
+| `@fontsource-variable/noto-sans-arabic`  | Arabic              | Arabic, Farsi, Urdu   |
+| `@fontsource-variable/noto-sans-bengali` | Bengali             | Bengali, Assamese     |
+| `@fontsource-variable/noto-sans-thai`    | Thai                | Thai                  |
+| `@fontsource-variable/noto-sans-jp`      | Japanese            | Japanese              |
+| `@fontsource-variable/noto-sans-sc`      | Simplified Chinese  | Mandarin (mainland)   |
+| `@fontsource-variable/noto-sans-tc`      | Traditional Chinese | Mandarin (Taiwan, HK) |
+| `@fontsource-variable/noto-sans-kr`      | Korean              | Korean                |
+
+To add support for a script (Arabic and Japanese shown here):
+
+1. Import `fonts-international`. This adds all supported Noto Sans script names to the `--co-font-family-sans` stack so they are picked up automatically when installed:
+
+   ```css
+   @import '@cobalt/tokens/css';
+   @import '@cobalt/tokens/css/fonts';
+   @import '@cobalt/tokens/css/fonts-international';
+   ```
+
+2. Install the packages you need:
+
+   ```sh
+   pnpm add @fontsource-variable/noto-sans-arabic @fontsource-variable/noto-sans-jp
+   ```
+
+3. Import them inside the `co.base` layer:
+
+   ```css
+   @import '@fontsource-variable/noto-sans-arabic' layer(co.base);
+   @import '@fontsource-variable/noto-sans-jp' layer(co.base);
+   ```
+
+That's it. No token overrides needed. The `fonts-international` import pre-registers all seven script names in the font stack. Names that don't match an installed `@font-face` are silently skipped by the browser, so there is no download or performance penalty for scripts you haven't installed.
+
+The same `unicode-range` optimization applies: each script's glyphs are only downloaded when characters from that script appear on the page.
+
 ## Primitives
 
 ### Type scale
