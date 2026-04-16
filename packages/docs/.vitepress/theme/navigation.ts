@@ -26,7 +26,7 @@ export const navigation: NavGroup[] = [
     ],
   },
   {
-    label: 'Design Foundations',
+    label: 'Foundations',
     railLabel: 'Foundations',
     icon: 'stacks',
     defaultOpen: false,
@@ -146,7 +146,7 @@ export function toVitePressSidebar(): { text: string; items: { text: string; lin
  * Derive the VitePress `themeConfig.nav` array from the navigation data.
  * Picks the groups that make sense as top-level nav entries (skips Overview and Changelog).
  */
-const topNavGroups = ['Get Started', 'Design Foundations', 'Components', 'Patterns', 'Guidance'];
+const topNavGroups = ['Get Started', 'Foundations', 'Components', 'Patterns', 'Guidance'];
 
 export function toVitePressNav(): { text: string; link: string }[] {
   return navigation
@@ -154,7 +154,7 @@ export function toVitePressNav(): { text: string; link: string }[] {
     .map((group) => {
       const firstLink = group.items.find((item) => item.link)?.link ?? '/';
       return {
-        text: group.label === 'Design Foundations' ? 'Foundations' : group.label,
+        text: group.label,
         link: firstLink,
       };
     });

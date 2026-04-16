@@ -1,4 +1,4 @@
-# Design Foundations
+# Foundations
 
 Foundations are the visual and structural building blocks of the Cobalt Design System. They ensure consistency across every component and layout by defining shared rules for color, typography, spacing, and more.
 
