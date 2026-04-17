@@ -4,35 +4,42 @@
       "ring": {
         "width": {
           "$type": "dimension",
-          "$value": "{co.shape.border.width.thick}"
+          "$value": "{co.shape.border.width.thick}",
+          "$description": "Width of the visible focus ring used for keyboard focus states."
         },
         "offset": {
           "$type": "dimension",
-          "$value": "{co.space.1}"
+          "$value": "{co.space.1}",
+          "$description": "Space between a focused element and its focus ring."
         }
       }
     },
     "control": {
       "radius": {
         "$type": "dimension",
-        "$value": "{co.shape.radius.sm}"
+        "$value": "{co.shape.radius.sm}",
+        "$description": "Default corner radius for standard interactive controls."
       },
       "height": {
         "sm": {
           "$type": "dimension",
-          "$value": "32px"
+          "$value": "32px",
+          "$description": "Small control height for compact buttons, inputs, and select-like controls."
         },
         "md": {
           "$type": "dimension",
-          "$value": "40px"
+          "$value": "40px",
+          "$description": "Medium control height for default buttons, inputs, and select-like controls."
         },
         "lg": {
           "$type": "dimension",
-          "$value": "48px"
+          "$value": "48px",
+          "$description": "Large control height for prominent buttons, inputs, and select-like controls."
         },
         "xl": {
           "$type": "dimension",
-          "$value": "56px"
+          "$value": "56px",
+          "$description": "Extra large control height for spacious buttons, inputs, and select-like controls."
         }
       }
     },
@@ -42,19 +49,23 @@
           "width": {
             "sm": {
               "$type": "dimension",
-              "$value": "{co.breakpoint.sm}"
+              "$value": "{co.breakpoint.sm}",
+              "$description": "Small maximum width for constrained content regions."
             },
             "md": {
               "$type": "dimension",
-              "$value": "{co.breakpoint.md}"
+              "$value": "{co.breakpoint.md}",
+              "$description": "Medium maximum width for constrained content regions."
             },
             "lg": {
               "$type": "dimension",
-              "$value": "{co.breakpoint.lg}"
+              "$value": "{co.breakpoint.lg}",
+              "$description": "Large maximum width for constrained content regions."
             },
             "xl": {
               "$type": "dimension",
-              "$value": "{co.breakpoint.xl}"
+              "$value": "{co.breakpoint.xl}",
+              "$description": "Extra large maximum width for constrained content regions."
             }
           }
         }
@@ -64,200 +75,240 @@
       "display": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.regular}"
+          "$value": "{co.font.weight.regular}",
+          "$description": "Font weight for the display typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.5xl}"
+          "$value": "{co.font.size.5xl}",
+          "$description": "Font size for the display typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.tighter}"
+          "$value": "{co.font.tracking.tighter}",
+          "$description": "Letter spacing for the display typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.display}"
+            "$value": "{co.font.line.height.display}",
+            "$description": "Line height for the display typography role."
           }
         }
       },
       "heading": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.regular}"
+          "$value": "{co.font.weight.regular}",
+          "$description": "Font weight for the heading typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.4xl}"
+          "$value": "{co.font.size.4xl}",
+          "$description": "Font size for the heading typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.tight}"
+          "$value": "{co.font.tracking.tight}",
+          "$description": "Letter spacing for the heading typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.display}"
+            "$value": "{co.font.line.height.display}",
+            "$description": "Line height for the heading typography role."
           }
         }
       },
       "title": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.regular}"
+          "$value": "{co.font.weight.regular}",
+          "$description": "Font weight for the title typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.2xl}"
+          "$value": "{co.font.size.2xl}",
+          "$description": "Font size for the title typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.tight}"
+          "$value": "{co.font.tracking.tight}",
+          "$description": "Letter spacing for the title typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.tight}"
+            "$value": "{co.font.line.height.tight}",
+            "$description": "Line height for the title typography role."
           }
         }
       },
       "subtitle": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.medium}"
+          "$value": "{co.font.weight.medium}",
+          "$description": "Font weight for the subtitle typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.xl}"
+          "$value": "{co.font.size.xl}",
+          "$description": "Font size for the subtitle typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.tight}"
+          "$value": "{co.font.tracking.tight}",
+          "$description": "Letter spacing for the subtitle typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.tight}"
+            "$value": "{co.font.line.height.tight}",
+            "$description": "Line height for the subtitle typography role."
           }
         }
       },
       "eyebrow": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.medium}"
+          "$value": "{co.font.weight.medium}",
+          "$description": "Font weight for the eyebrow typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.xs}"
+          "$value": "{co.font.size.xs}",
+          "$description": "Font size for the eyebrow typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.widest}"
+          "$value": "{co.font.tracking.widest}",
+          "$description": "Letter spacing for the eyebrow typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.tight}"
+            "$value": "{co.font.line.height.tight}",
+            "$description": "Line height for the eyebrow typography role."
           }
         }
       },
       "body-lg": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.regular}"
+          "$value": "{co.font.weight.regular}",
+          "$description": "Font weight for the large body typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.lg}"
+          "$value": "{co.font.size.lg}",
+          "$description": "Font size for the large body typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.normal}"
+          "$value": "{co.font.tracking.normal}",
+          "$description": "Letter spacing for the large body typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.normal}"
+            "$value": "{co.font.line.height.normal}",
+            "$description": "Line height for the large body typography role."
           }
         }
       },
       "body": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.regular}"
+          "$value": "{co.font.weight.regular}",
+          "$description": "Font weight for the body typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.md}"
+          "$value": "{co.font.size.md}",
+          "$description": "Font size for the body typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.normal}"
+          "$value": "{co.font.tracking.normal}",
+          "$description": "Letter spacing for the body typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.normal}"
+            "$value": "{co.font.line.height.normal}",
+            "$description": "Line height for the body typography role."
           }
         }
       },
       "body-sm": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.regular}"
+          "$value": "{co.font.weight.regular}",
+          "$description": "Font weight for the small body typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.sm}"
+          "$value": "{co.font.size.sm}",
+          "$description": "Font size for the small body typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.normal}"
+          "$value": "{co.font.tracking.normal}",
+          "$description": "Letter spacing for the small body typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.normal}"
+            "$value": "{co.font.line.height.normal}",
+            "$description": "Line height for the small body typography role."
           }
         }
       },
       "label": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.medium}"
+          "$value": "{co.font.weight.medium}",
+          "$description": "Font weight for the label typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.sm}"
+          "$value": "{co.font.size.sm}",
+          "$description": "Font size for the label typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.normal}"
+          "$value": "{co.font.tracking.normal}",
+          "$description": "Letter spacing for the label typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.tight}"
+            "$value": "{co.font.line.height.tight}",
+            "$description": "Line height for the label typography role."
           }
         }
       },
       "caption": {
         "weight": {
           "$type": "fontWeight",
-          "$value": "{co.font.weight.regular}"
+          "$value": "{co.font.weight.regular}",
+          "$description": "Font weight for the caption typography role."
         },
         "size": {
           "$type": "dimension",
-          "$value": "{co.font.size.xs}"
+          "$value": "{co.font.size.xs}",
+          "$description": "Font size for the caption typography role."
         },
         "tracking": {
           "$type": "dimension",
-          "$value": "{co.font.tracking.normal}"
+          "$value": "{co.font.tracking.normal}",
+          "$description": "Letter spacing for the caption typography role."
         },
         "line": {
           "height": {
             "$type": "number",
-            "$value": "{co.font.line.height.normal}"
+            "$value": "{co.font.line.height.normal}",
+            "$description": "Line height for the caption typography role."
           }
         }
       }

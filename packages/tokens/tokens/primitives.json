@@ -3,215 +3,264 @@
     "space": {
       "0": {
         "$type": "dimension",
-        "$value": "0"
+        "$value": "0",
+        "$description": "Zero spacing step for removing gaps, margins, and padding."
       },
       "1": {
         "$type": "dimension",
-        "$value": "4px"
+        "$value": "4px",
+        "$description": "Raw spacing step 1 used as the base scale for gaps, margins, and padding."
       },
       "2": {
         "$type": "dimension",
-        "$value": "8px"
+        "$value": "8px",
+        "$description": "Raw spacing step 2 used as the base scale for gaps, margins, and padding."
       },
       "3": {
         "$type": "dimension",
-        "$value": "12px"
+        "$value": "12px",
+        "$description": "Raw spacing step 3 used as the base scale for gaps, margins, and padding."
       },
       "4": {
         "$type": "dimension",
-        "$value": "16px"
+        "$value": "16px",
+        "$description": "Raw spacing step 4 used as the base scale for gaps, margins, and padding."
       },
       "5": {
         "$type": "dimension",
-        "$value": "20px"
+        "$value": "20px",
+        "$description": "Raw spacing step 5 used as the base scale for gaps, margins, and padding."
       },
       "6": {
         "$type": "dimension",
-        "$value": "24px"
+        "$value": "24px",
+        "$description": "Raw spacing step 6 used as the base scale for gaps, margins, and padding."
       },
       "8": {
         "$type": "dimension",
-        "$value": "32px"
+        "$value": "32px",
+        "$description": "Raw spacing step 8 used as the base scale for gaps, margins, and padding."
       },
       "10": {
         "$type": "dimension",
-        "$value": "40px"
+        "$value": "40px",
+        "$description": "Raw spacing step 10 used as the base scale for gaps, margins, and padding."
       },
       "12": {
         "$type": "dimension",
-        "$value": "48px"
+        "$value": "48px",
+        "$description": "Raw spacing step 12 used as the base scale for gaps, margins, and padding."
       },
       "16": {
         "$type": "dimension",
-        "$value": "64px"
+        "$value": "64px",
+        "$description": "Raw spacing step 16 used as the base scale for gaps, margins, and padding."
       },
       "20": {
         "$type": "dimension",
-        "$value": "80px"
+        "$value": "80px",
+        "$description": "Raw spacing step 20 used as the base scale for gaps, margins, and padding."
       },
       "24": {
         "$type": "dimension",
-        "$value": "96px"
+        "$value": "96px",
+        "$description": "Raw spacing step 24 used as the base scale for gaps, margins, and padding."
       },
       "gap": {
         "xs": {
           "$type": "dimension",
-          "$value": "{co.space.1}"
+          "$value": "{co.space.1}",
+          "$description": "Extra small gap between related layout items."
         },
         "sm": {
           "$type": "dimension",
-          "$value": "{co.space.2}"
+          "$value": "{co.space.2}",
+          "$description": "Small gap between related layout items."
         },
         "md": {
           "$type": "dimension",
-          "$value": "{co.space.4}"
+          "$value": "{co.space.4}",
+          "$description": "Medium gap between related layout items."
         },
         "lg": {
           "$type": "dimension",
-          "$value": "{co.space.6}"
+          "$value": "{co.space.6}",
+          "$description": "Large gap between related layout items."
         },
         "xl": {
           "$type": "dimension",
-          "$value": "{co.space.8}"
+          "$value": "{co.space.8}",
+          "$description": "Extra large gap between related layout items."
         }
       },
       "inset": {
         "xs": {
           "$type": "dimension",
-          "$value": "{co.space.1}"
+          "$value": "{co.space.1}",
+          "$description": "Extra small inset padding inside components and containers."
         },
         "sm": {
           "$type": "dimension",
-          "$value": "{co.space.2}"
+          "$value": "{co.space.2}",
+          "$description": "Small inset padding inside components and containers."
         },
         "md": {
           "$type": "dimension",
-          "$value": "{co.space.4}"
+          "$value": "{co.space.4}",
+          "$description": "Medium inset padding inside components and containers."
         },
         "lg": {
           "$type": "dimension",
-          "$value": "{co.space.6}"
+          "$value": "{co.space.6}",
+          "$description": "Large inset padding inside components and containers."
         },
         "xl": {
           "$type": "dimension",
-          "$value": "{co.space.8}"
+          "$value": "{co.space.8}",
+          "$description": "Extra large inset padding inside components and containers."
         }
       },
       "section": {
         "$type": "dimension",
-        "$value": "{co.space.16}"
+        "$value": "{co.space.16}",
+        "$description": "Default vertical spacing between major page sections."
       },
       "page": {
         "$type": "dimension",
-        "$value": "{co.space.24}"
+        "$value": "{co.space.24}",
+        "$description": "Default outer page padding for broad layouts."
       }
     },
     "font": {
       "family": {
         "sans": {
           "$type": "fontFamily",
-          "$value": "'Inter Variable', 'Noto Sans Variable', system-ui, sans-serif"
+          "$value": "'Inter Variable', 'Noto Sans Variable', system-ui, sans-serif",
+          "$description": "Default sans-serif font stack for product UI."
         },
         "mono": {
           "$type": "fontFamily",
-          "$value": "'JetBrains Mono Variable', 'Fira Code', monospace"
+          "$value": "'JetBrains Mono Variable', 'Fira Code', monospace",
+          "$description": "Monospace font stack for code, numbers, and technical content."
         }
       },
       "size": {
         "xs": {
           "$type": "dimension",
-          "$value": "0.75rem"
+          "$value": "0.75rem",
+          "$description": "Extra small font size used by typography roles."
         },
         "sm": {
           "$type": "dimension",
-          "$value": "0.875rem"
+          "$value": "0.875rem",
+          "$description": "Small font size used by typography roles."
         },
         "md": {
           "$type": "dimension",
-          "$value": "1rem"
+          "$value": "1rem",
+          "$description": "Medium font size used by typography roles."
         },
         "lg": {
           "$type": "dimension",
-          "$value": "1.125rem"
+          "$value": "1.125rem",
+          "$description": "Large font size used by typography roles."
         },
         "xl": {
           "$type": "dimension",
-          "$value": "1.25rem"
+          "$value": "1.25rem",
+          "$description": "Extra large font size used by typography roles."
         },
         "2xl": {
           "$type": "dimension",
-          "$value": "1.5rem"
+          "$value": "1.5rem",
+          "$description": "Double extra large font size used by typography roles."
         },
         "3xl": {
           "$type": "dimension",
-          "$value": "1.875rem"
+          "$value": "1.875rem",
+          "$description": "Triple extra large font size used by typography roles."
         },
         "4xl": {
           "$type": "dimension",
-          "$value": "2.25rem"
+          "$value": "2.25rem",
+          "$description": "Quadruple extra large font size used by typography roles."
         },
         "5xl": {
           "$type": "dimension",
-          "$value": "3rem"
+          "$value": "3rem",
+          "$description": "Quintuple extra large font size used by typography roles."
         }
       },
       "weight": {
         "regular": {
           "$type": "fontWeight",
-          "$value": "400"
+          "$value": "400",
+          "$description": "Regular font weight for default text."
         },
         "medium": {
           "$type": "fontWeight",
-          "$value": "500"
+          "$value": "500",
+          "$description": "Medium font weight for labels and moderate emphasis."
         },
         "semibold": {
           "$type": "fontWeight",
-          "$value": "600"
+          "$value": "600",
+          "$description": "Semibold font weight for strong emphasis."
         },
         "bold": {
           "$type": "fontWeight",
-          "$value": "700"
+          "$value": "700",
+          "$description": "Bold font weight for maximum text emphasis."
         }
       },
       "tracking": {
         "tighter": {
           "$type": "dimension",
-          "$value": "-0.025em"
+          "$value": "-0.025em",
+          "$description": "Tighter letter spacing for large display text."
         },
         "tight": {
           "$type": "dimension",
-          "$value": "-0.015em"
+          "$value": "-0.015em",
+          "$description": "Tight letter spacing for headings and titles."
         },
         "normal": {
           "$type": "dimension",
-          "$value": "0"
+          "$value": "0",
+          "$description": "Default letter spacing for body text and controls."
         },
         "wide": {
           "$type": "dimension",
-          "$value": "0.05em"
+          "$value": "0.05em",
+          "$description": "Wide letter spacing for compact uppercase text."
         },
         "widest": {
           "$type": "dimension",
-          "$value": "0.08em"
+          "$value": "0.08em",
+          "$description": "Widest letter spacing for eyebrow and metadata text."
         }
       },
       "line": {
         "height": {
           "display": {
             "$type": "number",
-            "$value": "1.1"
+            "$value": "1.1",
+            "$description": "Compact line-height ratio for display typography."
           },
           "tight": {
             "$type": "number",
-            "$value": "1.25"
+            "$value": "1.25",
+            "$description": "Tight line-height ratio for headings, labels, and controls."
           },
           "normal": {
             "$type": "number",
-            "$value": "1.5"
+            "$value": "1.5",
+            "$description": "Default line-height ratio for readable body text."
           },
           "relaxed": {
             "$type": "number",
-            "$value": "1.75"
+            "$value": "1.75",
+            "$description": "Relaxed line-height ratio for long-form text."
           }
         }
       }
@@ -219,72 +268,88 @@
     "breakpoint": {
       "sm": {
         "$type": "dimension",
-        "$value": "640px"
+        "$value": "640px",
+        "$description": "Small viewport breakpoint used by responsive layouts."
       },
       "md": {
         "$type": "dimension",
-        "$value": "768px"
+        "$value": "768px",
+        "$description": "Medium viewport breakpoint used by responsive layouts."
       },
       "lg": {
         "$type": "dimension",
-        "$value": "1024px"
+        "$value": "1024px",
+        "$description": "Large viewport breakpoint used by responsive layouts."
       },
       "xl": {
         "$type": "dimension",
-        "$value": "1280px"
+        "$value": "1280px",
+        "$description": "Extra large viewport breakpoint used by responsive layouts."
       },
       "2xl": {
         "$type": "dimension",
-        "$value": "1536px"
+        "$value": "1536px",
+        "$description": "Double extra large viewport breakpoint used by responsive layouts."
       }
     },
     "elevation": {
       "shadow": {
         "sm": {
           "$type": "shadow",
-          "$value": "0 1px 2px 0 rgb(0 0 0 / 0.05)"
+          "$value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+          "$description": "Small elevation shadow for subtle raised surfaces."
         },
         "md": {
           "$type": "shadow",
-          "$value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)"
+          "$value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+          "$description": "Medium elevation shadow for cards, menus, and panels."
         },
         "lg": {
           "$type": "shadow",
-          "$value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
+          "$value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+          "$description": "Large elevation shadow for overlays and prominent surfaces."
         },
         "xl": {
           "$type": "shadow",
-          "$value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
+          "$value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+          "$description": "Extra large elevation shadow for modals and high-priority overlays."
         }
       },
       "z": {
         "dropdown": {
           "$type": "number",
-          "$value": "1000"
+          "$value": "1000",
+          "$description": "Stacking index for dropdown layers."
         },
         "sticky": {
           "$type": "number",
-          "$value": "1020"
+          "$value": "1020",
+          "$description": "Stacking index for sticky interface regions."
         },
         "fixed": {
           "$type": "number",
-          "$value": "1030"
+          "$value": "1030",
+          "$description": "Stacking index for fixed interface regions."
         },
         "modal-backdrop": {
           "$type": "number",
-          "$value": "1040"
+          "$value": "1040",
+          "$description": "Stacking index for modal backdrop layers."
         },
         "modal": {
           "$type": "number",
-          "$value": "1050"
+          "$value": "1050",
+          "$description": "Stacking index for modal dialog layers."
         },
         "popover": {
           "$type": "number",
-          "$value": "1060"
+          "$value": "1060",
+          "$description": "Stacking index for popover layers."
         },
         "tooltip": {
           "$type": "number",
-          "$value": "1070"
+          "$value": "1070",
+          "$description": "Stacking index for tooltip layers."
         }
       }
     },
@@ -292,33 +357,40 @@
       "duration": {
         "fast": {
           "$type": "duration",
-          "$value": "100ms"
+          "$value": "100ms",
+          "$description": "Fast motion duration for brief transitions."
         },
         "normal": {
           "$type": "duration",
-          "$value": "200ms"
+          "$value": "200ms",
+          "$description": "Default motion duration for standard UI transitions."
         },
         "slow": {
           "$type": "duration",
-          "$value": "300ms"
+          "$value": "300ms",
+          "$description": "Slow motion duration for larger or more noticeable transitions."
         }
       },
       "easing": {
         "default": {
           "$type": "cubicBezier",
-          "$value": "cubic-bezier(0.4, 0, 0.2, 1)"
+          "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+          "$description": "Default easing curve for standard UI transitions."
         },
         "in": {
           "$type": "cubicBezier",
-          "$value": "cubic-bezier(0.4, 0, 1, 1)"
+          "$value": "cubic-bezier(0.4, 0, 1, 1)",
+          "$description": "Easing curve for elements entering from rest."
         },
         "out": {
           "$type": "cubicBezier",
-          "$value": "cubic-bezier(0, 0, 0.2, 1)"
+          "$value": "cubic-bezier(0, 0, 0.2, 1)",
+          "$description": "Easing curve for elements exiting to rest."
         },
         "in-out": {
           "$type": "cubicBezier",
-          "$value": "cubic-bezier(0.4, 0, 0.2, 1)"
+          "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+          "$description": "Easing curve for transitions with both acceleration and deceleration."
         }
       }
     },
@@ -326,46 +398,56 @@
       "radius": {
         "none": {
           "$type": "dimension",
-          "$value": "0"
+          "$value": "0",
+          "$description": "No corner radius."
         },
         "sm": {
           "$type": "dimension",
-          "$value": "4px"
+          "$value": "4px",
+          "$description": "Small corner radius for compact controls and surfaces."
         },
         "md": {
           "$type": "dimension",
-          "$value": "6px"
+          "$value": "6px",
+          "$description": "Medium corner radius for standard controls and surfaces."
         },
         "lg": {
           "$type": "dimension",
-          "$value": "8px"
+          "$value": "8px",
+          "$description": "Large corner radius for prominent controls and surfaces."
         },
         "xl": {
           "$type": "dimension",
-          "$value": "12px"
+          "$value": "12px",
+          "$description": "Extra large corner radius for spacious surfaces."
         },
         "2xl": {
           "$type": "dimension",
-          "$value": "16px"
+          "$value": "16px",
+          "$description": "Double extra large corner radius for highly rounded surfaces."
         },
         "full": {
           "$type": "dimension",
-          "$value": "9999px"
+          "$value": "9999px",
+          "$description": "Fully rounded radius for pills, circles, and round indicators."
         }
       },
       "border": {
         "width": {
           "thin": {
             "$type": "dimension",
-            "$value": "1px"
+            "$value": "1px",
+            "$description": "Thin border width for standard outlines and dividers."
           },
           "thick": {
             "$type": "dimension",
-            "$value": "2px"
+            "$value": "2px",
+            "$description": "Thick border width for focus rings and emphasized outlines."
           },
           "lg": {
             "$type": "dimension",
-            "$value": "3px"
+            "$value": "3px",
+            "$description": "Large border width for highly emphasized outlines."
           }
         }
       }
@@ -373,15 +455,18 @@
     "opacity": {
       "disabled": {
         "$type": "number",
-        "$value": "0.5"
+        "$value": "0.5",
+        "$description": "Opacity applied to disabled content and controls."
       },
       "overlay": {
         "$type": "number",
-        "$value": "0.4"
+        "$value": "0.4",
+        "$description": "Opacity used for modal and page overlays."
       },
       "placeholder": {
         "$type": "number",
-        "$value": "0.6"
+        "$value": "0.6",
+        "$description": "Opacity used for placeholder text and inactive hints."
       }
     },
     "sizing": {
