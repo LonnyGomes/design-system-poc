@@ -5,7 +5,7 @@ import { cobaltButtonStyles } from './co-button.styles.js';
 import '../icon/co-icon.js';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 /**
  * @tag co-button
@@ -109,7 +109,7 @@ export class CoButton extends LionButton {
           ? html`<co-icon
               part="spinner"
               name="progress-activity"
-              size=${{ sm: 'xs', md: 'sm', lg: 'md' }[this.size]}
+              size=${{ sm: 'xs', md: 'sm', lg: 'md', xl: 'lg' }[this.size]}
               animated
               aria-hidden="true"
             ></co-icon>`

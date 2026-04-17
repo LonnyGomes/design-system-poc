@@ -401,6 +401,11 @@
           "$type": "dimension",
           "$value": "32px",
           "$description": "Large icon size — empty states, feature highlights"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "48px",
+          "$description": "Extra large icon size — hero sections, prominent actions"
         }
       }
     }

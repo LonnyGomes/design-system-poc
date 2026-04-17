@@ -4,7 +4,7 @@ import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { getIcon, getAnimatedIcon, customIconNames, overrideIconNames } from '@cobalt/icons';
 import { cobaltIconStyles } from './co-icon.styles.js';
 
-export type IconSize = 'xs' | 'sm' | 'md' | 'lg';
+export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 /**
  * @tag co-icon

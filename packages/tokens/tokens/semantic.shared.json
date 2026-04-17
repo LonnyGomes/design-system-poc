@@ -29,6 +29,10 @@
         "lg": {
           "$type": "dimension",
           "$value": "48px"
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "56px"
         }
       }
     },

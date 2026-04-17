@@ -26,6 +26,12 @@ describe('co-icon', () => {
     expect(el.getAttribute('size')).to.equal('lg');
   });
 
+  it('reflects xl size attribute', async () => {
+    const el = await fixture<CoIcon>(html`<co-icon name="home" size="xl"></co-icon>`);
+    expect(el.size).to.equal('xl');
+    expect(el.getAttribute('size')).to.equal('xl');
+  });
+
   it('defaults fill to false', async () => {
     const el = await fixture<CoIcon>(html`<co-icon name="home"></co-icon>`);
     expect(el.fill).to.equal(false);
@@ -214,7 +220,7 @@ describe('co-icon', () => {
     });
 
     it('is accessible at all sizes', async () => {
-      for (const size of ['xs', 'sm', 'md', 'lg'] as const) {
+      for (const size of ['xs', 'sm', 'md', 'lg', 'xl'] as const) {
         const el = await fixture(html`<co-icon name="home" size=${size}></co-icon>`);
         await runA11yAudit(el, { component: 'co-icon', state: `size-${size}` });
       }

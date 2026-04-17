@@ -1,13 +1,13 @@
 # Icon
 
-The `co-icon` component renders Material Symbols icons as inline SVGs. It supports a fill toggle, 4 sizes, and built-in accessibility for both decorative and informative use cases.
+The `co-icon` component renders Material Symbols icons as inline SVGs. It supports a fill toggle, 5 sizes, and built-in accessibility for both decorative and informative use cases.
 
 ## Interactive Demo
 
 <ComponentDemo
   tag="co-icon"
   :defaults="{ name: 'home', size: 'md', fill: false }"
-  :options="{ size: ['xs', 'sm', 'md', 'lg'] }"
+  :options="{ size: ['xs', 'sm', 'md', 'lg', 'xl'] }"
   :booleans="['fill', 'animated']"
   :textInputs="['name', 'label']"
 />
@@ -33,6 +33,7 @@ Set the `fill` boolean property to render the filled version of any icon. Use fi
   <co-icon name="star" size="sm"></co-icon>
   <co-icon name="star" size="md"></co-icon>
   <co-icon name="star" size="lg"></co-icon>
+  <co-icon name="star" size="xl"></co-icon>
 </div>
 </ClientOnly>
 
@@ -42,6 +43,7 @@ Set the `fill` boolean property to render the filled version of any icon. Use fi
 | `sm` | `--co-sizing-icon-sm` | 20 px  | Inside buttons, form controls      |
 | `md` | `--co-sizing-icon-md` | 24 px  | Standalone icons, navigation items |
 | `lg` | `--co-sizing-icon-lg` | 32 px  | Empty states, feature highlights   |
+| `xl` | `--co-sizing-icon-xl` | 48 px  | Hero sections, prominent actions   |
 
 ## Usage
 
@@ -366,13 +368,13 @@ export class NotificationsComponent {
 
 ### Properties
 
-| Property   | Type                           | Default     | Description                                    |
-| ---------- | ------------------------------ | ----------- | ---------------------------------------------- |
-| `name`     | `string`                       | `''`        | Icon name in kebab-case (e.g. `arrow-forward`) |
-| `size`     | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'`      | Icon size                                      |
-| `fill`     | `boolean`                      | `false`     | Whether to render the filled version           |
-| `animated` | `boolean`                      | `false`     | Use animated variant if available              |
-| `label`    | `string \| undefined`          | `undefined` | Accessible label — makes the icon informative  |
+| Property   | Type                                   | Default     | Description                                    |
+| ---------- | -------------------------------------- | ----------- | ---------------------------------------------- |
+| `name`     | `string`                               | `''`        | Icon name in kebab-case (e.g. `arrow-forward`) |
+| `size`     | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`      | Icon size                                      |
+| `fill`     | `boolean`                              | `false`     | Whether to render the filled version           |
+| `animated` | `boolean`                              | `false`     | Use animated variant if available              |
+| `label`    | `string \| undefined`                  | `undefined` | Accessible label — makes the icon informative  |
 
 ### Methods
 

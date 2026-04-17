@@ -42,6 +42,11 @@ export const cobaltIconStyles = css`
     height: var(--co-sizing-icon-lg, 32px);
   }
 
+  :host([size='xl']) {
+    width: var(--co-sizing-icon-xl, 48px);
+    height: var(--co-sizing-icon-xl, 48px);
+  }
+
   /* ── Animations ──
      Per-part CSS animations target SVG <g> elements inside the shadow DOM.
      These work in Chrome and Firefox. Safari does not support CSS transforms
