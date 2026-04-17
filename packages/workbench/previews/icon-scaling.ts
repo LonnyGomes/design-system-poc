@@ -1,5 +1,5 @@
 import '@cobalt/components/icon';
-import '@material-symbols/font-300/rounded.css';
+import '@fontsource-variable/material-symbols-rounded/full.css';
 
 export const title = 'Icon Scaling Comparison';
 
@@ -61,11 +61,17 @@ const materialBaseline = [
   'search',
   'settings',
   'delete',
-  'progress-activity',
   'check-circle',
   'notifications',
   'description',
   'image',
+  'rocket-launch',
+  'stacks',
+  'widgets',
+  'grid-view',
+  'info',
+  'person-add',
+  'auto-stories',
 ];
 
 const opszMap: Record<string, number> = {
@@ -127,7 +133,7 @@ function renderBaselineRow(name: string): string {
   const fontCells = sizes
     .map(
       (s) =>
-        `<td><span class="material-symbols-rounded" style="font-size: ${fontSizeMap[s]}px; font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' ${opszMap[s]}">${fontName}</span></td>`,
+        `<td><span class="material-symbols-rounded" style="font-size: ${fontSizeMap[s]}px; font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' ${opszMap[s]}">${fontName}</span></td>`,
     )
     .join('');
   const svgFillCells = sizes
@@ -136,7 +142,7 @@ function renderBaselineRow(name: string): string {
   const fontFillCells = sizes
     .map(
       (s) =>
-        `<td><span class="material-symbols-rounded" style="font-size: ${fontSizeMap[s]}px; font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' ${opszMap[s]}">${fontName}</span></td>`,
+        `<td><span class="material-symbols-rounded" style="font-size: ${fontSizeMap[s]}px; font-variation-settings: 'FILL' 1, 'wght' 200, 'GRAD' 0, 'opsz' ${opszMap[s]}">${fontName}</span></td>`,
     )
     .join('');
   return `
@@ -206,6 +212,8 @@ export const html = `
       border-bottom: 2px solid var(--co-color-border-strong);
     }
     .material-symbols-rounded {
+      font-family: 'Material Symbols Rounded Variable', sans-serif;
+      font-weight: 200;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -237,6 +245,12 @@ export const html = `
     <h2 class="wb-heading">Material-Only Baseline</h2>
     <p style="margin-bottom: var(--co-space-4); font-size: var(--co-font-size-sm); color: var(--co-color-text-secondary)">
       Material icons at all sizes for reference — this is what "normal" scaling looks like.
+    </p>
+    <p style="margin-bottom: var(--co-space-4); font-size: var(--co-font-size-xs); color: var(--co-color-text-tertiary)">
+      <strong>Note:</strong> SVG icons use <code>@material-symbols/svg-300</code> (v0.43) while the font uses
+      <code>@fontsource-variable/material-symbols-rounded</code> (upstream v327). The font is set to wght 200 rather
+      than 300 to visually match the SVGs — newer Material Symbols releases render slightly heavier at the same
+      nominal weight due to ongoing glyph refinements by Google.
     </p>
     <table class="scaling-table">
       <thead>

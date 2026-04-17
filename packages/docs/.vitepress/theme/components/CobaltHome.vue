@@ -280,9 +280,9 @@ const features = [
 .title-accent {
   background: linear-gradient(
     135deg,
-    var(--co-color-interactive-default-primary) 0%,
+    var(--co-color-interactive-primary-default) 0%,
     var(--co-color-primitive-cobalt-400) 50%,
-    var(--co-color-interactive-default-primary) 100%
+    var(--co-color-interactive-primary-default) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
@@ -295,7 +295,7 @@ const features = [
   letter-spacing: var(--co-typography-body-lg-tracking);
   line-height: var(--co-typography-body-lg-line-height);
   color: var(--co-text-muted);
-  max-width: 520px;
+  max-width: 600px;
   margin-bottom: 36px;
 }
 
