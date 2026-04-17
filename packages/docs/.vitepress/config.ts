@@ -83,7 +83,13 @@ export default defineConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['lit', '@lion/ui/button.js', '@cobalt/components', '@cobalt/icons'],
+      include: [
+        'lit',
+        '@lion/ui/button.js',
+        '@lion/ui/input.js',
+        '@cobalt/components',
+        '@cobalt/icons',
+      ],
     },
   },
 });

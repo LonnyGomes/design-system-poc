@@ -57,6 +57,7 @@ export const navigation: NavGroup[] = [
       { text: 'Overview', link: '/components/' },
       { text: 'Button', link: '/components/button' },
       { text: 'Icon', link: '/components/icon' },
+      { text: 'Input', link: '/components/input' },
     ],
   },
   {

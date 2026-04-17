@@ -21,6 +21,10 @@
     "./icon": {
       "import": "./dist/components/icon/co-icon.js",
       "types": "./dist/components/icon/co-icon.d.ts"
+    },
+    "./input": {
+      "import": "./dist/components/input/co-input.js",
+      "types": "./dist/components/input/co-input.d.ts"
     }
   },
   "scripts": {
