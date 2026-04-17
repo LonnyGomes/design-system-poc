@@ -224,65 +224,103 @@
       },
       "interactive": {
         "default": {
-          "$type": "color",
-          "$value": "{co.color.primary.base}",
-          "$description": "Resting state for interactive controls — inherits from primary.base"
+          "primary": {
+            "$type": "color",
+            "$value": "{co.color.primary.base}",
+            "$description": "Resting state for interactive controls — inherits from primary.base"
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "transparent"
+          },
+          "bold": {
+            "$type": "color",
+            "$value": "transparent"
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{co.color.primitive.red.500}"
+          },
+          "success": {
+            "$type": "color",
+            "$value": "{co.color.primitive.green.500}"
+          }
         },
         "hover": {
-          "$type": "color",
-          "$value": "{co.color.primitive.cobalt.600}"
+          "primary": {
+            "$type": "color",
+            "$value": "{co.color.primitive.cobalt.600}"
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{co.color.primitive.cobalt.50}"
+          },
+          "bold": {
+            "$type": "color",
+            "$value": "{co.color.primitive.neutral.800}"
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{co.color.primitive.red.600}"
+          },
+          "success": {
+            "$type": "color",
+            "$value": "{co.color.primitive.green.600}"
+          }
         },
         "active": {
-          "$type": "color",
-          "$value": "{co.color.primitive.cobalt.700}"
+          "primary": {
+            "$type": "color",
+            "$value": "{co.color.primitive.cobalt.700}"
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{co.color.primitive.cobalt.100}"
+          },
+          "bold": {
+            "$type": "color",
+            "$value": "{co.color.primitive.neutral.900}"
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{co.color.primitive.red.700}"
+          },
+          "success": {
+            "$type": "color",
+            "$value": "{co.color.primitive.green.700}"
+          }
         },
         "disabled": {
-          "$type": "color",
-          "$value": "{co.color.primitive.cobalt.200}"
+          "primary": {
+            "$type": "color",
+            "$value": "{co.color.primitive.cobalt.200}"
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "transparent"
+          },
+          "bold": {
+            "$type": "color",
+            "$value": "transparent"
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{co.color.primitive.red.200}"
+          },
+          "success": {
+            "$type": "color",
+            "$value": "{co.color.primitive.green.200}"
+          }
         },
-        "subtle-hover": {
-          "$type": "color",
-          "$value": "{co.color.primitive.cobalt.50}"
-        },
-        "subtle-active": {
-          "$type": "color",
-          "$value": "{co.color.primitive.cobalt.100}"
-        },
-        "subtle-selected": {
-          "$type": "color",
-          "$value": "{co.color.primitive.cobalt.50}"
-        },
-        "bold-hover": {
-          "$type": "color",
-          "$value": "{co.color.primitive.neutral.800}"
-        },
-        "bold-selected": {
-          "$type": "color",
-          "$value": "{co.color.primitive.neutral.700}"
-        },
-        "danger-default": {
-          "$type": "color",
-          "$value": "{co.color.primitive.red.500}"
-        },
-        "danger-hover": {
-          "$type": "color",
-          "$value": "{co.color.primitive.red.600}"
-        },
-        "danger-active": {
-          "$type": "color",
-          "$value": "{co.color.primitive.red.700}"
-        },
-        "success-default": {
-          "$type": "color",
-          "$value": "{co.color.primitive.green.500}"
-        },
-        "success-hover": {
-          "$type": "color",
-          "$value": "{co.color.primitive.green.600}"
-        },
-        "success-active": {
-          "$type": "color",
-          "$value": "{co.color.primitive.green.700}"
+        "selected": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{co.color.primitive.cobalt.50}"
+          },
+          "bold": {
+            "$type": "color",
+            "$value": "{co.color.primitive.neutral.700}"
+          }
         }
       },
       "feedback": {
