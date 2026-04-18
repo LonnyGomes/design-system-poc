@@ -5,6 +5,18 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadEnv } from 'vite';
+import {
+  CoColorPrimarySubtle,
+  CoColorTextDefault,
+  CoColorPrimaryBase,
+  CoColorTextSecondary,
+  CoColorSurfaceSunken,
+  CoColorBorderStrong,
+  CoColorSurfacePage,
+  CoColorBorderDefault,
+  CoColorSurfaceDefault,
+  CoColorWarningSubtle,
+} from '@cobalt/tokens';
 import { toVitePressNav, toVitePressSidebar } from './theme/navigation';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -67,43 +79,43 @@ export default withMermaid(
       theme: 'base',
       themeVariables: {
         // Core palette — light-mode token values as defaults
-        primaryColor: '#e8efff', // --co-color-primary-subtle
-        primaryTextColor: '#464646', // --co-color-text-default
-        primaryBorderColor: '#1a5eff', // --co-color-primary-base
-        lineColor: '#686868', // --co-color-text-secondary
-        secondaryColor: '#f2f2f2', // --co-color-surface-sunken
-        secondaryTextColor: '#464646', // --co-color-text-default
-        secondaryBorderColor: '#dadada', // --co-color-border-strong
-        tertiaryColor: '#f7f7f7', // --co-color-surface-page
-        tertiaryTextColor: '#686868', // --co-color-text-secondary
-        tertiaryBorderColor: '#e9e9e9', // --co-color-border-default
+        primaryColor: CoColorPrimarySubtle,
+        primaryTextColor: CoColorTextDefault,
+        primaryBorderColor: CoColorPrimaryBase,
+        lineColor: CoColorTextSecondary,
+        secondaryColor: CoColorSurfaceSunken,
+        secondaryTextColor: CoColorTextDefault,
+        secondaryBorderColor: CoColorBorderStrong,
+        tertiaryColor: CoColorSurfacePage,
+        tertiaryTextColor: CoColorTextSecondary,
+        tertiaryBorderColor: CoColorBorderDefault,
 
         // General
-        background: '#ffffff', // --co-color-surface-default
+        background: CoColorSurfaceDefault,
 
         // Flowchart
-        nodeBorder: '#1a5eff', // --co-color-primary-base
-        clusterBkg: '#f7f7f7', // --co-color-surface-page
-        clusterBorder: '#e9e9e9', // --co-color-border-default
-        defaultLinkColor: '#686868', // --co-color-text-secondary
-        edgeLabelBackground: '#ffffff', // --co-color-surface-default
-        nodeTextColor: '#464646', // --co-color-text-default
+        nodeBorder: CoColorPrimaryBase,
+        clusterBkg: CoColorSurfacePage,
+        clusterBorder: CoColorBorderDefault,
+        defaultLinkColor: CoColorTextSecondary,
+        edgeLabelBackground: CoColorSurfaceDefault,
+        nodeTextColor: CoColorTextDefault,
 
         // Sequence diagram
-        actorBkg: '#e8efff', // --co-color-primary-subtle
-        actorBorder: '#1a5eff', // --co-color-primary-base
-        actorTextColor: '#464646', // --co-color-text-default
-        signalColor: '#686868', // --co-color-text-secondary
-        activationBkgColor: '#e8efff', // --co-color-primary-subtle
-        activationBorderColor: '#1a5eff', // --co-color-primary-base
+        actorBkg: CoColorPrimarySubtle,
+        actorBorder: CoColorPrimaryBase,
+        actorTextColor: CoColorTextDefault,
+        signalColor: CoColorTextSecondary,
+        activationBkgColor: CoColorPrimarySubtle,
+        activationBorderColor: CoColorPrimaryBase,
 
         // Notes
-        noteBkgColor: '#fef6e8', // --co-color-warning-subtle
-        noteTextColor: '#464646', // --co-color-text-default
-        noteBorderColor: '#e9e9e9', // --co-color-border-default
+        noteBkgColor: CoColorWarningSubtle,
+        noteTextColor: CoColorTextDefault,
+        noteBorderColor: CoColorBorderDefault,
 
         // Text
-        textColor: '#464646', // --co-color-text-default
+        textColor: CoColorTextDefault,
       },
       flowchart: {
         useMaxWidth: false,
