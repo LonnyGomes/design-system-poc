@@ -632,17 +632,13 @@ body {
 
 /* ── Article Styles ─────────────────────────────────────────── */
 .cobalt-article {
-  animation: contentFadeIn 0.4s var(--co-ease) both;
+  animation: contentFadeIn 0.4s var(--co-ease) backwards;
 }
 
 @keyframes contentFadeIn {
   from {
     opacity: 0;
     transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
