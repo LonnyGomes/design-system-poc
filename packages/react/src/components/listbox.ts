@@ -1,21 +1,17 @@
-import React from 'react';
-import { createComponent } from '@lit/react';
-import {
+import '@cobalt/components/listbox';
+import type {
   CoListbox as CoListboxElement,
   CoOption as CoOptionElement,
 } from '@cobalt/components/listbox';
+import { createCobaltComponent } from '../create-cobalt-component.js';
 
-export const CoListbox = createComponent({
+export const CoListbox = createCobaltComponent<CoListboxElement>({
   tagName: 'co-listbox',
-  elementClass: CoListboxElement,
-  react: React,
   events: {
     onCoChange: 'co-change',
   },
 });
 
-export const CoOption = createComponent({
+export const CoOption = createCobaltComponent<CoOptionElement>({
   tagName: 'co-option',
-  elementClass: CoOptionElement,
-  react: React,
 });

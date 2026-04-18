@@ -6,6 +6,11 @@ import {
   platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
 
+globalThis.Node = window.Node;
+globalThis.Event = window.Event;
+globalThis.CustomEvent = window.CustomEvent;
+globalThis.HTMLElement = window.HTMLElement;
+
 class TestIntersectionObserver {
   readonly root = null;
   readonly rootMargin = '';

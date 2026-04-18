@@ -1,4 +1,5 @@
 export { CoButton } from './components/button.js';
+export { CoCombobox } from './components/combobox.js';
 export { CoForm } from './components/form.js';
 export { CoIcon } from './components/icon.js';
 export { CoInput } from './components/input.js';

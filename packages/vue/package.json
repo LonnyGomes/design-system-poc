@@ -17,6 +17,10 @@
       "import": "./dist/components/button.js",
       "types": "./dist/components/button.d.ts"
     },
+    "./combobox": {
+      "import": "./dist/components/combobox.js",
+      "types": "./dist/components/combobox.d.ts"
+    },
     "./form": {
       "import": "./dist/components/form.js",
       "types": "./dist/components/form.d.ts"
