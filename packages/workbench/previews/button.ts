@@ -11,6 +11,7 @@ export const html = `
       <co-button variant="secondary">Secondary</co-button>
       <co-button variant="danger">Danger</co-button>
       <co-button variant="success">Success</co-button>
+      <co-button variant="ghost">Ghost</co-button>
     </div>
   </section>
 

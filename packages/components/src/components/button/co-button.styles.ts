@@ -113,6 +113,18 @@ export const cobaltButtonStyles = css`
     background: var(--co-color-interactive-success-active);
   }
 
+  /* ── Ghost variant ── */
+  :host([variant='ghost']) {
+    background: transparent;
+    color: var(--co-color-text-default);
+  }
+  :host([variant='ghost']:hover) {
+    color: var(--co-color-text-secondary);
+  }
+  :host([variant='ghost']:active) {
+    color: var(--co-color-text-default);
+  }
+
   /* ── Focus ── */
   :host(:focus-visible) {
     outline: var(--co-focus-ring-width) solid var(--co-color-border-focus);

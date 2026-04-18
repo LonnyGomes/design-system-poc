@@ -8,7 +8,7 @@ The `co-button` component provides a themed, accessible button built on top of L
   tag="co-button"
   label="Click me"
   :defaults="{ variant: 'primary', size: 'md' }"
-  :options="{ variant: ['primary', 'secondary', 'danger', 'success'], size: ['sm', 'md', 'lg', 'xl'] }"
+  :options="{ variant: ['primary', 'secondary', 'danger', 'success', 'ghost'], size: ['sm', 'md', 'lg', 'xl'] }"
   :booleans="['disabled', 'loading']"
 />
 
@@ -20,6 +20,7 @@ The `co-button` component provides a themed, accessible button built on top of L
   <co-button variant="secondary">Secondary</co-button>
   <co-button variant="danger">Danger</co-button>
   <co-button variant="success">Success</co-button>
+  <co-button variant="ghost">Ghost</co-button>
 </div>
 </ClientOnly>
 
@@ -29,6 +30,7 @@ The `co-button` component provides a themed, accessible button built on top of L
 | `secondary` | Supporting actions alongside a primary button.         |
 | `danger`    | Destructive actions like delete or remove.             |
 | `success`   | Confirmation or positive actions like save or approve. |
+| `ghost`     | Low-emphasis actions with no background or border.     |
 
 ## Sizes
 
@@ -254,15 +256,15 @@ export class AppComponent {
 
 ### Properties
 
-| Property   | Type                                                | Default     | Description                                 |
-| ---------- | --------------------------------------------------- | ----------- | ------------------------------------------- |
-| `variant`  | `'primary' \| 'secondary' \| 'danger' \| 'success'` | `'primary'` | Visual style of the button                  |
-| `size`     | `'sm' \| 'md' \| 'lg' \| 'xl'`                      | `'md'`      | Controls min-height, padding, and font size |
-| `disabled` | `boolean`                                           | `false`     | Prevents interaction                        |
-| `loading`  | `boolean`                                           | `false`     | Shows spinner, disables interaction         |
-| `type`     | `'submit' \| 'reset' \| 'button'`                   | `'button'`  | HTML button type                            |
-| `href`     | `string`                                            | —           | Renders as an anchor element                |
-| `target`   | `'_blank' \| '_self' \| '_parent' \| '_top'`        | —           | Link target (when `href` is set)            |
+| Property   | Type                                                           | Default     | Description                                 |
+| ---------- | -------------------------------------------------------------- | ----------- | ------------------------------------------- |
+| `variant`  | `'primary' \| 'secondary' \| 'danger' \| 'success' \| 'ghost'` | `'primary'` | Visual style of the button                  |
+| `size`     | `'sm' \| 'md' \| 'lg' \| 'xl'`                                 | `'md'`      | Controls min-height, padding, and font size |
+| `disabled` | `boolean`                                                      | `false`     | Prevents interaction                        |
+| `loading`  | `boolean`                                                      | `false`     | Shows spinner, disables interaction         |
+| `type`     | `'submit' \| 'reset' \| 'button'`                              | `'button'`  | HTML button type                            |
+| `href`     | `string`                                                       | —           | Renders as an anchor element                |
+| `target`   | `'_blank' \| '_self' \| '_parent' \| '_top'`                   | —           | Link target (when `href` is set)            |
 
 ### Events
 
