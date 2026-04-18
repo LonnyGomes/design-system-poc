@@ -164,4 +164,121 @@
   .VPLocalSearchBox .excerpt {
     color: var(--co-text-secondary);
   }
+
+  /* ── Custom Containers (:::info, :::tip, etc.) ─────────────── */
+  .custom-block {
+    border: 1px solid var(--co-color-border-default);
+    border-radius: var(--co-shape-radius-md);
+    padding: 16px 20px 12px;
+    margin: 16px 0;
+    font-size: var(--co-font-size-sm);
+    line-height: var(--co-font-line-height-normal);
+  }
+
+  .custom-block-title {
+    font-weight: var(--co-font-weight-semibold);
+    margin-bottom: 8px;
+  }
+
+  .custom-block p {
+    margin: 8px 0;
+    color: inherit;
+  }
+
+  .custom-block a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .custom-block code {
+    font-size: 0.9em;
+    border-radius: var(--co-shape-radius-sm);
+    padding: 2px 6px;
+  }
+
+  /* Info / Note */
+  .custom-block.info,
+  .custom-block.note {
+    border-color: var(--co-color-primary-light);
+    background: var(--co-color-primary-subtle);
+    color: var(--co-color-text-default);
+  }
+
+  .custom-block.info .custom-block-title,
+  .custom-block.note .custom-block-title {
+    color: var(--co-color-primary-base);
+  }
+
+  .custom-block.info code,
+  .custom-block.note code {
+    background: color-mix(in srgb, var(--co-color-primary-base) 10%, transparent);
+  }
+
+  /* Tip */
+  .custom-block.tip,
+  .custom-block.important {
+    border-color: var(--co-color-success-light);
+    background: var(--co-color-success-subtle);
+    color: var(--co-color-text-default);
+  }
+
+  .custom-block.tip .custom-block-title,
+  .custom-block.important .custom-block-title {
+    color: var(--co-color-success-base);
+  }
+
+  .custom-block.tip code,
+  .custom-block.important code {
+    background: color-mix(in srgb, var(--co-color-success-base) 10%, transparent);
+  }
+
+  /* Warning */
+  .custom-block.warning,
+  .custom-block.caution {
+    border-color: var(--co-color-warning-light);
+    background: var(--co-color-warning-subtle);
+    color: var(--co-color-warning-contrast);
+  }
+
+  .custom-block.warning .custom-block-title,
+  .custom-block.caution .custom-block-title {
+    color: var(--co-color-warning-base);
+  }
+
+  .custom-block.warning code,
+  .custom-block.caution code {
+    background: color-mix(in srgb, var(--co-color-warning-base) 10%, transparent);
+  }
+
+  /* Danger */
+  .custom-block.danger {
+    border-color: var(--co-color-danger-light);
+    background: var(--co-color-danger-subtle);
+    color: var(--co-color-text-default);
+  }
+
+  .custom-block.danger .custom-block-title {
+    color: var(--co-color-danger-base);
+  }
+
+  .custom-block.danger code {
+    background: color-mix(in srgb, var(--co-color-danger-base) 10%, transparent);
+  }
+
+  /* Details (collapsible) */
+  .custom-block.details {
+    border-color: var(--co-color-border-strong);
+    background: var(--co-color-surface-raised);
+    color: var(--co-color-text-default);
+  }
+
+  .custom-block.details summary {
+    font-weight: var(--co-font-weight-semibold);
+    cursor: pointer;
+  }
+
+  .custom-block.details code {
+    background: var(--co-color-surface-sunken);
+  }
 }
