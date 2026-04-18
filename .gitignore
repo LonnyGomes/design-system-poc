@@ -2,6 +2,7 @@ node_modules
 dist
 coverage
 *.tsbuildinfo
+custom-elements.json
 .DS_Store
 .worktrees
 cache
