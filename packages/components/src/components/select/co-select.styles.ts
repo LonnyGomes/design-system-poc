@@ -41,6 +41,7 @@ export const cobaltSelectStyles = css`
   .input-group__container {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     inline-size: 100%;
     min-block-size: var(--co-control-height-md);
     gap: var(--co-space-gap-sm);
