@@ -203,7 +203,7 @@ export const cobaltComboboxStyles = css`
   #overlay-content-node-wrapper {
     inline-size: 100%;
     min-inline-size: min(20rem, 100vw);
-    margin-block-start: var(--co-space-1);
+    /* Gap between input and dropdown is controlled by Popper offset in _defineOverlayConfig */
     border: var(--co-shape-border-width-thin) solid var(--co-color-border-default);
     border-radius: var(--co-control-radius);
     background: var(--co-color-surface-default);

@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { LionCombobox, MatchesOption } from '@lion/ui/combobox.js';
 import { Required, Validator } from '@lion/ui/form-core.js';
 import type { OverlayConfig } from '@lion/ui/types/overlays.js';
+import { CoSpaceGapXs } from '@cobalt/tokens';
 import { cobaltComboboxStyles } from './co-combobox.styles.js';
 import '../icon/co-icon.js';
 
@@ -360,9 +361,23 @@ export class CoCombobox extends LionCombobox {
   }
 
   protected override _defineOverlayConfig(): OverlayConfig {
+    const config = super._defineOverlayConfig();
     return {
-      ...super._defineOverlayConfig(),
+      ...config,
       _noDialogEl: true,
+      popperConfig: {
+        ...config.popperConfig,
+        modifiers: [
+          ...((config.popperConfig?.modifiers as Array<Record<string, unknown>>) ?? []).filter(
+            (m) => m.name !== 'offset',
+          ),
+          {
+            name: 'offset',
+            enabled: true,
+            options: { offset: [0, parseInt(CoSpaceGapXs, 10)] },
+          },
+        ] as unknown as OverlayConfig['popperConfig'] extends { modifiers?: infer M } ? M : never,
+      },
     };
   }
 
