@@ -245,7 +245,17 @@ export class CoCombobox extends LionCombobox {
   private _onSuffixClick() {
     if (this.disabled || this.readOnly) return;
     this._inputNode?.focus();
-    this.opened = !this.opened;
+    if (this.opened) {
+      this.opened = false;
+    } else if (this._hasVisibleOptions()) {
+      this.opened = true;
+    }
+  }
+
+  /** Hide the overlay when no options are visible to prevent an empty dropdown box. */
+  private _hasVisibleOptions(): boolean {
+    const options = this.formElements ?? [];
+    return options.some((el: HTMLElement) => el.style.display !== 'none');
   }
 
   protected override _overlayListboxTemplate() {
@@ -296,6 +306,8 @@ export class CoCombobox extends LionCombobox {
     lastKey?: string;
     currentValue?: string;
   }): boolean {
+    if (!this._hasVisibleOptions()) return false;
+
     const shouldShow = super._showOverlayCondition(options);
     const inputValue = this._inputNode?.value;
 

@@ -115,13 +115,22 @@
   padding-inline: var(--co-space-inset-sm);
 }
 
+:host([size='md']) {
+  font-size: var(--co-font-size-md);
+}
+
+:host([size='sm']) .input-group__container {
+  min-block-size: var(--co-control-height-md);
+  padding-inline: var(--co-space-inset-sm);
+}
+
 :host([size='lg']) {
   font-size: var(--co-font-size-lg);
 }
 
 :host([size='lg']) .input-group__container {
   min-block-size: var(--co-control-height-lg);
-  padding-inline: var(--co-space-inset-lg);
+  padding-inline: var(--co-space-inset-sm);
 }
 
 :host([size='xl']) {
@@ -130,7 +139,7 @@
 
 :host([size='xl']) .input-group__container {
   min-block-size: var(--co-control-height-xl);
-  padding-inline: var(--co-space-inset-xl);
+  padding-inline: var(--co-space-inset-sm);
 }
 
 .input-group__input {
@@ -151,7 +160,7 @@
 /* ── Chevron indicator ── */
 
 .combobox__chevron {
-  color: var(--co-color-text-tertiary);
+  color: var(--co-color-text-default);
   cursor: pointer;
   transition: transform var(--co-motion-duration-fast) var(--co-motion-easing-default);
 }
