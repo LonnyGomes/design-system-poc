@@ -7,7 +7,7 @@ export const cobaltComboboxStyles = css`
     box-sizing: border-box;
     inline-size: 100%;
     font-family: var(--co-font-family-sans);
-    font-size: var(--co-font-size-md);
+    font-size: var(--co-font-size-p);
     font-weight: var(--co-font-weight-regular);
     line-height: var(--co-font-line-height-normal);
     color: var(--co-color-text-default);
@@ -114,7 +114,7 @@ export const cobaltComboboxStyles = css`
   }
 
   :host([size='sm']) {
-    font-size: var(--co-font-size-sm);
+    font-size: var(--co-font-size-small);
   }
 
   :host([size='sm']) .input-group__container {
@@ -123,7 +123,7 @@ export const cobaltComboboxStyles = css`
   }
 
   :host([size='md']) {
-    font-size: var(--co-font-size-md);
+    font-size: var(--co-font-size-p);
   }
 
   :host([size='sm']) .input-group__container {
@@ -132,7 +132,7 @@ export const cobaltComboboxStyles = css`
   }
 
   :host([size='lg']) {
-    font-size: var(--co-font-size-lg);
+    font-size: var(--co-font-size-h6);
   }
 
   :host([size='lg']) .input-group__container {
@@ -141,7 +141,7 @@ export const cobaltComboboxStyles = css`
   }
 
   :host([size='xl']) {
-    font-size: var(--co-font-size-xl);
+    font-size: var(--co-font-size-h5);
   }
 
   :host([size='xl']) .input-group__container {

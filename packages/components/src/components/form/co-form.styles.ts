@@ -7,7 +7,7 @@ export const cobaltFormStyles = css`
     box-sizing: border-box;
     inline-size: 100%;
     font-family: var(--co-font-family-sans);
-    font-size: var(--co-font-size-md);
+    font-size: var(--co-font-size-p);
     font-weight: var(--co-font-weight-regular);
     line-height: var(--co-font-line-height-normal);
     color: var(--co-color-text-default);

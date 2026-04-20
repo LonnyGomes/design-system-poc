@@ -10,7 +10,7 @@ export const cobaltButtonStyles = css`
     min-block-size: var(--co-control-height-md);
     padding: 0;
     font-family: var(--co-font-family-sans);
-    font-size: var(--co-font-size-md);
+    font-size: var(--co-font-size-p);
     font-weight: var(--co-font-weight-medium);
     line-height: var(--co-font-line-height-tight);
     border-radius: var(--co-control-radius);
@@ -37,7 +37,7 @@ export const cobaltButtonStyles = css`
 
   /* ── Sizes ── */
   :host([size='sm']) {
-    font-size: var(--co-font-size-sm);
+    font-size: var(--co-font-size-small);
     min-block-size: var(--co-control-height-sm);
   }
   :host([size='sm']) .button {
@@ -45,7 +45,7 @@ export const cobaltButtonStyles = css`
   }
 
   :host([size='lg']) {
-    font-size: var(--co-font-size-lg);
+    font-size: var(--co-font-size-h6);
     min-block-size: var(--co-control-height-lg);
   }
   :host([size='lg']) .button {
@@ -53,7 +53,7 @@ export const cobaltButtonStyles = css`
   }
 
   :host([size='xl']) {
-    font-size: var(--co-font-size-xl);
+    font-size: var(--co-font-size-h5);
     min-block-size: var(--co-control-height-xl);
   }
   :host([size='xl']) .button {

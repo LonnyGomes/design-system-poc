@@ -39,7 +39,7 @@ export const cobaltButtonIconStyles = css`
   }
 
   .label {
-    font-size: var(--co-font-size-xs);
+    font-size: var(--co-font-size-xsmall);
     line-height: var(--co-font-line-height-tight);
     white-space: nowrap;
   }

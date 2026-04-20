@@ -5,7 +5,7 @@ export const cobaltCheckboxIndeterminateStyles = css`
   :host {
     display: block;
     font-family: var(--co-font-family-sans);
-    font-size: var(--co-font-size-md);
+    font-size: var(--co-font-size-p);
     color: var(--co-color-text-default);
     cursor: pointer;
   }
