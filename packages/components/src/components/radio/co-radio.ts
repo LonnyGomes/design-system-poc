@@ -60,12 +60,17 @@ export class CoRadio extends LionRadio {
     }
   }
 
+  private __forwardingClick = false;
+
   private _onRadioClick(e: Event) {
-    const input = this.querySelector('[slot="input"]') as HTMLInputElement | null;
-    if (input && !this.disabled && e.target !== input) {
-      input.click();
-      input.focus();
-    }
+    if (this.__forwardingClick || this.disabled) return;
+    const target = e.target as HTMLElement;
+    const input = this._inputNode as HTMLInputElement | null;
+    if (!input || target === input || target instanceof HTMLLabelElement) return;
+    this.__forwardingClick = true;
+    input.click();
+    input.focus();
+    this.__forwardingClick = false;
   }
 }
 
