@@ -37,7 +37,7 @@ export class CoCheckboxIndeterminate extends LionCheckboxIndeterminate {
   }
 
   private get _indicatorIconName(): string {
-    if (this.indeterminate) return 'check-indeterminate-small';
+    if (this.indeterminate) return 'indeterminate-check-box';
     return this.checked ? 'check-box' : 'check-box-outline-blank';
   }
 
@@ -82,10 +82,34 @@ export class CoCheckboxIndeterminate extends LionCheckboxIndeterminate {
 
   private _onCheckboxClick(e: Event) {
     const input = this.querySelector('[slot="input"]') as HTMLInputElement | null;
-    if (input && !this.disabled && e.target !== input) {
-      input.click();
-      input.focus();
-    }
+    if (!input || this.disabled || e.target === input) return;
+
+    // Determine target state: if any sub is unchecked → check all, else uncheck all
+    const subs = (this as unknown as { _subCheckboxes: HTMLElement[] })._subCheckboxes ?? [];
+    const allChecked = subs.length > 0 && subs.every((c: any) => c.checked);
+    const targetChecked = !allChecked;
+
+    // Set guard flag to prevent Lion's __onModelValueChanged from interfering
+    (this as unknown as { __settingOwnSubs: boolean }).__settingOwnSubs = true;
+
+    // Update all sub-checkboxes
+    subs
+      .filter((c: any) => !c.disabled)
+      .forEach((c: any) => {
+        c.checked = targetChecked;
+        if (c._inputNode) c._inputNode.checked = targetChecked;
+      });
+
+    // Update own state
+    this.checked = targetChecked;
+    this.indeterminate = false;
+    if (input) input.checked = targetChecked;
+
+    this.updateComplete.then(() => {
+      (this as unknown as { __settingOwnSubs: boolean }).__settingOwnSubs = false;
+    });
+
+    input.focus();
   }
 }
 

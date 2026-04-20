@@ -63,7 +63,7 @@ export const html = `
     <div style="max-width: 320px;">
       <co-checkbox-group label="Permissions" name="indeterminate-group">
         <co-checkbox-indeterminate label="Select all">
-          <co-checkbox label="Read" value="read" checked></co-checkbox>
+          <co-checkbox label="Read" value="read"></co-checkbox>
           <co-checkbox label="Write" value="write"></co-checkbox>
           <co-checkbox label="Delete" value="delete"></co-checkbox>
         </co-checkbox-indeterminate>
