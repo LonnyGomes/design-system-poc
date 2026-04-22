@@ -8,7 +8,7 @@ This is the central place for all Cobalt support channels. Whether you have a qu
 
 ## GitHub
 
-- **Issues** — Use the [GitHub Issues](%GITHUB_URL%/issues) for bug reports and feature requests. Issue templates are available for common report types.
+- **Issues** — Use the [GitHub issue templates](%GITHUB_URL%/issues/new/choose) for bug reports, feature requests, migration help, and structured support requests.
 - **Discussions** — Use [GitHub Discussions](%GITHUB_URL%/discussions) for open-ended questions, design decisions, RFCs, and community conversations.
 
 ## Office Hours

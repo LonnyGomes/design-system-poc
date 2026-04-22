@@ -1,0 +1,69 @@
+name: Feature Request
+description: Suggest an enhancement to a Cobalt package, workflow, or documentation experience.
+title: '[Feature]: '
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for improvements to existing packages, APIs, tooling, or docs.
+
+        For new component proposals, start a GitHub Discussion in the `Component Proposals` category instead.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of Cobalt would this request affect?
+      options:
+        - '@cobalt/components'
+        - '@cobalt/react'
+        - '@cobalt/vue'
+        - '@cobalt/angular'
+        - '@cobalt/tokens'
+        - '@cobalt/docs'
+        - Tooling / contributor workflow
+        - Multiple areas
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem are you trying to solve?
+      placeholder: Teams currently struggle with...
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed solution
+      description: Describe the change you want to see.
+      placeholder: It would help if Cobalt supported...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Share any workarounds or other approaches you evaluated.
+      placeholder: We considered...
+    validations:
+      required: false
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use cases
+      description: Who benefits from this and in what scenarios?
+      placeholder: This would help product teams that...
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Include references, screenshots, prototypes, or related issues.
+      placeholder: Links, examples, and prior discussion.
+    validations:
+      required: false

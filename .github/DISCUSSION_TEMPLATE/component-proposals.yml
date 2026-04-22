@@ -1,0 +1,58 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a new Cobalt component.
+
+        Before posting, confirm that the request reflects a recurring need across product teams and cannot be addressed by extending an existing component.
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem statement
+      description: Describe the user problem or developer pain point this component would solve.
+      placeholder: Teams currently need...
+    validations:
+      required: true
+  - type: textarea
+    id: evidence-of-need
+    attributes:
+      label: Evidence of need
+      description: List the product teams, flows, or recurring contexts that need this component.
+      placeholder: This pattern appears in...
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-api
+    attributes:
+      label: Proposed API
+      description: Sketch the public interface, including tag name, props, events, slots, or CSS custom properties.
+      placeholder: |
+        <co-example>
+          ...
+        </co-example>
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives-considered
+    attributes:
+      label: Alternatives considered
+      description: Document other approaches and explain why the proposal is preferred.
+      placeholder: We considered...
+    validations:
+      required: true
+  - type: textarea
+    id: accessibility-plan
+    attributes:
+      label: Accessibility plan
+      description: Outline keyboard behavior, ARIA, announcements, focus management, and visual accessibility support.
+      placeholder: Keyboard support, screen reader expectations, focus flow, contrast, reduced motion...
+    validations:
+      required: true
+  - type: textarea
+    id: design-readiness
+    attributes:
+      label: Design and implementation readiness
+      description: Share links to specs, prototypes, related issues, or notes about remaining open questions.
+      placeholder: Figma links, examples, backlog items, and known constraints.
+    validations:
+      required: false

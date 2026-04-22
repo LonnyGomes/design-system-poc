@@ -28,6 +28,31 @@ Feature requests should be submitted as GitHub Issues using the **Feature Reques
 
 For new component proposals, follow the [Component Proposal Process](./component-proposal.md) instead.
 
+## Getting Migration Help
+
+If you need help moving an existing product or library onto Cobalt, open a GitHub issue using the **Migration Help** template.
+
+Useful context includes:
+
+- Your current UI stack and framework versions
+- Which Cobalt packages or guides you are targeting
+- The migration step or blocker you are stuck on
+- What you have already tried
+- Any timeline or rollout constraints
+
+## Requesting General Support
+
+If you need structured help with setup, usage, troubleshooting, or adoption, open a GitHub issue using the **General Support Request** template.
+
+Include:
+
+1. **Your goal** — What you are trying to accomplish
+2. **Where you are blocked** — What is not working or remains unclear
+3. **What you tried** — Steps, docs, or examples you already used
+4. **Environment details** — Framework, package versions, and relevant tooling
+
+For broader conversations or open-ended questions, use [GitHub Discussions](%GITHUB_URL%/discussions).
+
 ## Submitting Pull Requests
 
 ### Before You Submit

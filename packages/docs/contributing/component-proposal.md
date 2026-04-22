@@ -14,7 +14,7 @@ Before submitting a proposal, verify that:
 
 ## RFC Template
 
-Create a new GitHub Discussion in the **Component Proposals** category using the following structure:
+Create a new GitHub Discussion in the **Component Proposals** category using the [component proposal form](%GITHUB_URL%/discussions/new?category=component-proposals). The form follows the structure below:
 
 ### 1. Problem Statement
 

@@ -1,0 +1,74 @@
+name: Migration Help
+description: Get help moving an application, package, or workflow onto Cobalt.
+title: '[Migration]: '
+labels:
+  - question
+  - migration
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for migration planning and implementation blockers.
+
+        The more context you include about your current stack and target Cobalt packages, the faster we can help.
+  - type: dropdown
+    id: migration-type
+    attributes:
+      label: Migration type
+      options:
+        - Bootstrap to Cobalt
+        - Material UI to Cobalt
+        - Custom HTML/CSS to Cobalt
+        - Legacy Cobalt version to current Cobalt
+        - Design tokens / theming migration
+        - Framework wrapper migration
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: current-stack
+    attributes:
+      label: Current implementation
+      description: Describe the app, framework, library versions, and current UI stack.
+      placeholder: We currently use...
+    validations:
+      required: true
+  - type: textarea
+    id: target
+    attributes:
+      label: Target Cobalt usage
+      description: Which Cobalt packages, components, or migration guides are you trying to adopt?
+      placeholder: We want to move to...
+    validations:
+      required: true
+  - type: textarea
+    id: blocker
+    attributes:
+      label: Migration blocker
+      description: What is preventing progress right now?
+      placeholder: We are blocked because...
+    validations:
+      required: true
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What have you already tried?
+      placeholder: We tried following..., but...
+    validations:
+      required: true
+  - type: textarea
+    id: timeline
+    attributes:
+      label: Timeline or urgency
+      description: Share any release deadlines, rollout phases, or adoption milestones.
+      placeholder: We need this by...
+    validations:
+      required: false
+  - type: input
+    id: reproduction
+    attributes:
+      label: Repo, sandbox, or reference links
+      description: Add a link if there is a minimal reproduction, migration branch, or example app.
+      placeholder: https://
+    validations:
+      required: false

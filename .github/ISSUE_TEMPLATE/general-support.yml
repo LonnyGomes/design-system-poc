@@ -1,0 +1,81 @@
+name: General Support Request
+description: Ask for help using, troubleshooting, or understanding Cobalt.
+title: '[Support]: '
+labels:
+  - question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when you need structured support for setup, usage, debugging, or adoption questions.
+
+        For open-ended design discussion or RFC-style conversation, use GitHub Discussions instead.
+  - type: dropdown
+    id: support-type
+    attributes:
+      label: Support type
+      options:
+        - Setup / installation
+        - Usage question
+        - Troubleshooting
+        - Documentation clarification
+        - Adoption guidance
+        - Not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: relevant-area
+    attributes:
+      label: Relevant area
+      options:
+        - '@cobalt/components'
+        - '@cobalt/react'
+        - '@cobalt/vue'
+        - '@cobalt/angular'
+        - '@cobalt/tokens'
+        - '@cobalt/docs'
+        - Multiple areas
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to do?
+      placeholder: I am trying to...
+    validations:
+      required: true
+  - type: textarea
+    id: blocker
+    attributes:
+      label: Where are you blocked?
+      placeholder: I expected..., but instead...
+    validations:
+      required: true
+  - type: textarea
+    id: attempted
+    attributes:
+      label: What have you tried?
+      placeholder: I already tried...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and context
+      description: Share any version, framework, or repo details that would help us reproduce or answer quickly.
+      placeholder: |
+        - Framework:
+        - Cobalt package/version:
+        - Build tool:
+        - Relevant repo or app context:
+    validations:
+      required: false
+  - type: textarea
+    id: links
+    attributes:
+      label: Links or supporting material
+      description: Add docs links, screenshots, sandboxes, or logs if they help explain the request.
+      placeholder: https://
+    validations:
+      required: false
