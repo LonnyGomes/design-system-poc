@@ -194,22 +194,22 @@
       "weight": {
         "regular": {
           "$type": "fontWeight",
-          "$value": "400",
+          "$value": 400,
           "$description": "Regular font weight for default text."
         },
         "medium": {
           "$type": "fontWeight",
-          "$value": "500",
+          "$value": 500,
           "$description": "Medium font weight for labels and moderate emphasis."
         },
         "semibold": {
           "$type": "fontWeight",
-          "$value": "600",
+          "$value": 600,
           "$description": "Semibold font weight for strong emphasis."
         },
         "bold": {
           "$type": "fontWeight",
-          "$value": "700",
+          "$value": 700,
           "$description": "Bold font weight for maximum text emphasis."
         }
       },
@@ -243,23 +243,23 @@
       "line": {
         "height": {
           "display": {
-            "$type": "number",
-            "$value": "1.1",
+            "$type": "lineHeights",
+            "$value": 1.1,
             "$description": "Compact line-height ratio for display typography."
           },
           "tight": {
-            "$type": "number",
-            "$value": "1.25",
+            "$type": "lineHeights",
+            "$value": 1.25,
             "$description": "Tight line-height ratio for headings, labels, and controls."
           },
           "normal": {
-            "$type": "number",
-            "$value": "1.5",
+            "$type": "lineHeights",
+            "$value": 1.5,
             "$description": "Default line-height ratio for readable body text."
           },
           "relaxed": {
-            "$type": "number",
-            "$value": "1.75",
+            "$type": "lineHeights",
+            "$value": 1.75,
             "$description": "Relaxed line-height ratio for long-form text."
           }
         }
@@ -318,37 +318,37 @@
       "z": {
         "dropdown": {
           "$type": "number",
-          "$value": "1000",
+          "$value": 1000,
           "$description": "Stacking index for dropdown layers."
         },
         "sticky": {
           "$type": "number",
-          "$value": "1020",
+          "$value": 1020,
           "$description": "Stacking index for sticky interface regions."
         },
         "fixed": {
           "$type": "number",
-          "$value": "1030",
+          "$value": 1030,
           "$description": "Stacking index for fixed interface regions."
         },
         "modal-backdrop": {
           "$type": "number",
-          "$value": "1040",
+          "$value": 1040,
           "$description": "Stacking index for modal backdrop layers."
         },
         "modal": {
           "$type": "number",
-          "$value": "1050",
+          "$value": 1050,
           "$description": "Stacking index for modal dialog layers."
         },
         "popover": {
           "$type": "number",
-          "$value": "1060",
+          "$value": 1060,
           "$description": "Stacking index for popover layers."
         },
         "tooltip": {
           "$type": "number",
-          "$value": "1070",
+          "$value": 1070,
           "$description": "Stacking index for tooltip layers."
         }
       }
@@ -454,18 +454,18 @@
     },
     "opacity": {
       "disabled": {
-        "$type": "number",
-        "$value": "0.5",
+        "$type": "opacity",
+        "$value": 0.5,
         "$description": "Opacity applied to disabled content and controls."
       },
       "overlay": {
-        "$type": "number",
-        "$value": "0.4",
+        "$type": "opacity",
+        "$value": 0.4,
         "$description": "Opacity used for modal and page overlays."
       },
       "placeholder": {
-        "$type": "number",
-        "$value": "0.6",
+        "$type": "opacity",
+        "$value": 0.6,
         "$description": "Opacity used for placeholder text and inactive hints."
       }
     },
