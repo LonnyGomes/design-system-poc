@@ -9,12 +9,14 @@
       "@cobalt/components",
       "@cobalt/react",
       "@cobalt/vue",
-      "@cobalt/angular"
+      "@cobalt/angular",
+      "@cobalt/workbench",
+      "@cobalt/docs"
     ]
   ],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@cobalt/docs"]
+  "ignore": []
 }
