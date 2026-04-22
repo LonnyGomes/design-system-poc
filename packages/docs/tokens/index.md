@@ -8,6 +8,20 @@ Browse and search all Cobalt design tokens. Click any token name to copy it to y
 
 Need a quick explanation of how the token system is organized? Start with [Token Structure](./structure.md).
 
+## Authoring vs Export Files
+
+Cobalt maintains a distinction between **authoring files** and **export artifacts**.
+
+- `packages/tokens/tokens/*.json` are the source token files. These stay intentionally simple so they round-trip cleanly through Tokens Studio.
+- `dist/tokens-merged.json` is the Token Studio export/import artifact. It preserves the authoring shape and includes `$themes` and `$metadata`.
+- `dist/tokens-dtcg.json` is a generated DTCG-style export. It normalizes values into a more standards-friendly structure for downstream tooling, but it is not the primary authoring or Token Studio sync file.
+
+Use this rule:
+
+- edit the source files in `packages/tokens/tokens`
+- use `tokens-merged.json` for Token Studio workflows
+- use `tokens-dtcg.json` when a consumer needs a more DTCG-aligned JSON export
+
 ## Categories
 
 | Category       | Prefix                          | What it covers                                                                                                             |
@@ -43,6 +57,7 @@ Tokens are available in multiple formats via the `@cobalt/tokens` package:
 | SCSS Variables        | `@cobalt/tokens/scss`          |
 | JS/TS Constants       | `@cobalt/tokens`               |
 | Flat JSON             | `@cobalt/tokens/json`          |
+| DTCG Export           | `@cobalt/tokens/dtcg`          |
 | Tailwind Preset       | `@cobalt/tokens/tailwind`      |
 | Tailwind Theme CSS    | `@cobalt/tokens/tailwind/css`  |
 

@@ -2,6 +2,7 @@ import StyleDictionary from 'style-dictionary';
 import { copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { exportDtcgTokens } from './scripts/export-dtcg.js';
 import { generateTailwindPreset } from './scripts/generate-tailwind-preset.js';
 import { generateUtilitiesCss } from './scripts/generate-utilities-css.js';
 import { mergeTokens } from './scripts/merge-tokens.js';
@@ -213,6 +214,10 @@ async function build() {
   console.log('Generating merged tokens for Figma sync...');
   const merged = mergeTokens();
   writeFileSync(join(__dirname, 'dist/tokens-merged.json'), JSON.stringify(merged, null, 2) + '\n');
+
+  console.log('Generating DTCG export artifact...');
+  const dtcg = exportDtcgTokens(tokensDir);
+  writeFileSync(join(__dirname, 'dist/tokens-dtcg.json'), JSON.stringify(dtcg, null, 2) + '\n');
 
   console.log('Token build complete!');
 }

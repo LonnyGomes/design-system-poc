@@ -21,6 +21,7 @@
     "./css/utilities": "./dist/css/utilities.css",
     "./scss": "./dist/scss/_tokens.scss",
     "./json": "./dist/tokens.json",
+    "./dtcg": "./dist/tokens-dtcg.json",
     "./tailwind": {
       "import": "./dist/tailwind/preset.js",
       "types": "./dist/tailwind/preset.d.ts"
@@ -31,6 +32,7 @@
     "build": "node config.js",
     "validate": "node scripts/validate-tokens.js",
     "merge-tokens": "node scripts/merge-tokens.js",
+    "export-dtcg": "node scripts/export-dtcg.js",
     "clean": "rm -rf dist"
   },
   "dependencies": {

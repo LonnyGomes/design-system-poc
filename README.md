@@ -117,6 +117,17 @@ Design tokens — the single source of truth for colors, typography, spacing, el
 - **JavaScript/TypeScript** module
 - **JSON**
 
+The token package intentionally publishes two different JSON-shaped artifacts for different workflows:
+
+- `dist/tokens-merged.json` is the **Token Studio round-trip artifact**. It preserves the simple authoring shape used in `packages/tokens/tokens` and includes `$themes` and `$metadata` so the file can be imported back into Tokens Studio cleanly.
+- `dist/tokens-dtcg.json` is the **DTCG-style export artifact**. It is generated from the authoring tokens during build and normalizes values into a more standards-friendly shape for downstream tooling and interoperability work. It is not the file to edit by hand and it is not the primary Token Studio sync file.
+
+In other words:
+
+- edit `packages/tokens/tokens/*.json`
+- sync with Tokens Studio through `dist/tokens-merged.json`
+- use `dist/tokens-dtcg.json` when you need a more DTCG-aligned export
+
 ### `@cobalt/components`
 
 Framework-agnostic web components built with [Lit](https://lit.dev/) that wrap implementation from base libraries such as Lion. Each component applies Cobalt tokens and exposes a consistent API with slots, CSS custom properties, and custom events.

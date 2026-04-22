@@ -46,6 +46,20 @@ Semantic-->Components
 | `semantic.theme.<theme>.<mode>.json` | Semantic tokens that change by theme or mode             | Mostly color behavior today                                         | `color.text.default`, `color.surface.default`, `color.primary.base` |
 | `components.json`                    | Component-specific tokens                                | Public component contracts or intentional exceptions                | `component.avatar.size.md`                                          |
 
+## Export Artifacts
+
+The build also generates two JSON export artifacts with different jobs:
+
+| File                      | Purpose                        | Notes                                                                                                                                                              |
+| ------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `dist/tokens-merged.json` | Token Studio round-trip export | Preserves the simple source-token shape and includes `$themes` and `$metadata` for Figma and Tokens Studio workflows.                                              |
+| `dist/tokens-dtcg.json`   | DTCG-style export              | Generated from the source tokens for downstream consumers that want a more standards-aligned JSON structure. This file is derived output, not the source of truth. |
+
+This split is intentional:
+
+- the source token files optimize for stable Tokens Studio authoring and import/export
+- the DTCG export optimizes for interoperability without forcing extra complexity into the authoring files
+
 ## What This Means In Practice
 
 ### 1. Primitives are not design decisions
