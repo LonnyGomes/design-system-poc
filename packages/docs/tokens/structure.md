@@ -1,12 +1,11 @@
 # Token Structure
 
-This page explains how Cobalt tokens are organized and how to decide where a token belongs. Cobalt adopts a a three tiered structure for tokens: primitives, semantic, and components.
+This page explains how Cobalt tokens are organized and how to decide where a token belongs. Cobalt adopts a a three tiered structure for tokens: `primitives`, `semantic`, and components. This makes the token system easier to scale as more themes are added and easier to understand in Figma handoff.
 
 For designers working in Figma, the main idea is simple:
 
 - **Primitives** are raw ingredients
-- **Semantic tokens** describe design intent
-- **Theme tokens** change that intent by theme or mode
+- **Semantic tokens** describe design intent, and light and dark color themes
 - **Component tokens** are reserved for true component-specific needs
 
 ## Token Files
@@ -39,28 +38,13 @@ Primitives-->Semantic
 Semantic-->Components
 ```
 
-## The Five Layers
-
-Within the thriee tiers, there are five layers of token files that separate different types of values and design decisions:
-
-| Layer                                | What it means                                            | Use it for                                                          | Examples                                                            |
+| Token File                           | What it means                                            | Use it for                                                          | Examples                                                            |
 | ------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `primitives.json`                    | Raw foundational values                                  | Spacing scale, radius scale, type scale, motion values, breakpoints | `space.4`, `shape.radius.sm`, `font.size.md`                        |
 | `primitives.color.json`              | Raw color palette                                        | Neutral and brand ramps                                             | `neutral.100`, `cobalt.500`, `red.600`                              |
 | `semantic.shared.json`               | Shared design decisions that stay the same across themes | Control sizing, focus rules, shared layout values                   | `control.height.md`, `control.radius`, `focus.ring.width`           |
 | `semantic.theme.<theme>.<mode>.json` | Semantic tokens that change by theme or mode             | Mostly color behavior today                                         | `color.text.default`, `color.surface.default`, `color.primary.base` |
 | `components.json`                    | Component-specific tokens                                | Public component contracts or intentional exceptions                | `component.avatar.size.md`                                          |
-
-## Why The Five Layers
-
-The five layer structure separates:
-
-1. raw values
-2. shared system rules
-3. theme-specific changes
-4. component-specific exceptions
-
-This makes the token system easier to scale as more themes are added and easier to understand in Figma handoff.
 
 ## What This Means In Practice
 

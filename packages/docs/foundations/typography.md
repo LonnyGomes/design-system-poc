@@ -80,6 +80,8 @@ The same `unicode-range` optimization applies: each script's glyphs are only dow
 
 ### Type scale
 
+> **NOTE:** Size is based on a root font value of `16 px` and equates to 1 rem. All other font sizes are applied using rem and are relative to the root font values. We reference all font sizes as rems for accessibility reasons but show the pixel equivilant to provide a comparison size against other pixel-based DOM elements.
+
 | Token                   | Size  | Rem       | Role that uses it    |
 | ----------------------- | ----- | --------- | -------------------- |
 | `--co-font-size-xsmall` | 12 px | 0.75 rem  | `caption`, `eyebrow` |
@@ -156,18 +158,18 @@ Each role emits four CSS custom properties under the `--co-typography-*` prefix:
 
 When you opt into `[data-co-base]`, elements are mapped to semantic roles as follows:
 
-| Element      | Role                           | Rendered size |
-| ------------ | ------------------------------ | ------------- |
-| `h1`         | `heading`                      | 36 px         |
-| `h2`         | `title`                        | 24 px         |
-| `h3`         | `subtitle`                     | 20 px         |
-| `h4`         | `subtitle`                     | 20 px         |
-| `h5`         | `label`                        | 14 px         |
-| `h6`         | `label` weight, `caption` size | 12 px         |
-| `p`, root    | `body`                         | 16 px         |
-| `table` body | `body-sm`                      | 14 px         |
-| `th`         | `label`                        | 14 px         |
-| `small`      | `caption`                      | 12 px         |
+| Element      | Role                           | Rem       | Rendered size |
+| ------------ | ------------------------------ | --------- | ------------- |
+| `h1`         | `heading`                      | 2.25 rem  | 36 px         |
+| `h2`         | `title`                        | 1.5 rem   | 24 px         |
+| `h3`         | `subtitle`                     | 1.25 rem  | 20 px         |
+| `h4`         | `subtitle`                     | 1.25 rem  | 20 px         |
+| `h5`         | `label`                        | 0.875 rem | 14 px         |
+| `h6`         | `label` weight, `caption` size | 0.75 rem  | 12 px         |
+| `p`, root    | `body`                         | 1 rem     | 16 px         |
+| `table` body | `body-sm`                      | 0.875 rem | 14 px         |
+| `th`         | `label`                        | 0.875 rem | 14 px         |
+| `small`      | `caption`                      | 0.75 rem  | 12 px         |
 
 ```html
 <html data-co-base data-theme="light">
