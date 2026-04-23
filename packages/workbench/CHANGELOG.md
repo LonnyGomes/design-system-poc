@@ -1,6 +1,7 @@
----
+# @cobalt/workbench
 
 ## 0.1.0
+
 ### Minor Changes
 
 - 5287fe4: Added baseline navigation rail bar component
@@ -14,11 +15,11 @@
     - Select
     - Combo boxes
     - Text areas
-title: Changelog
----
 
-# Changelog
+### Patch Changes
 
-All notable changes to Cobalt are documented here.
-
-<ChangelogPage />
+- Updated dependencies [5287fe4]
+- Updated dependencies [5fd88a3]
+  - @cobalt/components@0.1.0
+  - @cobalt/tokens@0.1.0
+  - @cobalt/icons@0.1.0

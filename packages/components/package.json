@@ -1,6 +1,6 @@
 {
   "name": "@cobalt/components",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Cobalt Design System Web Components",
   "type": "module",
   "main": "dist/index.js",
